@@ -5,7 +5,10 @@ const withNextIntl = createNextIntlPlugin('./lib/i18n.ts');
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['avatars.githubusercontent.com', 'lh3.googleusercontent.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: 'lh3.googleusercontent.com' },
+    ],
   },
 };
 

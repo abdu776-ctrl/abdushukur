@@ -1,28 +1,17 @@
 import { getRequestConfig } from 'next-intl/server';
-import { notFound } from 'next/navigation';
+import { routing } from './routing';
 
-export const locales = ['en', 'ko', 'uz', 'ru'] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = 'en';
-
-export const localeNames: Record<Locale, string> = {
-  en: 'English',
-  ko: '한국어',
-  uz: "O'zbek",
-  ru: 'Русский',
-};
-
-export const localeFlags: Record<Locale, string> = {
-  en: '🇺🇸',
-  ko: '🇰🇷',
-  uz: '🇺🇿',
-  ru: '🇷🇺',
-};
+export const locales = routing.locales;
+export const defaultLocale = routing.defaultLocale;
+export type Locale = (typeof routing.locales)[number];
+export { localeNames, localeFlags } from './routing';
 
 export default getRequestConfig(async ({ requestLocale }) => {
-  const locale = await requestLocale;
+  let locale = await requestLocale;
 
-  if (!locale || !locales.includes(locale as Locale)) notFound();
+  if (!locale || !routing.locales.includes(locale as Locale)) {
+    locale = routing.defaultLocale;
+  }
 
   return {
     locale,

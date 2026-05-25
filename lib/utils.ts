@@ -26,7 +26,7 @@ export async function exportToPDF(elementId: string, filename: string) {
   if (typeof window === 'undefined') return;
 
   const { default: html2canvas } = await import('html2canvas');
-  const { default: jsPDF } = await import('jspdf');
+  const { jsPDF } = await import('jspdf');
 
   const element = document.getElementById(elementId);
   if (!element) return;

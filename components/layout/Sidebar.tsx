@@ -12,7 +12,6 @@ import {
   PenLine,
   Sparkles,
   Settings,
-  LogOut,
   ChevronLeft,
   ChevronRight,
   User,

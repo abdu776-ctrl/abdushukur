@@ -9,7 +9,6 @@ import {
   Send,
   Plus,
   User,
-  RotateCcw,
   Copy,
   ThumbsUp,
   ThumbsDown,

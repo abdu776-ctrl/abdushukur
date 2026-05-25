@@ -13,15 +13,11 @@ import {
   GraduationCap,
   Briefcase,
   Code2,
-  Languages,
-  Award,
   Plus,
   Trash2,
   Download,
   Eye,
   EyeOff,
-  ChevronDown,
-  ChevronUp,
   Sparkles,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';

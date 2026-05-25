@@ -1,6 +1,5 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, ResumeTemplate } from '@/types';
 import { Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
