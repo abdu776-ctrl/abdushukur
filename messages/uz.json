@@ -1,0 +1,289 @@
+{
+  "common": {
+    "appName": "Koreer",
+    "tagline": "Koreya uchun AI Martaba Yordamchisi",
+    "loading": "Yuklanmoqda...",
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "create": "Yaratish",
+    "download": "Yuklab olish",
+    "export": "PDF eksport",
+    "preview": "Ko'rish",
+    "back": "Orqaga",
+    "next": "Keyingi",
+    "finish": "Tugatish",
+    "or": "yoki",
+    "and": "va",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "close": "Yopish",
+    "search": "Qidirish",
+    "filter": "Filtr",
+    "settings": "Sozlamalar",
+    "profile": "Profil",
+    "logout": "Chiqish",
+    "darkMode": "Qorong'i rejim",
+    "language": "Til",
+    "new": "Yangi",
+    "untitled": "Nomsiz"
+  },
+  "nav": {
+    "home": "Bosh sahifa",
+    "dashboard": "Boshqaruv paneli",
+    "resume": "Rezyume",
+    "coverLetter": "Motivatsion xat",
+    "aiAssistant": "AI Yordamchi",
+    "settings": "Sozlamalar",
+    "templates": "Shablonlar"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI-asosli Martaba Vositalari",
+      "title": "Koreyada Orzuingizdagi Ishni Toping",
+      "subtitle": "AI yordami bilan professional koreyscha rezyume va o'z-o'zini taqdimot xatlarini yarating. O'zbekiston, Qozog'iston, Qirg'iziston, Mo'g'uliston va Vyetnamdan kelgan talabalar uchun mo'ljallangan.",
+      "cta": "Bepul Boshlash",
+      "ctaSecondary": "Shablonlarni Ko'rish",
+      "trustedBy": "Quyidagi mamlakatlar talabalariga ishoniladi"
+    },
+    "features": {
+      "title": "Muvaffaqiyat uchun Kerakli Hamma Narsa",
+      "subtitle": "AI-asosli platformamiz Koreya ishga qabul qilish jarayonining har bir bosqichida yo'l ko'rsatadi.",
+      "ai": {
+        "title": "AI Yozish Yordamchisi",
+        "desc": "Ilg'or AI bilan rezyume va motivatsion xatlaringiz uchun shaxsiy tavsiyalar va yaxshilanishlar oling."
+      },
+      "resume": {
+        "title": "Koreyscha Rezyume Yaratuvchi",
+        "desc": "Yo'naltirilgan yaratuvchi va chiroyli shablonlar bilan Koreya standartlariga mos professional rezyume yarating."
+      },
+      "coverLetter": {
+        "title": "자기소개서 Yaratuvchi",
+        "desc": "Koreya ish beruvchilari va ularning madaniyatiga mos qiziqarli o'z-o'zini taqdimot xatlarini yozing."
+      },
+      "multilingual": {
+        "title": "Ko'p Tilli Qo'llab-quvvatlash",
+        "desc": "Ilovadan o'zbek, koreys, ingliz yoki rus tilida foydalaning."
+      },
+      "pdf": {
+        "title": "PDF Eksport",
+        "desc": "Hujjatlaringizni soniyalar ichida Koreya ish beruvchilariga yuborishga tayyor professional PDF sifatida eksport qiling."
+      },
+      "templates": {
+        "title": "Professional Shablonlar",
+        "desc": "Koreya kompaniyalari va ish ariza topshirish uchun maxsus ishlab chiqilgan shablonlar orasidan tanlang."
+      }
+    },
+    "howItWorks": {
+      "title": "3 Oddiy Qadamda Boshlang",
+      "step1": {
+        "title": "Hisobingizni Yarating",
+        "desc": "Bepul ro'yxatdan o'ting va Koreyadagi maqsad ish haqida bizga ayting."
+      },
+      "step2": {
+        "title": "Hujjatlaringizni Yarating",
+        "desc": "AI yordamchi yaratuvchilarimizdan foydalanib koreys rezyume va o'z-o'zini taqdimot xatingizni yarating."
+      },
+      "step3": {
+        "title": "Eksport Qiling va Ariza Bering",
+        "desc": "Professional PDF-larni yuklab oling va orzuingizdagi Koreya kompaniyalariga murojaat qilishni boshlang."
+      }
+    },
+    "cta": {
+      "title": "Koreya Martabangizni Boshlashga Tayyormisiz?",
+      "subtitle": "Koreer yordamida Koreyada ish topgan minglab xorijiy talabalar bilan qo'shiling.",
+      "button": "Bepul Hisob Yaratish"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Qaytganingizdan xursandmiz",
+      "subtitle": "Koreya martabangizni davom ettirish uchun kiring",
+      "email": "Elektron pochta manzili",
+      "password": "Parol",
+      "forgotPassword": "Parolni unutdingizmi?",
+      "submit": "Kirish",
+      "noAccount": "Hisobingiz yo'qmi?",
+      "signUp": "Ro'yxatdan o'tish",
+      "continueWith": "Yoki bilan davom eting"
+    },
+    "register": {
+      "title": "Hisobingizni yarating",
+      "subtitle": "Koreerga qo'shiling va Koreya martaba sayohatingizni boshlang",
+      "fullName": "To'liq ism",
+      "email": "Elektron pochta manzili",
+      "password": "Parol",
+      "confirmPassword": "Parolni tasdiqlang",
+      "nationality": "Millat",
+      "preferredLanguage": "Afzal til",
+      "submit": "Hisob yaratish",
+      "hasAccount": "Allaqachon hisobingiz bormi?",
+      "signIn": "Kirish",
+      "agreeTerms": "Foydalanish shartlari va Maxfiylik siyosatiga roziman"
+    }
+  },
+  "dashboard": {
+    "greeting": "Xayrli {time}, {name}!",
+    "morning": "tong",
+    "afternoon": "kun",
+    "evening": "kech",
+    "overview": "Martaba taraqqiyotingizga umumiy nuqtai nazar",
+    "stats": {
+      "resumes": "Rezyumeler",
+      "coverLetters": "Motivatsion xatlar",
+      "aiChats": "AI Suhbatlari",
+      "lastActivity": "So'nggi faoliyat"
+    },
+    "quickActions": {
+      "title": "Tezkor Harakatlar",
+      "createResume": "Yangi rezyume yaratish",
+      "createCoverLetter": "Motivatsion xat yaratish",
+      "askAI": "AI yordamchisidan so'rang"
+    },
+    "recentDocuments": {
+      "title": "So'nggi Hujjatlar",
+      "empty": "Hali hujjat yo'q. Birinchisini yarating!",
+      "viewAll": "Hammasini ko'rish"
+    },
+    "tips": {
+      "title": "Martaba Maslahatlari",
+      "tip1": "Koreyscha rezyumeler professional fotosuratni o'z ichiga olishi kerak",
+      "tip2": "O'z-o'zini taqdimot xatlari odatda 성장과정, 성격, 지원동기, 포부 tuzilishini kuzatadi",
+      "tip3": "Barcha rasmiy hujjatlarda rasmiy koreys tilidan foydalaning"
+    }
+  },
+  "resume": {
+    "title": "Rezyume Yaratuvchi",
+    "subtitle": "Professional koreyscha rezyume yarating",
+    "templates": {
+      "title": "Shablon Tanlang",
+      "modern": "Zamonaviy",
+      "classic": "Klassik",
+      "minimal": "Minimal",
+      "korean": "Koreya Standarti"
+    },
+    "sections": {
+      "personal": "Shaxsiy Ma'lumot",
+      "education": "Ta'lim",
+      "experience": "Ish Tajribasi",
+      "skills": "Ko'nikmalar",
+      "languages": "Tillar",
+      "certifications": "Sertifikatlar"
+    },
+    "personal": {
+      "fullName": "To'liq Ism",
+      "fullNameKorean": "Koreyacha Ism",
+      "email": "Elektron Pochta",
+      "phone": "Telefon",
+      "dateOfBirth": "Tug'ilgan Sana",
+      "nationality": "Millat",
+      "address": "Manzil",
+      "photo": "Profil Fotosurati",
+      "uploadPhoto": "Fotosurat Yuklash"
+    },
+    "education": {
+      "add": "Ta'lim Qo'shish",
+      "institution": "Universitet / Muassasa",
+      "degree": "Daraja",
+      "field": "O'qish Yo'nalishi",
+      "startDate": "Boshlanish Sanasi",
+      "endDate": "Tugash Sanasi",
+      "gpa": "GPA / Baho",
+      "current": "Hozirda o'qiyapman"
+    },
+    "experience": {
+      "add": "Tajriba Qo'shish",
+      "company": "Kompaniya",
+      "position": "Lavozim",
+      "startDate": "Boshlanish Sanasi",
+      "endDate": "Tugash Sanasi",
+      "current": "Hozirda ishlayapman",
+      "description": "Tavsif",
+      "achievements": "Asosiy Yutuqlar"
+    },
+    "skills": {
+      "add": "Ko'nikma Qo'shish",
+      "name": "Ko'nikma Nomi",
+      "level": "Mahorat Darajasi",
+      "category": "Kategoriya",
+      "beginner": "Boshlang'ich",
+      "intermediate": "O'rta",
+      "advanced": "Ilg'or",
+      "expert": "Mutaxassis"
+    }
+  },
+  "coverLetter": {
+    "title": "자기소개서 Yaratuvchi",
+    "subtitle": "Ishonchli koreys o'z-o'zini taqdimot xatini yarating",
+    "targetCompany": "Maqsadli Kompaniya",
+    "targetPosition": "Maqsadli Lavozim",
+    "sections": {
+      "growth": "성장과정 (O'sish Tarixi)",
+      "personality": "성격의 장단점 (Kuchli va Zaif Tomonlar)",
+      "motivation": "지원동기 (Ariza Berish Sababi)",
+      "aspiration": "입사 후 포부 (Kelajak Maqsadlar)"
+    },
+    "aiHelp": "AI tavsiyalarini oling",
+    "wordCount": "{count} so'z",
+    "characterCount": "{count} belgi"
+  },
+  "aiAssistant": {
+    "title": "AI Martaba Yordamchisi",
+    "subtitle": "Koreya ish ariza topshirish bo'yicha shaxsiy yordam oling",
+    "placeholder": "Koreya ish arizasi haqida istalgan narsani so'rang...",
+    "suggestions": {
+      "title": "Tavsiya Etilgan Savollar",
+      "q1": "Koreyscha rezyumeda fotosurat talabi qanday?",
+      "q2": "자기소개서 da nima yozishim kerak?",
+      "q3": "Koreya kompaniyasi uchun rezyumemni ko'rib chiqing",
+      "q4": "Koreyada ish haqi muzokaralarini qanday olib borishim kerak?",
+      "q5": "Koreya intervyu savollarining odatiy namunalari qanday?"
+    },
+    "thinking": "O'ylayapman...",
+    "send": "Yuborish",
+    "newChat": "Yangi Suhbat",
+    "history": "Suhbat Tarixi"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "profile": {
+      "title": "Profil",
+      "name": "Ko'rsatish Nomi",
+      "email": "Elektron Pochta Manzili",
+      "nationality": "Millat",
+      "bio": "Bio",
+      "saveChanges": "O'zgarishlarni Saqlash"
+    },
+    "appearance": {
+      "title": "Ko'rinish",
+      "theme": "Mavzu",
+      "light": "Yorug'",
+      "dark": "Qorong'i",
+      "system": "Tizim"
+    },
+    "language": {
+      "title": "Til va Mintaqa",
+      "appLanguage": "Ilova Tili",
+      "documentLanguage": "Standart Hujjat Tili"
+    },
+    "notifications": {
+      "title": "Bildirishnomalar",
+      "email": "Elektron pochta bildirisnomalar",
+      "tips": "Martaba maslahatlari va yangilanishlar"
+    },
+    "account": {
+      "title": "Hisob",
+      "deleteAccount": "Hisobni O'chirish",
+      "deleteWarning": "Bu amalni bekor qilib bo'lmaydi."
+    }
+  },
+  "nationalities": {
+    "uzbekistan": "O'zbekiston",
+    "kazakhstan": "Qozog'iston",
+    "kyrgyzstan": "Qirg'iziston",
+    "mongolia": "Mo'g'uliston",
+    "vietnam": "Vyetnam",
+    "other": "Boshqa"
+  }
+}

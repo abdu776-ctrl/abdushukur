@@ -1,0 +1,289 @@
+{
+  "common": {
+    "appName": "Koreer",
+    "tagline": "Your AI Career Assistant for Korea",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "download": "Download",
+    "export": "Export PDF",
+    "preview": "Preview",
+    "back": "Back",
+    "next": "Next",
+    "finish": "Finish",
+    "or": "or",
+    "and": "and",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Log out",
+    "darkMode": "Dark mode",
+    "language": "Language",
+    "new": "New",
+    "untitled": "Untitled"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "resume": "Resume",
+    "coverLetter": "Cover Letter",
+    "aiAssistant": "AI Assistant",
+    "settings": "Settings",
+    "templates": "Templates"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI-Powered Career Tools",
+      "title": "Land Your Dream Job in Korea",
+      "subtitle": "Create professional Korean resumes and self-introduction letters with AI assistance. Designed for international students from Uzbekistan, Kazakhstan, Kyrgyzstan, Mongolia, and Vietnam.",
+      "cta": "Get Started Free",
+      "ctaSecondary": "See Templates",
+      "trustedBy": "Trusted by students from"
+    },
+    "features": {
+      "title": "Everything You Need to Succeed",
+      "subtitle": "Our AI-powered platform guides you through every step of the Korean job application process.",
+      "ai": {
+        "title": "AI Writing Assistant",
+        "desc": "Get personalized suggestions and improvements for your resume and cover letters powered by advanced AI."
+      },
+      "resume": {
+        "title": "Korean Resume Builder",
+        "desc": "Create professional 이력서 following Korean standards with our guided builder and beautiful templates."
+      },
+      "coverLetter": {
+        "title": "자기소개서 Builder",
+        "desc": "Craft compelling self-introduction letters that resonate with Korean employers and their culture."
+      },
+      "multilingual": {
+        "title": "Multilingual Support",
+        "desc": "Use the app in Uzbek, Korean, English, or Russian — whichever feels most comfortable for you."
+      },
+      "pdf": {
+        "title": "PDF Export",
+        "desc": "Export your documents as professional PDFs ready to send to Korean employers in seconds."
+      },
+      "templates": {
+        "title": "Professional Templates",
+        "desc": "Choose from curated templates designed specifically for Korean companies and job applications."
+      }
+    },
+    "howItWorks": {
+      "title": "Start in 3 Simple Steps",
+      "step1": {
+        "title": "Create Your Account",
+        "desc": "Sign up for free and tell us about your background and target job in Korea."
+      },
+      "step2": {
+        "title": "Build Your Documents",
+        "desc": "Use our AI-assisted builders to create your Korean resume and self-introduction letter."
+      },
+      "step3": {
+        "title": "Export & Apply",
+        "desc": "Download professional PDFs and start applying to your dream Korean companies."
+      }
+    },
+    "cta": {
+      "title": "Ready to Start Your Korean Career?",
+      "subtitle": "Join thousands of international students who landed jobs in Korea with Koreer.",
+      "button": "Create Free Account"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to continue building your Korean career",
+      "email": "Email address",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "continueWith": "Or continue with"
+    },
+    "register": {
+      "title": "Create your account",
+      "subtitle": "Join Koreer and start your Korean career journey",
+      "fullName": "Full name",
+      "email": "Email address",
+      "password": "Password",
+      "confirmPassword": "Confirm password",
+      "nationality": "Nationality",
+      "preferredLanguage": "Preferred language",
+      "submit": "Create account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "agreeTerms": "I agree to the Terms of Service and Privacy Policy"
+    }
+  },
+  "dashboard": {
+    "greeting": "Good {time}, {name}!",
+    "morning": "morning",
+    "afternoon": "afternoon",
+    "evening": "evening",
+    "overview": "Here's an overview of your career progress",
+    "stats": {
+      "resumes": "Resumes",
+      "coverLetters": "Cover Letters",
+      "aiChats": "AI Conversations",
+      "lastActivity": "Last activity"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "createResume": "Create new resume",
+      "createCoverLetter": "Create cover letter",
+      "askAI": "Ask AI assistant"
+    },
+    "recentDocuments": {
+      "title": "Recent Documents",
+      "empty": "No documents yet. Create your first one!",
+      "viewAll": "View all"
+    },
+    "tips": {
+      "title": "Career Tips",
+      "tip1": "Korean resumes should include a professional photo",
+      "tip2": "Self-introduction letters typically follow the 성장과정, 성격, 지원동기, 포부 structure",
+      "tip3": "Use formal Korean (존댓말) in all professional documents"
+    }
+  },
+  "resume": {
+    "title": "Resume Builder",
+    "subtitle": "Create a professional Korean resume",
+    "templates": {
+      "title": "Choose a Template",
+      "modern": "Modern",
+      "classic": "Classic",
+      "minimal": "Minimal",
+      "korean": "Korean Standard"
+    },
+    "sections": {
+      "personal": "Personal Information",
+      "education": "Education",
+      "experience": "Work Experience",
+      "skills": "Skills",
+      "languages": "Languages",
+      "certifications": "Certifications"
+    },
+    "personal": {
+      "fullName": "Full Name",
+      "fullNameKorean": "Name in Korean",
+      "email": "Email",
+      "phone": "Phone",
+      "dateOfBirth": "Date of Birth",
+      "nationality": "Nationality",
+      "address": "Address",
+      "photo": "Profile Photo",
+      "uploadPhoto": "Upload Photo"
+    },
+    "education": {
+      "add": "Add Education",
+      "institution": "University / Institution",
+      "degree": "Degree",
+      "field": "Field of Study",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "gpa": "GPA / Grade",
+      "current": "Currently studying here"
+    },
+    "experience": {
+      "add": "Add Experience",
+      "company": "Company",
+      "position": "Position",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "current": "Currently working here",
+      "description": "Description",
+      "achievements": "Key Achievements"
+    },
+    "skills": {
+      "add": "Add Skill",
+      "name": "Skill Name",
+      "level": "Proficiency Level",
+      "category": "Category",
+      "beginner": "Beginner",
+      "intermediate": "Intermediate",
+      "advanced": "Advanced",
+      "expert": "Expert"
+    }
+  },
+  "coverLetter": {
+    "title": "자기소개서 Builder",
+    "subtitle": "Create a compelling Korean self-introduction letter",
+    "targetCompany": "Target Company",
+    "targetPosition": "Target Position",
+    "sections": {
+      "growth": "성장과정 (Growth Background)",
+      "personality": "성격의 장단점 (Strengths & Weaknesses)",
+      "motivation": "지원동기 (Motivation for Applying)",
+      "aspiration": "입사 후 포부 (Future Goals)"
+    },
+    "aiHelp": "Get AI suggestions",
+    "wordCount": "{count} words",
+    "characterCount": "{count} characters"
+  },
+  "aiAssistant": {
+    "title": "AI Career Assistant",
+    "subtitle": "Get personalized help with your Korean job application",
+    "placeholder": "Ask me anything about Korean job applications...",
+    "suggestions": {
+      "title": "Suggested Questions",
+      "q1": "How do I write a Korean resume photo requirement?",
+      "q2": "What should I write in my 자기소개서?",
+      "q3": "Review my resume for a Korean company",
+      "q4": "How do I address salary expectations in Korea?",
+      "q5": "What are common Korean interview questions?"
+    },
+    "thinking": "Thinking...",
+    "send": "Send",
+    "newChat": "New Chat",
+    "history": "Chat History"
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": {
+      "title": "Profile",
+      "name": "Display Name",
+      "email": "Email Address",
+      "nationality": "Nationality",
+      "bio": "Bio",
+      "saveChanges": "Save Changes"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language & Region",
+      "appLanguage": "Application Language",
+      "documentLanguage": "Default Document Language"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "email": "Email notifications",
+      "tips": "Career tips & updates"
+    },
+    "account": {
+      "title": "Account",
+      "deleteAccount": "Delete Account",
+      "deleteWarning": "This action cannot be undone."
+    }
+  },
+  "nationalities": {
+    "uzbekistan": "Uzbekistan",
+    "kazakhstan": "Kazakhstan",
+    "kyrgyzstan": "Kyrgyzstan",
+    "mongolia": "Mongolia",
+    "vietnam": "Vietnam",
+    "other": "Other"
+  }
+}

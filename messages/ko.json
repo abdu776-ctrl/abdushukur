@@ -1,0 +1,289 @@
+{
+  "common": {
+    "appName": "Koreer",
+    "tagline": "한국 취업을 위한 AI 커리어 어시스턴트",
+    "loading": "로딩 중...",
+    "save": "저장",
+    "cancel": "취소",
+    "delete": "삭제",
+    "edit": "수정",
+    "create": "만들기",
+    "download": "다운로드",
+    "export": "PDF 내보내기",
+    "preview": "미리보기",
+    "back": "뒤로",
+    "next": "다음",
+    "finish": "완료",
+    "or": "또는",
+    "and": "및",
+    "yes": "예",
+    "no": "아니오",
+    "close": "닫기",
+    "search": "검색",
+    "filter": "필터",
+    "settings": "설정",
+    "profile": "프로필",
+    "logout": "로그아웃",
+    "darkMode": "다크 모드",
+    "language": "언어",
+    "new": "새로 만들기",
+    "untitled": "제목 없음"
+  },
+  "nav": {
+    "home": "홈",
+    "dashboard": "대시보드",
+    "resume": "이력서",
+    "coverLetter": "자기소개서",
+    "aiAssistant": "AI 어시스턴트",
+    "settings": "설정",
+    "templates": "템플릿"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI 기반 취업 도구",
+      "title": "한국에서 꿈의 직장을 찾으세요",
+      "subtitle": "AI 도움을 받아 전문적인 한국 이력서와 자기소개서를 작성하세요. 우즈베키스탄, 카자흐스탄, 키르기스스탄, 몽골, 베트남 유학생을 위해 설계되었습니다.",
+      "cta": "무료로 시작하기",
+      "ctaSecondary": "템플릿 보기",
+      "trustedBy": "다음 국가 유학생들이 신뢰합니다"
+    },
+    "features": {
+      "title": "성공을 위한 모든 것",
+      "subtitle": "AI 기반 플랫폼이 한국 취업 지원 과정의 모든 단계를 안내해 드립니다.",
+      "ai": {
+        "title": "AI 글쓰기 어시스턴트",
+        "desc": "첨단 AI가 이력서와 자기소개서를 개인화된 제안과 개선 사항을 제공합니다."
+      },
+      "resume": {
+        "title": "이력서 작성기",
+        "desc": "가이드 빌더와 아름다운 템플릿으로 한국 기준에 맞는 전문적인 이력서를 만드세요."
+      },
+      "coverLetter": {
+        "title": "자기소개서 작성기",
+        "desc": "한국 고용주와 문화에 공감하는 설득력 있는 자기소개서를 작성하세요."
+      },
+      "multilingual": {
+        "title": "다국어 지원",
+        "desc": "우즈베크어, 한국어, 영어 또는 러시아어로 앱을 사용하세요."
+      },
+      "pdf": {
+        "title": "PDF 내보내기",
+        "desc": "몇 초 안에 한국 고용주에게 바로 보낼 수 있는 전문적인 PDF로 내보내세요."
+      },
+      "templates": {
+        "title": "전문 템플릿",
+        "desc": "한국 기업 및 취업 지원을 위해 특별히 설계된 템플릿 중에서 선택하세요."
+      }
+    },
+    "howItWorks": {
+      "title": "3가지 간단한 단계로 시작하기",
+      "step1": {
+        "title": "계정 만들기",
+        "desc": "무료로 가입하고 배경 및 목표 직업에 대해 알려주세요."
+      },
+      "step2": {
+        "title": "서류 작성하기",
+        "desc": "AI 지원 빌더를 사용하여 이력서와 자기소개서를 만드세요."
+      },
+      "step3": {
+        "title": "내보내기 & 지원하기",
+        "desc": "전문 PDF를 다운로드하고 꿈의 한국 기업에 지원하세요."
+      }
+    },
+    "cta": {
+      "title": "한국 취업 준비 되셨나요?",
+      "subtitle": "Koreer로 한국에서 취업한 수천 명의 유학생들과 함께하세요.",
+      "button": "무료 계정 만들기"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "다시 오신 것을 환영합니다",
+      "subtitle": "한국 취업 여정을 계속하려면 로그인하세요",
+      "email": "이메일 주소",
+      "password": "비밀번호",
+      "forgotPassword": "비밀번호를 잊으셨나요?",
+      "submit": "로그인",
+      "noAccount": "계정이 없으신가요?",
+      "signUp": "회원가입",
+      "continueWith": "또는 다음으로 계속"
+    },
+    "register": {
+      "title": "계정 만들기",
+      "subtitle": "Koreer에 가입하고 한국 취업 여정을 시작하세요",
+      "fullName": "이름",
+      "email": "이메일 주소",
+      "password": "비밀번호",
+      "confirmPassword": "비밀번호 확인",
+      "nationality": "국적",
+      "preferredLanguage": "선호 언어",
+      "submit": "계정 만들기",
+      "hasAccount": "이미 계정이 있으신가요?",
+      "signIn": "로그인",
+      "agreeTerms": "이용약관 및 개인정보처리방침에 동의합니다"
+    }
+  },
+  "dashboard": {
+    "greeting": "좋은 {time}이에요, {name}님!",
+    "morning": "아침",
+    "afternoon": "오후",
+    "evening": "저녁",
+    "overview": "취업 준비 현황을 확인하세요",
+    "stats": {
+      "resumes": "이력서",
+      "coverLetters": "자기소개서",
+      "aiChats": "AI 대화",
+      "lastActivity": "마지막 활동"
+    },
+    "quickActions": {
+      "title": "빠른 작업",
+      "createResume": "새 이력서 만들기",
+      "createCoverLetter": "자기소개서 만들기",
+      "askAI": "AI 어시스턴트에게 물어보기"
+    },
+    "recentDocuments": {
+      "title": "최근 문서",
+      "empty": "아직 문서가 없습니다. 첫 번째 문서를 만드세요!",
+      "viewAll": "모두 보기"
+    },
+    "tips": {
+      "title": "취업 팁",
+      "tip1": "한국 이력서에는 증명사진이 필요합니다",
+      "tip2": "자기소개서는 성장과정, 성격, 지원동기, 포부 구조를 따릅니다",
+      "tip3": "모든 공식 문서에서 존댓말을 사용하세요"
+    }
+  },
+  "resume": {
+    "title": "이력서 작성기",
+    "subtitle": "전문적인 한국 이력서를 작성하세요",
+    "templates": {
+      "title": "템플릿 선택",
+      "modern": "모던",
+      "classic": "클래식",
+      "minimal": "미니멀",
+      "korean": "한국 표준"
+    },
+    "sections": {
+      "personal": "개인 정보",
+      "education": "학력",
+      "experience": "경력",
+      "skills": "기술",
+      "languages": "언어",
+      "certifications": "자격증"
+    },
+    "personal": {
+      "fullName": "이름",
+      "fullNameKorean": "한국어 이름",
+      "email": "이메일",
+      "phone": "전화번호",
+      "dateOfBirth": "생년월일",
+      "nationality": "국적",
+      "address": "주소",
+      "photo": "증명사진",
+      "uploadPhoto": "사진 업로드"
+    },
+    "education": {
+      "add": "학력 추가",
+      "institution": "대학교 / 기관",
+      "degree": "학위",
+      "field": "전공",
+      "startDate": "입학일",
+      "endDate": "졸업일",
+      "gpa": "학점",
+      "current": "재학 중"
+    },
+    "experience": {
+      "add": "경력 추가",
+      "company": "회사명",
+      "position": "직위",
+      "startDate": "입사일",
+      "endDate": "퇴사일",
+      "current": "재직 중",
+      "description": "업무 내용",
+      "achievements": "주요 성과"
+    },
+    "skills": {
+      "add": "기술 추가",
+      "name": "기술명",
+      "level": "숙련도",
+      "category": "분류",
+      "beginner": "초급",
+      "intermediate": "중급",
+      "advanced": "고급",
+      "expert": "전문가"
+    }
+  },
+  "coverLetter": {
+    "title": "자기소개서 작성기",
+    "subtitle": "설득력 있는 한국어 자기소개서를 작성하세요",
+    "targetCompany": "지원 기업",
+    "targetPosition": "지원 직무",
+    "sections": {
+      "growth": "성장과정",
+      "personality": "성격의 장단점",
+      "motivation": "지원동기",
+      "aspiration": "입사 후 포부"
+    },
+    "aiHelp": "AI 도움 받기",
+    "wordCount": "{count}자",
+    "characterCount": "{count}자"
+  },
+  "aiAssistant": {
+    "title": "AI 커리어 어시스턴트",
+    "subtitle": "한국 취업 지원에 대한 맞춤형 도움을 받으세요",
+    "placeholder": "한국 취업에 대해 무엇이든 물어보세요...",
+    "suggestions": {
+      "title": "추천 질문",
+      "q1": "한국 이력서 사진 요건은 어떻게 되나요?",
+      "q2": "자기소개서에 무엇을 써야 하나요?",
+      "q3": "제 이력서를 한국 기업 기준으로 검토해 주세요",
+      "q4": "한국에서 연봉 협상을 어떻게 하나요?",
+      "q5": "일반적인 한국 면접 질문은 무엇인가요?"
+    },
+    "thinking": "생각 중...",
+    "send": "전송",
+    "newChat": "새 대화",
+    "history": "대화 기록"
+  },
+  "settings": {
+    "title": "설정",
+    "profile": {
+      "title": "프로필",
+      "name": "표시 이름",
+      "email": "이메일 주소",
+      "nationality": "국적",
+      "bio": "자기소개",
+      "saveChanges": "변경사항 저장"
+    },
+    "appearance": {
+      "title": "화면 설정",
+      "theme": "테마",
+      "light": "라이트",
+      "dark": "다크",
+      "system": "시스템"
+    },
+    "language": {
+      "title": "언어 및 지역",
+      "appLanguage": "앱 언어",
+      "documentLanguage": "기본 문서 언어"
+    },
+    "notifications": {
+      "title": "알림",
+      "email": "이메일 알림",
+      "tips": "취업 팁 및 업데이트"
+    },
+    "account": {
+      "title": "계정",
+      "deleteAccount": "계정 삭제",
+      "deleteWarning": "이 작업은 취소할 수 없습니다."
+    }
+  },
+  "nationalities": {
+    "uzbekistan": "우즈베키스탄",
+    "kazakhstan": "카자흐스탄",
+    "kyrgyzstan": "키르기스스탄",
+    "mongolia": "몽골",
+    "vietnam": "베트남",
+    "other": "기타"
+  }
+}
