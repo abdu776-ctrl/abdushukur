@@ -50,28 +50,28 @@ export function CoverLetterBuilder() {
       title: t('sections.growth'),
       placeholder: '어린 시절부터 현재까지의 성장 과정을 구체적인 경험과 함께 작성하세요...\n\n저는 우즈베키스탄에서 태어나 어려서부터 기술에 대한 열정을 가지고 자랐습니다...',
       tip: 'Describe formative experiences that shaped who you are. Korean companies value stories of perseverance and growth.',
-      maxChars: 500,
+      maxChars: 800,
     },
     {
       key: 'personality',
       title: t('sections.personality'),
       placeholder: '자신의 성격적 장점과 단점을 솔직하게 작성하세요...\n\n저의 가장 큰 장점은 끈기와 협동심입니다...',
       tip: 'Be honest about both strengths and weaknesses. Showing self-awareness is highly valued in Korean culture.',
-      maxChars: 500,
+      maxChars: 800,
     },
     {
       key: 'motivation',
       title: t('sections.motivation'),
       placeholder: '해당 기업과 직무에 지원하게 된 구체적인 이유를 작성하세요...\n\n귀사의 혁신적인 기술과 글로벌 비전에 깊은 인상을 받아...',
       tip: 'Show you\'ve researched the company. Reference specific products, values, or initiatives that resonate with you.',
-      maxChars: 600,
+      maxChars: 800,
     },
     {
       key: 'aspiration',
       title: t('sections.aspiration'),
       placeholder: '입사 후 이루고 싶은 목표와 회사에 기여하고 싶은 방향을 작성하세요...\n\n입사 후 3년 안에 핵심 개발자로 성장하여...',
       tip: 'Be specific about your goals. Korean employers appreciate ambitious but realistic plans.',
-      maxChars: 600,
+      maxChars: 800,
     },
   ];
 
