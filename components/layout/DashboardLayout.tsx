@@ -4,6 +4,8 @@ import { Sidebar } from './Sidebar';
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { LanguageSelector } from '@/components/LanguageSelector';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -37,15 +39,25 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Main content */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Mobile header */}
-        <div className="lg:hidden flex items-center gap-3 h-16 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+        {/* Top header — mobile & desktop */}
+        <div className="flex items-center h-16 px-4 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800">
+          {/* Mobile: menu button + logo */}
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="w-9 h-9 flex items-center justify-center rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors mr-3"
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-bold text-gray-900 dark:text-white">Koreer</span>
+          <span className="lg:hidden font-bold text-gray-900 dark:text-white">Koreer</span>
+
+          {/* Spacer */}
+          <div className="flex-1" />
+
+          {/* Right side: language + theme */}
+          <div className="flex items-center gap-2">
+            <LanguageSelector />
+            <ThemeToggle />
+          </div>
         </div>
 
         {/* Page content */}

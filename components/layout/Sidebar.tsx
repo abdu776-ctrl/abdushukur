@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { ThemeToggle } from '@/components/ui/ThemeToggle';
-import { LanguageSelector } from '@/components/LanguageSelector';
 import {
   LayoutDashboard,
   FileText,
@@ -159,14 +157,6 @@ export function Sidebar() {
             {!collapsed && <span className="text-sm font-medium">{item.label}</span>}
           </Link>
         ))}
-
-        {/* Theme & Language (only when expanded) */}
-        {!collapsed && (
-          <div className="flex items-center justify-between px-3 py-2">
-            <LanguageSelector />
-            <ThemeToggle />
-          </div>
-        )}
 
         {/* User profile */}
         <div className={cn(
