@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
@@ -19,6 +19,8 @@ import {
   Eye,
   EyeOff,
   Sparkles,
+  X,
+  Camera,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, ResumeTemplate } from '@/types';
@@ -52,6 +54,8 @@ export function ResumeBuilder() {
   const [selectedTemplate, setSelectedTemplate] = useState<ResumeTemplate>('modern');
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
   const [exporting, setExporting] = useState(false);
+
+  const photoInputRef = useRef<HTMLInputElement>(null);
 
   const [personal, setPersonal] = useState<PersonalInfo>(defaultPersonal);
   const [education, setEducation] = useState<Education[]>([{ ...defaultEducation }]);
@@ -104,6 +108,17 @@ export function ResumeBuilder() {
 
   function removeSkill(id: string) {
     setSkills(skills.filter((s) => s.id !== id));
+  }
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      setPersonal((prev) => ({ ...prev, photo: ev.target?.result as string }));
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
   }
 
   async function handleExport() {
@@ -182,12 +197,51 @@ export function ResumeBuilder() {
               </div>
 
               {/* Photo upload area */}
-              <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors cursor-pointer">
-                <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mx-auto mb-2 flex items-center justify-center">
-                  <User className="w-8 h-8 text-gray-400" />
-                </div>
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('personal.uploadPhoto')}</p>
-                <p className="text-xs text-gray-400 mt-1">JPG, PNG up to 5MB</p>
+              <div className="relative">
+                <input
+                  ref={photoInputRef}
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp"
+                  className="hidden"
+                  onChange={handlePhotoChange}
+                />
+                {personal.photo ? (
+                  <div className="flex items-center gap-4 p-3 border border-gray-200 dark:border-gray-700 rounded-xl">
+                    <img
+                      src={personal.photo}
+                      alt="Profile"
+                      className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-indigo-200 dark:border-indigo-700"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Photo uploaded</p>
+                      <button
+                        onClick={() => photoInputRef.current?.click()}
+                        className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline mt-0.5 flex items-center gap-1"
+                      >
+                        <Camera className="w-3 h-3" />
+                        Change photo
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => setPersonal((prev) => ({ ...prev, photo: undefined }))}
+                      className="p-1.5 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => photoInputRef.current?.click()}
+                    className="w-full border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-xl p-4 text-center hover:border-indigo-300 dark:hover:border-indigo-600 transition-colors cursor-pointer"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-800 mx-auto mb-2 flex items-center justify-center">
+                      <User className="w-8 h-8 text-gray-400" />
+                    </div>
+                    <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('personal.uploadPhoto')}</p>
+                    <p className="text-xs text-gray-400 mt-1">JPG, PNG up to 5MB</p>
+                  </button>
+                )}
               </div>
 
               <div className="grid grid-cols-2 gap-3">

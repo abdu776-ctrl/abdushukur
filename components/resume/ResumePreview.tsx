@@ -31,9 +31,17 @@ function ModernTemplate({ personal, education, experience, skills }: TemplatePro
     <div id="resume-preview" className="bg-white p-8 text-gray-900 font-sans min-h-[1100px]" style={{ fontSize: '11px', lineHeight: '1.5' }}>
       {/* Header */}
       <div className="bg-gradient-to-r from-indigo-600 to-purple-600 -m-8 p-8 mb-6 flex items-center gap-5">
-        <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
-          {personal.fullNameKorean ? personal.fullNameKorean[0] : (personal.fullName[0] || '?')}
-        </div>
+        {personal.photo ? (
+          <img
+            src={personal.photo}
+            alt={personal.fullName}
+            className="w-20 h-20 rounded-full object-cover flex-shrink-0 border-2 border-white/30"
+          />
+        ) : (
+          <div className="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center text-white text-2xl font-bold flex-shrink-0">
+            {personal.fullNameKorean ? personal.fullNameKorean[0] : (personal.fullName[0] || '?')}
+          </div>
+        )}
         <div className="text-white flex-1">
           <h1 className="text-2xl font-bold mb-0.5">
             {personal.fullName || 'Your Name'}
@@ -270,9 +278,15 @@ function KoreanTemplate({ personal, education, experience, skills }: TemplatePro
       </div>
 
       <div className="flex gap-6 mb-6">
-        {/* Photo placeholder */}
-        <div className="w-28 h-36 border-2 border-gray-300 flex items-center justify-center text-gray-400 flex-shrink-0">
-          <span className="text-xs text-center">증명사진<br/>3×4cm</span>
+        {/* Photo */}
+        <div className="w-28 h-36 border-2 border-gray-300 flex-shrink-0 overflow-hidden">
+          {personal.photo ? (
+            <img src={personal.photo} alt={personal.fullName} className="w-full h-full object-cover" />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-400">
+              <span className="text-xs text-center">증명사진<br/>3×4cm</span>
+            </div>
+          )}
         </div>
 
         {/* Personal info table */}
