@@ -595,12 +595,15 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
             ))}
           </div>
         )},
-      ].filter(Boolean).map((item: any, i) => (
-        <div key={i} style={{ marginBottom: 16 }}>
-          {sec(item.title)}
-          {item.content}
-        </div>
-      ))}
+      ].filter(Boolean).map((item, i) => {
+        const { title, content } = item as { title: string; content: React.ReactNode };
+        return (
+          <div key={i} style={{ marginBottom: 16 }}>
+            {sec(title)}
+            {content}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -885,7 +888,7 @@ function SidebarTemplate({ personal, education, experience, skills, awards, cert
 // ═══════════════════════════════════════════════════════════════════
 // 6. DARK TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
-function DarkTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+function DarkTemplate({ personal, education, experience, skills, awards, certificates, projects, publications }: TP) {
   const BG = '#0f0f1a', CARD = '#1a1a2e', ACC = '#6366f1', MUT = '#64748b', SUB = '#94a3b8', TXT = '#e2e8f0';
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: ACC, marginBottom: 10, marginTop: 20, paddingBottom: 4, borderBottom: `1px solid #1e1e3a` }}>{title}</div>
@@ -1000,8 +1003,6 @@ function DarkTemplate({ personal, education, experience, skills, awards, certifi
 function TechTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
   const BG = '#0d1117', CARD = '#161b22', ACC = '#58a6ff', GRN = '#3fb950', YLW = '#f0883e', TXT = '#c9d1d9', MUT = '#8b949e';
   const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
-  const prompt = (text: string) => <span style={{ color: GRN }}>$ </span>;
-
   return (
     <div id="resume-preview" style={{ background: BG, color: TXT, fontFamily: mono, minHeight: 1100, fontSize: 11, lineHeight: 1.6 }}>
       {/* Header */}
