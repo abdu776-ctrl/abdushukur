@@ -28,7 +28,17 @@ export interface Resume {
   updatedAt: Date;
 }
 
-export type ResumeTemplate = 'modern' | 'classic' | 'minimal' | 'korean';
+export type ResumeTemplate =
+  // Modern color series
+  | 'modern' | 'navy' | 'forest' | 'crimson' | 'teal' | 'amber' | 'midnight' | 'rose'
+  // Korean official series
+  | 'korean' | 'korean-blue' | 'korean-compact' | 'korean-premium'
+  // Classic traditional series
+  | 'classic' | 'oxford' | 'corporate' | 'executive'
+  // Minimal clean series
+  | 'minimal' | 'nordic' | 'slate' | 'tokyo'
+  // Creative / special
+  | 'sidebar' | 'dark' | 'tech' | 'academic' | 'compact';
 
 export interface PersonalInfo {
   fullName: string;
