@@ -1,6 +1,6 @@
 'use client';
 
-import type { PersonalInfo, Education, WorkExperience, Skill, ResumeTemplate } from '@/types';
+import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
 import { Mail, Phone, MapPin, Calendar } from 'lucide-react';
 
 interface ResumePreviewProps {
@@ -8,25 +8,25 @@ interface ResumePreviewProps {
   education: Education[];
   experience: WorkExperience[];
   skills: Skill[];
+  awards: Award[];
+  certificates: Certificate[];
+  projects: Project[];
+  volunteer: Volunteer[];
+  publications: Publication[];
   template: ResumeTemplate;
 }
 
-export function ResumePreview({
-  personal,
-  education,
-  experience,
-  skills,
-  template,
-}: ResumePreviewProps) {
-  if (template === 'modern') return <ModernTemplate personal={personal} education={education} experience={experience} skills={skills} />;
-  if (template === 'classic') return <ClassicTemplate personal={personal} education={education} experience={experience} skills={skills} />;
-  if (template === 'korean') return <KoreanTemplate personal={personal} education={education} experience={experience} skills={skills} />;
-  return <MinimalTemplate personal={personal} education={education} experience={experience} skills={skills} />;
+export function ResumePreview(props: ResumePreviewProps) {
+  const { template, ...rest } = props;
+  if (template === 'modern') return <ModernTemplate {...rest} />;
+  if (template === 'classic') return <ClassicTemplate {...rest} />;
+  if (template === 'korean') return <KoreanTemplate {...rest} />;
+  return <MinimalTemplate {...rest} />;
 }
 
 type TemplateProps = Omit<ResumePreviewProps, 'template'>;
 
-function ModernTemplate({ personal, education, experience, skills }: TemplateProps) {
+function ModernTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TemplateProps) {
   return (
     <div id="resume-preview" className="bg-white p-8 text-gray-900 font-sans min-h-[1100px]" style={{ fontSize: '11px', lineHeight: '1.5' }}>
       {/* Header */}
@@ -142,6 +142,64 @@ function ModernTemplate({ personal, education, experience, skills }: TemplatePro
             </Section>
           )}
 
+          {/* Projects */}
+          {projects.some((p) => p.title) && (
+            <Section title="Projects (프로젝트)" color="indigo">
+              <div className="space-y-3">
+                {projects.filter((p) => p.title).map((proj) => (
+                  <div key={proj.id}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="font-semibold text-gray-800">{proj.title}</p>
+                        <p className="text-gray-600">{proj.role}</p>
+                        {proj.technologies && <p className="text-gray-400 text-[10px] mt-0.5">{proj.technologies}</p>}
+                      </div>
+                      <span className="text-gray-400 whitespace-nowrap ml-2">{proj.startDate} — {proj.current ? 'Present' : proj.endDate}</span>
+                    </div>
+                    {proj.description && <p className="text-gray-600 mt-1">{proj.description}</p>}
+                    {proj.url && <p className="text-indigo-500 text-[10px] mt-0.5">{proj.url}</p>}
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+
+          {/* Volunteer */}
+          {volunteer.some((v) => v.organization) && (
+            <Section title="Volunteer (봉사활동)" color="indigo">
+              <div className="space-y-3">
+                {volunteer.filter((v) => v.organization).map((vol) => (
+                  <div key={vol.id}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="font-semibold text-gray-800">{vol.role}</p>
+                        <p className="text-gray-600">{vol.organization}</p>
+                      </div>
+                      <span className="text-gray-400 whitespace-nowrap ml-2">{vol.startDate} — {vol.current ? 'Present' : vol.endDate}</span>
+                    </div>
+                    {vol.description && <p className="text-gray-600 mt-1">{vol.description}</p>}
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+
+          {/* Publications */}
+          {publications.some((p) => p.title) && (
+            <Section title="Publications (논문)" color="indigo">
+              <div className="space-y-3">
+                {publications.filter((p) => p.title).map((pub) => (
+                  <div key={pub.id}>
+                    <p className="font-semibold text-gray-800">{pub.title}</p>
+                    <p className="text-gray-500">{pub.publisher} · {pub.date}</p>
+                    {pub.authors && <p className="text-gray-400 text-[10px]">{pub.authors}</p>}
+                    {pub.doi && <p className="text-indigo-400 text-[10px]">{pub.doi}</p>}
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+
           {/* Empty state */}
           {!education.some((e) => e.institution) && !experience.some((e) => e.company) && (
             <div className="text-center py-8 text-gray-400">
@@ -150,11 +208,47 @@ function ModernTemplate({ personal, education, experience, skills }: TemplatePro
           )}
         </div>
       </div>
+
+      {/* Awards & Certificates — below grid, full width */}
+      {(awards.some((a) => a.title) || certificates.some((c) => c.name)) && (
+        <div className="mt-5 grid grid-cols-2 gap-5">
+          {awards.some((a) => a.title) && (
+            <Section title="Awards & Scholarships (수상/장학금)" color="indigo">
+              <div className="space-y-1.5">
+                {awards.filter((a) => a.title).map((award) => (
+                  <div key={award.id} className="flex justify-between">
+                    <div>
+                      <p className="font-medium text-gray-800">{award.title}</p>
+                      <p className="text-gray-500">{award.organization}</p>
+                    </div>
+                    <span className="text-gray-400 whitespace-nowrap ml-2 text-[10px]">{award.date}</span>
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+          {certificates.some((c) => c.name) && (
+            <Section title="Certificates (자격증)" color="indigo">
+              <div className="space-y-1.5">
+                {certificates.filter((c) => c.name).map((cert) => (
+                  <div key={cert.id} className="flex justify-between">
+                    <div>
+                      <p className="font-medium text-gray-800">{cert.name}</p>
+                      <p className="text-gray-500">{cert.issuer}{cert.score && ` · ${cert.score}`}</p>
+                    </div>
+                    <span className="text-gray-400 whitespace-nowrap ml-2 text-[10px]">{cert.date}</span>
+                  </div>
+                ))}
+              </div>
+            </Section>
+          )}
+        </div>
+      )}
     </div>
   );
 }
 
-function ClassicTemplate({ personal, education, experience, skills }: TemplateProps) {
+function ClassicTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TemplateProps) {
   return (
     <div id="resume-preview" className="bg-white p-8 text-gray-900 font-sans min-h-[1100px]" style={{ fontSize: '11px', lineHeight: '1.6' }}>
       {/* Header */}
@@ -215,12 +309,87 @@ function ClassicTemplate({ personal, education, experience, skills }: TemplatePr
             </div>
           </div>
         )}
+
+        {awards.some((a) => a.title) && (
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-800 border-b border-gray-300 pb-1 mb-3">Awards & Scholarships</h2>
+            {awards.filter((a) => a.title).map((award) => (
+              <div key={award.id} className="flex justify-between mb-2">
+                <div>
+                  <p className="font-semibold">{award.title}</p>
+                  <p className="text-gray-600">{award.organization}</p>
+                </div>
+                <p className="text-gray-500 whitespace-nowrap">{award.date}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {certificates.some((c) => c.name) && (
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-800 border-b border-gray-300 pb-1 mb-3">Certificates</h2>
+            {certificates.filter((c) => c.name).map((cert) => (
+              <div key={cert.id} className="flex justify-between mb-1.5">
+                <div>
+                  <p className="font-semibold">{cert.name}</p>
+                  <p className="text-gray-600">{cert.issuer}</p>
+                </div>
+                <p className="text-gray-500 whitespace-nowrap">{cert.score && `${cert.score} · `}{cert.date}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {projects.some((p) => p.title) && (
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-800 border-b border-gray-300 pb-1 mb-3">Projects</h2>
+            {projects.filter((p) => p.title).map((proj) => (
+              <div key={proj.id} className="mb-3">
+                <div className="flex justify-between">
+                  <p className="font-semibold">{proj.title} — {proj.role}</p>
+                  <p className="text-gray-500 whitespace-nowrap">{proj.startDate} – {proj.current ? 'Present' : proj.endDate}</p>
+                </div>
+                {proj.technologies && <p className="text-gray-400 text-[10px]">{proj.technologies}</p>}
+                {proj.description && <p className="text-gray-600 mt-0.5">{proj.description}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {volunteer.some((v) => v.organization) && (
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-800 border-b border-gray-300 pb-1 mb-3">Volunteer</h2>
+            {volunteer.filter((v) => v.organization).map((vol) => (
+              <div key={vol.id} className="flex justify-between mb-2">
+                <div>
+                  <p className="font-semibold">{vol.role} — {vol.organization}</p>
+                  {vol.description && <p className="text-gray-600">{vol.description}</p>}
+                </div>
+                <p className="text-gray-500 whitespace-nowrap">{vol.startDate} – {vol.current ? 'Present' : vol.endDate}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {publications.some((p) => p.title) && (
+          <div>
+            <h2 className="text-sm font-bold uppercase tracking-widest text-gray-800 border-b border-gray-300 pb-1 mb-3">Publications</h2>
+            {publications.filter((p) => p.title).map((pub) => (
+              <div key={pub.id} className="mb-3">
+                <p className="font-semibold">{pub.title}</p>
+                <p className="text-gray-600">{pub.publisher} · {pub.date}</p>
+                {pub.authors && <p className="text-gray-400 text-[10px]">{pub.authors}</p>}
+                {pub.doi && <p className="text-gray-400 text-[10px]">{pub.doi}</p>}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function MinimalTemplate({ personal, education, experience, skills }: TemplateProps) {
+function MinimalTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TemplateProps) {
   return (
     <div id="resume-preview" className="bg-white p-10 text-gray-900 font-sans min-h-[1100px]" style={{ fontSize: '11px', lineHeight: '1.7' }}>
       <h1 className="text-4xl font-light tracking-tight text-gray-900 mb-1">
@@ -265,12 +434,65 @@ function MinimalTemplate({ personal, education, experience, skills }: TemplatePr
             <p className="text-gray-700">{skills.map((s) => s.name).filter(Boolean).join(' · ')}</p>
           </div>
         )}
+        {awards.some((a) => a.title) && (
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Awards & Scholarships</h2>
+            {awards.filter((a) => a.title).map((award) => (
+              <div key={award.id} className="mb-2">
+                <p className="font-medium text-gray-800">{award.title}</p>
+                <p className="text-gray-500">{award.organization} · {award.date}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {certificates.some((c) => c.name) && (
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Certificates</h2>
+            <p className="text-gray-700">{certificates.filter((c) => c.name).map((c) => `${c.name}${c.score ? ` (${c.score})` : ''}`).join(' · ')}</p>
+          </div>
+        )}
+        {projects.some((p) => p.title) && (
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Projects</h2>
+            {projects.filter((p) => p.title).map((proj) => (
+              <div key={proj.id} className="mb-3">
+                <p className="font-medium text-gray-800">{proj.title}</p>
+                <p className="text-gray-500">{proj.role} · {proj.startDate}–{proj.current ? 'Present' : proj.endDate}</p>
+                {proj.technologies && <p className="text-gray-400">{proj.technologies}</p>}
+                {proj.description && <p className="text-gray-600 mt-0.5">{proj.description}</p>}
+              </div>
+            ))}
+          </div>
+        )}
+        {volunteer.some((v) => v.organization) && (
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Volunteer</h2>
+            {volunteer.filter((v) => v.organization).map((vol) => (
+              <div key={vol.id} className="mb-2">
+                <p className="font-medium text-gray-800">{vol.role}</p>
+                <p className="text-gray-500">{vol.organization} · {vol.startDate}–{vol.current ? 'Present' : vol.endDate}</p>
+              </div>
+            ))}
+          </div>
+        )}
+        {publications.some((p) => p.title) && (
+          <div>
+            <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-400 mb-3">Publications</h2>
+            {publications.filter((p) => p.title).map((pub) => (
+              <div key={pub.id} className="mb-3">
+                <p className="font-medium text-gray-800">{pub.title}</p>
+                <p className="text-gray-500">{pub.publisher} · {pub.date}</p>
+                {pub.authors && <p className="text-gray-400">{pub.authors}</p>}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-function KoreanTemplate({ personal, education, experience, skills }: TemplateProps) {
+function KoreanTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TemplateProps) {
   return (
     <div id="resume-preview" className="bg-white p-8 text-gray-900 min-h-[1100px]" style={{ fontSize: '10px', fontFamily: 'Noto Sans KR, sans-serif', lineHeight: '1.8' }}>
       <div className="text-center border-b-2 border-gray-800 pb-4 mb-6">
@@ -387,6 +609,141 @@ function KoreanTemplate({ personal, education, experience, skills }: TemplatePro
                   <td className="border border-gray-300 px-2 py-1.5 w-1/3">{skill.name || 'Skill'}</td>
                   <td className="border border-gray-300 px-2 py-1.5 capitalize">{skill.level}</td>
                   <td className="border border-gray-300 px-2 py-1.5">{skill.category}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Awards & Scholarships */}
+      {awards.some((a) => a.title) && (
+        <div className="mb-5">
+          <h2 className="font-bold text-sm border-b-2 border-gray-800 pb-1 mb-2">수 상 / 장 학 금</h2>
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">수상명 / 장학명</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">수여 기관</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">종류</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">날짜</th>
+              </tr>
+            </thead>
+            <tbody>
+              {awards.filter((a) => a.title).map((award) => (
+                <tr key={award.id}>
+                  <td className="border border-gray-300 px-2 py-1.5">{award.title}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{award.organization}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{award.type === 'award' ? '수상' : award.type === 'scholarship' ? '장학금' : '표창'}</td>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{award.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Certificates */}
+      {certificates.some((c) => c.name) && (
+        <div className="mb-5">
+          <h2 className="font-bold text-sm border-b-2 border-gray-800 pb-1 mb-2">자 격 증 / 면 허</h2>
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">자격증명</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">발급 기관</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">점수 / 급수</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">취득일</th>
+              </tr>
+            </thead>
+            <tbody>
+              {certificates.filter((c) => c.name).map((cert) => (
+                <tr key={cert.id}>
+                  <td className="border border-gray-300 px-2 py-1.5">{cert.name}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{cert.issuer}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{cert.score || ''}</td>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{cert.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Projects */}
+      {projects.some((p) => p.title) && (
+        <div className="mb-5">
+          <h2 className="font-bold text-sm border-b-2 border-gray-800 pb-1 mb-2">프 로 젝 트 경 험</h2>
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">기간</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">프로젝트명</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">역할</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">사용 기술 / 내용</th>
+              </tr>
+            </thead>
+            <tbody>
+              {projects.filter((p) => p.title).map((proj) => (
+                <tr key={proj.id}>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{proj.startDate} ~ {proj.current ? '현재' : proj.endDate}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{proj.title}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{proj.role}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{proj.technologies}{proj.description && ` / ${proj.description}`}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Volunteer */}
+      {volunteer.some((v) => v.organization) && (
+        <div className="mb-5">
+          <h2 className="font-bold text-sm border-b-2 border-gray-800 pb-1 mb-2">봉 사 활 동</h2>
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">기간</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">기관명</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">역할 / 활동</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">내용</th>
+              </tr>
+            </thead>
+            <tbody>
+              {volunteer.filter((v) => v.organization).map((vol) => (
+                <tr key={vol.id}>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{vol.startDate} ~ {vol.current ? '현재' : vol.endDate}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{vol.organization}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{vol.role}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{vol.description}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      {/* Publications */}
+      {publications.some((p) => p.title) && (
+        <div className="mb-5">
+          <h2 className="font-bold text-sm border-b-2 border-gray-800 pb-1 mb-2">연 구 실 적 / 논 문</h2>
+          <table className="w-full border-collapse text-xs">
+            <thead>
+              <tr className="bg-gray-50">
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">종류</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">논문 제목</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">저널 / 학회</th>
+                <th className="border border-gray-300 px-2 py-1.5 font-semibold">발표일</th>
+              </tr>
+            </thead>
+            <tbody>
+              {publications.filter((p) => p.title).map((pub) => (
+                <tr key={pub.id}>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{pub.type === 'thesis' ? '학위논문' : pub.type === 'journal' ? '학술논문' : '프로시딩'}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{pub.title}</td>
+                  <td className="border border-gray-300 px-2 py-1.5">{pub.publisher}</td>
+                  <td className="border border-gray-300 px-2 py-1.5 whitespace-nowrap">{pub.date}</td>
                 </tr>
               ))}
             </tbody>

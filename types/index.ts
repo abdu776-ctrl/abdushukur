@@ -73,6 +73,57 @@ export interface Skill {
   category: string;
 }
 
+export interface Award {
+  id: string;
+  title: string;
+  organization: string;
+  date: string;
+  type: 'award' | 'scholarship' | 'honor';
+  description?: string;
+}
+
+export interface Certificate {
+  id: string;
+  name: string;
+  issuer: string;
+  date: string;
+  score?: string;
+  credentialId?: string;
+}
+
+export interface Project {
+  id: string;
+  title: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  technologies?: string;
+  description: string;
+  url?: string;
+}
+
+export interface Volunteer {
+  id: string;
+  organization: string;
+  role: string;
+  startDate: string;
+  endDate: string;
+  current: boolean;
+  description: string;
+}
+
+export interface Publication {
+  id: string;
+  title: string;
+  type: 'thesis' | 'journal' | 'proceedings';
+  publisher: string;
+  date: string;
+  authors?: string;
+  doi?: string;
+  description?: string;
+}
+
 export interface CoverLetter {
   id: string;
   userId: string;

@@ -168,6 +168,11 @@
       "education": "Education",
       "experience": "Work Experience",
       "skills": "Skills",
+      "awards": "Awards & Scholarships",
+      "certificates": "Certificates",
+      "projects": "Projects",
+      "volunteer": "Volunteer",
+      "publications": "Publications",
       "languages": "Languages",
       "certifications": "Certifications"
     },
@@ -211,6 +216,58 @@
       "intermediate": "Intermediate",
       "advanced": "Advanced",
       "expert": "Expert"
+    },
+    "awards": {
+      "add": "Add Award / Scholarship",
+      "title": "Award Title",
+      "organization": "Organization / University",
+      "date": "Date",
+      "type": "Type",
+      "typeAward": "Award (수상)",
+      "typeScholarship": "Scholarship (장학금)",
+      "typeHonor": "Honor / Recognition (표창)",
+      "description": "Description"
+    },
+    "certificates": {
+      "add": "Add Certificate",
+      "name": "Certificate Name",
+      "issuer": "Issuing Organization",
+      "date": "Issue Date",
+      "score": "Score / Result",
+      "credentialId": "Credential ID / Number"
+    },
+    "projects": {
+      "add": "Add Project",
+      "title": "Project Title",
+      "role": "Your Role",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "current": "Ongoing project",
+      "technologies": "Technologies Used",
+      "description": "Description",
+      "url": "Project URL (optional)"
+    },
+    "volunteer": {
+      "add": "Add Volunteer Activity",
+      "organization": "Organization",
+      "role": "Role / Activity",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "current": "Currently active",
+      "description": "Description"
+    },
+    "publications": {
+      "add": "Add Publication",
+      "title": "Title",
+      "type": "Type",
+      "typeThesis": "Thesis / Dissertation (학위논문)",
+      "typeJournal": "Journal Article (학술논문)",
+      "typeProceedings": "Conference / Proceedings (프로시딩)",
+      "publisher": "Journal / Publisher / University",
+      "date": "Publication Date",
+      "authors": "Authors",
+      "doi": "DOI / URL",
+      "description": "Abstract / Description"
     }
   },
   "coverLetter": {

@@ -21,11 +21,16 @@ import {
   Sparkles,
   X,
   Camera,
+  Trophy,
+  BadgeCheck,
+  FolderGit2,
+  Heart,
+  BookOpen,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { PersonalInfo, Education, WorkExperience, Skill, ResumeTemplate } from '@/types';
+import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
 
-type Section = 'personal' | 'education' | 'experience' | 'skills';
+type Section = 'personal' | 'education' | 'experience' | 'skills' | 'awards' | 'certificates' | 'projects' | 'volunteer' | 'publications';
 
 const defaultPersonal: PersonalInfo = {
   fullName: '',
@@ -64,12 +69,22 @@ export function ResumeBuilder() {
     { id: '1', name: 'Korean (TOPIK)', level: 'advanced', category: 'Language' },
     { id: '2', name: 'English', level: 'intermediate', category: 'Language' },
   ]);
+  const [awards, setAwards] = useState<Award[]>([]);
+  const [certificates, setCertificates] = useState<Certificate[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
+  const [publications, setPublications] = useState<Publication[]>([]);
 
   const sections = [
     { id: 'personal' as Section, icon: <User className="w-4 h-4" />, label: t('sections.personal') },
     { id: 'education' as Section, icon: <GraduationCap className="w-4 h-4" />, label: t('sections.education') },
     { id: 'experience' as Section, icon: <Briefcase className="w-4 h-4" />, label: t('sections.experience') },
     { id: 'skills' as Section, icon: <Code2 className="w-4 h-4" />, label: t('sections.skills') },
+    { id: 'awards' as Section, icon: <Trophy className="w-4 h-4" />, label: t('sections.awards') },
+    { id: 'certificates' as Section, icon: <BadgeCheck className="w-4 h-4" />, label: t('sections.certificates') },
+    { id: 'projects' as Section, icon: <FolderGit2 className="w-4 h-4" />, label: t('sections.projects') },
+    { id: 'volunteer' as Section, icon: <Heart className="w-4 h-4" />, label: t('sections.volunteer') },
+    { id: 'publications' as Section, icon: <BookOpen className="w-4 h-4" />, label: t('sections.publications') },
   ];
 
   function addEducation() {
@@ -109,6 +124,31 @@ export function ResumeBuilder() {
   function removeSkill(id: string) {
     setSkills(skills.filter((s) => s.id !== id));
   }
+
+  function addAward() {
+    setAwards([...awards, { id: Date.now().toString(), title: '', organization: '', date: '', type: 'award' }]);
+  }
+  function removeAward(id: string) { setAwards(awards.filter((a) => a.id !== id)); }
+
+  function addCertificate() {
+    setCertificates([...certificates, { id: Date.now().toString(), name: '', issuer: '', date: '' }]);
+  }
+  function removeCertificate(id: string) { setCertificates(certificates.filter((c) => c.id !== id)); }
+
+  function addProject() {
+    setProjects([...projects, { id: Date.now().toString(), title: '', role: '', startDate: '', endDate: '', current: false, description: '' }]);
+  }
+  function removeProject(id: string) { setProjects(projects.filter((p) => p.id !== id)); }
+
+  function addVolunteer() {
+    setVolunteer([...volunteer, { id: Date.now().toString(), organization: '', role: '', startDate: '', endDate: '', current: false, description: '' }]);
+  }
+  function removeVolunteer(id: string) { setVolunteer(volunteer.filter((v) => v.id !== id)); }
+
+  function addPublication() {
+    setPublications([...publications, { id: Date.now().toString(), title: '', type: 'journal', publisher: '', date: '' }]);
+  }
+  function removePublication(id: string) { setPublications(publications.filter((p) => p.id !== id)); }
 
   function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -161,20 +201,21 @@ export function ResumeBuilder() {
         </div>
 
         {/* Section tabs */}
-        <div className="grid grid-cols-4 gap-1 p-1 bg-gray-100 dark:bg-gray-800/50 rounded-2xl">
+        <div className="flex gap-1 p-1 bg-gray-100 dark:bg-gray-800/50 rounded-2xl overflow-x-auto scrollbar-hide">
           {sections.map((section) => (
             <button
               key={section.id}
               onClick={() => setActiveSection(section.id)}
+              title={section.label}
               className={cn(
-                'flex flex-col items-center gap-1 py-2.5 px-1 rounded-xl text-xs font-medium transition-all duration-150',
+                'flex flex-col items-center gap-1 py-2 px-2.5 rounded-xl text-xs font-medium transition-all duration-150 flex-shrink-0',
                 activeSection === section.id
                   ? 'bg-white dark:bg-gray-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
                   : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
               )}
             >
               {section.icon}
-              <span className="hidden sm:block truncate w-full text-center">{section.label.split(' ')[0]}</span>
+              <span className="text-[10px] leading-tight whitespace-nowrap">{section.label.split(' ')[0]}</span>
             </button>
           ))}
         </div>
@@ -571,6 +612,253 @@ export function ResumeBuilder() {
               </Button>
             </div>
           )}
+          {/* Awards & Scholarships */}
+          {activeSection === 'awards' && (
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                <Trophy className="w-4 h-4 text-indigo-500" />
+                {t('sections.awards')}
+              </h2>
+              {awards.length === 0 && (
+                <div className="text-center py-8 text-gray-400 dark:text-gray-500">
+                  <Trophy className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">수상 / 장학금 없음</p>
+                </div>
+              )}
+              {awards.map((award, i) => (
+                <div key={award.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
+                    <button onClick={() => removeAward(award.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <Input label={t('awards.title')} placeholder="국가장학금 1유형" value={award.title}
+                    onChange={(e) => { const u = [...awards]; u[i].title = e.target.value; setAwards(u); }} />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('awards.organization')} placeholder="한국장학재단" value={award.organization}
+                      onChange={(e) => { const u = [...awards]; u[i].organization = e.target.value; setAwards(u); }} />
+                    <Input label={t('awards.date')} type="month" value={award.date}
+                      onChange={(e) => { const u = [...awards]; u[i].date = e.target.value; setAwards(u); }} />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">{t('awards.type')}</label>
+                    <select value={award.type}
+                      onChange={(e) => { const u = [...awards]; u[i].type = e.target.value as Award['type']; setAwards(u); }}
+                      className="w-full text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <option value="award">{t('awards.typeAward')}</option>
+                      <option value="scholarship">{t('awards.typeScholarship')}</option>
+                      <option value="honor">{t('awards.typeHonor')}</option>
+                    </select>
+                  </div>
+                  <Input label={t('awards.description')} placeholder="수상 내용 및 의미" value={award.description || ''}
+                    onChange={(e) => { const u = [...awards]; u[i].description = e.target.value; setAwards(u); }} />
+                </div>
+              ))}
+              <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} onClick={addAward} className="w-full">
+                {t('awards.add')}
+              </Button>
+            </div>
+          )}
+
+          {/* Certificates */}
+          {activeSection === 'certificates' && (
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                <BadgeCheck className="w-4 h-4 text-indigo-500" />
+                {t('sections.certificates')}
+              </h2>
+              {certificates.length === 0 && (
+                <div className="text-center py-8 text-gray-400 dark:text-gray-500">
+                  <BadgeCheck className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">자격증 없음</p>
+                </div>
+              )}
+              {certificates.map((cert, i) => (
+                <div key={cert.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
+                    <button onClick={() => removeCertificate(cert.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <Input label={t('certificates.name')} placeholder="TOPIK II (한국어능력시험)" value={cert.name}
+                    onChange={(e) => { const u = [...certificates]; u[i].name = e.target.value; setCertificates(u); }} />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('certificates.issuer')} placeholder="국립국제교육원" value={cert.issuer}
+                      onChange={(e) => { const u = [...certificates]; u[i].issuer = e.target.value; setCertificates(u); }} />
+                    <Input label={t('certificates.date')} type="month" value={cert.date}
+                      onChange={(e) => { const u = [...certificates]; u[i].date = e.target.value; setCertificates(u); }} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('certificates.score')} placeholder="6급 / 560점" value={cert.score || ''}
+                      onChange={(e) => { const u = [...certificates]; u[i].score = e.target.value; setCertificates(u); }} />
+                    <Input label={t('certificates.credentialId')} placeholder="2024-TOPIK-12345" value={cert.credentialId || ''}
+                      onChange={(e) => { const u = [...certificates]; u[i].credentialId = e.target.value; setCertificates(u); }} />
+                  </div>
+                </div>
+              ))}
+              <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} onClick={addCertificate} className="w-full">
+                {t('certificates.add')}
+              </Button>
+            </div>
+          )}
+
+          {/* Projects */}
+          {activeSection === 'projects' && (
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                <FolderGit2 className="w-4 h-4 text-indigo-500" />
+                {t('sections.projects')}
+              </h2>
+              {projects.length === 0 && (
+                <div className="text-center py-8 text-gray-400 dark:text-gray-500">
+                  <FolderGit2 className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">프로젝트 없음</p>
+                </div>
+              )}
+              {projects.map((proj, i) => (
+                <div key={proj.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
+                    <button onClick={() => removeProject(proj.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('projects.title')} placeholder="AI 이력서 생성기" value={proj.title}
+                      onChange={(e) => { const u = [...projects]; u[i].title = e.target.value; setProjects(u); }} />
+                    <Input label={t('projects.role')} placeholder="팀장 / 백엔드 개발자" value={proj.role}
+                      onChange={(e) => { const u = [...projects]; u[i].role = e.target.value; setProjects(u); }} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('projects.startDate')} type="month" value={proj.startDate}
+                      onChange={(e) => { const u = [...projects]; u[i].startDate = e.target.value; setProjects(u); }} />
+                    <Input label={proj.current ? '' : t('projects.endDate')} type="month" value={proj.endDate} disabled={proj.current}
+                      onChange={(e) => { const u = [...projects]; u[i].endDate = e.target.value; setProjects(u); }} />
+                  </div>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" checked={proj.current}
+                      onChange={(e) => { const u = [...projects]; u[i].current = e.target.checked; setProjects(u); }}
+                      className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">{t('projects.current')}</span>
+                  </label>
+                  <Input label={t('projects.technologies')} placeholder="React, Next.js, Python, PostgreSQL" value={proj.technologies || ''}
+                    onChange={(e) => { const u = [...projects]; u[i].technologies = e.target.value; setProjects(u); }} />
+                  <Textarea label={t('projects.description')} placeholder="프로젝트 목적, 역할, 성과를 설명하세요" value={proj.description} rows={3}
+                    onChange={(e) => { const u = [...projects]; u[i].description = e.target.value; setProjects(u); }} />
+                  <Input label={t('projects.url')} placeholder="https://github.com/..." value={proj.url || ''}
+                    onChange={(e) => { const u = [...projects]; u[i].url = e.target.value; setProjects(u); }} />
+                </div>
+              ))}
+              <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} onClick={addProject} className="w-full">
+                {t('projects.add')}
+              </Button>
+            </div>
+          )}
+
+          {/* Volunteer */}
+          {activeSection === 'volunteer' && (
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                <Heart className="w-4 h-4 text-indigo-500" />
+                {t('sections.volunteer')}
+              </h2>
+              {volunteer.length === 0 && (
+                <div className="text-center py-8 text-gray-400 dark:text-gray-500">
+                  <Heart className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">봉사활동 없음</p>
+                </div>
+              )}
+              {volunteer.map((vol, i) => (
+                <div key={vol.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
+                    <button onClick={() => removeVolunteer(vol.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('volunteer.organization')} placeholder="대한적십자사" value={vol.organization}
+                      onChange={(e) => { const u = [...volunteer]; u[i].organization = e.target.value; setVolunteer(u); }} />
+                    <Input label={t('volunteer.role')} placeholder="의료 통역 봉사" value={vol.role}
+                      onChange={(e) => { const u = [...volunteer]; u[i].role = e.target.value; setVolunteer(u); }} />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('volunteer.startDate')} type="month" value={vol.startDate}
+                      onChange={(e) => { const u = [...volunteer]; u[i].startDate = e.target.value; setVolunteer(u); }} />
+                    <Input label={vol.current ? '' : t('volunteer.endDate')} type="month" value={vol.endDate} disabled={vol.current}
+                      onChange={(e) => { const u = [...volunteer]; u[i].endDate = e.target.value; setVolunteer(u); }} />
+                  </div>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" checked={vol.current}
+                      onChange={(e) => { const u = [...volunteer]; u[i].current = e.target.checked; setVolunteer(u); }}
+                      className="w-4 h-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                    <span className="text-sm text-gray-700 dark:text-gray-300">{t('volunteer.current')}</span>
+                  </label>
+                  <Textarea label={t('volunteer.description')} placeholder="활동 내용 및 역할" value={vol.description} rows={2}
+                    onChange={(e) => { const u = [...volunteer]; u[i].description = e.target.value; setVolunteer(u); }} />
+                </div>
+              ))}
+              <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} onClick={addVolunteer} className="w-full">
+                {t('volunteer.add')}
+              </Button>
+            </div>
+          )}
+
+          {/* Publications */}
+          {activeSection === 'publications' && (
+            <div className="space-y-4 animate-fade-in">
+              <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                <BookOpen className="w-4 h-4 text-indigo-500" />
+                {t('sections.publications')}
+              </h2>
+              {publications.length === 0 && (
+                <div className="text-center py-8 text-gray-400 dark:text-gray-500">
+                  <BookOpen className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">논문 없음</p>
+                </div>
+              )}
+              {publications.map((pub, i) => (
+                <div key={pub.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
+                    <button onClick={() => removePublication(pub.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">{t('publications.type')}</label>
+                    <select value={pub.type}
+                      onChange={(e) => { const u = [...publications]; u[i].type = e.target.value as Publication['type']; setPublications(u); }}
+                      className="w-full text-sm rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                      <option value="thesis">{t('publications.typeThesis')}</option>
+                      <option value="journal">{t('publications.typeJournal')}</option>
+                      <option value="proceedings">{t('publications.typeProceedings')}</option>
+                    </select>
+                  </div>
+                  <Textarea label={t('publications.title')} placeholder="논문 제목을 입력하세요" value={pub.title} rows={2}
+                    onChange={(e) => { const u = [...publications]; u[i].title = e.target.value; setPublications(u); }} />
+                  <div className="grid grid-cols-2 gap-3">
+                    <Input label={t('publications.publisher')} placeholder="한국정보과학회" value={pub.publisher}
+                      onChange={(e) => { const u = [...publications]; u[i].publisher = e.target.value; setPublications(u); }} />
+                    <Input label={t('publications.date')} type="month" value={pub.date}
+                      onChange={(e) => { const u = [...publications]; u[i].date = e.target.value; setPublications(u); }} />
+                  </div>
+                  <Input label={t('publications.authors')} placeholder="홍길동, 김철수, ..." value={pub.authors || ''}
+                    onChange={(e) => { const u = [...publications]; u[i].authors = e.target.value; setPublications(u); }} />
+                  <Input label={t('publications.doi')} placeholder="https://doi.org/..." value={pub.doi || ''}
+                    onChange={(e) => { const u = [...publications]; u[i].doi = e.target.value; setPublications(u); }} />
+                  <Textarea label={t('publications.description')} placeholder="초록 또는 요약" value={pub.description || ''} rows={2}
+                    onChange={(e) => { const u = [...publications]; u[i].description = e.target.value; setPublications(u); }} />
+                </div>
+              ))}
+              <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} onClick={addPublication} className="w-full">
+                {t('publications.add')}
+              </Button>
+            </div>
+          )}
+
         </div>
       </div>
 
@@ -598,6 +886,11 @@ export function ResumeBuilder() {
               education={education}
               experience={experience}
               skills={skills}
+              awards={awards}
+              certificates={certificates}
+              projects={projects}
+              volunteer={volunteer}
+              publications={publications}
               template={selectedTemplate}
             />
           </div>

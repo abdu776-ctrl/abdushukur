@@ -168,6 +168,11 @@
       "education": "Ta'lim",
       "experience": "Ish Tajribasi",
       "skills": "Ko'nikmalar",
+      "awards": "Mukofotlar / Stipendiyalar",
+      "certificates": "Sertifikatlar",
+      "projects": "Loyihalar",
+      "volunteer": "Ko'ngillilik",
+      "publications": "Nashrlar",
       "languages": "Tillar",
       "certifications": "Sertifikatlar"
     },
@@ -211,6 +216,58 @@
       "intermediate": "O'rta",
       "advanced": "Ilg'or",
       "expert": "Mutaxassis"
+    },
+    "awards": {
+      "add": "Mukofot / Stipendiya Qo'shish",
+      "title": "Nomi",
+      "organization": "Tashkilot / Universitet",
+      "date": "Sana",
+      "type": "Turi",
+      "typeAward": "Mukofot (수상)",
+      "typeScholarship": "Stipendiya (장학금)",
+      "typeHonor": "Taqdirlash / Tan olish (표창)",
+      "description": "Tavsif"
+    },
+    "certificates": {
+      "add": "Sertifikat Qo'shish",
+      "name": "Sertifikat Nomi",
+      "issuer": "Beruvchi Tashkilot",
+      "date": "Berilgan Sana",
+      "score": "Ball / Natija",
+      "credentialId": "Sertifikat ID / Raqami"
+    },
+    "projects": {
+      "add": "Loyiha Qo'shish",
+      "title": "Loyiha Nomi",
+      "role": "Sizning Rolingiz",
+      "startDate": "Boshlanish Sanasi",
+      "endDate": "Tugash Sanasi",
+      "current": "Davom etmoqda",
+      "technologies": "Ishlatilgan Texnologiyalar",
+      "description": "Tavsif",
+      "url": "Loyiha URL (ixtiyoriy)"
+    },
+    "volunteer": {
+      "add": "Ko'ngillilik Faoliyatini Qo'shish",
+      "organization": "Tashkilot",
+      "role": "Rol / Faoliyat",
+      "startDate": "Boshlanish Sanasi",
+      "endDate": "Tugash Sanasi",
+      "current": "Hozirda faol",
+      "description": "Tavsif"
+    },
+    "publications": {
+      "add": "Nashr Qo'shish",
+      "title": "Sarlavha",
+      "type": "Turi",
+      "typeThesis": "Dissertatsiya / Bitirma ishi (학위논문)",
+      "typeJournal": "Ilmiy Maqola (학술논문)",
+      "typeProceedings": "Konferensiya / Prosidinlar (프로시딩)",
+      "publisher": "Jurnal / Nashriyot / Universitet",
+      "date": "Nashr Sanasi",
+      "authors": "Mualliflar",
+      "doi": "DOI / Havola",
+      "description": "Annotatsiya / Tavsif"
     }
   },
   "coverLetter": {
