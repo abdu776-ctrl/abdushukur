@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { ResumePreview } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
+import { NameTranslator } from './NameTranslator';
 import { exportToPDF } from '@/lib/utils';
 import {
   User,
@@ -26,8 +27,6 @@ import {
   FolderGit2,
   Heart,
   BookOpen,
-  Languages,
-  Loader2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
@@ -63,39 +62,6 @@ export function ResumeBuilder() {
   const [exporting, setExporting] = useState(false);
 
   const photoInputRef = useRef<HTMLInputElement>(null);
-  const [translating, setTranslating] = useState<null | 'toKorean' | 'toLatin'>(null);
-
-  async function translateText(text: string, from: string, to: string): Promise<string> {
-    const res = await fetch('/api/translate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, from, to }),
-    });
-    if (!res.ok) throw new Error('translate failed');
-    const data = await res.json();
-    return (data.translated as string) || '';
-  }
-
-  async function translateName(dir: 'toKorean' | 'toLatin') {
-    setTranslating(dir);
-    try {
-      if (dir === 'toKorean') {
-        const src = personal.fullName.trim();
-        if (!src) return;
-        const out = await translateText(src, 'auto', 'ko');
-        if (out) setPersonal((p) => ({ ...p, fullNameKorean: out }));
-      } else {
-        const src = (personal.fullNameKorean || '').trim();
-        if (!src) return;
-        const out = await translateText(src, 'ko', 'en');
-        if (out) setPersonal((p) => ({ ...p, fullName: out }));
-      }
-    } catch {
-      alert('Tarjima xizmatida xatolik. Internetni tekshirib, qayta urinib koʻring.');
-    } finally {
-      setTranslating(null);
-    }
-  }
 
   const [personal, setPersonal] = useState<PersonalInfo>(defaultPersonal);
   const [education, setEducation] = useState<Education[]>([{ ...defaultEducation }]);
@@ -346,38 +312,15 @@ export function ResumeBuilder() {
                 />
               </div>
 
-              {/* Name auto-translate */}
-              <div className="flex flex-wrap items-center gap-2 -mt-1">
-                <span className="inline-flex items-center gap-1 text-xs text-gray-400 dark:text-gray-500">
-                  <Languages className="w-3.5 h-3.5" />
-                  {t('personal.translateName')}:
-                </span>
-                <button
-                  type="button"
-                  onClick={() => translateName('toKorean')}
-                  disabled={translating !== null || !personal.fullName.trim()}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-gray-200 dark:border-gray-700 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                >
-                  {translating === 'toKorean' ? (
-                    <Loader2 className="w-3 h-3 animate-spin" />
-                  ) : (
-                    <span className="text-[10px]">A→가</span>
-                  )}
-                  {t('personal.toKorean')}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => translateName('toLatin')}
-                  disabled={translating !== null || !(personal.fullNameKorean || '').trim()}
-                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border border-gray-200 dark:border-gray-700 text-xs font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
-                >
-                  {translating === 'toLatin' ? (
-                    <Loader2 className="w-3 h-3 animate-spin" />
-                  ) : (
-                    <span className="text-[10px]">가→A</span>
-                  )}
-                  {t('personal.toLatin')}
-                </button>
+              {/* Name translator */}
+              <div className="-mt-1">
+                <NameTranslator
+                  label={t('personal.translateName')}
+                  fullName={personal.fullName}
+                  koreanName={personal.fullNameKorean || ''}
+                  onApplyFullName={(v) => setPersonal((p) => ({ ...p, fullName: v }))}
+                  onApplyKorean={(v) => setPersonal((p) => ({ ...p, fullNameKorean: v }))}
+                />
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <Input
