@@ -163,8 +163,19 @@ export function ResumeBuilder() {
 
   async function handleExport() {
     setExporting(true);
-    await exportToPDF('resume-preview', `resume-${personal.fullName || 'koreer'}`);
-    setExporting(false);
+    try {
+      if (!showPreview) setShowPreview(true);
+      // Give the preview a moment to mount if it was just shown.
+      await new Promise((r) => setTimeout(r, 100));
+      await exportToPDF('resume-preview', `resume-${personal.fullName || 'koreer'}`);
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      alert(
+        'PDF yuklab olishда xatolik yuz berdi. Iltimos, avval "Preview" (koʻrish) tugmasini bosib, resume koʻrinishini oching, keyin qayta urinib koʻring.'
+      );
+    } finally {
+      setExporting(false);
+    }
   }
 
   return (

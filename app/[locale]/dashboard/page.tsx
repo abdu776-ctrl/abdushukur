@@ -102,12 +102,51 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
           </div>
           <div className="flex items-center gap-3">
             <Link
-              href="/en/resume"
+              href={`/${locale}/resume`}
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-all duration-150 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               New Document
             </Link>
+          </div>
+        </div>
+
+        {/* Primary CTA — Build your resume */}
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 to-purple-600 p-6 sm:p-8">
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(255,255,255,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.4) 1px, transparent 1px)',
+              backgroundSize: '32px 32px',
+            }}
+          />
+          <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+            <div className="max-w-xl">
+              <h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                Build your Korean resume 이력서
+              </h2>
+              <p className="text-indigo-100 text-sm sm:text-base leading-relaxed">
+                Start with a template, fill in your details, and export a professional PDF — in minutes.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <Link
+                href={`/${locale}/resume`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-indigo-700 font-semibold hover:bg-indigo-50 transition-all duration-150 shadow-lg group whitespace-nowrap"
+              >
+                <FileText className="w-4 h-4" />
+                Create Resume
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+              <Link
+                href={`/${locale}/cover-letter`}
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white/15 text-white font-semibold hover:bg-white/25 backdrop-blur-sm transition-all duration-150 whitespace-nowrap"
+              >
+                <PenLine className="w-4 h-4" />
+                자기소개서
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -202,7 +241,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
               </h2>
               <div className="space-y-3">
                 <Link
-                  href="/en/resume"
+                  href={`/${locale}/resume`}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-blue-50 dark:bg-blue-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20 transition-colors">
@@ -216,7 +255,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0" />
                 </Link>
                 <Link
-                  href="/en/cover-letter"
+                  href={`/${locale}/cover-letter`}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-purple-50 dark:bg-purple-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20 transition-colors">
@@ -230,7 +269,7 @@ export default async function DashboardPage({ params }: { params: Promise<{ loca
                   <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 flex-shrink-0" />
                 </Link>
                 <Link
-                  href="/en/ai-assistant"
+                  href={`/${locale}/ai-assistant`}
                   className="flex items-center gap-3 p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group"
                 >
                   <div className="w-9 h-9 rounded-lg bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center flex-shrink-0 group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20 transition-colors">

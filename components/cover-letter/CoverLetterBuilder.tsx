@@ -90,8 +90,18 @@ export function CoverLetterBuilder() {
 
   async function handleExport() {
     setExporting(true);
-    await exportToPDF('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
-    setExporting(false);
+    try {
+      if (!showPreview) setShowPreview(true);
+      await new Promise((r) => setTimeout(r, 100));
+      await exportToPDF('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
+    } catch (err) {
+      console.error('PDF export failed:', err);
+      alert(
+        'PDF yuklab olishда xatolik yuz berdi. Iltimos, avval "Preview" tugmasini bosib koʻrinishni oching, keyin qayta urinib koʻring.'
+      );
+    } finally {
+      setExporting(false);
+    }
   }
 
   const totalChars = Object.values(content).join('').length;

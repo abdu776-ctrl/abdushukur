@@ -14,6 +14,13 @@ import {
   Star,
   Zap,
   Shield,
+  Play,
+  GraduationCap,
+  Briefcase,
+  BookOpen,
+  Clock,
+  Languages,
+  DollarSign,
 } from 'lucide-react';
 import type { Metadata } from 'next';
 
@@ -113,6 +120,66 @@ export default async function HomePage({ params }: HomePageProps) {
     { flag: '🇰🇬', name: 'Kyrgyzstan' },
     { flag: '🇲🇳', name: 'Mongolia' },
     { flag: '🇻🇳', name: 'Vietnam' },
+  ];
+
+  const advantages = [
+    {
+      icon: <Clock className="w-5 h-5" />,
+      title: 'Save hours of formatting',
+      desc: 'Skip the guesswork. Fill in your details and get a Korean-standard 이력서 in minutes, not days.',
+    },
+    {
+      icon: <Shield className="w-5 h-5" />,
+      title: 'Korean-standard by default',
+      desc: 'Every template follows real Korean corporate expectations — photo placement, sections, and formal tone.',
+    },
+    {
+      icon: <Languages className="w-5 h-5" />,
+      title: 'Your language, Korean output',
+      desc: 'Work in Uzbek, Russian, English or Korean. The final document is polished for Korean employers.',
+    },
+    {
+      icon: <Sparkles className="w-5 h-5" />,
+      title: 'AI writing help',
+      desc: 'Stuck on your 자기소개서? Get instant AI suggestions written in natural, professional Korean.',
+    },
+    {
+      icon: <LayoutTemplate className="w-5 h-5" />,
+      title: '25+ professional templates',
+      desc: 'From modern to classic Korean official forms — pick the design that fits the company you want.',
+    },
+    {
+      icon: <DollarSign className="w-5 h-5" />,
+      title: 'Free to start',
+      desc: 'Build, preview, and export your resume as a PDF without paying anything to get started.',
+    },
+  ];
+
+  const audience = [
+    {
+      icon: <GraduationCap className="w-6 h-6" />,
+      title: 'International students',
+      desc: 'Studying in Korea and applying for part-time jobs, internships, or your first full-time role.',
+      color: 'from-indigo-500 to-blue-500',
+    },
+    {
+      icon: <Briefcase className="w-6 h-6" />,
+      title: 'Job seekers',
+      desc: 'Applying to Korean companies and need a resume and 자기소개서 that meet local standards.',
+      color: 'from-purple-500 to-pink-500',
+    },
+    {
+      icon: <BookOpen className="w-6 h-6" />,
+      title: 'Researchers & grad students',
+      desc: 'Add publications, theses, and conference papers (학위논문, 학술논문, 프로시딩) to an academic CV.',
+      color: 'from-emerald-500 to-teal-500',
+    },
+    {
+      icon: <Globe className="w-6 h-6" />,
+      title: 'Newcomers to Korea',
+      desc: 'From Uzbekistan, Kazakhstan, and beyond — build a professional profile in your own language.',
+      color: 'from-orange-500 to-amber-500',
+    },
   ];
 
   return (
@@ -273,8 +340,124 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
+      {/* Video Demo Section */}
+      <section id="demo" className="py-24 bg-gray-50 dark:bg-gray-950/50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 text-sm font-medium mb-6">
+            <Play className="w-3.5 h-3.5" />
+            Watch how it works
+          </div>
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            See Koreer in action
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
+            A quick tour of building a Korean resume — from your details to a polished, ready-to-send PDF.
+          </p>
+
+          {/*
+            VIDEO PLACEHOLDER
+            To embed a real video, replace this whole block with:
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video">
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                title="Koreer demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          */}
+          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
+            {/* Decorative grid */}
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
+                backgroundSize: '40px 40px',
+              }}
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+              <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 hover:bg-white/30 transition-colors cursor-pointer">
+                <Play className="w-9 h-9 ml-1" fill="currentColor" />
+              </div>
+              <p className="text-lg font-semibold">Demo video coming soon</p>
+              <p className="text-sm text-white/70 mt-1">Product walkthrough</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Koreer / Advantages Section */}
+      <section id="why" className="py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-sm font-medium mb-4">
+              <Star className="w-3.5 h-3.5" />
+              Why Koreer
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Built for landing a job in Korea
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Everything a foreign applicant needs to compete for Korean roles — in one place.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {advantages.map((adv, i) => (
+              <div
+                key={i}
+                className="flex gap-4 p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:shadow-lg transition-all duration-200"
+              >
+                <div className="w-11 h-11 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+                  {adv.icon}
+                </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900 dark:text-white mb-1.5">{adv.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{adv.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Who is it for Section */}
+      <section id="who" className="py-24 bg-gray-50 dark:bg-gray-950/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 text-sm font-medium mb-4">
+              <GraduationCap className="w-3.5 h-3.5" />
+              Who is it for
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Who Koreer helps
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              If you&apos;re building a career in Korea, Koreer is made for you.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {audience.map((a, i) => (
+              <div
+                key={i}
+                className="relative p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200"
+              >
+                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${a.color} flex items-center justify-center text-white mb-4 shadow-lg`}>
+                  {a.icon}
+                </div>
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{a.title}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{a.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Resume Preview Section */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-950/50">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
