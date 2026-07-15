@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { AuthProvider } from '@/components/providers/AuthProvider';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/lib/i18n';
 
@@ -37,7 +38,7 @@ export default async function LocaleLayout({
           disableTransitionOnChange={false}
         >
           <NextIntlClientProvider messages={messages}>
-            {children}
+            <AuthProvider>{children}</AuthProvider>
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

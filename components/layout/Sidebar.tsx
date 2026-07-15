@@ -15,6 +15,8 @@ import {
   User,
 } from 'lucide-react';
 import { useState } from 'react';
+import { useSession, signOut } from 'next-auth/react';
+import { LogOut } from 'lucide-react';
 
 interface NavItem {
   href: string;
@@ -28,6 +30,11 @@ export function Sidebar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
+  const { data: session } = useSession();
+
+  const userName = session?.user?.name || 'Guest';
+  const userEmail = session?.user?.email || 'Not signed in';
+  const userImage = session?.user?.image;
 
   const navItems: NavItem[] = [
     {
@@ -161,17 +168,32 @@ export function Sidebar() {
         {/* User profile */}
         <div className={cn(
           'flex items-center rounded-lg p-2 mt-1',
-          'hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition-colors',
           collapsed ? 'justify-center' : 'gap-3'
         )}>
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shrink-0">
-            <User className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shrink-0 overflow-hidden">
+            {userImage ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={userImage} alt={userName} className="w-full h-full object-cover" />
+            ) : (
+              <User className="w-4 h-4 text-white" />
+            )}
           </div>
           {!collapsed && (
-            <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-gray-900 dark:text-white truncate">John Doe</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">john@example.com</p>
-            </div>
+            <>
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{userName}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{userEmail}</p>
+              </div>
+              {session && (
+                <button
+                  onClick={() => signOut({ callbackUrl: `/${locale}` })}
+                  title={t('common.logout')}
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors shrink-0"
+                >
+                  <LogOut className="w-4 h-4" />
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
