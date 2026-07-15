@@ -185,7 +185,10 @@
       "nationality": "Гражданство",
       "address": "Адрес",
       "photo": "Фото профиля",
-      "uploadPhoto": "Загрузить фото"
+      "uploadPhoto": "Загрузить фото",
+      "translateName": "Автоперевод имени",
+      "toKorean": "На корейский",
+      "toLatin": "На латиницу"
     },
     "education": {
       "add": "Добавить образование",

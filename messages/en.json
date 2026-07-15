@@ -185,7 +185,10 @@
       "nationality": "Nationality",
       "address": "Address",
       "photo": "Profile Photo",
-      "uploadPhoto": "Upload Photo"
+      "uploadPhoto": "Upload Photo",
+      "translateName": "Auto-translate name",
+      "toKorean": "To Korean",
+      "toLatin": "To Latin"
     },
     "education": {
       "add": "Add Education",

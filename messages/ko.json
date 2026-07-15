@@ -185,7 +185,10 @@
       "nationality": "국적",
       "address": "주소",
       "photo": "증명사진",
-      "uploadPhoto": "사진 업로드"
+      "uploadPhoto": "사진 업로드",
+      "translateName": "이름 자동 번역",
+      "toKorean": "한국어로",
+      "toLatin": "로마자로"
     },
     "education": {
       "add": "학력 추가",

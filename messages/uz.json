@@ -185,7 +185,10 @@
       "nationality": "Millat",
       "address": "Manzil",
       "photo": "Profil Fotosurati",
-      "uploadPhoto": "Fotosurat Yuklash"
+      "uploadPhoto": "Fotosurat Yuklash",
+      "translateName": "Ismni avtomatik tarjima",
+      "toKorean": "Koreyschaga",
+      "toLatin": "Lotinchaga"
     },
     "education": {
       "add": "Ta'lim Qo'shish",
