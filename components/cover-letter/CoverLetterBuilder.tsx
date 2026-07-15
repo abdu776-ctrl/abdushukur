@@ -5,10 +5,12 @@ import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { exportToPDF } from '@/lib/utils';
+import { exportToPDF, exportToWord } from '@/lib/utils';
+import { TextTranslator } from '@/components/TextTranslator';
 import {
   Sparkles,
   Download,
+  FileType,
   Eye,
   EyeOff,
   ChevronDown,
@@ -104,6 +106,16 @@ export function CoverLetterBuilder() {
     }
   }
 
+  function handleExportWord() {
+    try {
+      if (!showPreview) setShowPreview(true);
+      exportToWord('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
+    } catch (err) {
+      console.error('Word export failed:', err);
+      alert('Word faylni saqlashда xatolik. Avval "Preview" ni oching va qayta urinib koʻring.');
+    }
+  }
+
   const totalChars = Object.values(content).join('').length;
 
   return (
@@ -123,6 +135,14 @@ export function CoverLetterBuilder() {
             className="lg:hidden"
           >
             Preview
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            icon={<FileType className="w-4 h-4" />}
+            onClick={handleExportWord}
+          >
+            Word
           </Button>
           <Button
             variant="primary"
@@ -212,7 +232,7 @@ export function CoverLetterBuilder() {
                     className="resize-none"
                   />
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className={cn(
                       'text-xs',
                       content[section.key].length > section.maxChars
@@ -221,15 +241,25 @@ export function CoverLetterBuilder() {
                     )}>
                       {content[section.key].length} / {section.maxChars}
                     </span>
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      icon={<Sparkles className="w-3.5 h-3.5 text-indigo-500" />}
-                      loading={aiLoading === section.key}
-                      onClick={() => handleAISuggest(section.key)}
-                    >
-                      {t('aiHelp')}
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <TextTranslator
+                        label={t('translate')}
+                        title={section.title}
+                        initialText={content[section.key]}
+                        defaultFrom="auto"
+                        defaultTo="ko"
+                        onApply={(v) => setContent((prev) => ({ ...prev, [section.key]: v }))}
+                      />
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        icon={<Sparkles className="w-3.5 h-3.5 text-indigo-500" />}
+                        loading={aiLoading === section.key}
+                        onClick={() => handleAISuggest(section.key)}
+                      >
+                        {t('aiHelp')}
+                      </Button>
+                    </div>
                   </div>
                 </div>
               )}
@@ -243,9 +273,14 @@ export function CoverLetterBuilder() {
         <div className="sticky top-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Preview</h3>
-            <Button variant="ghost" size="sm" icon={<Download className="w-4 h-4" />} loading={exporting} onClick={handleExport}>
-              Export PDF
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button variant="ghost" size="sm" icon={<FileType className="w-4 h-4" />} onClick={handleExportWord}>
+                Word
+              </Button>
+              <Button variant="ghost" size="sm" icon={<Download className="w-4 h-4" />} loading={exporting} onClick={handleExport}>
+                PDF
+              </Button>
+            </div>
           </div>
           <div id="cover-letter-preview" className="bg-white rounded-2xl shadow-xl overflow-auto max-h-[calc(100vh-12rem)] border border-gray-200">
             <div className="p-10" style={{ fontFamily: 'Noto Sans KR, sans-serif', fontSize: '12px', lineHeight: '2', color: '#1f2937' }}>

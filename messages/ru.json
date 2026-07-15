@@ -285,6 +285,7 @@
       "aspiration": "입사 후 포부 (Будущие цели)"
     },
     "aiHelp": "Получить предложения AI",
+    "translate": "Перевод",
     "wordCount": "{count} слов",
     "characterCount": "{count} символов"
   },

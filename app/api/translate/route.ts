@@ -106,29 +106,30 @@ async function romanizeKorean(text: string): Promise<string> {
 
 export async function POST(req: NextRequest) {
   try {
-    const { text, from = 'auto', to } = await req.json();
+    const { text, from = 'auto', to, mode = 'text' } = await req.json();
 
     if (!text || typeof text !== 'string' || !to) {
       return NextResponse.json({ error: 'Missing text or target language' }, { status: 400 });
     }
 
-    // Name transliteration into Korean (the common case for this app).
-    if (to === 'ko' && /[a-zA-Zа-яА-ЯёЁ]/.test(text)) {
-      const translated = await transliterateToKorean(text);
-      return NextResponse.json({ translated });
-    }
-
-    // Korean name -> Latin: romanize instead of translate.
-    if (from === 'ko' && to !== 'ko') {
-      try {
-        const roman = await romanizeKorean(text);
-        if (roman) return NextResponse.json({ translated: roman });
-      } catch {
-        // fall through to plain translate
+    // "name" mode = transliterate a person's name between scripts.
+    // Full sentences must NOT be transliterated, so this only runs for names.
+    if (mode === 'name') {
+      if (to === 'ko' && /[a-zA-Zа-яА-ЯёЁ]/.test(text)) {
+        const translated = await transliterateToKorean(text);
+        return NextResponse.json({ translated });
+      }
+      if (from === 'ko' && to !== 'ko') {
+        try {
+          const roman = await romanizeKorean(text);
+          if (roman) return NextResponse.json({ translated: roman });
+        } catch {
+          // fall through to plain translate
+        }
       }
     }
 
-    // Everything else: plain translation.
+    // Default: plain translation (sentences, paragraphs, cover letters).
     const translated = await googleTranslate(text, from, to);
     return NextResponse.json({ translated });
   } catch (err) {

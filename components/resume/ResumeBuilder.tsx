@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/Badge';
 import { ResumePreview } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
-import { exportToPDF } from '@/lib/utils';
+import { exportToPDF, exportToWord } from '@/lib/utils';
 import {
   User,
   GraduationCap,
@@ -27,6 +27,7 @@ import {
   FolderGit2,
   Heart,
   BookOpen,
+  FileType,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
@@ -179,6 +180,16 @@ export function ResumeBuilder() {
     }
   }
 
+  function handleExportWord() {
+    try {
+      if (!showPreview) setShowPreview(true);
+      exportToWord('resume-preview', `resume-${personal.fullName || 'koreer'}`);
+    } catch (err) {
+      console.error('Word export failed:', err);
+      alert('Word faylni saqlashда xatolik. Avval "Preview" ni oching va qayta urinib koʻring.');
+    }
+  }
+
   return (
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Left: Editor */}
@@ -200,6 +211,14 @@ export function ResumeBuilder() {
             className="lg:hidden"
           >
             {showPreview ? 'Hide' : 'Preview'}
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            icon={<FileType className="w-4 h-4" />}
+            onClick={handleExportWord}
+          >
+            Word
           </Button>
           <Button
             variant="primary"

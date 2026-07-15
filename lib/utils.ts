@@ -22,6 +22,38 @@ export function truncate(str: string, maxLength: number): string {
   return str.slice(0, maxLength) + '...';
 }
 
+export function exportToWord(elementId: string, filename: string) {
+  if (typeof window === 'undefined') {
+    throw new Error('Word export must run in the browser');
+  }
+
+  const element = document.getElementById(elementId);
+  if (!element) {
+    throw new Error(`Preview element "#${elementId}" not found. Open the preview and try again.`);
+  }
+
+  // Word opens an HTML document saved with a .doc extension. Keeping the
+  // preview's inline styles preserves layout, and text stays selectable
+  // (unlike the image-based PDF).
+  const html =
+    `<!DOCTYPE html><html xmlns:o="urn:schemas-microsoft-com:office:office" ` +
+    `xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">` +
+    `<head><meta charset="utf-8"><title>${filename}</title>` +
+    `<style>body{font-family:'Malgun Gothic','Noto Sans KR',sans-serif;} ` +
+    `@page{size:A4;margin:1.6cm;}</style></head>` +
+    `<body>${element.innerHTML}</body></html>`;
+
+  const blob = new Blob(['﻿', html], { type: 'application/msword' });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${filename}.doc`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+}
+
 export async function exportToPDF(elementId: string, filename: string) {
   if (typeof window === 'undefined') {
     throw new Error('PDF export must run in the browser');
