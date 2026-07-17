@@ -912,15 +912,25 @@ export function ResumeBuilder() {
         <div className="sticky top-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Live Preview</h3>
-            <Button
-              variant="ghost"
-              size="sm"
-              icon={<Download className="w-4 h-4" />}
-              loading={exporting}
-              onClick={handleExport}
-            >
-              Export PDF
-            </Button>
+            <div className="flex items-center gap-1">
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<FileType className="w-4 h-4" />}
+                onClick={handleExportWord}
+              >
+                Word
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<Download className="w-4 h-4" />}
+                loading={exporting}
+                onClick={handleExport}
+              >
+                PDF
+              </Button>
+            </div>
           </div>
           <div className="bg-white rounded-2xl shadow-xl overflow-auto max-h-[calc(100vh-12rem)] border border-gray-200">
             <ResumePreview
