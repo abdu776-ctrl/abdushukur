@@ -1,4 +1,3 @@
-import Anthropic from '@anthropic-ai/sdk';
 import { NextRequest } from 'next/server';
 
 const SYSTEM_PROMPT = `You are Koreer's AI Career Assistant, an expert on getting a job in South Korea as an international student or foreign applicant.
@@ -18,6 +17,8 @@ Guidelines:
 - Keep answers focused and reasonably concise.
 - For legal/visa specifics, remind the user to verify with official sources (e.g. HiKorea, the employer, or immigration office).`;
 
+const MODEL = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+
 export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json();
@@ -26,48 +27,85 @@ export async function POST(req: NextRequest) {
       return new Response('No messages provided', { status: 400 });
     }
 
-    if (!process.env.ANTHROPIC_API_KEY) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
       return new Response(
-        'AI is not configured yet. Please set the ANTHROPIC_API_KEY environment variable.',
+        'AI is not configured yet. Please set the GEMINI_API_KEY environment variable.',
         { status: 503 }
       );
     }
 
-    const client = new Anthropic();
-
-    // Keep only user/assistant turns with non-empty content, ensure it starts
-    // with a user turn (the API rejects a leading assistant message).
-    const cleaned: Anthropic.MessageParam[] = messages
+    // Convert to Gemini format: assistant -> model, user -> user, must start with user.
+    const contents = messages
       .filter(
         (m: { role: string; content: string }) =>
           (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim()
       )
-      .map((m: { role: 'user' | 'assistant'; content: string }) => ({ role: m.role, content: m.content }));
+      .map((m: { role: string; content: string }) => ({
+        role: m.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: m.content }],
+      }));
 
-    while (cleaned.length && cleaned[0].role !== 'user') cleaned.shift();
+    while (contents.length && contents[0].role !== 'user') contents.shift();
 
-    if (!cleaned.length) {
+    if (!contents.length) {
       return new Response('No user message provided', { status: 400 });
     }
 
-    const anthropicStream = client.messages.stream({
-      model: 'claude-opus-4-8',
-      max_tokens: 2048,
-      system: SYSTEM_PROMPT,
-      messages: cleaned,
+    const url =
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse&key=` +
+      encodeURIComponent(apiKey);
+
+    const geminiRes = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents,
+        generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
+      }),
     });
 
+    if (!geminiRes.ok || !geminiRes.body) {
+      const errText = await geminiRes.text().catch(() => '');
+      console.error('gemini error:', geminiRes.status, errText);
+      return new Response('AI service error. Please try again.', { status: 502 });
+    }
+
     const encoder = new TextEncoder();
+    const decoder = new TextDecoder();
+
     const readable = new ReadableStream({
       async start(controller) {
+        const reader = geminiRes.body!.getReader();
+        let buffer = '';
         try {
-          for await (const event of anthropicStream) {
-            if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
-              controller.enqueue(encoder.encode(event.delta.text));
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+
+            // Gemini SSE: lines like "data: {json}" separated by newlines.
+            const lines = buffer.split('\n');
+            buffer = lines.pop() || '';
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (!trimmed.startsWith('data:')) continue;
+              const jsonStr = trimmed.slice(5).trim();
+              if (!jsonStr || jsonStr === '[DONE]') continue;
+              try {
+                const parsed = JSON.parse(jsonStr);
+                const text = parsed?.candidates?.[0]?.content?.parts
+                  ?.map((p: { text?: string }) => p.text || '')
+                  .join('');
+                if (text) controller.enqueue(encoder.encode(text));
+              } catch {
+                // ignore partial/non-JSON lines
+              }
             }
           }
         } catch (err) {
-          console.error('chat stream error:', err);
+          console.error('gemini stream error:', err);
         } finally {
           controller.close();
         }
