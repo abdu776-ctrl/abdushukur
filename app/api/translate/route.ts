@@ -1,67 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Basic Cyrillic -> Latin romanization so Russian-script names can be
-// transliterated into Korean (Google Input Tools expects Latin input).
-const CYRILLIC_MAP: Record<string, string> = {
-  а: 'a', б: 'b', в: 'v', г: 'g', д: 'd', е: 'e', ё: 'yo', ж: 'zh',
-  з: 'z', и: 'i', й: 'y', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
-  п: 'p', р: 'r', с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts',
-  ч: 'ch', ш: 'sh', щ: 'shch', ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu',
-  я: 'ya',
-};
-
-function romanizeCyrillic(text: string): string {
-  return text
-    .split('')
-    .map((ch) => {
-      const lower = ch.toLowerCase();
-      const mapped = CYRILLIC_MAP[lower];
-      if (mapped === undefined) return ch;
-      return mapped;
-    })
-    .join('');
-}
-
-// Transliterate a single Latin word into Korean Hangul using Google's
-// public Input Tools transliteration endpoint (the same engine used for
-// phonetic keyboards). This is what actually converts names correctly,
-// unlike the translate endpoint which mistranslates names as words.
-async function transliterateWordToKorean(word: string): Promise<string> {
-  const clean = word.trim();
-  if (!clean) return '';
-  if (!/[a-zA-Z]/.test(clean)) return clean;
-
-  const url =
-    'https://inputtools.google.com/request?itc=ko-t-i0-und&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8&text=' +
-    encodeURIComponent(clean.toLowerCase());
-
-  try {
-    const res = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0' },
-      cache: 'no-store',
-    });
-    if (!res.ok) return clean;
-    const data = await res.json();
-    if (data?.[0] === 'SUCCESS' && data?.[1]?.[0]?.[1]?.[0]) {
-      return data[1][0][1][0] as string;
-    }
-    return clean;
-  } catch {
-    return clean;
-  }
-}
-
-async function transliterateToKorean(text: string): Promise<string> {
-  // Romanize any Cyrillic first, then transliterate word by word.
-  const latin = romanizeCyrillic(text);
-  const words = latin.trim().split(/\s+/);
-  const out: string[] = [];
-  for (const w of words) {
-    out.push(await transliterateWordToKorean(w));
-  }
-  return out.join(' ');
-}
-
 async function googleTranslate(text: string, from: string, to: string): Promise<string> {
   const url =
     'https://translate.googleapis.com/translate_a/single?client=gtx' +
@@ -76,6 +14,16 @@ async function googleTranslate(text: string, from: string, to: string): Promise<
   return Array.isArray(data?.[0])
     ? data[0].map((seg: unknown[]) => (Array.isArray(seg) ? seg[0] : '')).join('')
     : '';
+}
+
+// Transliterate a name into Korean Hangul. The trick: use an EXPLICIT
+// source language (never auto) — with auto-detect Google mistranslates a
+// name as a word (e.g. "Abdushukur" -> "매우 감사합니다"). With sl=en/ru it
+// transliterates phonetically (e.g. "Abdushukur" -> "압두슈쿠르").
+async function transliterateToKorean(text: string): Promise<string> {
+  const hasCyrillic = /[а-яА-ЯёЁ]/.test(text);
+  const sl = hasCyrillic ? 'ru' : 'en';
+  return googleTranslate(text, sl, 'ko');
 }
 
 // Romanize Korean (Hangul) to Latin using the translate endpoint's
@@ -97,7 +45,6 @@ async function romanizeKorean(text: string): Promise<string> {
         .join('')
         .trim()
     : '';
-  // Capitalize each word for a name-like result.
   return roman
     .split(/\s+/)
     .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
@@ -113,7 +60,6 @@ export async function POST(req: NextRequest) {
     }
 
     // "name" mode = transliterate a person's name between scripts.
-    // Full sentences must NOT be transliterated, so this only runs for names.
     if (mode === 'name') {
       if (to === 'ko' && /[a-zA-Zа-яА-ЯёЁ]/.test(text)) {
         const translated = await transliterateToKorean(text);
@@ -130,6 +76,8 @@ export async function POST(req: NextRequest) {
     }
 
     // Default: plain translation (sentences, paragraphs, cover letters).
+    // Never use "auto" for single short strings — it mis-detects. Fall back
+    // to English when the caller didn't specify a source.
     const translated = await googleTranslate(text, from, to);
     return NextResponse.json({ translated });
   } catch (err) {
