@@ -21,8 +21,7 @@ interface Message {
   timestamp: Date;
 }
 
-const AI_RESPONSES: Record<string, string> = {
-  default: `I'm your AI Career Assistant for Korean job applications! I can help you with:
+const GREETING = `I'm your AI Career Assistant for Korean job applications! I can help you with:
 
 • **Korean Resume (이력서)** — formatting, content, photo requirements
 • **자기소개서** — structure, writing tips, cultural nuances
@@ -30,83 +29,7 @@ const AI_RESPONSES: Record<string, string> = {
 • **Salary Negotiation** — Korean workplace norms
 • **Cultural Tips** — Korean workplace etiquette
 
-What would you like help with today?`,
-  photo: `**Korean Resume Photo Requirements (증명사진)**
-
-Korean resumes traditionally require a formal headshot photo. Here are the standards:
-
-• **Size**: 3×4 cm (printed), 300×400 px (digital minimum)
-• **Background**: White or light blue/gray — solid color only
-• **Attire**: Professional business attire — suit is ideal
-• **Expression**: Neutral or slight smile, eyes open naturally
-• **Age**: Taken within the last 3-6 months
-
-💡 **Pro tip**: Many students get professional "취업사진" (job application photos) taken at photo studios in Korea for around 15,000-30,000 won. The studios know exactly what Korean companies expect!`,
-  coverletter: `**자기소개서 Writing Guide**
-
-The 자기소개서 (self-introduction letter) is the most important document in Korean job applications. It typically has 4 sections:
-
-**1. 성장과정 (Growth Background)**
-Share your upbringing and key experiences that shaped your character. Korean companies value perseverance stories.
-
-**2. 성격의 장단점 (Strengths & Weaknesses)**
-Be specific and honest. Show self-awareness. Always follow a weakness with how you're working to overcome it.
-
-**3. 지원동기 (Application Motivation)**
-Research the company deeply. Reference specific products, values, or recent news. Generic answers are a red flag.
-
-**4. 입사 후 포부 (Future Goals)**
-Be ambitious but realistic. Show commitment to long-term growth with the company.
-
-💡 **Word count**: Most companies want 500-1000 characters per section.`,
-  interview: `**Common Korean Interview Questions**
-
-Here are the most frequently asked interview questions in Korean companies:
-
-**Personal questions:**
-- 자기소개를 해주세요 (Please introduce yourself)
-- 지원 동기가 무엇인가요? (Why are you applying?)
-- 입사 후 10년 계획은? (5-10 year career plan?)
-
-**Experience questions:**
-- 가장 힘들었던 경험과 극복 방법은? (Hardest challenge and how you overcame it?)
-- 팀 프로젝트 경험을 말해주세요 (Tell about a team project experience)
-
-**Cultural fit:**
-- 우리 회사에 대해 알고 있나요? (What do you know about our company?)
-- 당신의 강점이 우리 회사에 어떻게 도움이 될까요? (How will your strengths benefit us?)
-
-💡 **Tips for international students**: Practice in Korean, show genuine interest in Korean culture, and emphasize your unique multilingual perspective!`,
-  salary: `**Korean Salary Negotiation Tips**
-
-Salary discussion in Korea has some specific norms to be aware of:
-
-**General approach:**
-- Korean companies often ask for your "희망 연봉" (desired salary) on application forms
-- Research the typical range for your position and industry beforehand
-- It's acceptable to state a range: e.g., "3,500-4,000만원"
-
-**For international students:**
-- Entry-level positions at large companies (대기업): ~2,800-3,500만원/year
-- Mid-size companies (중견기업): ~2,400-3,000만원/year
-- Startups: often lower base but may offer equity
-
-**Important:**
-- Many Korean companies have fixed salary tables (호봉제), especially for new graduates
-- Bonuses (성과급) can add 10-30% on top of base salary
-- Ask about 4대 보험 coverage (national health, pension, employment, workers comp)
-
-💡 If it's your first job in Korea, focus on learning and growth over maximum salary!`,
-};
-
-function getAIResponse(message: string): string {
-  const lower = message.toLowerCase();
-  if (lower.includes('photo') || lower.includes('사진') || lower.includes('증명')) return AI_RESPONSES.photo;
-  if (lower.includes('자기소개') || lower.includes('cover letter') || lower.includes('자소서')) return AI_RESPONSES.coverletter;
-  if (lower.includes('interview') || lower.includes('면접')) return AI_RESPONSES.interview;
-  if (lower.includes('salary') || lower.includes('연봉') || lower.includes('월급')) return AI_RESPONSES.salary;
-  return AI_RESPONSES.default;
-}
+What would you like help with today?`;
 
 export function AIChat() {
   const t = useTranslations('aiAssistant');
@@ -114,7 +37,7 @@ export function AIChat() {
     {
       id: '0',
       role: 'assistant',
-      content: AI_RESPONSES.default,
+      content: GREETING,
       timestamp: new Date(),
     },
   ]);
@@ -145,21 +68,69 @@ export function AIChat() {
       timestamp: new Date(),
     };
 
+    const history = [...messages, userMsg].map((m) => ({ role: m.role, content: m.content }));
+
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
     setLoading(true);
 
-    await new Promise((r) => setTimeout(r, 800 + Math.random() * 1000));
+    const assistantId = (Date.now() + 1).toString();
+    let started = false;
+    let acc = '';
 
-    const aiMsg: Message = {
-      id: (Date.now() + 1).toString(),
-      role: 'assistant',
-      content: getAIResponse(text),
-      timestamp: new Date(),
-    };
+    function pushChunk(chunk: string) {
+      acc += chunk;
+      if (!started) {
+        started = true;
+        setLoading(false);
+        setMessages((prev) => [
+          ...prev,
+          { id: assistantId, role: 'assistant', content: acc, timestamp: new Date() },
+        ]);
+      } else {
+        setMessages((prev) =>
+          prev.map((m) => (m.id === assistantId ? { ...m, content: acc } : m))
+        );
+      }
+    }
 
-    setMessages((prev) => [...prev, aiMsg]);
-    setLoading(false);
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: history }),
+      });
+
+      if (!res.ok || !res.body) {
+        const errText = await res.text().catch(() => '');
+        throw new Error(errText || 'request failed');
+      }
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        pushChunk(decoder.decode(value, { stream: true }));
+      }
+
+      if (!started) {
+        pushChunk('Kechirasiz, javob olinmadi. Qayta urinib koʻring.');
+      }
+    } catch (err) {
+      console.error('chat error:', err);
+      const msg =
+        (err instanceof Error && err.message) ||
+        'Xatolik yuz berdi. Qayta urinib koʻring.';
+      if (!started) {
+        setMessages((prev) => [
+          ...prev,
+          { id: assistantId, role: 'assistant', content: msg, timestamp: new Date() },
+        ]);
+      }
+    } finally {
+      setLoading(false);
+    }
   }
 
   function handleKeyDown(e: React.KeyboardEvent) {
