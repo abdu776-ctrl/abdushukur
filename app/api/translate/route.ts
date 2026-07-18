@@ -17,7 +17,7 @@ async function geminiGenerate(apiKey: string, prompt: string): Promise<string> {
     headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
     body: JSON.stringify({
       contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.2, maxOutputTokens: 256 },
+      generationConfig: { temperature: 0, maxOutputTokens: 256 },
     }),
   });
   if (!res.ok) throw new Error(`gemini ${res.status}`);
@@ -36,9 +36,15 @@ async function geminiTranslate(
 ): Promise<string> {
   let prompt: string;
   if (mode === 'name' && to === 'ko') {
+    const origin = from && from !== 'auto' ? `${LANG_NAMES[from] || from} ` : 'Uzbek/Russian/English ';
     prompt =
-      `Transliterate this person's name into Korean Hangul based on how it is pronounced. ` +
-      `Reply with ONLY the Korean transliteration — no explanation, no quotes, no romanization.\n\nName: ${text}`;
+      `Transliterate this ${origin}person's name into Korean Hangul based on pronunciation.\n` +
+      `Follow standard Korean transliteration of foreign names. Important sound rules:\n` +
+      `- Latin/Cyrillic "j" (ж) is the ㅈ sound: "ja"→자, "jo"→조, "ju"→주, "je"→제, "ji"→지\n` +
+      `- "zh"→ㅈ, "ch"(ч)→치, "sh"(ш)→시, "kh"(х)→흐, "ya"→야, "yo"→요, "yu"→유\n` +
+      `- "-ov/-ev" endings →"-프" (e.g. "-nov"→"노프")\n` +
+      `Example: "Olimjonov" → 올림조노프, "Abdushukur" → 압두슈쿠르.\n` +
+      `Reply with ONLY the Korean Hangul transliteration — no explanation, no quotes, no romanization.\n\nName: ${text}`;
   } else if (mode === 'name' && from === 'ko') {
     prompt =
       `Romanize this Korean name into Latin letters (Revised Romanization), capitalizing each part. ` +
