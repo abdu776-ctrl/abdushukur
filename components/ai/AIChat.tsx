@@ -21,23 +21,13 @@ interface Message {
   timestamp: Date;
 }
 
-const GREETING = `I'm your AI Career Assistant for Korean job applications! I can help you with:
-
-• **Korean Resume (이력서)** — formatting, content, photo requirements
-• **자기소개서** — structure, writing tips, cultural nuances
-• **Interview Preparation** — common Korean interview questions
-• **Salary Negotiation** — Korean workplace norms
-• **Cultural Tips** — Korean workplace etiquette
-
-What would you like help with today?`;
-
 export function AIChat() {
   const t = useTranslations('aiAssistant');
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '0',
       role: 'assistant',
-      content: GREETING,
+      content: t('greeting'),
       timestamp: new Date(),
     },
   ]);
@@ -175,7 +165,7 @@ export function AIChat() {
         <div className="text-xs font-medium text-gray-500 dark:text-gray-400 px-1 mt-2">
           {t('history')}
         </div>
-        {['Korean Resume Tips', 'Interview Questions', '자기소개서 Guide'].map((chat) => (
+        {[t('chats.resumeTips'), t('chats.interview'), t('chats.coverLetter')].map((chat) => (
           <button
             key={chat}
             className="text-left px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors truncate"

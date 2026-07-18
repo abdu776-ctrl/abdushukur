@@ -53,12 +53,14 @@ export async function POST(req: NextRequest) {
     }
 
     const url =
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse&key=` +
-      encodeURIComponent(apiKey);
+      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse`;
 
     const geminiRes = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-goog-api-key': apiKey,
+      },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents,
@@ -69,7 +71,11 @@ export async function POST(req: NextRequest) {
     if (!geminiRes.ok || !geminiRes.body) {
       const errText = await geminiRes.text().catch(() => '');
       console.error('gemini error:', geminiRes.status, errText);
-      return new Response('AI service error. Please try again.', { status: 502 });
+      // Surface the real error so we can diagnose (does not expose the key).
+      return new Response(
+        `AI error ${geminiRes.status}: ${errText.slice(0, 400)}`,
+        { status: 200 }
+      );
     }
 
     const encoder = new TextEncoder();

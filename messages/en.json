@@ -304,7 +304,13 @@
     "thinking": "Thinking...",
     "send": "Send",
     "newChat": "New Chat",
-    "history": "Chat History"
+    "history": "Chat History",
+    "greeting": "I'm your AI Career Assistant for Korean job applications! I can help you with:\n\n• **Korean Resume (이력서)** — formatting, content, photo requirements\n• **자기소개서** — structure, writing tips, cultural nuances\n• **Interview Preparation** — common Korean interview questions\n• **Salary Negotiation** — Korean workplace norms\n• **Cultural Tips** — Korean workplace etiquette\n\nWhat would you like help with today?",
+    "chats": {
+      "resumeTips": "Korean Resume Tips",
+      "interview": "Interview Questions",
+      "coverLetter": "자기소개서 Guide"
+    }
   },
   "settings": {
     "title": "Settings",

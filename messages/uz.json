@@ -304,7 +304,13 @@
     "thinking": "O'ylayapman...",
     "send": "Yuborish",
     "newChat": "Yangi Suhbat",
-    "history": "Suhbat Tarixi"
+    "history": "Suhbat Tarixi",
+    "greeting": "Men Koreyada ish topish uchun AI martaba yordamchisiman! Sizga quyidagilarda yordam bera olaman:\n\n• **Koreys rezyumesi (이력서)** — format, mazmun, foto talablari\n• **자기소개서** — tuzilishi, yozish maslahatlari, madaniy nuanslar\n• **Suhbatga tayyorgarlik** — koreys suhbatlaridagi keng tarqalgan savollar\n• **Maosh muzokarasi** — koreys ish joyi me'yorlari\n• **Madaniy maslahatlar** — koreys ish joyi odob-axloqi\n\nBugun sizga qanday yordam bera olaman?",
+    "chats": {
+      "resumeTips": "Koreys rezyume maslahatlari",
+      "interview": "Suhbat savollari",
+      "coverLetter": "자기소개서 qo'llanmasi"
+    }
   },
   "settings": {
     "title": "Sozlamalar",
