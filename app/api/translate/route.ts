@@ -1,14 +1,64 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.0-flash';
+
+const LANG_NAMES: Record<string, string> = {
+  uz: 'Uzbek',
+  ru: 'Russian',
+  en: 'English',
+  ko: 'Korean',
+};
+
+// ── Gemini (primary — reliable for names and sentences) ──────────────────────
+async function geminiGenerate(apiKey: string, prompt: string): Promise<string> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+    body: JSON.stringify({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.2, maxOutputTokens: 256 },
+    }),
+  });
+  if (!res.ok) throw new Error(`gemini ${res.status}`);
+  const data = await res.json();
+  const text: string =
+    data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text || '').join('') || '';
+  return text.trim().replace(/^["'`]+|["'`]+$/g, '');
+}
+
+async function geminiTranslate(
+  apiKey: string,
+  text: string,
+  from: string,
+  to: string,
+  mode: string
+): Promise<string> {
+  let prompt: string;
+  if (mode === 'name' && to === 'ko') {
+    prompt =
+      `Transliterate this person's name into Korean Hangul based on how it is pronounced. ` +
+      `Reply with ONLY the Korean transliteration — no explanation, no quotes, no romanization.\n\nName: ${text}`;
+  } else if (mode === 'name' && from === 'ko') {
+    prompt =
+      `Romanize this Korean name into Latin letters (Revised Romanization), capitalizing each part. ` +
+      `Reply with ONLY the romanized name.\n\nName: ${text}`;
+  } else {
+    const target = LANG_NAMES[to] || to;
+    const src = from && from !== 'auto' ? `from ${LANG_NAMES[from] || from} ` : '';
+    prompt =
+      `Translate the following text ${src}into ${target}. ` +
+      `Reply with ONLY the translated text, nothing else.\n\n${text}`;
+  }
+  return geminiGenerate(apiKey, prompt);
+}
+
+// ── Google Translate (fallback) ──────────────────────────────────────────────
 async function googleTranslate(text: string, from: string, to: string): Promise<string> {
   const url =
     'https://translate.googleapis.com/translate_a/single?client=gtx' +
     `&sl=${encodeURIComponent(from)}&tl=${encodeURIComponent(to)}&dt=t&q=${encodeURIComponent(text)}`;
-
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0' },
-    cache: 'no-store',
-  });
+  const res = await fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' }, cache: 'no-store' });
   if (!res.ok) throw new Error('translate service error');
   const data = await res.json();
   return Array.isArray(data?.[0])
@@ -16,39 +66,13 @@ async function googleTranslate(text: string, from: string, to: string): Promise<
     : '';
 }
 
-// Transliterate a name into Korean Hangul. The trick: use an EXPLICIT
-// source language (never auto) — with auto-detect Google mistranslates a
-// name as a word (e.g. "Abdushukur" -> "매우 감사합니다"). With sl=en/ru it
-// transliterates phonetically (e.g. "Abdushukur" -> "압두슈쿠르").
-async function transliterateToKorean(text: string): Promise<string> {
-  const hasCyrillic = /[а-яА-ЯёЁ]/.test(text);
-  const sl = hasCyrillic ? 'ru' : 'en';
-  return googleTranslate(text, sl, 'ko');
-}
-
-// Romanize Korean (Hangul) to Latin using the translate endpoint's
-// romanization output (dt=rm).
-async function romanizeKorean(text: string): Promise<string> {
-  const url =
-    'https://translate.googleapis.com/translate_a/single?client=gtx' +
-    `&sl=ko&tl=en&dt=rm&q=${encodeURIComponent(text)}`;
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'Mozilla/5.0' },
-    cache: 'no-store',
-  });
-  if (!res.ok) throw new Error('romanize error');
-  const data = await res.json();
-  // Romanization of the source sits in the 4th slot of each segment.
-  const roman = Array.isArray(data?.[0])
-    ? data[0]
-        .map((seg: unknown[]) => (Array.isArray(seg) ? (seg[3] as string) || '' : ''))
-        .join('')
-        .trim()
-    : '';
-  return roman
-    .split(/\s+/)
-    .map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w))
-    .join(' ');
+async function fallbackTranslate(text: string, from: string, to: string, mode: string): Promise<string> {
+  if (mode === 'name' && to === 'ko') {
+    const hasCyrillic = /[а-яА-ЯёЁ]/.test(text);
+    return googleTranslate(text, hasCyrillic ? 'ru' : 'en', 'ko');
+  }
+  const sl = from && from !== 'auto' ? from : 'auto';
+  return googleTranslate(text, sl, to);
 }
 
 export async function POST(req: NextRequest) {
@@ -59,26 +83,20 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing text or target language' }, { status: 400 });
     }
 
-    // "name" mode = transliterate a person's name between scripts.
-    if (mode === 'name') {
-      if (to === 'ko' && /[a-zA-Zа-яА-ЯёЁ]/.test(text)) {
-        const translated = await transliterateToKorean(text);
-        return NextResponse.json({ translated });
-      }
-      if (from === 'ko' && to !== 'ko') {
-        try {
-          const roman = await romanizeKorean(text);
-          if (roman) return NextResponse.json({ translated: roman });
-        } catch {
-          // fall through to plain translate
-        }
+    const apiKey = process.env.GEMINI_API_KEY;
+
+    // Primary: Gemini (accurate for names and sentences).
+    if (apiKey) {
+      try {
+        const translated = await geminiTranslate(apiKey, text, from, to, mode);
+        if (translated) return NextResponse.json({ translated });
+      } catch (err) {
+        console.error('gemini translate failed, falling back:', err);
       }
     }
 
-    // Default: plain translation (sentences, paragraphs, cover letters).
-    // Never use "auto" for single short strings — it mis-detects. Fall back
-    // to English when the caller didn't specify a source.
-    const translated = await googleTranslate(text, from, to);
+    // Fallback: Google Translate.
+    const translated = await fallbackTranslate(text, from, to, mode);
     return NextResponse.json({ translated });
   } catch (err) {
     console.error('translate route error:', err);
