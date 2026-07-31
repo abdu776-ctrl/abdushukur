@@ -8,7 +8,12 @@ const inter = Inter({
   display: 'swap',
 });
 
+// Canonical site URL for share metadata. Set NEXT_PUBLIC_SITE_URL in the
+// environment (e.g. https://koreer.vercel.app); falls back to the live domain.
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://koreer.vercel.app';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Koreer — AI Career Assistant for Korea',
     template: '%s | Koreer',
@@ -25,9 +30,8 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Koreer' }],
   openGraph: {
+    // og:url and og:locale are set per-locale in app/[locale]/layout.tsx
     type: 'website',
-    locale: 'en_US',
-    url: 'https://koreer.app',
     siteName: 'Koreer',
     title: 'Koreer — AI Career Assistant for Korea',
     description:
