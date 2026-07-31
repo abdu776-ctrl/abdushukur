@@ -5,6 +5,14 @@ import type {
   Award, Certificate, Project, Volunteer, Publication, ResumeTemplate,
 } from '@/types';
 
+// Neutral person silhouette shown in the photo circle when there is no photo
+// and no name yet — avoids a stray "?" that looked like a defect.
+const personIcon = (size: number) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ opacity: 0.9 }}>
+    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+  </svg>
+);
+
 interface ResumePreviewProps {
   personal: PersonalInfo;
   education: Education[];
@@ -91,7 +99,7 @@ function ModernColor({ c, personal, education, experience, skills, awards, certi
         {personal.photo
           ? <img src={personal.photo} alt="" style={{ width: 76, height: 76, borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(255,255,255,0.4)', flexShrink: 0 }} />
           : <div style={{ width: 76, height: 76, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 26, fontWeight: 700, flexShrink: 0 }}>
-              {personal.fullNameKorean?.[0] || personal.fullName?.[0] || '?'}
+              {personal.fullNameKorean?.[0] || personal.fullName?.[0] || personIcon(38)}
             </div>
         }
         <div style={{ color: '#fff', flex: 1 }}>
@@ -755,7 +763,7 @@ function SidebarTemplate({ personal, education, experience, skills, awards, cert
           {personal.photo
             ? <img src={personal.photo} alt="" style={{ width: 88, height: 88, borderRadius: '50%', objectFit: 'cover', border: '3px solid rgba(255,255,255,0.4)', display: 'block', margin: '0 auto' }} />
             : <div style={{ width: 88, height: 88, borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28, fontWeight: 700, margin: '0 auto' }}>
-                {personal.fullNameKorean?.[0] || personal.fullName?.[0] || '?'}
+                {personal.fullNameKorean?.[0] || personal.fullName?.[0] || personIcon(44)}
               </div>
           }
           <div style={{ marginTop: 12, fontSize: 13, fontWeight: 700 }}>{personal.fullName || 'Your Name'}</div>
@@ -901,7 +909,7 @@ function DarkTemplate({ personal, education, experience, skills, awards, certifi
           {personal.photo
             ? <img src={personal.photo} alt="" style={{ width: 72, height: 72, borderRadius: '50%', objectFit: 'cover', border: `2px solid ${ACC}`, flexShrink: 0 }} />
             : <div style={{ width: 72, height: 72, borderRadius: '50%', background: `${ACC}33`, border: `2px solid ${ACC}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 700, color: ACC, flexShrink: 0 }}>
-                {personal.fullNameKorean?.[0] || personal.fullName?.[0] || '?'}
+                {personal.fullNameKorean?.[0] || personal.fullName?.[0] || personIcon(36)}
               </div>
           }
           <div>
