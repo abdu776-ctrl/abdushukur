@@ -416,6 +416,8 @@ export function ResumeBuilder() {
                 <Input
                   label={t('personal.dateOfBirth')}
                   type="date"
+                  min="1950-01-01"
+                  max="2012-12-31"
                   value={personal.dateOfBirth || ''}
                   onChange={(e) => setPersonal({ ...personal, dateOfBirth: e.target.value })}
                 />
