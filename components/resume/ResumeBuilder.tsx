@@ -67,10 +67,9 @@ export function ResumeBuilder() {
   const [personal, setPersonal] = useState<PersonalInfo>(defaultPersonal);
   const [education, setEducation] = useState<Education[]>([{ ...defaultEducation }]);
   const [experience, setExperience] = useState<WorkExperience[]>([]);
-  const [skills, setSkills] = useState<Skill[]>([
-    { id: '1', name: 'Korean (TOPIK)', level: 'advanced', category: 'Language' },
-    { id: '2', name: 'English', level: 'intermediate', category: 'Language' },
-  ]);
+  // Start empty — seeding example skills made them look like real user data
+  // in the live preview. The Skills section simply hides until the user adds one.
+  const [skills, setSkills] = useState<Skill[]>([]);
   const [awards, setAwards] = useState<Award[]>([]);
   const [certificates, setCertificates] = useState<Certificate[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
