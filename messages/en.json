@@ -310,6 +310,11 @@
       "resumeTips": "Korean Resume Tips",
       "interview": "Interview Questions",
       "coverLetter": "자기소개서 Guide"
+    },
+    "starters": {
+      "resumeTips": "Give me tips for writing a Korean resume (이력서).",
+      "interview": "What are common Korean job interview questions and how should I answer them?",
+      "coverLetter": "How do I write a Korean 자기소개서? Explain the structure."
     }
   },
   "settings": {

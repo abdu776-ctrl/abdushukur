@@ -310,6 +310,11 @@
       "resumeTips": "Koreys rezyume maslahatlari",
       "interview": "Suhbat savollari",
       "coverLetter": "자기소개서 qo'llanmasi"
+    },
+    "starters": {
+      "resumeTips": "Koreys rezyumesi (이력서) yozish bo'yicha maslahat bering.",
+      "interview": "Koreys ish suhbatida keng tarqalgan savollar qanaqa va ularga qanday javob berish kerak?",
+      "coverLetter": "Koreys 자기소개서 qanday yoziladi? Tuzilishini tushuntiring."
     }
   },
   "settings": {

@@ -48,6 +48,21 @@ export function AIChat() {
     t('suggestions.q5'),
   ];
 
+  const historyItems = [
+    { label: t('chats.resumeTips'), q: t('starters.resumeTips') },
+    { label: t('chats.interview'), q: t('starters.interview') },
+    { label: t('chats.coverLetter'), q: t('starters.coverLetter') },
+  ];
+
+  function resetChat() {
+    if (loading) return;
+    setMessages([
+      { id: '0', role: 'assistant', content: t('greeting'), timestamp: new Date() },
+    ]);
+    setInput('');
+    inputRef.current?.focus();
+  }
+
   async function sendMessage(text: string) {
     if (!text.trim() || loading) return;
 
@@ -159,18 +174,26 @@ export function AIChat() {
     <div className="flex h-full gap-4">
       {/* Chat history sidebar */}
       <div className="hidden lg:flex w-56 flex-col gap-2 flex-shrink-0">
-        <Button variant="outline" size="sm" icon={<Plus className="w-4 h-4" />} className="w-full">
+        <Button
+          variant="outline"
+          size="sm"
+          icon={<Plus className="w-4 h-4" />}
+          className="w-full"
+          onClick={resetChat}
+        >
           {t('newChat')}
         </Button>
         <div className="text-xs font-medium text-gray-500 dark:text-gray-400 px-1 mt-2">
           {t('history')}
         </div>
-        {[t('chats.resumeTips'), t('chats.interview'), t('chats.coverLetter')].map((chat) => (
+        {historyItems.map((item) => (
           <button
-            key={chat}
-            className="text-left px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white transition-colors truncate"
+            key={item.label}
+            onClick={() => sendMessage(item.q)}
+            disabled={loading}
+            className="text-left px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors truncate"
           >
-            {chat}
+            {item.label}
           </button>
         ))}
       </div>
