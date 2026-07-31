@@ -307,7 +307,23 @@
     "aiHelp": "Get AI suggestions",
     "translate": "Translate",
     "wordCount": "{count} words",
-    "characterCount": "{count} characters"
+    "characterCount": "{count} characters",
+    "guidance": {
+      "growth": "Share formative experiences that shaped you, with concrete examples of perseverance and growth.",
+      "personality": "Be honest about strengths and weaknesses, and show self-awareness by explaining how you address a weakness.",
+      "motivation": "Research the company and reference specific products, values, or initiatives that resonate with you.",
+      "aspiration": "Be specific about your goals — concrete, realistic plans read better than vague ambition.",
+      "custom": "Answer the company's question directly, using concrete examples, numbers, dates, and named events."
+    },
+    "addSection": "Add section",
+    "newSectionTitle": "New section",
+    "sectionTitleLabel": "Section title",
+    "charLimitLabel": "Character limit",
+    "removeSection": "Remove section",
+    "total": "Total",
+    "characters": "characters",
+    "preview": "Preview",
+    "applicationDetails": "Application Details"
   },
   "aiAssistant": {
     "title": "AI Career Assistant",

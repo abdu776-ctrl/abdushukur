@@ -307,7 +307,23 @@
     "aiHelp": "AI 도움 받기",
     "translate": "번역",
     "wordCount": "{count}자",
-    "characterCount": "{count}자"
+    "characterCount": "{count}자",
+    "guidance": {
+      "growth": "자신을 형성한 경험을 인내와 성장의 구체적인 사례와 함께 작성하세요.",
+      "personality": "장점과 단점을 솔직하게 쓰고, 단점을 어떻게 개선하는지 설명해 자기 인식을 보여주세요.",
+      "motivation": "기업을 조사하고, 공감하는 제품·가치·활동을 구체적으로 언급하세요.",
+      "aspiration": "목표를 구체적으로 쓰세요 — 막연한 포부보다 현실적인 계획이 더 좋습니다.",
+      "custom": "회사의 질문에 구체적인 사례·숫자·날짜·사건을 들어 직접 답하세요."
+    },
+    "addSection": "항목 추가",
+    "newSectionTitle": "새 항목",
+    "sectionTitleLabel": "항목 제목",
+    "charLimitLabel": "글자 수 제한",
+    "removeSection": "항목 삭제",
+    "total": "총",
+    "characters": "자",
+    "preview": "미리보기",
+    "applicationDetails": "지원 정보"
   },
   "aiAssistant": {
     "title": "AI 커리어 어시스턴트",

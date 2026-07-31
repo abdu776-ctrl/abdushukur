@@ -307,7 +307,23 @@
     "aiHelp": "AI tavsiyalarini oling",
     "translate": "Tarjima",
     "wordCount": "{count} so'z",
-    "characterCount": "{count} belgi"
+    "characterCount": "{count} belgi",
+    "guidance": {
+      "growth": "Sizni shakllantirgan tajribalarni sabr va o'sishning aniq misollari bilan yozing.",
+      "personality": "Kuchli va zaif tomonlaringizni rostgo'ylik bilan yozing va zaiflikni qanday bartaraf etayotganingizni tushuntiring.",
+      "motivation": "Kompaniyani o'rganing va sizga yaqin bo'lgan mahsulot, qadriyat yoki tashabbuslarni aniq keltiring.",
+      "aspiration": "Maqsadlaringizni aniq yozing — mavhum orzudan ko'ra real reja yaxshiroq.",
+      "custom": "Kompaniya savoliga aniq misollar, raqamlar, sanalar va voqealar bilan bevosita javob bering."
+    },
+    "addSection": "Bo'lim qo'shish",
+    "newSectionTitle": "Yangi bo'lim",
+    "sectionTitleLabel": "Bo'lim sarlavhasi",
+    "charLimitLabel": "Belgi cheklovi",
+    "removeSection": "Bo'limni o'chirish",
+    "total": "Jami",
+    "characters": "belgi",
+    "preview": "Koʻrish",
+    "applicationDetails": "Ariza maʼlumotlari"
   },
   "aiAssistant": {
     "title": "AI Martaba Yordamchisi",
