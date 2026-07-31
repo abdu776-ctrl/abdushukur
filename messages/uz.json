@@ -281,6 +281,16 @@
       "authors": "Mualliflar",
       "doi": "DOI / Havola",
       "description": "Annotatsiya / Tavsif"
+    },
+    "builder": {
+      "template": "Shablon",
+      "preview": "Ko'rish",
+      "hide": "Yashirish",
+      "aiFill": "AI to'ldirish",
+      "photoHint": "JPG, PNG, 5MB gacha",
+      "livePreview": "Jonli koʻrinish",
+      "yourName": "Ismingiz",
+      "fillToPreview": "Koʻrinishni koʻrish uchun maʼlumotlaringizni kiriting"
     }
   },
   "coverLetter": {

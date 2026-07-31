@@ -281,6 +281,16 @@
       "authors": "저자",
       "doi": "DOI / 링크",
       "description": "초록 / 설명"
+    },
+    "builder": {
+      "template": "템플릿",
+      "preview": "미리보기",
+      "hide": "숨기기",
+      "aiFill": "AI 자동 입력",
+      "photoHint": "JPG, PNG 최대 5MB",
+      "livePreview": "실시간 미리보기",
+      "yourName": "이름",
+      "fillToPreview": "정보를 입력하면 미리보기가 표시됩니다"
     }
   },
   "coverLetter": {

@@ -281,6 +281,16 @@
       "authors": "Authors",
       "doi": "DOI / URL",
       "description": "Abstract / Description"
+    },
+    "builder": {
+      "template": "Template",
+      "preview": "Preview",
+      "hide": "Hide",
+      "aiFill": "AI fill",
+      "photoHint": "JPG, PNG up to 5MB",
+      "livePreview": "Live Preview",
+      "yourName": "Your Name",
+      "fillToPreview": "Fill in your information to see the preview"
     }
   },
   "coverLetter": {

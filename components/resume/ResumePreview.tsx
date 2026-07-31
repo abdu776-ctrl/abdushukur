@@ -1,9 +1,19 @@
 'use client';
 
+import { createContext, useContext } from 'react';
+import { useTranslations } from 'next-intl';
 import type {
   PersonalInfo, Education, WorkExperience, Skill,
   Award, Certificate, Project, Volunteer, Publication, ResumeTemplate,
 } from '@/types';
+
+// Localized placeholder labels for the live preview (name placeholder + empty
+// hint). Provided by ResumePreview so the many template sub-components can read
+// them without threading props through every signature.
+const PreviewLabels = createContext<{ yourName: string; fillPrompt: string }>({
+  yourName: 'Your Name',
+  fillPrompt: 'Fill in your information to see the preview',
+});
 
 // Neutral person silhouette shown in the photo circle when there is no photo
 // and no name yet — avoids a stray "?" that looked like a defect.
@@ -47,20 +57,30 @@ const MC: Record<string, CC> = {
 // Main dispatcher
 // ─────────────────────────────────────────────────────────────────
 export function ResumePreview(props: ResumePreviewProps) {
+  const t = useTranslations('resume');
   const { template, ...rest } = props;
-  if (template in MC) return <ModernColor c={MC[template]} {...rest} />;
-  if (['korean','korean-blue','korean-compact','korean-premium'].includes(template))
-    return <KoreanForm variant={template} {...rest} />;
-  if (['classic','oxford','corporate','executive'].includes(template))
-    return <ClassicVariant variant={template} {...rest} />;
-  if (['minimal','nordic','slate','tokyo'].includes(template))
-    return <MinimalVariant variant={template} {...rest} />;
-  if (template === 'sidebar')  return <SidebarTemplate {...rest} />;
-  if (template === 'dark')     return <DarkTemplate {...rest} />;
-  if (template === 'tech')     return <TechTemplate {...rest} />;
-  if (template === 'academic') return <AcademicTemplate {...rest} />;
-  if (template === 'compact')  return <CompactTemplate {...rest} />;
-  return <ModernColor c={MC.modern} {...rest} />;
+
+  function renderTemplate() {
+    if (template in MC) return <ModernColor c={MC[template]} {...rest} />;
+    if (['korean','korean-blue','korean-compact','korean-premium'].includes(template))
+      return <KoreanForm variant={template} {...rest} />;
+    if (['classic','oxford','corporate','executive'].includes(template))
+      return <ClassicVariant variant={template} {...rest} />;
+    if (['minimal','nordic','slate','tokyo'].includes(template))
+      return <MinimalVariant variant={template} {...rest} />;
+    if (template === 'sidebar')  return <SidebarTemplate {...rest} />;
+    if (template === 'dark')     return <DarkTemplate {...rest} />;
+    if (template === 'tech')     return <TechTemplate {...rest} />;
+    if (template === 'academic') return <AcademicTemplate {...rest} />;
+    if (template === 'compact')  return <CompactTemplate {...rest} />;
+    return <ModernColor c={MC.modern} {...rest} />;
+  }
+
+  return (
+    <PreviewLabels.Provider value={{ yourName: t('builder.yourName'), fillPrompt: t('builder.fillToPreview') }}>
+      {renderTemplate()}
+    </PreviewLabels.Provider>
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────
@@ -87,6 +107,7 @@ function Bar({ level, color }: { level: Skill['level']; color: string }) {
 // 1. MODERN COLOR TEMPLATE (modern / navy / forest / crimson / teal / amber / midnight / rose)
 // ═══════════════════════════════════════════════════════════════════
 function ModernColor({ c, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { c: CC } & TP) {
+  const { yourName, fillPrompt } = useContext(PreviewLabels);
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: c.accent, borderBottom: `1px solid ${c.light}`, paddingBottom: 4, marginBottom: 8 }}>
       {title}
@@ -104,7 +125,7 @@ function ModernColor({ c, personal, education, experience, skills, awards, certi
         }
         <div style={{ color: '#fff', flex: 1 }}>
           <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>
-            {personal.fullName || 'Your Name'}
+            {personal.fullName || yourName}
             {personal.fullNameKorean && <span style={{ opacity: 0.75, marginLeft: 8, fontSize: 15, fontWeight: 400 }}>({personal.fullNameKorean})</span>}
           </h1>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 6, opacity: 0.88, fontSize: 10 }}>
@@ -257,7 +278,7 @@ function ModernColor({ c, personal, education, experience, skills, awards, certi
           </div>}
 
           {!education.some((e) => e.institution) && !experience.some((e) => e.company) && (
-            <div style={{ textAlign: 'center', padding: '40px', color: '#9ca3af' }}>Fill in your information to see the preview</div>
+            <div style={{ textAlign: 'center', padding: '40px', color: '#9ca3af' }}>{fillPrompt}</div>
           )}
         </div>
       </div>
@@ -504,6 +525,7 @@ function KoreanForm({ variant, personal, education, experience, skills, awards, 
 // 3. CLASSIC VARIANT TEMPLATE (classic / oxford / corporate / executive)
 // ═══════════════════════════════════════════════════════════════════
 function ClassicVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { variant: string } & TP) {
+  const { yourName } = useContext(PreviewLabels);
   const cfg = {
     classic:   { accent: '#1f2937', rule: '#1f2937', nameSize: 28, serif: false, gold: false },
     oxford:    { accent: '#1e3a8a', rule: '#1e3a8a', nameSize: 26, serif: true,  gold: false },
@@ -529,7 +551,7 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
       <div style={{ textAlign: 'center', marginBottom: 24 }}>
         {cfg.gold && <div style={{ height: 3, background: 'linear-gradient(90deg,#92400e,#d97706,#92400e)', marginBottom: 12, borderRadius: 2 }} />}
         <h1 style={{ fontSize: cfg.nameSize, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: cfg.accent, margin: 0 }}>
-          {personal.fullName || 'Your Name'}
+          {personal.fullName || yourName}
         </h1>
         {personal.fullNameKorean && <p style={{ color: '#6b7280', fontSize: 14, marginTop: 2 }}>{personal.fullNameKorean}</p>}
         <div style={{ height: cfg.gold ? 2 : 1, background: cfg.rule, margin: '10px auto', width: cfg.gold ? '60%' : '100%' }} />
@@ -620,6 +642,7 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
 // 4. MINIMAL VARIANT TEMPLATE (minimal / nordic / slate / tokyo)
 // ═══════════════════════════════════════════════════════════════════
 function MinimalVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { variant: string } & TP) {
+  const { yourName } = useContext(PreviewLabels);
   const cfg = {
     minimal: { accent: '#374151', bg: '#fff',    pad: 40, secColor: '#9ca3af', dot: false, leftBorder: false },
     nordic:  { accent: '#94a3b8', bg: '#fafafa', pad: 48, secColor: '#94a3b8', dot: false, leftBorder: false },
@@ -641,7 +664,7 @@ function MinimalVariant({ variant, personal, education, experience, skills, awar
     <div id="resume-preview" style={{ background: cfg.bg, color: '#111', fontFamily: 'sans-serif', minHeight: 1100, fontSize: 11, lineHeight: 1.7, padding: cfg.pad }}>
       {/* Name block */}
       <div style={{ marginBottom: 32 }}>
-        <h1 style={{ fontSize: 34, fontWeight: 300, letterSpacing: '-0.02em', color: '#111', margin: 0 }}>{personal.fullName || 'Your Name'}</h1>
+        <h1 style={{ fontSize: 34, fontWeight: 300, letterSpacing: '-0.02em', color: '#111', margin: 0 }}>{personal.fullName || yourName}</h1>
         {personal.fullNameKorean && <p style={{ color: '#6b7280', fontSize: 13, marginTop: 2 }}>{personal.fullNameKorean}</p>}
         <div style={{ display: 'flex', gap: 16, color: '#9ca3af', fontSize: 10, marginTop: 8, flexWrap: 'wrap' }}>
           {personal.email && <span>{personal.email}</span>}
@@ -746,6 +769,7 @@ function MinimalVariant({ variant, personal, education, experience, skills, awar
 // 5. SIDEBAR TEMPLATE — colored left panel with photo
 // ═══════════════════════════════════════════════════════════════════
 function SidebarTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+  const { yourName } = useContext(PreviewLabels);
   const bg = 'linear-gradient(180deg,#4f46e5 0%,#7c3aed 100%)';
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', opacity: 0.7, marginBottom: 8, marginTop: 16 }}>{title}</div>
@@ -766,7 +790,7 @@ function SidebarTemplate({ personal, education, experience, skills, awards, cert
                 {personal.fullNameKorean?.[0] || personal.fullName?.[0] || personIcon(44)}
               </div>
           }
-          <div style={{ marginTop: 12, fontSize: 13, fontWeight: 700 }}>{personal.fullName || 'Your Name'}</div>
+          <div style={{ marginTop: 12, fontSize: 13, fontWeight: 700 }}>{personal.fullName || yourName}</div>
           {personal.fullNameKorean && <div style={{ fontSize: 11, opacity: 0.75 }}>{personal.fullNameKorean}</div>}
         </div>
 
@@ -897,6 +921,7 @@ function SidebarTemplate({ personal, education, experience, skills, awards, cert
 // 6. DARK TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
 function DarkTemplate({ personal, education, experience, skills, awards, certificates, projects, publications }: TP) {
+  const { yourName } = useContext(PreviewLabels);
   const BG = '#0f0f1a', CARD = '#1a1a2e', ACC = '#6366f1', MUT = '#64748b', SUB = '#94a3b8', TXT = '#e2e8f0';
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: ACC, marginBottom: 10, marginTop: 20, paddingBottom: 4, borderBottom: `1px solid #1e1e3a` }}>{title}</div>
@@ -914,7 +939,7 @@ function DarkTemplate({ personal, education, experience, skills, awards, certifi
           }
           <div>
             <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0, background: `linear-gradient(90deg,${ACC},#a855f7)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-              {personal.fullName || 'Your Name'}
+              {personal.fullName || yourName}
             </h1>
             {personal.fullNameKorean && <div style={{ color: SUB, fontSize: 12 }}>{personal.fullNameKorean}</div>}
             <div style={{ display: 'flex', gap: 12, marginTop: 6, color: MUT, fontSize: 10, flexWrap: 'wrap' }}>
@@ -1126,6 +1151,7 @@ function TechTemplate({ personal, education, experience, skills, awards, certifi
 // 8. ACADEMIC CV TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
 function AcademicTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+  const { yourName } = useContext(PreviewLabels);
   const ACC = '#1e3a8a';
   const sec = (title: string) => (
     <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACC, borderBottom: `1.5px solid ${ACC}`, paddingBottom: 3, marginBottom: 10, marginTop: 20 }}>{title}</div>
@@ -1134,7 +1160,7 @@ function AcademicTemplate({ personal, education, experience, skills, awards, cer
     <div id="resume-preview" style={{ background: '#fff', color: '#111', fontFamily: 'Georgia, serif', minHeight: 1100, fontSize: 11, lineHeight: 1.7, padding: '40px 48px' }}>
       {/* Header */}
       <div style={{ marginBottom: 24 }}>
-        <h1 style={{ fontSize: 24, fontWeight: 700, color: ACC, margin: 0 }}>{personal.fullName || 'Your Name'}</h1>
+        <h1 style={{ fontSize: 24, fontWeight: 700, color: ACC, margin: 0 }}>{personal.fullName || yourName}</h1>
         {personal.fullNameKorean && <p style={{ color: '#6b7280', margin: '2px 0 0', fontStyle: 'italic' }}>{personal.fullNameKorean}</p>}
         <div style={{ display: 'flex', gap: 16, color: '#6b7280', fontSize: 10, marginTop: 6, flexWrap: 'wrap', fontFamily: 'sans-serif' }}>
           {personal.email && <span>{personal.email}</span>}
@@ -1249,6 +1275,7 @@ function AcademicTemplate({ personal, education, experience, skills, awards, cer
 // 9. COMPACT TEMPLATE — maximum density
 // ═══════════════════════════════════════════════════════════════════
 function CompactTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+  const { yourName } = useContext(PreviewLabels);
   const ACC = '#1d4ed8';
   const sec = (title: string) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, marginTop: 10 }}>
@@ -1261,7 +1288,7 @@ function CompactTemplate({ personal, education, experience, skills, awards, cert
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: `2px solid ${ACC}`, paddingBottom: 6, marginBottom: 2 }}>
         <div>
-          <h1 style={{ fontSize: 18, fontWeight: 700, color: ACC, margin: 0 }}>{personal.fullName || 'Your Name'}</h1>
+          <h1 style={{ fontSize: 18, fontWeight: 700, color: ACC, margin: 0 }}>{personal.fullName || yourName}</h1>
           {personal.fullNameKorean && <div style={{ color: '#6b7280', fontSize: 10 }}>{personal.fullNameKorean}</div>}
         </div>
         <div style={{ textAlign: 'right', color: '#6b7280', fontSize: 9 }}>

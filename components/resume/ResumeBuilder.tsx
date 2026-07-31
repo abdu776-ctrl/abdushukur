@@ -199,7 +199,7 @@ export function ResumeBuilder() {
             onClick={() => setShowTemplateSelector(true)}
             className="flex-1 flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all text-sm text-gray-700 dark:text-gray-300"
           >
-            <span className="text-xs text-gray-400 dark:text-gray-500">Template:</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500">{t('builder.template')}:</span>
             <Badge variant="purple" size="sm" className="capitalize">{selectedTemplate}</Badge>
           </button>
           <Button
@@ -209,7 +209,7 @@ export function ResumeBuilder() {
             onClick={() => setShowPreview(!showPreview)}
             className="lg:hidden"
           >
-            {showPreview ? 'Hide' : 'Preview'}
+            {showPreview ? t('builder.hide') : t('builder.preview')}
           </Button>
           <Button
             variant="secondary"
@@ -263,7 +263,7 @@ export function ResumeBuilder() {
                 </h2>
                 <button className="text-xs text-indigo-600 dark:text-indigo-400 flex items-center gap-1 hover:underline">
                   <Sparkles className="w-3 h-3" />
-                  AI fill
+                  {t('builder.aiFill')}
                 </button>
               </div>
 
@@ -310,7 +310,7 @@ export function ResumeBuilder() {
                       <User className="w-8 h-8 text-gray-400" />
                     </div>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('personal.uploadPhoto')}</p>
-                    <p className="text-xs text-gray-400 mt-1">JPG, PNG up to 5MB</p>
+                    <p className="text-xs text-gray-400 mt-1">{t('builder.photoHint')}</p>
                   </button>
                 )}
               </div>
@@ -910,7 +910,7 @@ export function ResumeBuilder() {
       )}>
         <div className="sticky top-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Live Preview</h3>
+            <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('builder.livePreview')}</h3>
             <div className="flex items-center gap-1">
               <Button
                 variant="ghost"

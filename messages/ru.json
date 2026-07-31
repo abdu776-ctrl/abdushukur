@@ -281,6 +281,16 @@
       "authors": "Авторы",
       "doi": "DOI / Ссылка",
       "description": "Аннотация / Описание"
+    },
+    "builder": {
+      "template": "Шаблон",
+      "preview": "Предпросмотр",
+      "hide": "Скрыть",
+      "aiFill": "AI-заполнение",
+      "photoHint": "JPG, PNG до 5 МБ",
+      "livePreview": "Живой предпросмотр",
+      "yourName": "Ваше имя",
+      "fillToPreview": "Заполните данные, чтобы увидеть предпросмотр"
     }
   },
   "coverLetter": {
