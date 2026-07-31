@@ -15,6 +15,16 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ({ className, label, error, hint, leftIcon, rightIcon, id, ...props }, ref) => {
     const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
+    // Bound date/month pickers so the native year field cannot grow past 4 digits
+    // and the calendar's year selector stays usable. Explicit min/max still win.
+    if (props.type === 'date') {
+      if (props.min === undefined) props.min = '1950-01-01';
+      if (props.max === undefined) props.max = '2035-12-31';
+    } else if (props.type === 'month') {
+      if (props.min === undefined) props.min = '1950-01';
+      if (props.max === undefined) props.max = '2035-12';
+    }
+
     return (
       <div className="w-full space-y-1.5">
         {label && (
