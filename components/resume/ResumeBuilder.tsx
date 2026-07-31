@@ -3,6 +3,7 @@
 import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
+import { MonthYearPicker } from '@/components/ui/MonthYearPicker';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
@@ -492,23 +493,21 @@ export function ResumeBuilder() {
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <Input
+                    <MonthYearPicker
                       label={t('education.startDate')}
-                      type="month"
                       value={edu.startDate}
-                      onChange={(e) => {
+                      onChange={(v) => {
                         const updated = [...education];
-                        updated[i].startDate = e.target.value;
+                        updated[i].startDate = v;
                         setEducation(updated);
                       }}
                     />
-                    <Input
+                    <MonthYearPicker
                       label={t('education.endDate')}
-                      type="month"
                       value={edu.endDate}
-                      onChange={(e) => {
+                      onChange={(v) => {
                         const updated = [...education];
-                        updated[i].endDate = e.target.value;
+                        updated[i].endDate = v;
                         setEducation(updated);
                       }}
                     />
@@ -586,25 +585,22 @@ export function ResumeBuilder() {
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <Input
+                    <MonthYearPicker
                       label={t('experience.startDate')}
-                      type="month"
                       value={exp.startDate}
-                      onChange={(e) => {
+                      onChange={(v) => {
                         const updated = [...experience];
-                        updated[i].startDate = e.target.value;
+                        updated[i].startDate = v;
                         setExperience(updated);
                       }}
                     />
-                    <Input
+                    <MonthYearPicker
                       label={exp.current ? '' : t('experience.endDate')}
-                      type="month"
                       value={exp.endDate}
                       disabled={exp.current}
-                      placeholder={exp.current ? 'Present' : ''}
-                      onChange={(e) => {
+                      onChange={(v) => {
                         const updated = [...experience];
-                        updated[i].endDate = e.target.value;
+                        updated[i].endDate = v;
                         setExperience(updated);
                       }}
                     />
@@ -738,8 +734,8 @@ export function ResumeBuilder() {
                   <div className="grid grid-cols-2 gap-3">
                     <Input label={t('awards.organization')} placeholder="한국장학재단" value={award.organization}
                       onChange={(e) => { const u = [...awards]; u[i].organization = e.target.value; setAwards(u); }} />
-                    <Input label={t('awards.date')} type="month" value={award.date}
-                      onChange={(e) => { const u = [...awards]; u[i].date = e.target.value; setAwards(u); }} />
+                    <MonthYearPicker label={t('awards.date')} value={award.date}
+                      onChange={(v) => { const u = [...awards]; u[i].date = v; setAwards(u); }} />
                   </div>
                   <div>
                     <label className="block text-xs font-medium text-gray-600 dark:text-gray-400 mb-1">{t('awards.type')}</label>
@@ -787,8 +783,8 @@ export function ResumeBuilder() {
                   <div className="grid grid-cols-2 gap-3">
                     <Input label={t('certificates.issuer')} placeholder="국립국제교육원" value={cert.issuer}
                       onChange={(e) => { const u = [...certificates]; u[i].issuer = e.target.value; setCertificates(u); }} />
-                    <Input label={t('certificates.date')} type="month" value={cert.date}
-                      onChange={(e) => { const u = [...certificates]; u[i].date = e.target.value; setCertificates(u); }} />
+                    <MonthYearPicker label={t('certificates.date')} value={cert.date}
+                      onChange={(v) => { const u = [...certificates]; u[i].date = v; setCertificates(u); }} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <Input label={t('certificates.score')} placeholder="6급 / 560점" value={cert.score || ''}
@@ -832,10 +828,10 @@ export function ResumeBuilder() {
                       onChange={(e) => { const u = [...projects]; u[i].role = e.target.value; setProjects(u); }} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <Input label={t('projects.startDate')} type="month" value={proj.startDate}
-                      onChange={(e) => { const u = [...projects]; u[i].startDate = e.target.value; setProjects(u); }} />
-                    <Input label={proj.current ? '' : t('projects.endDate')} type="month" value={proj.endDate} disabled={proj.current}
-                      onChange={(e) => { const u = [...projects]; u[i].endDate = e.target.value; setProjects(u); }} />
+                    <MonthYearPicker label={t('projects.startDate')} value={proj.startDate}
+                      onChange={(v) => { const u = [...projects]; u[i].startDate = v; setProjects(u); }} />
+                    <MonthYearPicker label={proj.current ? '' : t('projects.endDate')} value={proj.endDate} disabled={proj.current}
+                      onChange={(v) => { const u = [...projects]; u[i].endDate = v; setProjects(u); }} />
                   </div>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" checked={proj.current}
@@ -885,10 +881,10 @@ export function ResumeBuilder() {
                       onChange={(e) => { const u = [...volunteer]; u[i].role = e.target.value; setVolunteer(u); }} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
-                    <Input label={t('volunteer.startDate')} type="month" value={vol.startDate}
-                      onChange={(e) => { const u = [...volunteer]; u[i].startDate = e.target.value; setVolunteer(u); }} />
-                    <Input label={vol.current ? '' : t('volunteer.endDate')} type="month" value={vol.endDate} disabled={vol.current}
-                      onChange={(e) => { const u = [...volunteer]; u[i].endDate = e.target.value; setVolunteer(u); }} />
+                    <MonthYearPicker label={t('volunteer.startDate')} value={vol.startDate}
+                      onChange={(v) => { const u = [...volunteer]; u[i].startDate = v; setVolunteer(u); }} />
+                    <MonthYearPicker label={vol.current ? '' : t('volunteer.endDate')} value={vol.endDate} disabled={vol.current}
+                      onChange={(v) => { const u = [...volunteer]; u[i].endDate = v; setVolunteer(u); }} />
                   </div>
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input type="checkbox" checked={vol.current}
@@ -942,8 +938,8 @@ export function ResumeBuilder() {
                   <div className="grid grid-cols-2 gap-3">
                     <Input label={t('publications.publisher')} placeholder="한국정보과학회" value={pub.publisher}
                       onChange={(e) => { const u = [...publications]; u[i].publisher = e.target.value; setPublications(u); }} />
-                    <Input label={t('publications.date')} type="month" value={pub.date}
-                      onChange={(e) => { const u = [...publications]; u[i].date = e.target.value; setPublications(u); }} />
+                    <MonthYearPicker label={t('publications.date')} value={pub.date}
+                      onChange={(v) => { const u = [...publications]; u[i].date = v; setPublications(u); }} />
                   </div>
                   <Input label={t('publications.authors')} placeholder="홍길동, 김철수, ..." value={pub.authors || ''}
                     onChange={(e) => { const u = [...publications]; u[i].authors = e.target.value; setPublications(u); }} />
