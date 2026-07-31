@@ -160,7 +160,8 @@
       "title": "Build your Korean resume 이력서",
       "subtitle": "Start with a template, fill in your details, and export a professional PDF — in minutes.",
       "createResume": "Create Resume"
-    }
+    },
+    "docsAppearHere": "Your resumes and cover letters will appear here."
   },
   "resume": {
     "title": "Resume Builder",

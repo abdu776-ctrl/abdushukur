@@ -177,16 +177,16 @@ export function DashboardHome({ locale }: { locale: string }) {
               )}
             </>
           ) : (
+            /* Signed-out: the welcome + sign-in CTA lives in the page header
+               above; this panel is just a distinct, muted placeholder so the
+               welcome block is never rendered twice. */
             <div className="flex flex-col items-center justify-center text-center px-6 py-16">
-              <div className="w-14 h-14 rounded-2xl bg-indigo-50 dark:bg-indigo-500/10 flex items-center justify-center mb-4">
-                <LogIn className="w-7 h-7 text-indigo-600 dark:text-indigo-400" />
+              <div className="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
+                <FileText className="w-6 h-6 text-gray-400" />
               </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-1.5">{t('welcomeGuest')}</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm mb-5">{t('signInPrompt')}</p>
-              <Link href={`/${locale}/auth/login`} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-medium hover:bg-indigo-700 transition-colors">
-                <LogIn className="w-4 h-4" />
-                {t('signIn')}
-              </Link>
+              <p className="text-sm text-gray-500 dark:text-gray-400 max-w-sm">
+                {t('docsAppearHere')}
+              </p>
             </div>
           )}
         </div>
