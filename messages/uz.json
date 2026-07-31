@@ -151,6 +151,15 @@
       "tip1": "Koreyscha rezyumeler professional fotosuratni o'z ichiga olishi kerak",
       "tip2": "O'z-o'zini taqdimot xatlari odatda 성장과정, 성격, 지원동기, 포부 tuzilishini kuzatadi",
       "tip3": "Barcha rasmiy hujjatlarda rasmiy koreys tilidan foydalaning"
+    },
+    "welcomeGuest": "Koreer'ga xush kelibsiz",
+    "signInPrompt": "Rezyume va 자기소개서'laringizni saqlash hamda ariza holatini kuzatish uchun tizimga kiring.",
+    "signIn": "Kirish",
+    "newDocument": "Yangi hujjat",
+    "ctaBanner": {
+      "title": "Koreyscha rezyume (이력서) yarating",
+      "subtitle": "Shablon tanlang, ma'lumotlaringizni kiriting va bir necha daqiqada professional PDF yuklab oling.",
+      "createResume": "Rezyume yaratish"
     }
   },
   "resume": {

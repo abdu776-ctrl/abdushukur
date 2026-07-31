@@ -151,6 +151,15 @@
       "tip1": "Korean resumes should include a professional photo",
       "tip2": "Self-introduction letters typically follow the 성장과정, 성격, 지원동기, 포부 structure",
       "tip3": "Use formal Korean (존댓말) in all professional documents"
+    },
+    "welcomeGuest": "Welcome to Koreer",
+    "signInPrompt": "Sign in to save your resumes and cover letters and track your job applications.",
+    "signIn": "Sign in",
+    "newDocument": "New Document",
+    "ctaBanner": {
+      "title": "Build your Korean resume 이력서",
+      "subtitle": "Start with a template, fill in your details, and export a professional PDF — in minutes.",
+      "createResume": "Create Resume"
     }
   },
   "resume": {
