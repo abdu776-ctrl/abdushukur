@@ -291,6 +291,10 @@
       "livePreview": "실시간 미리보기",
       "yourName": "이름",
       "fillToPreview": "정보를 입력하면 미리보기가 표시됩니다"
+    },
+    "sectionOrder": {
+      "title": "섹션 순서",
+      "note": "단일 열 템플릿(클래식 계열)에 적용됩니다. 다른 레이아웃은 고정된 디자인을 유지합니다."
     }
   },
   "coverLetter": {

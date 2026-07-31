@@ -34,9 +34,16 @@ interface ResumePreviewProps {
   volunteer: Volunteer[];
   publications: Publication[];
   template: ResumeTemplate;
+  // Order of the document content sections. Currently honored by the
+  // single-column Classic family; other layouts keep their fixed design.
+  sectionOrder?: string[];
 }
 
 type TP = Omit<ResumePreviewProps, 'template'>;
+
+export const DEFAULT_SECTION_ORDER = [
+  'education', 'experience', 'skills', 'awards', 'certificates', 'projects', 'volunteer', 'publications',
+];
 
 // ─────────────────────────────────────────────────────────────────
 // Color configs for the Modern Color Series (8 templates)
@@ -524,7 +531,8 @@ function KoreanForm({ variant, personal, education, experience, skills, awards, 
 // ═══════════════════════════════════════════════════════════════════
 // 3. CLASSIC VARIANT TEMPLATE (classic / oxford / corporate / executive)
 // ═══════════════════════════════════════════════════════════════════
-function ClassicVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { variant: string } & TP) {
+function ClassicVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications, sectionOrder }: { variant: string } & TP) {
+  const order = sectionOrder && sectionOrder.length ? sectionOrder : DEFAULT_SECTION_ORDER;
   const { yourName } = useContext(PreviewLabels);
   const cfg = {
     classic:   { accent: '#1f2937', rule: '#1f2937', nameSize: 28, serif: false, gold: false },
@@ -568,13 +576,13 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
       </div>
 
       {[
-        education.some((e) => e.institution) && { title: 'Education', content: education.filter((e) => e.institution).map((edu) => (
+        education.some((e) => e.institution) && { id: 'education', title: 'Education', content: education.filter((e) => e.institution).map((edu) => (
           <div key={edu.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
             <div><div style={{ fontWeight: 600 }}>{edu.institution}</div><div style={s.sub}>{edu.degree}{edu.field && `, ${edu.field}`}{edu.gpa && ` · GPA ${edu.gpa}`}</div></div>
             <span style={s.muted}>{edu.startDate} – {edu.endDate || 'Present'}</span>
           </div>
         ))},
-        experience.some((e) => e.company) && { title: 'Experience', content: experience.filter((e) => e.company).map((exp) => (
+        experience.some((e) => e.company) && { id: 'experience', title: 'Experience', content: experience.filter((e) => e.company).map((exp) => (
           <div key={exp.id} style={{ marginBottom: 10 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ fontWeight: 600 }}>{exp.position} — {exp.company}</span>
@@ -583,7 +591,7 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
             {exp.description && <div style={s.sub}>{exp.description}</div>}
           </div>
         ))},
-        projects.some((p) => p.title) && { title: 'Projects', content: projects.filter((p) => p.title).map((proj) => (
+        projects.some((p) => p.title) && { id: 'projects', title: 'Projects', content: projects.filter((p) => p.title).map((proj) => (
           <div key={proj.id} style={{ marginBottom: 8 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ fontWeight: 600 }}>{proj.title} — {proj.role}</span>
@@ -593,40 +601,40 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
             {proj.description && <div style={s.sub}>{proj.description}</div>}
           </div>
         ))},
-        awards.some((a) => a.title) && { title: 'Awards & Scholarships', content: awards.filter((a) => a.title).map((a) => (
+        awards.some((a) => a.title) && { id: 'awards', title: 'Awards & Scholarships', content: awards.filter((a) => a.title).map((a) => (
           <div key={a.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
             <div><span style={{ fontWeight: 600 }}>{a.title}</span><span style={{ ...s.sub, marginLeft: 6 }}>— {a.organization}</span></div>
             <span style={s.muted}>{a.date}</span>
           </div>
         ))},
-        certificates.some((c) => c.name) && { title: 'Certificates', content: (
+        certificates.some((c) => c.name) && { id: 'certificates', title: 'Certificates', content: (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 16px' }}>
             {certificates.filter((c) => c.name).map((cert) => (
               <span key={cert.id} style={{ color: '#374151' }}>{cert.name}{cert.score ? ` (${cert.score})` : ''}</span>
             ))}
           </div>
         )},
-        volunteer.some((v) => v.organization) && { title: 'Volunteer', content: volunteer.filter((v) => v.organization).map((vol) => (
+        volunteer.some((v) => v.organization) && { id: 'volunteer', title: 'Volunteer', content: volunteer.filter((v) => v.organization).map((vol) => (
           <div key={vol.id} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 4 }}>
             <span><span style={{ fontWeight: 600 }}>{vol.role}</span> — {vol.organization}</span>
             <span style={s.muted}>{vol.startDate} – {vol.current ? 'Present' : vol.endDate}</span>
           </div>
         ))},
-        publications.some((p) => p.title) && { title: 'Publications', content: publications.filter((p) => p.title).map((pub) => (
+        publications.some((p) => p.title) && { id: 'publications', title: 'Publications', content: publications.filter((p) => p.title).map((pub) => (
           <div key={pub.id} style={{ marginBottom: 8 }}>
             <div style={{ fontWeight: 600 }}>{pub.title}</div>
             <div style={s.sub}>{pub.publisher} · {pub.date}{pub.authors ? ` · ${pub.authors}` : ''}</div>
           </div>
         ))},
-        skills.length > 0 && { title: 'Skills', content: (
+        skills.length > 0 && { id: 'skills', title: 'Skills', content: (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px 8px' }}>
             {skills.map((sk) => (
               <span key={sk.id} style={{ padding: '2px 8px', border: `1px solid ${cfg.accent}`, borderRadius: 2, color: '#374151', fontSize: 10 }}>{sk.name || 'Skill'}</span>
             ))}
           </div>
         )},
-      ].filter(Boolean).map((item, i) => {
-        const { title, content } = item as { title: string; content: React.ReactNode };
+      ].filter(Boolean).sort((a, b) => order.indexOf((a as { id: string }).id) - order.indexOf((b as { id: string }).id)).map((item, i) => {
+        const { title, content } = item as { id: string; title: string; content: React.ReactNode };
         return (
           <div key={i} style={{ marginBottom: 16 }}>
             {sec(title)}

@@ -291,6 +291,10 @@
       "livePreview": "Live Preview",
       "yourName": "Your Name",
       "fillToPreview": "Fill in your information to see the preview"
+    },
+    "sectionOrder": {
+      "title": "Section order",
+      "note": "Applies to single-column templates (Classic family). Other layouts keep their fixed design."
     }
   },
   "coverLetter": {

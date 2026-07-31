@@ -291,6 +291,10 @@
       "livePreview": "Jonli koʻrinish",
       "yourName": "Ismingiz",
       "fillToPreview": "Koʻrinishni koʻrish uchun maʼlumotlaringizni kiriting"
+    },
+    "sectionOrder": {
+      "title": "Boʻlimlar tartibi",
+      "note": "Bir ustunli shablonlarga (Classic oilasi) qoʻllanadi. Boshqa dizaynlar oʻz tartibini saqlaydi."
     }
   },
   "coverLetter": {

@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
-import { ResumePreview } from './ResumePreview';
+import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
 import { exportToPDF, exportToWord } from '@/lib/utils';
@@ -28,6 +28,9 @@ import {
   Heart,
   BookOpen,
   FileType,
+  GripVertical,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
@@ -63,6 +66,21 @@ export function ResumeBuilder() {
   const [exporting, setExporting] = useState(false);
 
   const photoInputRef = useRef<HTMLInputElement>(null);
+
+  // Document section order (honored by single-column Classic templates).
+  const [sectionOrder, setSectionOrder] = useState<string[]>(DEFAULT_SECTION_ORDER);
+  const [showOrderPanel, setShowOrderPanel] = useState(false);
+  const [dragIndex, setDragIndex] = useState<number | null>(null);
+
+  function moveSection(from: number, to: number) {
+    if (to < 0 || to >= sectionOrder.length) return;
+    setSectionOrder((prev) => {
+      const a = [...prev];
+      const [m] = a.splice(from, 1);
+      a.splice(to, 0, m);
+      return a;
+    });
+  }
 
   const [personal, setPersonal] = useState<PersonalInfo>(defaultPersonal);
   const [education, setEducation] = useState<Education[]>([{ ...defaultEducation }]);
@@ -228,6 +246,45 @@ export function ResumeBuilder() {
           >
             PDF
           </Button>
+        </div>
+
+        {/* Section order (drag or use arrows) */}
+        <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setShowOrderPanel((v) => !v)}
+            className="w-full flex items-center justify-between p-3.5 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors"
+          >
+            <span className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+              <GripVertical className="w-4 h-4 text-gray-400" />
+              {t('sectionOrder.title')}
+            </span>
+            {showOrderPanel ? <ArrowUp className="w-4 h-4 text-gray-400" /> : <ArrowDown className="w-4 h-4 text-gray-400" />}
+          </button>
+          {showOrderPanel && (
+            <div className="px-3 pb-3 space-y-1.5 animate-slide-down">
+              <p className="text-xs text-gray-400 dark:text-gray-500 px-1 pb-1">{t('sectionOrder.note')}</p>
+              {sectionOrder.map((id, i) => (
+                <div
+                  key={id}
+                  draggable
+                  onDragStart={() => setDragIndex(i)}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={() => { if (dragIndex !== null) moveSection(dragIndex, i); setDragIndex(null); }}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50 cursor-grab active:cursor-grabbing"
+                >
+                  <GripVertical className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                  <span className="flex-1 text-sm text-gray-700 dark:text-gray-300 truncate">{t(`sections.${id}`)}</span>
+                  <button type="button" onClick={() => moveSection(i, i - 1)} disabled={i === 0} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title="Up">
+                    <ArrowUp className="w-3.5 h-3.5" />
+                  </button>
+                  <button type="button" onClick={() => moveSection(i, i + 1)} disabled={i === sectionOrder.length - 1} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title="Down">
+                    <ArrowDown className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Section tabs */}
@@ -943,6 +1000,7 @@ export function ResumeBuilder() {
               volunteer={volunteer}
               publications={publications}
               template={selectedTemplate}
+              sectionOrder={sectionOrder}
             />
           </div>
         </div>
