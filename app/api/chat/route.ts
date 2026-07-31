@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 
 const SYSTEM_PROMPT = `You are Koreer's AI Career Assistant, an expert on getting a job in South Korea as an international student or foreign applicant (Korean resumes 이력서, 자기소개서, interviews, salary, workplace culture, and visa basics). Answer in the user's language (Uzbek, Russian, English, or Korean). Be concrete, practical, and encouraging; use short paragraphs and bullets; include useful Korean terms with a short translation; keep it concise. For visa/legal specifics, remind the user to verify with official sources.`;
 
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.0-flash-lite';
+const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 export async function POST(req: NextRequest) {
   try {
@@ -12,55 +12,43 @@ export async function POST(req: NextRequest) {
       return new Response('No messages provided', { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
       return new Response(
-        'AI is not configured yet. Please set the GEMINI_API_KEY environment variable.',
+        'AI is not configured yet. Please set the GROQ_API_KEY environment variable.',
         { status: 503 }
       );
     }
 
-    // Convert to Gemini format: assistant -> model, user -> user, must start with user.
-    const contents = messages
-      .filter(
-        (m: { role: string; content: string }) =>
-          (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim()
-      )
-      .map((m: { role: string; content: string }) => ({
-        role: m.role === 'assistant' ? 'model' : 'user',
-        parts: [{ text: m.content }],
-      }));
+    const chatMessages = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...messages
+        .filter(
+          (m: { role: string; content: string }) =>
+            (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string' && m.content.trim()
+        )
+        .map((m: { role: string; content: string }) => ({ role: m.role, content: m.content })),
+    ];
 
-    while (contents.length && contents[0].role !== 'user') contents.shift();
-
-    if (!contents.length) {
-      return new Response('No user message provided', { status: 400 });
-    }
-
-    const url =
-      `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:streamGenerateContent?alt=sse`;
-
-    const geminiRes = await fetch(url, {
+    const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-goog-api-key': apiKey,
+        Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
-        contents,
-        generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
+        model: MODEL,
+        messages: chatMessages,
+        temperature: 0.7,
+        max_tokens: 1024,
+        stream: true,
       }),
     });
 
-    if (!geminiRes.ok || !geminiRes.body) {
-      const errText = await geminiRes.text().catch(() => '');
-      console.error('gemini error:', geminiRes.status, errText);
-      // Surface the real error so we can diagnose (does not expose the key).
-      return new Response(
-        `AI error ${geminiRes.status}: ${errText.slice(0, 400)}`,
-        { status: 200 }
-      );
+    if (!groqRes.ok || !groqRes.body) {
+      const errText = await groqRes.text().catch(() => '');
+      console.error('groq error:', groqRes.status, errText);
+      return new Response(`AI error ${groqRes.status}: ${errText.slice(0, 400)}`, { status: 200 });
     }
 
     const encoder = new TextEncoder();
@@ -68,15 +56,13 @@ export async function POST(req: NextRequest) {
 
     const readable = new ReadableStream({
       async start(controller) {
-        const reader = geminiRes.body!.getReader();
+        const reader = groqRes.body!.getReader();
         let buffer = '';
         try {
           while (true) {
             const { done, value } = await reader.read();
             if (done) break;
             buffer += decoder.decode(value, { stream: true });
-
-            // Gemini SSE: lines like "data: {json}" separated by newlines.
             const lines = buffer.split('\n');
             buffer = lines.pop() || '';
             for (const line of lines) {
@@ -86,17 +72,15 @@ export async function POST(req: NextRequest) {
               if (!jsonStr || jsonStr === '[DONE]') continue;
               try {
                 const parsed = JSON.parse(jsonStr);
-                const text = parsed?.candidates?.[0]?.content?.parts
-                  ?.map((p: { text?: string }) => p.text || '')
-                  .join('');
+                const text = parsed?.choices?.[0]?.delta?.content;
                 if (text) controller.enqueue(encoder.encode(text));
               } catch {
-                // ignore partial/non-JSON lines
+                // ignore partial lines
               }
             }
           }
         } catch (err) {
-          console.error('gemini stream error:', err);
+          console.error('groq stream error:', err);
         } finally {
           controller.close();
         }

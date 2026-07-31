@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.0-flash-lite';
+const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 const LANG_NAMES: Record<string, string> = {
   uz: 'Uzbek',
@@ -9,25 +9,28 @@ const LANG_NAMES: Record<string, string> = {
   ko: 'Korean',
 };
 
-// ── Gemini (primary — reliable for names and sentences) ──────────────────────
-async function geminiGenerate(apiKey: string, prompt: string): Promise<string> {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
-  const res = await fetch(url, {
+// ── Groq (primary — reliable for names and sentences) ────────────────────────
+async function groqComplete(apiKey: string, prompt: string): Promise<string> {
+  const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`,
+    },
     body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0, maxOutputTokens: 256 },
+      model: GROQ_MODEL,
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0,
+      max_tokens: 256,
     }),
   });
-  if (!res.ok) throw new Error(`gemini ${res.status}`);
+  if (!res.ok) throw new Error(`groq ${res.status}`);
   const data = await res.json();
-  const text: string =
-    data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text || '').join('') || '';
+  const text: string = data?.choices?.[0]?.message?.content || '';
   return text.trim().replace(/^["'`]+|["'`]+$/g, '');
 }
 
-async function geminiTranslate(
+async function groqTranslate(
   apiKey: string,
   text: string,
   from: string,
@@ -39,12 +42,10 @@ async function geminiTranslate(
     const origin = from && from !== 'auto' ? `${LANG_NAMES[from] || from} ` : 'Uzbek/Russian/English ';
     prompt =
       `Transliterate this ${origin}person's name into Korean Hangul based on pronunciation.\n` +
-      `Follow standard Korean transliteration of foreign names. Important sound rules:\n` +
-      `- Latin/Cyrillic "j" (ж) is the ㅈ sound: "ja"→자, "jo"→조, "ju"→주, "je"→제, "ji"→지\n` +
-      `- "zh"→ㅈ, "ch"(ч)→치, "sh"(ш)→시, "kh"(х)→흐, "ya"→야, "yo"→요, "yu"→유\n` +
-      `- "-ov/-ev" endings →"-프" (e.g. "-nov"→"노프")\n` +
-      `Example: "Olimjonov" → 올림조노프, "Abdushukur" → 압두슈쿠르.\n` +
-      `Reply with ONLY the Korean Hangul transliteration — no explanation, no quotes, no romanization.\n\nName: ${text}`;
+      `Sound rules: Latin/Cyrillic "j" (ж) → ㅈ ("ja"→자, "jo"→조, "ju"→주, "ji"→지); ` +
+      `"zh"→ㅈ, "ch"(ч)→치, "sh"(ш)→시, "kh"(х)→흐; "ya"→야, "yo"→요, "yu"→유; "-ov/-ev"→"-프".\n` +
+      `Examples: "Olimjonov" → 올림조노프, "Abdushukur" → 압두슈쿠르.\n` +
+      `Reply with ONLY the Korean Hangul transliteration — no explanation, no quotes.\n\nName: ${text}`;
   } else if (mode === 'name' && from === 'ko') {
     prompt =
       `Romanize this Korean name into Latin letters (Revised Romanization), capitalizing each part. ` +
@@ -56,7 +57,7 @@ async function geminiTranslate(
       `Translate the following text ${src}into ${target}. ` +
       `Reply with ONLY the translated text, nothing else.\n\n${text}`;
   }
-  return geminiGenerate(apiKey, prompt);
+  return groqComplete(apiKey, prompt);
 }
 
 // ── Google Translate (fallback) ──────────────────────────────────────────────
@@ -89,15 +90,15 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing text or target language' }, { status: 400 });
     }
 
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
 
-    // Primary: Gemini (accurate for names and sentences).
+    // Primary: Groq (accurate for names and sentences).
     if (apiKey) {
       try {
-        const translated = await geminiTranslate(apiKey, text, from, to, mode);
+        const translated = await groqTranslate(apiKey, text, from, to, mode);
         if (translated) return NextResponse.json({ translated });
       } catch (err) {
-        console.error('gemini translate failed, falling back:', err);
+        console.error('groq translate failed, falling back:', err);
       }
     }
 
