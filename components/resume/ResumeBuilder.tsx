@@ -34,7 +34,8 @@ import {
   ArrowDown,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication, ResumeTemplate } from '@/types';
+import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication } from '@/types';
+import { DEFAULT_LAYOUT, DEFAULT_THEME, getTheme, type LayoutId, type ThemeId } from '@/lib/templates';
 
 type Section = 'personal' | 'education' | 'experience' | 'skills' | 'awards' | 'certificates' | 'projects' | 'volunteer' | 'publications';
 
@@ -62,7 +63,8 @@ export function ResumeBuilder() {
   const t = useTranslations('resume');
   const [activeSection, setActiveSection] = useState<Section>('personal');
   const [showPreview, setShowPreview] = useState(false);
-  const [selectedTemplate, setSelectedTemplate] = useState<ResumeTemplate>('modern');
+  const [layoutId, setLayoutId] = useState<LayoutId>(DEFAULT_LAYOUT);
+  const [themeId, setThemeId] = useState<ThemeId>(DEFAULT_THEME);
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
   const [exporting, setExporting] = useState(false);
 
@@ -219,7 +221,13 @@ export function ResumeBuilder() {
             className="flex-1 flex items-center gap-2 px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all text-sm text-gray-700 dark:text-gray-300"
           >
             <span className="text-xs text-gray-400 dark:text-gray-500">{t('builder.template')}:</span>
-            <Badge variant="purple" size="sm" className="capitalize">{selectedTemplate}</Badge>
+            <Badge variant="purple" size="sm">{t(`templates.layout.${layoutId}.name`)}</Badge>
+            <span
+              className="w-3.5 h-3.5 rounded-full ring-1 ring-black/10 flex-shrink-0"
+              style={{ background: getTheme(themeId).gradient }}
+              aria-hidden="true"
+            />
+            <span className="text-xs text-gray-400 dark:text-gray-500">{t(`templates.color.${themeId}`)}</span>
           </button>
           <Button
             variant="secondary"
@@ -997,7 +1005,8 @@ export function ResumeBuilder() {
               projects={projects}
               volunteer={volunteer}
               publications={publications}
-              template={selectedTemplate}
+              layoutId={layoutId}
+              themeId={themeId}
               sectionOrder={sectionOrder}
             />
           </div>
@@ -1007,8 +1016,10 @@ export function ResumeBuilder() {
       {/* Template Selector Modal */}
       {showTemplateSelector && (
         <TemplateSelector
-          selected={selectedTemplate}
-          onSelect={(t) => { setSelectedTemplate(t); setShowTemplateSelector(false); }}
+          layoutId={layoutId}
+          themeId={themeId}
+          onLayout={setLayoutId}
+          onTheme={setThemeId}
           onClose={() => setShowTemplateSelector(false)}
         />
       )}

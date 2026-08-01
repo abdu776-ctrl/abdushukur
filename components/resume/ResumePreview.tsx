@@ -4,8 +4,9 @@ import { createContext, useContext } from 'react';
 import { useTranslations } from 'next-intl';
 import type {
   PersonalInfo, Education, WorkExperience, Skill,
-  Award, Certificate, Project, Volunteer, Publication, ResumeTemplate,
+  Award, Certificate, Project, Volunteer, Publication,
 } from '@/types';
+import { getTheme, type LayoutId, type ThemeId } from '@/lib/templates';
 
 // Localized placeholder labels for the live preview (name placeholder + empty
 // hint). Provided by ResumePreview so the many template sub-components can read
@@ -33,54 +34,46 @@ interface ResumePreviewProps {
   projects: Project[];
   volunteer: Volunteer[];
   publications: Publication[];
-  template: ResumeTemplate;
+  layoutId: LayoutId;
+  themeId: ThemeId;
   // Order of the document content sections. Currently honored by the
   // single-column Classic family; other layouts keep their fixed design.
   sectionOrder?: string[];
 }
 
-type TP = Omit<ResumePreviewProps, 'template'>;
+type TP = Omit<ResumePreviewProps, 'layoutId' | 'themeId'>;
 
 export const DEFAULT_SECTION_ORDER = [
   'education', 'experience', 'skills', 'awards', 'certificates', 'projects', 'volunteer', 'publications',
 ];
 
-// ─────────────────────────────────────────────────────────────────
-// Color configs for the Modern Color Series (8 templates)
-// ─────────────────────────────────────────────────────────────────
+// Colour object consumed by the layout render functions. Built from the theme
+// so any theme can drive any layout (colour is fully decoupled from layout).
 type CC = { bg: string; accent: string; light: string };
-const MC: Record<string, CC> = {
-  modern:   { bg: 'linear-gradient(135deg,#4f46e5 0%,#9333ea 100%)', accent: '#4f46e5', light: '#eef2ff' },
-  navy:     { bg: 'linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%)', accent: '#1d4ed8', light: '#eff6ff' },
-  forest:   { bg: 'linear-gradient(135deg,#14532d 0%,#16a34a 100%)', accent: '#15803d', light: '#f0fdf4' },
-  crimson:  { bg: 'linear-gradient(135deg,#7f1d1d 0%,#dc2626 100%)', accent: '#dc2626', light: '#fef2f2' },
-  teal:     { bg: 'linear-gradient(135deg,#134e4a 0%,#0d9488 100%)', accent: '#0d9488', light: '#f0fdfa' },
-  amber:    { bg: 'linear-gradient(135deg,#78350f 0%,#d97706 100%)', accent: '#b45309', light: '#fffbeb' },
-  midnight: { bg: 'linear-gradient(135deg,#0f0c29 0%,#302b63 100%)', accent: '#6366f1', light: '#eef2ff' },
-  rose:     { bg: 'linear-gradient(135deg,#881337 0%,#e11d48 100%)', accent: '#e11d48', light: '#fff1f2' },
-};
 
 // ─────────────────────────────────────────────────────────────────
-// Main dispatcher
+// Main dispatcher — layout decides structure, theme decides colour
 // ─────────────────────────────────────────────────────────────────
 export function ResumePreview(props: ResumePreviewProps) {
   const t = useTranslations('resume');
-  const { template, ...rest } = props;
+  const { layoutId, themeId, ...rest } = props;
+  const theme = getTheme(themeId);
+  const cc: CC = { bg: theme.gradient, accent: theme.accent, light: theme.light };
 
   function renderTemplate() {
-    if (template in MC) return <ModernColor c={MC[template]} {...rest} />;
-    if (['korean','korean-blue','korean-compact','korean-premium'].includes(template))
-      return <KoreanForm variant={template} {...rest} />;
-    if (['classic','oxford','corporate','executive'].includes(template))
-      return <ClassicVariant variant={template} {...rest} />;
-    if (['minimal','nordic','slate','tokyo'].includes(template))
-      return <MinimalVariant variant={template} {...rest} />;
-    if (template === 'sidebar')  return <SidebarTemplate {...rest} />;
-    if (template === 'dark')     return <DarkTemplate {...rest} />;
-    if (template === 'tech')     return <TechTemplate {...rest} />;
-    if (template === 'academic') return <AcademicTemplate {...rest} />;
-    if (template === 'compact')  return <CompactTemplate {...rest} />;
-    return <ModernColor c={MC.modern} {...rest} />;
+    switch (layoutId) {
+      case 'modern':         return <ModernColor c={cc} {...rest} />;
+      case 'korean':         return <KoreanForm accent={theme.accent} light={theme.light} hasPhoto {...rest} />;
+      case 'korean-nophoto': return <KoreanForm accent={theme.accent} light={theme.light} hasPhoto={false} {...rest} />;
+      case 'classic':        return <ClassicVariant accent={theme.accent} {...rest} />;
+      case 'minimal':        return <MinimalVariant accent={theme.accent} light={theme.light} {...rest} />;
+      case 'sidebar':        return <SidebarTemplate accent={theme.accent} gradient={theme.gradient} {...rest} />;
+      case 'dark':           return <DarkTemplate accent={theme.accent} {...rest} />;
+      case 'tech':           return <TechTemplate accent={theme.accent} {...rest} />;
+      case 'academic':       return <AcademicTemplate accent={theme.accent} {...rest} />;
+      case 'compact':        return <CompactTemplate accent={theme.accent} {...rest} />;
+      default:               return <ModernColor c={cc} {...rest} />;
+    }
   }
 
   return (
@@ -296,14 +289,10 @@ function ModernColor({ c, personal, education, experience, skills, awards, certi
 // ═══════════════════════════════════════════════════════════════════
 // 2. KOREAN FORM TEMPLATE (korean / korean-blue / korean-compact / korean-premium)
 // ═══════════════════════════════════════════════════════════════════
-function KoreanForm({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { variant: string } & TP) {
-  const isBlue    = variant === 'korean-blue';
-  const isCompact = variant === 'korean-compact';
-  const isPremium = variant === 'korean-premium';
-
-  const accent   = isBlue ? '#1d4ed8' : isPremium ? '#7c3aed' : '#1f2937';
-  const thBg     = isBlue ? '#eff6ff' : isPremium ? '#f5f3ff' : '#f9fafb';
-  const border   = isPremium ? '1.5px solid #e5e7eb' : '1px solid #d1d5db';
+function KoreanForm({ accent, light, hasPhoto, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string; light: string; hasPhoto: boolean } & TP) {
+  const isCompact = !hasPhoto;
+  const thBg     = light;
+  const border   = '1px solid #d1d5db';
   const fontFamily = 'Noto Sans KR, sans-serif';
 
   const td = (content: React.ReactNode, isHeader = false, colSpan = 1): React.ReactNode => (
@@ -323,7 +312,7 @@ function KoreanForm({ variant, personal, education, experience, skills, awards, 
       <div style={{ display: 'flex', gap: 16, marginBottom: 20 }}>
         {/* Photo (not shown in compact) */}
         {!isCompact && (
-          <div style={{ width: 108, height: 140, border, flexShrink: 0, overflow: 'hidden', borderRadius: isPremium ? 4 : 0 }}>
+          <div style={{ width: 108, height: 140, border, flexShrink: 0, overflow: 'hidden', borderRadius: 0 }}>
             {personal.photo
               ? <img src={personal.photo} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               : <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af', textAlign: 'center', fontSize: 9 }}>증명사진<br/>3×4cm</div>
@@ -531,15 +520,10 @@ function KoreanForm({ variant, personal, education, experience, skills, awards, 
 // ═══════════════════════════════════════════════════════════════════
 // 3. CLASSIC VARIANT TEMPLATE (classic / oxford / corporate / executive)
 // ═══════════════════════════════════════════════════════════════════
-function ClassicVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications, sectionOrder }: { variant: string } & TP) {
+function ClassicVariant({ accent, personal, education, experience, skills, awards, certificates, projects, volunteer, publications, sectionOrder }: { accent: string } & TP) {
   const order = sectionOrder && sectionOrder.length ? sectionOrder : DEFAULT_SECTION_ORDER;
   const { yourName } = useContext(PreviewLabels);
-  const cfg = {
-    classic:   { accent: '#1f2937', rule: '#1f2937', nameSize: 28, serif: false, gold: false },
-    oxford:    { accent: '#1e3a8a', rule: '#1e3a8a', nameSize: 26, serif: true,  gold: false },
-    corporate: { accent: '#1d4ed8', rule: '#1d4ed8', nameSize: 26, serif: false, gold: false },
-    executive: { accent: '#92400e', rule: '#78350f', nameSize: 26, serif: false, gold: true  },
-  }[variant] ?? { accent: '#1f2937', rule: '#1f2937', nameSize: 28, serif: false, gold: false };
+  const cfg = { accent, rule: accent, nameSize: 28, serif: false, gold: false };
 
   const ff = cfg.serif ? 'Georgia, serif' : 'sans-serif';
 
@@ -649,14 +633,10 @@ function ClassicVariant({ variant, personal, education, experience, skills, awar
 // ═══════════════════════════════════════════════════════════════════
 // 4. MINIMAL VARIANT TEMPLATE (minimal / nordic / slate / tokyo)
 // ═══════════════════════════════════════════════════════════════════
-function MinimalVariant({ variant, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { variant: string } & TP) {
+function MinimalVariant({ accent, light, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string; light: string } & TP) {
   const { yourName } = useContext(PreviewLabels);
-  const cfg = {
-    minimal: { accent: '#374151', bg: '#fff',    pad: 40, secColor: '#9ca3af', dot: false, leftBorder: false },
-    nordic:  { accent: '#94a3b8', bg: '#fafafa', pad: 48, secColor: '#94a3b8', dot: false, leftBorder: false },
-    slate:   { accent: '#475569', bg: '#fff',    pad: 40, secColor: '#64748b', dot: false, leftBorder: true  },
-    tokyo:   { accent: '#0ea5e9', bg: '#fff',    pad: 40, secColor: '#0ea5e9', dot: true,  leftBorder: false },
-  }[variant] ?? { accent: '#374151', bg: '#fff', pad: 40, secColor: '#9ca3af', dot: false, leftBorder: false };
+  void light;
+  const cfg = { accent, bg: '#fff', pad: 40, secColor: accent, dot: false, leftBorder: false };
 
   const sec = (title: string) => (
     <div style={{ marginBottom: 4, display: 'flex', alignItems: 'center', gap: 8 }}>
@@ -776,14 +756,14 @@ function MinimalVariant({ variant, personal, education, experience, skills, awar
 // ═══════════════════════════════════════════════════════════════════
 // 5. SIDEBAR TEMPLATE — colored left panel with photo
 // ═══════════════════════════════════════════════════════════════════
-function SidebarTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+function SidebarTemplate({ accent, gradient, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string; gradient: string } & TP) {
   const { yourName } = useContext(PreviewLabels);
-  const bg = 'linear-gradient(180deg,#4f46e5 0%,#7c3aed 100%)';
+  const bg = gradient;
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', opacity: 0.7, marginBottom: 8, marginTop: 16 }}>{title}</div>
   );
   const rh = (title: string) => (
-    <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#4f46e5', borderBottom: '1px solid #e0e7ff', paddingBottom: 4, marginBottom: 8, marginTop: 16 }}>{title}</div>
+    <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: accent, borderBottom: '1px solid #e0e7ff', paddingBottom: 4, marginBottom: 8, marginTop: 16 }}>{title}</div>
   );
 
   return (
@@ -928,9 +908,9 @@ function SidebarTemplate({ personal, education, experience, skills, awards, cert
 // ═══════════════════════════════════════════════════════════════════
 // 6. DARK TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
-function DarkTemplate({ personal, education, experience, skills, awards, certificates, projects, publications }: TP) {
+function DarkTemplate({ accent, personal, education, experience, skills, awards, certificates, projects, publications }: { accent: string } & TP) {
   const { yourName } = useContext(PreviewLabels);
-  const BG = '#0f0f1a', CARD = '#1a1a2e', ACC = '#6366f1', MUT = '#64748b', SUB = '#94a3b8', TXT = '#e2e8f0';
+  const BG = '#0f0f1a', CARD = '#1a1a2e', ACC = accent, MUT = '#64748b', SUB = '#94a3b8', TXT = '#e2e8f0';
   const sh = (title: string) => (
     <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: ACC, marginBottom: 10, marginTop: 20, paddingBottom: 4, borderBottom: `1px solid #1e1e3a` }}>{title}</div>
   );
@@ -1041,8 +1021,8 @@ function DarkTemplate({ personal, education, experience, skills, awards, certifi
 // ═══════════════════════════════════════════════════════════════════
 // 7. TECH / DEVELOPER TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
-function TechTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
-  const BG = '#0d1117', CARD = '#161b22', ACC = '#58a6ff', GRN = '#3fb950', YLW = '#f0883e', TXT = '#c9d1d9', MUT = '#8b949e';
+function TechTemplate({ accent, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string } & TP) {
+  const BG = '#0d1117', CARD = '#161b22', ACC = accent, GRN = '#3fb950', YLW = '#f0883e', TXT = '#c9d1d9', MUT = '#8b949e';
   const mono = 'ui-monospace, SFMono-Regular, Menlo, monospace';
   return (
     <div id="resume-preview" style={{ background: BG, color: TXT, fontFamily: mono, minHeight: 1100, fontSize: 11, lineHeight: 1.6 }}>
@@ -1158,9 +1138,9 @@ function TechTemplate({ personal, education, experience, skills, awards, certifi
 // ═══════════════════════════════════════════════════════════════════
 // 8. ACADEMIC CV TEMPLATE
 // ═══════════════════════════════════════════════════════════════════
-function AcademicTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+function AcademicTemplate({ accent, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string } & TP) {
   const { yourName } = useContext(PreviewLabels);
-  const ACC = '#1e3a8a';
+  const ACC = accent;
   const sec = (title: string) => (
     <div style={{ fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACC, borderBottom: `1.5px solid ${ACC}`, paddingBottom: 3, marginBottom: 10, marginTop: 20 }}>{title}</div>
   );
@@ -1282,9 +1262,9 @@ function AcademicTemplate({ personal, education, experience, skills, awards, cer
 // ═══════════════════════════════════════════════════════════════════
 // 9. COMPACT TEMPLATE — maximum density
 // ═══════════════════════════════════════════════════════════════════
-function CompactTemplate({ personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: TP) {
+function CompactTemplate({ accent, personal, education, experience, skills, awards, certificates, projects, volunteer, publications }: { accent: string } & TP) {
   const { yourName } = useContext(PreviewLabels);
-  const ACC = '#1d4ed8';
+  const ACC = accent;
   const sec = (title: string) => (
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5, marginTop: 10 }}>
       <span style={{ fontSize: 8, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.12em', color: ACC, whiteSpace: 'nowrap' }}>{title}</span>
