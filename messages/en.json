@@ -399,29 +399,33 @@
       "reopen": "Writing guide"
     },
     "rules": {
-      "core-honesty": {
-        "title": "Be honest",
-        "body": "(Placeholder — real guidance text coming.)"
+      "core-depth": {
+        "title": "Depth beats breadth",
+        "body": "Don’t list many experiences shallowly — analyse one deeply. A strong essay wins on interpretation, not on a list of events."
       },
-      "core-specific": {
-        "title": "Be specific",
-        "body": "(Placeholder — real guidance text coming.)"
+      "core-competency": {
+        "title": "Competency over identity",
+        "body": "Don’t lead with being “a foreigner.” It’s only a tool — your competency must be the centre of the essay."
       },
       "growth-formula": {
-        "title": "Structure",
-        "body": "(Placeholder — real guidance text coming.)"
+        "title": "One scene · 4-step formula (500 chars)",
+        "body": "Step 1 (10%): Pick one decisive scene — not your whole life, just one key moment.\nStep 2 (30%): Describe when, where and what you did, so it’s easy to picture.\nStep 3 (40%, most important): State the value it shaped in one sentence — “I am a ___ person.”\nStep 4 (20%): Connect that value to the target role and the benefit to the company."
       },
-      "growth-checklist": {
-        "title": "Before you submit",
-        "body": "(Placeholder — real guidance text coming.)"
+      "growth-example": {
+        "title": "Step 3 example",
+        "body": "e.g. “I’m someone who keeps looking for a way even after failing.” Write the Step-3 sentence, then link it to the role."
       },
-      "personality-example": {
-        "title": "Good vs weak",
-        "body": "(Placeholder — real guidance text coming.)"
+      "growth-mistakes": {
+        "title": "4 mistakes to avoid",
+        "body": "1. Chronological list: don’t start with “I was born in 1998…” — it’s dull and goes unread.\n2. Family clichés: skip “I grew up in a loving family,” bragging about parents, religion/politics.\n3. Listing events: analyse one experience deeply instead of five (exchange, internship, volunteering) shallowly.\n4. Repeating “because I’m a foreigner”: don’t let identity dominate — keep competency at the centre."
       },
-      "motivation-mistake": {
-        "title": "Avoid this",
-        "body": "(Placeholder — real guidance text coming.)"
+      "motivation-formula": {
+        "title": "Why us · why this role",
+        "body": "A-axis (company): mention the firm’s recent news, new products or expansion. e.g. “Hearing your company plans to enter Southeast Asia in 2025…”.\nB-axis (role): show which part of this job your past experience fits.\nTip for foreign applicants: add 2–3 sentences at the end on “why Korea, why this company.”"
+      },
+      "motivation-length": {
+        "title": "500-char split",
+        "body": "Split 500 characters as: 200 about the company + 200 about the role + 100 personal story."
       }
     }
   },

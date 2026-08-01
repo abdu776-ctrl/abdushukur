@@ -32,18 +32,17 @@ export interface GuidanceRule {
 
 export const GUIDANCE_RULES: GuidanceRule[] = [
   // ── General core principles (shown in the "Before you write" intro) ──
-  { id: 'core-honesty',  sectionType: 'general', kind: 'tip', titleKey: 'rules.core-honesty.title',  bodyKey: 'rules.core-honesty.body',  order: 1 },
-  { id: 'core-specific', sectionType: 'general', kind: 'tip', titleKey: 'rules.core-specific.title', bodyKey: 'rules.core-specific.body', order: 2 },
+  { id: 'core-depth',      sectionType: 'general', kind: 'tip', titleKey: 'rules.core-depth.title',      bodyKey: 'rules.core-depth.body',      order: 1 },
+  { id: 'core-competency', sectionType: 'general', kind: 'tip', titleKey: 'rules.core-competency.title', bodyKey: 'rules.core-competency.body', order: 2 },
 
   // ── 성장과정 / growth ──
-  { id: 'growth-formula',   sectionType: 'growth', kind: 'formula',   titleKey: 'rules.growth-formula.title',   bodyKey: 'rules.growth-formula.body',   order: 1 },
-  { id: 'growth-checklist', sectionType: 'growth', kind: 'checklist', titleKey: 'rules.growth-checklist.title', bodyKey: 'rules.growth-checklist.body', order: 2 },
-
-  // ── 성격 / personality ──
-  { id: 'personality-example', sectionType: 'personality', kind: 'example', titleKey: 'rules.personality-example.title', bodyKey: 'rules.personality-example.body', order: 1 },
+  { id: 'growth-formula',  sectionType: 'growth', kind: 'formula', titleKey: 'rules.growth-formula.title',  bodyKey: 'rules.growth-formula.body',  order: 1 },
+  { id: 'growth-example',  sectionType: 'growth', kind: 'example', titleKey: 'rules.growth-example.title',  bodyKey: 'rules.growth-example.body',  order: 2 },
+  { id: 'growth-mistakes', sectionType: 'growth', kind: 'mistake', titleKey: 'rules.growth-mistakes.title', bodyKey: 'rules.growth-mistakes.body', order: 3 },
 
   // ── 지원동기 / motivation ──
-  { id: 'motivation-mistake', sectionType: 'motivation', kind: 'mistake', titleKey: 'rules.motivation-mistake.title', bodyKey: 'rules.motivation-mistake.body', order: 1 },
+  { id: 'motivation-formula', sectionType: 'motivation', kind: 'formula',   titleKey: 'rules.motivation-formula.title', bodyKey: 'rules.motivation-formula.body', order: 1 },
+  { id: 'motivation-length',  sectionType: 'motivation', kind: 'checklist', titleKey: 'rules.motivation-length.title',  bodyKey: 'rules.motivation-length.body',  order: 2 },
 ];
 
 /** Rules that apply to a section, sorted by order. Custom sections fall back to

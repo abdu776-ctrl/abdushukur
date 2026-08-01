@@ -399,29 +399,33 @@
       "reopen": "Yozish qo‘llanmasi"
     },
     "rules": {
-      "core-honesty": {
-        "title": "Halol bo‘ling",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      "core-depth": {
+        "title": "Chuqurlik kenglikdan ustun",
+        "body": "Ko‘p tajribani yuzaki sanamang — bitta tajribani chuqur tahlil qiling. Kuchli 자소서 voqealar bilan emas, ularning talqini bilan yutadi."
       },
-      "core-specific": {
-        "title": "Aniq bo‘ling",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      "core-competency": {
+        "title": "Shaxsdan ko‘ra malaka",
+        "body": "‘Chet ellik’ ekaningizni birinchi o‘ringa qo‘ymang. Bu shunchaki vosita — matn markazida sizning malakangiz turishi kerak."
       },
       "growth-formula": {
-        "title": "Tuzilma formulasi",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+        "title": "Bitta sahna · 4 bosqichli formula (500 belgi)",
+        "body": "1-bosqich (10%): Bitta hal qiluvchi sahnani tanlang — butun hayot emas, bitta muhim daqiqa.\n2-bosqich (30%): Qachon, qayerda, nima qilganingizni ko‘z oldida gavdalanadigan qilib tasvirlang.\n3-bosqich (40%, eng muhim): O‘sha tajriba shakllantirgan qadriyatni bitta gap bilan — “Men ___ insonman”.\n4-bosqich (20%): Bu qadriyat tanlagan lavozimingizda qanday namoyon bo‘lishi va kompaniyaga foydasini bog‘lang."
       },
-      "growth-checklist": {
-        "title": "Topshirishdan oldin",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      "growth-example": {
+        "title": "3-bosqich namunasi",
+        "body": "Masalan: “Men muvaffaqiyatsizlikdan keyin ham yechim izlab, oxirigacha boradigan insonman.” Shunday 3-bosqich gapini yozib, oxirida lavozimga bog‘lang."
       },
-      "personality-example": {
-        "title": "Yaxshi · zaif misol",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      "growth-mistakes": {
+        "title": "Qochish kerak bo‘lgan 4 xato",
+        "body": "1. Xronologik sanash: “1998-yilda tug‘ilganman…” deb boshlamang — zerikarli, o‘qishmaydi.\n2. Oilaviy klishe: “Ahil oilada o‘sganman”, ota-ona bilan maqtanish, din·siyosat qarashlarini yozmang.\n3. Voqealarni sanash: almashinuv·amaliyot·ko‘ngillilik kabi 5 tasini yuzaki emas, 1 tasini chuqur tahlil qiling.\n4. “Chet ellik bo‘lganim uchun” takrori: shaxs matnni egallamasin, markazda malaka bo‘lsin."
       },
-      "motivation-mistake": {
-        "title": "Bu xatodan qoching",
-        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      "motivation-formula": {
+        "title": "Nega biz · nega bu lavozim",
+        "body": "A o‘qi (kompaniya): kompaniyaning so‘nggi yangiliklari·yangi mahsuloti·kengayish rejasini eslang. Masalan: “Kompaniyangiz 2025-yilda Janubi-Sharqiy Osiyoga chiqishini eshitib…”.\nB o‘qi (lavozim): o‘tmish tajribangiz bu ishning qaysi qismiga mos kelishini ko‘rsating.\nChet ellik uchun maslahat: oxirida ‘nega Koreya·nega bu kompaniya’ni 2–3 gap qo‘shing."
+      },
+      "motivation-length": {
+        "title": "500 belgi taqsimoti",
+        "body": "500 belgini shunday taqsimlang: kompaniya haqida 200 + lavozim haqida 200 + shaxsiy hikoya 100 belgi."
       }
     }
   },
