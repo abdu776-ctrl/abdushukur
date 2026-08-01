@@ -72,6 +72,14 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-gray-400 dark:bg-gray-600;
   }
+
+  /* Clear focus indicator for keyboard users. :focus-visible only triggers for
+     keyboard/assistive navigation, so pointer clicks stay ring-free. */
+  :focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer components {
@@ -262,4 +270,17 @@
 
 .glow-animate {
   animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Respect users who ask the OS to reduce motion: neutralise animations and
+   transitions instead of removing them, so layout and state stay intact. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
