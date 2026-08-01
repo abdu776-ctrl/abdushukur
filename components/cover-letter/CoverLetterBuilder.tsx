@@ -11,6 +11,7 @@ import { GuidancePanel } from './GuidancePanel';
 import { GuidanceIntro } from './GuidanceIntro';
 import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
 import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/whyKorea';
+import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
   Download,
@@ -58,7 +59,9 @@ function newId() {
 
 export function CoverLetterBuilder() {
   const t = useTranslations('coverLetter');
+  const tc = useTranslations('common');
   const locale = useLocale();
+  const [toast, setToast] = useState<ToastData | null>(null);
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [showPreview, setShowPreview] = useState(false);
@@ -136,9 +139,10 @@ export function CoverLetterBuilder() {
       if (!showPreview) setShowPreview(true);
       await new Promise((r) => setTimeout(r, 100));
       await exportToPDF('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.pdfReady') });
     } catch (err) {
       console.error('PDF export failed:', err);
-      alert('PDF yuklab olishда xatolik yuz berdi. Iltimos, avval "Preview" tugmasini bosib koʻrinishni oching, keyin qayta urinib koʻring.');
+      setToast({ type: 'error', message: tc('toast.pdfError') });
     } finally {
       setExporting(false);
     }
@@ -148,9 +152,10 @@ export function CoverLetterBuilder() {
     try {
       if (!showPreview) setShowPreview(true);
       exportToWord('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.wordReady') });
     } catch (err) {
       console.error('Word export failed:', err);
-      alert('Word faylni saqlashда xatolik. Avval "Preview" ni oching va qayta urinib koʻring.');
+      setToast({ type: 'error', message: tc('toast.wordError') });
     }
   }
 
@@ -353,6 +358,8 @@ export function CoverLetterBuilder() {
       </div>
 
       {showIntro && <GuidanceIntro onClose={closeIntro} />}
+
+      <Toast toast={toast} onClose={() => setToast(null)} closeLabel={tc('close')} />
     </div>
   );
 }

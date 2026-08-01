@@ -27,7 +27,13 @@
     "darkMode": "Qorong'i rejim",
     "language": "Til",
     "new": "Yangi",
-    "untitled": "Nomsiz"
+    "untitled": "Nomsiz",
+    "toast": {
+      "pdfError": "PDF yuklab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
+      "wordError": "Word faylni saqlab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
+      "pdfReady": "PDF yuklab olindi.",
+      "wordReady": "Word fayl yuklab olindi."
+    }
   },
   "nav": {
     "home": "Bosh sahifa",

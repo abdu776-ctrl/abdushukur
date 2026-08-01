@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { MonthYearPicker } from '@/components/ui/MonthYearPicker';
+import { Toast, type ToastData } from '@/components/ui/Toast';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
@@ -61,6 +62,8 @@ const defaultEducation: Education = {
 
 export function ResumeBuilder() {
   const t = useTranslations('resume');
+  const tc = useTranslations('common');
+  const [toast, setToast] = useState<ToastData | null>(null);
   const [activeSection, setActiveSection] = useState<Section>('personal');
   const [showPreview, setShowPreview] = useState(false);
   const [layoutId, setLayoutId] = useState<LayoutId>(DEFAULT_LAYOUT);
@@ -190,11 +193,10 @@ export function ResumeBuilder() {
       // Give the preview a moment to mount if it was just shown.
       await new Promise((r) => setTimeout(r, 100));
       await exportToPDF('resume-preview', `resume-${personal.fullName || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.pdfReady') });
     } catch (err) {
       console.error('PDF export failed:', err);
-      alert(
-        'PDF yuklab olishда xatolik yuz berdi. Iltimos, avval "Preview" (koʻrish) tugmasini bosib, resume koʻrinishini oching, keyin qayta urinib koʻring.'
-      );
+      setToast({ type: 'error', message: tc('toast.pdfError') });
     } finally {
       setExporting(false);
     }
@@ -204,9 +206,10 @@ export function ResumeBuilder() {
     try {
       if (!showPreview) setShowPreview(true);
       exportToWord('resume-preview', `resume-${personal.fullName || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.wordReady') });
     } catch (err) {
       console.error('Word export failed:', err);
-      alert('Word faylni saqlashда xatolik. Avval "Preview" ni oching va qayta urinib koʻring.');
+      setToast({ type: 'error', message: tc('toast.wordError') });
     }
   }
 
@@ -1023,6 +1026,8 @@ export function ResumeBuilder() {
           onClose={() => setShowTemplateSelector(false)}
         />
       )}
+
+      <Toast toast={toast} onClose={() => setToast(null)} closeLabel={tc('close')} />
     </div>
   );
 }

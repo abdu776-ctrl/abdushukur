@@ -27,7 +27,13 @@
     "darkMode": "Dark mode",
     "language": "Language",
     "new": "New",
-    "untitled": "Untitled"
+    "untitled": "Untitled",
+    "toast": {
+      "pdfError": "Could not export the PDF. Open \"Preview\" first, then try again.",
+      "wordError": "Could not save the Word file. Open \"Preview\" first, then try again.",
+      "pdfReady": "PDF downloaded.",
+      "wordReady": "Word file downloaded."
+    }
   },
   "nav": {
     "home": "Home",
