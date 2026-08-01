@@ -380,7 +380,50 @@
     "total": "총",
     "characters": "자",
     "preview": "미리보기",
-    "applicationDetails": "지원 정보"
+    "applicationDetails": "지원 정보",
+    "guidancePanel": {
+      "title": "이 항목 작성 가이드"
+    },
+    "kind": {
+      "formula": "공식",
+      "mistake": "자주 하는 실수",
+      "tip": "팁",
+      "checklist": "체크리스트",
+      "example": "예시"
+    },
+    "intro": {
+      "title": "쓰기 전에 알아야 할 것",
+      "subtitle": "자기소개서 전체에 적용되는 몇 가지 원칙입니다.",
+      "dontShowAgain": "다시 보지 않기",
+      "gotIt": "시작하기",
+      "reopen": "작성 가이드"
+    },
+    "rules": {
+      "core-honesty": {
+        "title": "정직하게",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      },
+      "core-specific": {
+        "title": "구체적으로",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      },
+      "growth-formula": {
+        "title": "구성 공식",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      },
+      "growth-checklist": {
+        "title": "제출 전 확인",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      },
+      "personality-example": {
+        "title": "좋은 예 · 약한 예",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      },
+      "motivation-mistake": {
+        "title": "이런 실수 피하기",
+        "body": "(예시 문구 — 실제 가이드 텍스트가 곧 추가됩니다.)"
+      }
+    }
   },
   "aiAssistant": {
     "title": "AI 커리어 어시스턴트",

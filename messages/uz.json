@@ -380,7 +380,50 @@
     "total": "Jami",
     "characters": "belgi",
     "preview": "Koʻrish",
-    "applicationDetails": "Ariza maʼlumotlari"
+    "applicationDetails": "Ariza maʼlumotlari",
+    "guidancePanel": {
+      "title": "Bu bo‘limni yozish bo‘yicha"
+    },
+    "kind": {
+      "formula": "Formula",
+      "mistake": "Ko‘p uchraydigan xato",
+      "tip": "Maslahat",
+      "checklist": "Tekshiruv ro‘yxati",
+      "example": "Namuna"
+    },
+    "intro": {
+      "title": "Yozishdan oldin bilishingiz kerak",
+      "subtitle": "Butun o‘z-tavsifnomaga tegishli bir necha tamoyil.",
+      "dontShowAgain": "Boshqa ko‘rsatilmasin",
+      "gotIt": "Boshlash",
+      "reopen": "Yozish qo‘llanmasi"
+    },
+    "rules": {
+      "core-honesty": {
+        "title": "Halol bo‘ling",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      },
+      "core-specific": {
+        "title": "Aniq bo‘ling",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      },
+      "growth-formula": {
+        "title": "Tuzilma formulasi",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      },
+      "growth-checklist": {
+        "title": "Topshirishdan oldin",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      },
+      "personality-example": {
+        "title": "Yaxshi · zaif misol",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      },
+      "motivation-mistake": {
+        "title": "Bu xatodan qoching",
+        "body": "(Namuna — haqiqiy qo‘llanma matni keyin qo‘shiladi.)"
+      }
+    }
   },
   "aiAssistant": {
     "title": "AI Martaba Yordamchisi",

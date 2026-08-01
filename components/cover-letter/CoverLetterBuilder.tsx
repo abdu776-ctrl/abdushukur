@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 import { exportToPDF, exportToWord } from '@/lib/utils';
 import { TextTranslator } from '@/components/TextTranslator';
+import { GuidancePanel } from './GuidancePanel';
+import { GuidanceIntro } from './GuidanceIntro';
+import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
 import {
   Sparkles,
   Download,
@@ -15,7 +18,7 @@ import {
   EyeOff,
   ChevronDown,
   ChevronUp,
-  Lightbulb,
+  BookOpen,
   Building2,
   Target,
   Plus,
@@ -24,7 +27,9 @@ import {
 
 // A section's guidance/help follows its TYPE, not its position, so renaming a
 // section never orphans its help copy. Custom sections use the 'custom' type.
-type SectionType = 'growth' | 'personality' | 'motivation' | 'aspiration' | 'custom';
+type SectionType = CoverLetterSectionType;
+
+const INTRO_DISMISSED_KEY = 'cl-intro-dismissed';
 
 interface CLSection {
   id: string;
@@ -63,6 +68,21 @@ export function CoverLetterBuilder() {
     { id: newId(), type: 'aspiration', title: t('sections.aspiration'), content: '', charLimit: DEFAULT_LIMIT },
   ]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [showIntro, setShowIntro] = useState(false);
+
+  // Show the "Before you write" intro on first visit unless dismissed.
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(INTRO_DISMISSED_KEY) !== 'true') setShowIntro(true);
+    } catch { /* ignore */ }
+  }, []);
+
+  function closeIntro(dontShowAgain: boolean) {
+    if (dontShowAgain) {
+      try { localStorage.setItem(INTRO_DISMISSED_KEY, 'true'); } catch { /* ignore */ }
+    }
+    setShowIntro(false);
+  }
 
   function updateSection(id: string, patch: Partial<CLSection>) {
     setSections((prev) => prev.map((s) => (s.id === id ? { ...s, ...patch } : s)));
@@ -129,6 +149,9 @@ export function CoverLetterBuilder() {
           <div className="flex-1 text-sm text-gray-500 dark:text-gray-400">
             {t('total')}: <span className="font-medium text-gray-900 dark:text-white">{totalChars}</span> {t('characters')}
           </div>
+          <Button variant="secondary" size="sm" icon={<BookOpen className="w-4 h-4" />} onClick={() => setShowIntro(true)}>
+            {t('intro.reopen')}
+          </Button>
           <Button variant="secondary" size="sm" icon={showPreview ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />} onClick={() => setShowPreview(!showPreview)} className="lg:hidden">
             {t('preview')}
           </Button>
@@ -198,11 +221,8 @@ export function CoverLetterBuilder() {
                       </div>
                     </div>
 
-                    {/* Guidance (follows the section TYPE) */}
-                    <div className="flex items-start gap-2 p-3 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20">
-                      <Lightbulb className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
-                      <p className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">{t(`guidance.${section.type}`)}</p>
-                    </div>
+                    {/* Contextual guidance (follows the section TYPE) */}
+                    <GuidancePanel sectionType={section.type} />
 
                     <Textarea
                       placeholder={PLACEHOLDERS[section.type] || ''}
@@ -291,6 +311,8 @@ export function CoverLetterBuilder() {
           </div>
         </div>
       </div>
+
+      {showIntro && <GuidanceIntro onClose={closeIntro} />}
     </div>
   );
 }

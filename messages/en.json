@@ -380,7 +380,50 @@
     "total": "Total",
     "characters": "characters",
     "preview": "Preview",
-    "applicationDetails": "Application Details"
+    "applicationDetails": "Application Details",
+    "guidancePanel": {
+      "title": "Writing guide for this section"
+    },
+    "kind": {
+      "formula": "Formula",
+      "mistake": "Common mistake",
+      "tip": "Tip",
+      "checklist": "Checklist",
+      "example": "Example"
+    },
+    "intro": {
+      "title": "Before you write",
+      "subtitle": "A few principles that apply to the whole self-introduction.",
+      "dontShowAgain": "Don't show again",
+      "gotIt": "Got it",
+      "reopen": "Writing guide"
+    },
+    "rules": {
+      "core-honesty": {
+        "title": "Be honest",
+        "body": "(Placeholder — real guidance text coming.)"
+      },
+      "core-specific": {
+        "title": "Be specific",
+        "body": "(Placeholder — real guidance text coming.)"
+      },
+      "growth-formula": {
+        "title": "Structure",
+        "body": "(Placeholder — real guidance text coming.)"
+      },
+      "growth-checklist": {
+        "title": "Before you submit",
+        "body": "(Placeholder — real guidance text coming.)"
+      },
+      "personality-example": {
+        "title": "Good vs weak",
+        "body": "(Placeholder — real guidance text coming.)"
+      },
+      "motivation-mistake": {
+        "title": "Avoid this",
+        "body": "(Placeholder — real guidance text coming.)"
+      }
+    }
   },
   "aiAssistant": {
     "title": "AI Career Assistant",
