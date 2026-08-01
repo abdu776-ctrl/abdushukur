@@ -3,6 +3,7 @@
 import { X, CheckCircle2, Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { useEscapeKey } from '@/lib/hooks';
 import { LAYOUTS, THEMES, getTheme, type LayoutId, type ThemeId, type Theme } from '@/lib/templates';
 
 // ─── Mini preview components ─────────────────────────────────────────────────
@@ -234,16 +235,23 @@ interface TemplateSelectorProps {
 export function TemplateSelector({ layoutId, themeId, onLayout, onTheme, onClose }: TemplateSelectorProps) {
   const t = useTranslations('resume.templates');
   const theme = getTheme(themeId);
+  useEscapeKey(onClose);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
-      <div className="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl w-full max-w-4xl flex flex-col overflow-hidden animate-slide-up" style={{ maxHeight: '90vh' }}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="template-selector-title"
+        className="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl w-full max-w-4xl flex flex-col overflow-hidden animate-slide-up"
+        style={{ maxHeight: '90vh' }}
+      >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800 flex-shrink-0">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t('title')}</h2>
+            <h2 id="template-selector-title" className="text-lg font-semibold text-gray-900 dark:text-white">{t('title')}</h2>
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">{t('layoutCount', { count: LAYOUTS.length })}</p>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">

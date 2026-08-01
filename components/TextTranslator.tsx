@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Languages, X, ArrowLeftRight, Loader2 } from 'lucide-react';
+import { useEscapeKey } from '@/lib/hooks';
 
 type Lang = { code: string; label: string; flag: string };
 
@@ -32,6 +33,7 @@ export function TextTranslator({
   onApply,
 }: TextTranslatorProps) {
   const [open, setOpen] = useState(false);
+  useEscapeKey(() => setOpen(false), open);
   const [source, setSource] = useState('');
   const [from, setFrom] = useState(defaultFrom);
   const [to, setTo] = useState(defaultTo);
@@ -95,6 +97,9 @@ export function TextTranslator({
           onClick={() => setOpen(false)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={title || label}
             className="w-full max-w-xl bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >

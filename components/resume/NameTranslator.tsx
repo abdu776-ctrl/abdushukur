@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useEscapeKey } from '@/lib/hooks';
 import { Languages, X, ArrowRight, ArrowLeftRight, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -32,6 +33,7 @@ export function NameTranslator({
   onApplyKorean,
 }: NameTranslatorProps) {
   const [open, setOpen] = useState(false);
+  useEscapeKey(() => setOpen(false), open);
   const [source, setSource] = useState('');
   const [from, setFrom] = useState('auto');
   const [to, setTo] = useState('ko');
@@ -117,6 +119,9 @@ export function NameTranslator({
           onClick={() => setOpen(false)}
         >
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-label={label}
             className="w-full max-w-lg bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-2xl overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
