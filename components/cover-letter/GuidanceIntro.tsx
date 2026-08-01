@@ -12,6 +12,7 @@ import { useEscapeKey } from '@/lib/hooks';
  */
 export function GuidanceIntro({ onClose }: { onClose: (dontShowAgain: boolean) => void }) {
   const t = useTranslations('coverLetter');
+  const tc = useTranslations('common');
   const [dontShow, setDontShow] = useState(true);
   const rules = generalRules();
   useEscapeKey(() => onClose(dontShow));
@@ -34,6 +35,7 @@ export function GuidanceIntro({ onClose }: { onClose: (dontShowAgain: boolean) =
           </h2>
           <button
             onClick={() => onClose(dontShow)}
+            aria-label={tc('close')}
             className="w-8 h-8 rounded-lg flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
           >
             <X className="w-4 h-4" />

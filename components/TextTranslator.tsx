@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslations } from 'next-intl';
 import { Languages, X, ArrowLeftRight, Loader2 } from 'lucide-react';
 import { useEscapeKey } from '@/lib/hooks';
 
@@ -32,6 +33,7 @@ export function TextTranslator({
   defaultTo = 'ko',
   onApply,
 }: TextTranslatorProps) {
+  const tc = useTranslations('common');
   const [open, setOpen] = useState(false);
   useEscapeKey(() => setOpen(false), open);
   const [source, setSource] = useState('');
@@ -110,6 +112,7 @@ export function TextTranslator({
               </div>
               <button
                 onClick={() => setOpen(false)}
+                aria-label={tc('close')}
                 className="p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
               >
                 <X className="w-4 h-4" />
