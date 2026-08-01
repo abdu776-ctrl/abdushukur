@@ -23,6 +23,8 @@ export function GuidancePanel({ sectionType }: { sectionType: GuidanceSectionTyp
   const rules = rulesForSection(sectionType);
   const storageKey = `cl-guidance-open:${sectionType}`;
   const [open, setOpen] = useState(true);
+  // Which individual rules are expanded (independent per-rule accordion).
+  const [openRules, setOpenRules] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const stored = localStorage.getItem(storageKey);
@@ -35,6 +37,10 @@ export function GuidancePanel({ sectionType }: { sectionType: GuidanceSectionTyp
       try { localStorage.setItem(storageKey, String(next)); } catch { /* ignore */ }
       return next;
     });
+  }
+
+  function toggleRule(id: string) {
+    setOpenRules((prev) => ({ ...prev, [id]: !prev[id] }));
   }
 
   if (rules.length === 0) return null;
@@ -56,21 +62,31 @@ export function GuidancePanel({ sectionType }: { sectionType: GuidanceSectionTyp
       </button>
 
       {open && (
-        <div className="px-3 pb-3 space-y-2.5">
+        <div className="px-3 pb-3 space-y-1.5">
           {rules.map((rule) => {
             const style = KIND_STYLE[rule.kind];
             const Icon = style.icon;
+            const isOpen = !!openRules[rule.id];
             return (
-              <div key={rule.id} className="text-xs">
-                <div className={cn('flex items-center gap-1.5 font-semibold', style.className)}>
-                  <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>{t(`kind.${rule.kind}`)}</span>
+              <div key={rule.id} className="rounded-lg bg-white/60 dark:bg-white/5 border border-amber-100/70 dark:border-amber-500/10 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => toggleRule(rule.id)}
+                  className="w-full flex items-center gap-1.5 px-2.5 py-2 text-xs text-left hover:bg-white/70 dark:hover:bg-white/10 transition-colors"
+                >
+                  <Icon className={cn('w-3.5 h-3.5 flex-shrink-0', style.className)} />
+                  <span className={cn('font-semibold', style.className)}>{t(`kind.${rule.kind}`)}</span>
                   <span className="text-gray-400 dark:text-gray-500">·</span>
-                  <span className="text-gray-700 dark:text-gray-200">{t(rule.titleKey)}</span>
-                </div>
-                <p className="mt-0.5 pl-5 text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
-                  {t(rule.bodyKey)}
-                </p>
+                  <span className="flex-1 min-w-0 text-gray-700 dark:text-gray-200 truncate">{t(rule.titleKey)}</span>
+                  {isOpen
+                    ? <ChevronUp className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
+                    : <ChevronDown className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />}
+                </button>
+                {isOpen && (
+                  <p className="px-2.5 pb-2.5 pl-8 text-xs text-gray-600 dark:text-gray-300 leading-relaxed whitespace-pre-wrap">
+                    {t(rule.bodyKey)}
+                  </p>
+                )}
               </div>
             );
           })}
