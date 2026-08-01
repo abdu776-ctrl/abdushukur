@@ -427,6 +427,11 @@
         "title": "500자 배분",
         "body": "500자를 이렇게 나누세요: 회사 이야기 200자 + 직무 이야기 200자 + 개인 이야기 100자."
       }
+    },
+    "whyKorea": {
+      "insert": "'왜 한국' 문단 넣기",
+      "create": "'왜 한국' 이야기 만들기",
+      "warning": "외국인 지원자에게는 '왜 한국'이 대개 필요합니다. 없으면 이탈 위험으로 읽힐 수 있어요."
     }
   },
   "aiAssistant": {
@@ -488,6 +493,9 @@
       "title": "계정",
       "deleteAccount": "계정 삭제",
       "deleteWarning": "이 작업은 취소할 수 없습니다."
+    },
+    "whyKorea": {
+      "title": "왜 한국인가"
     }
   },
   "nationalities": {
@@ -497,5 +505,31 @@
     "mongolia": "몽골",
     "vietnam": "베트남",
     "other": "기타"
+  },
+  "whyKorea": {
+    "title": "왜 한국인가",
+    "subtitle": "지원서마다 재사용할 수 있는 '왜 한국' 이야기를 한 번만 정리하세요.",
+    "fields": {
+      "arrivalContext": {
+        "label": "처음 한국에 온 계기",
+        "placeholder": "언제, 왜 처음 한국에 왔나요? (예: 교환학기, 학위 과정, 가족) — 1~2문장."
+      },
+      "alternativesWeighed": {
+        "label": "고려했던 다른 선택지",
+        "placeholder": "다른 어떤 나라나 진로를 진지하게 고민했고, 왜 한국을 택했나요?"
+      },
+      "reasonToStay": {
+        "label": "이곳에서 커리어를 쌓기로 한 이유",
+        "placeholder": "단순히 공부가 아니라, 왜 이곳에서 커리어를 쌓기로 결심했나요?"
+      }
+    },
+    "draft": {
+      "label": "완성된 이야기 (2~3문장)",
+      "placeholder": "위 답변을 바탕으로 2~3문장으로 다듬으세요. '내 답변 합치기'로 초안을 만들 수 있어요."
+    },
+    "combine": "내 답변 합치기",
+    "combineHint": "먼저 위 세 가지 질문에 답해 주세요.",
+    "save": "저장",
+    "saved": "저장됨"
   }
 }

@@ -427,6 +427,11 @@
         "title": "500 belgi taqsimoti",
         "body": "500 belgini shunday taqsimlang: kompaniya haqida 200 + lavozim haqida 200 + shaxsiy hikoya 100 belgi."
       }
+    },
+    "whyKorea": {
+      "insert": "'Nega Koreya' paragrafini qo‘shish",
+      "create": "'Nega Koreya' hikoyasini yaratish",
+      "warning": "Chet ellik nomzod uchun 'nega Koreya' ko‘pincha kerak. Bo‘lmasa, ketib qolish xavfi deb o‘qilishi mumkin."
     }
   },
   "aiAssistant": {
@@ -488,6 +493,9 @@
       "title": "Hisob",
       "deleteAccount": "Hisobni O'chirish",
       "deleteWarning": "Bu amalni bekor qilib bo'lmaydi."
+    },
+    "whyKorea": {
+      "title": "Nega Koreya"
     }
   },
   "nationalities": {
@@ -497,5 +505,31 @@
     "mongolia": "Mo'g'uliston",
     "vietnam": "Vyetnam",
     "other": "Boshqa"
+  },
+  "whyKorea": {
+    "title": "Nega Koreya",
+    "subtitle": "Har bir arizada qayta ishlatiladigan 'nega Koreya' hikoyasini bir marta tayyorlang.",
+    "fields": {
+      "arrivalContext": {
+        "label": "Koreyaga kelish sababi",
+        "placeholder": "Koreyaga birinchi qachon va nega kelgansiz? (masalan: almashinuv semestri, magistratura, oila) — 1–2 gap."
+      },
+      "alternativesWeighed": {
+        "label": "O‘ylab ko‘rilgan boshqa yo‘llar",
+        "placeholder": "Yana qaysi davlat yoki yo‘lni jiddiy o‘ylagandingiz, va nega Koreyani afzal ko‘rdingiz?"
+      },
+      "reasonToStay": {
+        "label": "Shu yerda karyera qurish sababi",
+        "placeholder": "Faqat o‘qish emas, nega aynan shu yerda karyera qurishga qaror qildingiz?"
+      }
+    },
+    "draft": {
+      "label": "Yakuniy hikoya (2–3 gap)",
+      "placeholder": "Yuqoridagi javoblar asosida 2–3 gapga jamlang. 'Javoblarimni birlashtirish' bilan qoralama tuzasiz."
+    },
+    "combine": "Javoblarimni birlashtirish",
+    "combineHint": "Avval yuqoridagi uch savolga javob bering.",
+    "save": "Saqlash",
+    "saved": "Saqlandi"
   }
 }

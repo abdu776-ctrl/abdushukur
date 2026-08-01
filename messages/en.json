@@ -427,6 +427,11 @@
         "title": "500-char split",
         "body": "Split 500 characters as: 200 about the company + 200 about the role + 100 personal story."
       }
+    },
+    "whyKorea": {
+      "insert": "Insert 'Why Korea' closing",
+      "create": "Create your 'Why Korea' story",
+      "warning": "For foreign applicants, 'why Korea' is usually expected. Without it, employers may read a retention risk."
     }
   },
   "aiAssistant": {
@@ -488,6 +493,9 @@
       "title": "Account",
       "deleteAccount": "Delete Account",
       "deleteWarning": "This action cannot be undone."
+    },
+    "whyKorea": {
+      "title": "Why Korea"
     }
   },
   "nationalities": {
@@ -497,5 +505,31 @@
     "mongolia": "Mongolia",
     "vietnam": "Vietnam",
     "other": "Other"
+  },
+  "whyKorea": {
+    "title": "Why Korea",
+    "subtitle": "Write your 'why Korea' story once and reuse it across applications.",
+    "fields": {
+      "arrivalContext": {
+        "label": "How you first came to Korea",
+        "placeholder": "When and why did you first come to Korea? (e.g. exchange semester, degree, family) — 1–2 sentences."
+      },
+      "alternativesWeighed": {
+        "label": "Alternatives you weighed",
+        "placeholder": "What other country or path did you seriously consider, and why Korea over it?"
+      },
+      "reasonToStay": {
+        "label": "Why build a career here",
+        "placeholder": "What made you decide to build a career here — not just study?"
+      }
+    },
+    "draft": {
+      "label": "Final narrative (2–3 sentences)",
+      "placeholder": "Refine into 2–3 sentences based on your answers above. Use 'Combine my answers' to start a draft."
+    },
+    "combine": "Combine my answers",
+    "combineHint": "Answer the three questions above first.",
+    "save": "Save",
+    "saved": "Saved"
   }
 }

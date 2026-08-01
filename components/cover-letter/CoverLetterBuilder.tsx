@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -10,6 +10,7 @@ import { TextTranslator } from '@/components/TextTranslator';
 import { GuidancePanel } from './GuidancePanel';
 import { GuidanceIntro } from './GuidanceIntro';
 import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
+import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/whyKorea';
 import {
   Sparkles,
   Download,
@@ -23,6 +24,8 @@ import {
   Target,
   Plus,
   Trash2,
+  MapPin,
+  AlertTriangle,
 } from 'lucide-react';
 
 // A section's guidance/help follows its TYPE, not its position, so renaming a
@@ -55,6 +58,7 @@ function newId() {
 
 export function CoverLetterBuilder() {
   const t = useTranslations('coverLetter');
+  const locale = useLocale();
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   const [showPreview, setShowPreview] = useState(false);
@@ -69,6 +73,18 @@ export function CoverLetterBuilder() {
   ]);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [showIntro, setShowIntro] = useState(false);
+  const [narrative, setNarrative] = useState<WhyKoreaNarrative | null>(null);
+
+  // Load the profile-level "Why Korea" narrative for the 지원동기 helpers.
+  useEffect(() => {
+    setNarrative(loadNarrative());
+  }, []);
+
+  function insertWhyKorea(sectionId: string, content: string) {
+    const add = narrative?.draftText.trim();
+    if (!add) return;
+    updateSection(sectionId, { content: content ? `${content}\n\n${add}` : add });
+  }
 
   // Show the "Before you write" intro on first visit unless dismissed.
   useEffect(() => {
@@ -223,6 +239,30 @@ export function CoverLetterBuilder() {
 
                     {/* Contextual guidance (follows the section TYPE) */}
                     <GuidancePanel sectionType={section.type} />
+
+                    {/* "Why Korea" helpers — only for the 지원동기 section */}
+                    {section.type === 'motivation' && (
+                      hasNarrativeDraft(narrative) ? (
+                        <button
+                          type="button"
+                          onClick={() => insertWhyKorea(section.id, section.content)}
+                          className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl border border-indigo-200 dark:border-indigo-500/30 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 transition-colors"
+                        >
+                          <MapPin className="w-4 h-4" />
+                          {t('whyKorea.insert')}
+                        </button>
+                      ) : (
+                        <div className="flex items-start gap-2 p-3 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20">
+                          <AlertTriangle className="w-4 h-4 text-amber-500 flex-shrink-0 mt-0.5" />
+                          <div className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
+                            {t('whyKorea.warning')}{' '}
+                            <a href={`/${locale}/settings?tab=whyKorea`} className="font-semibold underline underline-offset-2">
+                              {t('whyKorea.create')}
+                            </a>
+                          </div>
+                        </div>
+                      )
+                    )}
 
                     <Textarea
                       placeholder={PLACEHOLDERS[section.type] || ''}

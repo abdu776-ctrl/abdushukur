@@ -5,6 +5,7 @@ import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
+import { WhyKoreaBuilder } from '@/components/why-korea/WhyKoreaBuilder';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { locales, localeNames, localeFlags } from '@/lib/i18n';
@@ -22,10 +23,13 @@ import {
   AlertTriangle,
   ChevronRight,
   Camera,
+  MapPin,
 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 
-type SettingsTab = 'profile' | 'appearance' | 'language' | 'notifications' | 'account';
+type SettingsTab = 'profile' | 'whyKorea' | 'appearance' | 'language' | 'notifications' | 'account';
+
+const TAB_IDS: SettingsTab[] = ['profile', 'whyKorea', 'appearance', 'language', 'notifications', 'account'];
 
 export default function SettingsPage() {
   const t = useTranslations();
@@ -37,6 +41,14 @@ export default function SettingsPage() {
 
   useEffect(() => setMounted(true), []);
 
+  // Allow deep-linking to a tab, e.g. /settings?tab=whyKorea from the editor.
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('tab');
+    if (requested && (TAB_IDS as string[]).includes(requested)) {
+      setActiveTab(requested as SettingsTab);
+    }
+  }, []);
+
   async function handleSave() {
     setSaving(true);
     await new Promise((r) => setTimeout(r, 1000));
@@ -45,6 +57,7 @@ export default function SettingsPage() {
 
   const tabs = [
     { id: 'profile' as SettingsTab, icon: <User className="w-4 h-4" />, label: t('settings.profile.title') },
+    { id: 'whyKorea' as SettingsTab, icon: <MapPin className="w-4 h-4" />, label: t('settings.whyKorea.title') },
     { id: 'appearance' as SettingsTab, icon: <Palette className="w-4 h-4" />, label: t('settings.appearance.title') },
     { id: 'language' as SettingsTab, icon: <Globe className="w-4 h-4" />, label: t('settings.language.title') },
     { id: 'notifications' as SettingsTab, icon: <Bell className="w-4 h-4" />, label: t('settings.notifications.title') },
@@ -146,6 +159,9 @@ export default function SettingsPage() {
                 </div>
               </div>
             )}
+
+            {/* Why Korea */}
+            {activeTab === 'whyKorea' && <WhyKoreaBuilder />}
 
             {/* Appearance */}
             {activeTab === 'appearance' && mounted && (
