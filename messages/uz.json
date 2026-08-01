@@ -167,11 +167,64 @@
     "title": "Rezyume Yaratuvchi",
     "subtitle": "Professional koreyscha rezyume yarating",
     "templates": {
-      "title": "Shablon Tanlang",
-      "modern": "Zamonaviy",
-      "classic": "Klassik",
-      "minimal": "Minimal",
-      "korean": "Koreya Standarti"
+      "title": "Dizayn tanlang",
+      "layoutHeading": "Ko‘rinish",
+      "colorHeading": "Rang",
+      "apply": "Qo‘llash",
+      "layoutCount": "{count} ta ko‘rinish",
+      "selectedLabel": "Tanlangan",
+      "layout": {
+        "korean": {
+          "name": "이력서 (Koreys shakli)",
+          "desc": "Rasm katagi bor standart koreys rezyume jadvali"
+        },
+        "korean-nophoto": {
+          "name": "이력서 (rasmsiz)",
+          "desc": "Rasm katagi yo‘q koreys rezyume jadvali"
+        },
+        "modern": {
+          "name": "Zamonaviy",
+          "desc": "Rangli sarlavha va rasmli ikki ustun"
+        },
+        "classic": {
+          "name": "Klassik",
+          "desc": "Chiziqli sarlavhali bir ustun"
+        },
+        "minimal": {
+          "name": "Minimal",
+          "desc": "Ko‘p bo‘sh joyli bir ustun"
+        },
+        "sidebar": {
+          "name": "Yon panel",
+          "desc": "Rasmli rangli yon panel"
+        },
+        "compact": {
+          "name": "Ixcham",
+          "desc": "Ma’lumot ko‘p, zich ikki ustun"
+        },
+        "academic": {
+          "name": "Akademik",
+          "desc": "Nashrlarga urg‘u bergan serif uslub"
+        },
+        "tech": {
+          "name": "Dasturchi",
+          "desc": "Monospace, terminal uslubi"
+        },
+        "dark": {
+          "name": "Qorong‘i",
+          "desc": "Rangli sarlavhali qorong‘i fon"
+        }
+      },
+      "color": {
+        "indigo": "Indigo",
+        "navy": "To‘q ko‘k",
+        "forest": "O‘rmon",
+        "teal": "Moviy",
+        "crimson": "Qizil",
+        "amber": "Sarg‘ish",
+        "rose": "Pushti",
+        "slate": "Kulrang"
+      }
     },
     "sections": {
       "personal": "Shaxsiy Ma'lumot",

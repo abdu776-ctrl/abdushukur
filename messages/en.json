@@ -167,11 +167,64 @@
     "title": "Resume Builder",
     "subtitle": "Create a professional Korean resume",
     "templates": {
-      "title": "Choose a Template",
-      "modern": "Modern",
-      "classic": "Classic",
-      "minimal": "Minimal",
-      "korean": "Korean Standard"
+      "title": "Choose a design",
+      "layoutHeading": "Layout",
+      "colorHeading": "Colour",
+      "apply": "Apply",
+      "layoutCount": "{count} layouts",
+      "selectedLabel": "Selected",
+      "layout": {
+        "korean": {
+          "name": "이력서 (Korean form)",
+          "desc": "Standard Korean résumé table with a photo box"
+        },
+        "korean-nophoto": {
+          "name": "이력서 (no photo)",
+          "desc": "Korean résumé table without a photo box"
+        },
+        "modern": {
+          "name": "Modern",
+          "desc": "Two columns with a coloured header and photo"
+        },
+        "classic": {
+          "name": "Classic",
+          "desc": "Single column with ruled section headings"
+        },
+        "minimal": {
+          "name": "Minimal",
+          "desc": "Single column with generous whitespace"
+        },
+        "sidebar": {
+          "name": "Sidebar",
+          "desc": "Coloured side panel with photo"
+        },
+        "compact": {
+          "name": "Compact",
+          "desc": "Dense two columns, fits more on one page"
+        },
+        "academic": {
+          "name": "Academic",
+          "desc": "Serif style with publications emphasised"
+        },
+        "tech": {
+          "name": "Developer",
+          "desc": "Monospace, terminal-inspired"
+        },
+        "dark": {
+          "name": "Dark",
+          "desc": "Dark background with a coloured header"
+        }
+      },
+      "color": {
+        "indigo": "Indigo",
+        "navy": "Navy",
+        "forest": "Forest",
+        "teal": "Teal",
+        "crimson": "Crimson",
+        "amber": "Amber",
+        "rose": "Rose",
+        "slate": "Slate"
+      }
     },
     "sections": {
       "personal": "Personal Information",

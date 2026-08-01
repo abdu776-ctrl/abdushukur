@@ -167,11 +167,64 @@
     "title": "이력서 작성기",
     "subtitle": "전문적인 한국 이력서를 작성하세요",
     "templates": {
-      "title": "템플릿 선택",
-      "modern": "모던",
-      "classic": "클래식",
-      "minimal": "미니멀",
-      "korean": "한국 표준"
+      "title": "디자인 선택",
+      "layoutHeading": "레이아웃",
+      "colorHeading": "색상",
+      "apply": "적용",
+      "layoutCount": "레이아웃 {count}개",
+      "selectedLabel": "선택됨",
+      "layout": {
+        "korean": {
+          "name": "이력서 (한국 양식)",
+          "desc": "사진 칸이 있는 표준 한국 이력서 표"
+        },
+        "korean-nophoto": {
+          "name": "이력서 (사진 없음)",
+          "desc": "사진 칸이 없는 한국 이력서 표"
+        },
+        "modern": {
+          "name": "모던",
+          "desc": "컬러 헤더와 사진이 있는 2단 구성"
+        },
+        "classic": {
+          "name": "클래식",
+          "desc": "구분선 제목의 단일 단 구성"
+        },
+        "minimal": {
+          "name": "미니멀",
+          "desc": "여백이 넉넉한 단일 단 구성"
+        },
+        "sidebar": {
+          "name": "사이드바",
+          "desc": "사진이 있는 컬러 사이드 패널"
+        },
+        "compact": {
+          "name": "컴팩트",
+          "desc": "정보가 많은 조밀한 2단 구성"
+        },
+        "academic": {
+          "name": "학술용",
+          "desc": "출판물을 강조한 세리프 스타일"
+        },
+        "tech": {
+          "name": "개발자",
+          "desc": "모노스페이스 터미널 스타일"
+        },
+        "dark": {
+          "name": "다크",
+          "desc": "컬러 헤더의 어두운 배경"
+        }
+      },
+      "color": {
+        "indigo": "인디고",
+        "navy": "네이비",
+        "forest": "포레스트",
+        "teal": "틸",
+        "crimson": "크림슨",
+        "amber": "앰버",
+        "rose": "로즈",
+        "slate": "슬레이트"
+      }
     },
     "sections": {
       "personal": "개인 정보",
