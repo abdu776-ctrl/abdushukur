@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { X, Lightbulb } from 'lucide-react';
 import { generalRules } from '@/lib/coverLetterGuidance';
-import { useEscapeKey } from '@/lib/hooks';
+import { useEscapeKey, useFocusTrap } from '@/lib/hooks';
 
 /**
  * "Before you write" screen. Shown the first time (unless dismissed) and always
@@ -16,12 +16,14 @@ export function GuidanceIntro({ onClose }: { onClose: (dontShowAgain: boolean) =
   const [dontShow, setDontShow] = useState(true);
   const rules = generalRules();
   useEscapeKey(() => onClose(dontShow));
+  const trapRef = useFocusTrap<HTMLDivElement>();
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => onClose(dontShow)} />
 
       <div
+        ref={trapRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="guidance-intro-title"

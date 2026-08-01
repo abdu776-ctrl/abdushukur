@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import { useEscapeKey } from '@/lib/hooks';
+import { useEscapeKey, useFocusTrap } from '@/lib/hooks';
 import { Languages, X, ArrowRight, ArrowLeftRight, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -36,6 +36,7 @@ export function NameTranslator({
   const tc = useTranslations('common');
   const [open, setOpen] = useState(false);
   useEscapeKey(() => setOpen(false), open);
+  const trapRef = useFocusTrap<HTMLDivElement>(open);
   const [source, setSource] = useState('');
   const [from, setFrom] = useState('auto');
   const [to, setTo] = useState('ko');
@@ -121,6 +122,7 @@ export function NameTranslator({
           onClick={() => setOpen(false)}
         >
           <div
+            ref={trapRef}
             role="dialog"
             aria-modal="true"
             aria-label={label}

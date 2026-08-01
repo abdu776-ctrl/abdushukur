@@ -3,7 +3,7 @@
 import { X, CheckCircle2, Check } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { useEscapeKey } from '@/lib/hooks';
+import { useEscapeKey, useFocusTrap } from '@/lib/hooks';
 import { LAYOUTS, THEMES, getTheme, type LayoutId, type ThemeId, type Theme } from '@/lib/templates';
 
 // ─── Mini preview components ─────────────────────────────────────────────────
@@ -237,12 +237,14 @@ export function TemplateSelector({ layoutId, themeId, onLayout, onTheme, onClose
   const tc = useTranslations('common');
   const theme = getTheme(themeId);
   useEscapeKey(onClose);
+  const trapRef = useFocusTrap<HTMLDivElement>();
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose} />
 
       <div
+        ref={trapRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="template-selector-title"
