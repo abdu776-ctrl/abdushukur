@@ -15,6 +15,7 @@ import {
   LogIn,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 type DashboardDocument = {
   id: string;
@@ -64,6 +65,30 @@ export function DashboardHome({ locale }: { locale: string }) {
   ];
 
   const tips = [t('tips.tip1'), t('tips.tip2'), t('tips.tip3')];
+
+  // While the auth session resolves, show a skeleton instead of flashing the
+  // signed-out state and then swapping to the signed-in one.
+  if (status === 'loading') {
+    return (
+      <div className="max-w-7xl mx-auto space-y-8" aria-busy="true">
+        <div className="flex items-center justify-between gap-4">
+          <div className="space-y-2">
+            <Skeleton className="h-8 w-64" />
+            <Skeleton className="h-4 w-40" />
+          </div>
+          <Skeleton className="h-11 w-36 rounded-xl" />
+        </div>
+        <Skeleton className="h-40 w-full rounded-2xl" />
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[0, 1, 2].map((i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <Skeleton className="h-64 lg:col-span-2 rounded-2xl" />
+          <Skeleton className="h-64 rounded-2xl" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-7xl mx-auto space-y-8 animate-fade-in">
