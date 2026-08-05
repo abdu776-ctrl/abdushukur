@@ -158,7 +158,9 @@
     "demo": {
       "badge": "Qanday ishlashini ko‘ring",
       "title": "Koreer amalda",
-      "subtitle": "Koreys rezyume yasash jarayoni bilan qisqacha tanishing — ma’lumot kiritishdan tayyor PDF’gacha."
+      "subtitle": "Koreys rezyume yasash jarayoni bilan qisqacha tanishing — ma’lumot kiritishdan tayyor PDF’gacha.",
+      "comingSoon": "Demo video tez orada",
+      "walkthrough": "Mahsulot bilan tanishuv"
     },
     "templates": {
       "badge": "Koreys rezyume shablonlari",

@@ -158,7 +158,9 @@
     "demo": {
       "badge": "Watch how it works",
       "title": "See Koreer in action",
-      "subtitle": "A quick tour of building a Korean resume — from your details to a polished, ready-to-send PDF."
+      "subtitle": "A quick tour of building a Korean resume — from your details to a polished, ready-to-send PDF.",
+      "comingSoon": "Demo video coming soon",
+      "walkthrough": "Product walkthrough"
     },
     "templates": {
       "badge": "Korean Resume Templates",

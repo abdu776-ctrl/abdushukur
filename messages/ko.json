@@ -158,7 +158,9 @@
     "demo": {
       "badge": "작동 방식 보기",
       "title": "Koreer 실제 사용 모습",
-      "subtitle": "한국 이력서를 만드는 과정을 빠르게 둘러보세요 — 정보 입력부터 완성된 PDF까지."
+      "subtitle": "한국 이력서를 만드는 과정을 빠르게 둘러보세요 — 정보 입력부터 완성된 PDF까지.",
+      "comingSoon": "데모 영상 준비 중",
+      "walkthrough": "제품 둘러보기"
     },
     "templates": {
       "badge": "한국 이력서 템플릿",

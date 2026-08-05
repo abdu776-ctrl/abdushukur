@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { DemoVideo } from '@/components/DemoVideo';
 import {
   Sparkles,
   FileText,
@@ -310,37 +311,9 @@ export default async function HomePage({ params }: HomePageProps) {
             {t('home.demo.subtitle')}
           </p>
 
-          {/*
-            VIDEO PLACEHOLDER
-            To embed a real video, replace this whole block with:
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video">
-              <iframe
-                className="absolute inset-0 w-full h-full"
-                src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-                title="Koreer demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          */}
-          <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-video bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600">
-            {/* Decorative grid */}
-            <div
-              className="absolute inset-0 opacity-20"
-              style={{
-                backgroundImage:
-                  'linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)',
-                backgroundSize: '40px 40px',
-              }}
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-              <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 hover:bg-white/30 transition-colors cursor-pointer">
-                <Play className="w-9 h-9 ml-1" fill="currentColor" />
-              </div>
-              <p className="text-lg font-semibold">Demo video coming soon</p>
-              <p className="text-sm text-white/70 mt-1">Product walkthrough</p>
-            </div>
-          </div>
+          {/* Per-locale demo video — drops in /public/videos/intro-<locale>.mp4.
+              Until a file exists it shows a graceful placeholder. */}
+          <DemoVideo locale={locale} />
         </div>
       </section>
 
