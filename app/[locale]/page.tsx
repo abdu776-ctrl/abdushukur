@@ -123,63 +123,19 @@ export default async function HomePage({ params }: HomePageProps) {
   ];
 
   const advantages = [
-    {
-      icon: <Clock className="w-5 h-5" />,
-      title: 'Save hours of formatting',
-      desc: 'Skip the guesswork. Fill in your details and get a Korean-standard 이력서 in minutes, not days.',
-    },
-    {
-      icon: <Shield className="w-5 h-5" />,
-      title: 'Korean-standard by default',
-      desc: 'Every template follows real Korean corporate expectations — photo placement, sections, and formal tone.',
-    },
-    {
-      icon: <Languages className="w-5 h-5" />,
-      title: 'Your language, Korean output',
-      desc: 'Work in Uzbek, Russian, English or Korean. The final document is polished for Korean employers.',
-    },
-    {
-      icon: <Sparkles className="w-5 h-5" />,
-      title: 'AI writing help',
-      desc: 'Stuck on your 자기소개서? Get instant AI suggestions written in natural, professional Korean.',
-    },
-    {
-      icon: <LayoutTemplate className="w-5 h-5" />,
-      title: '25+ professional templates',
-      desc: 'From modern to classic Korean official forms — pick the design that fits the company you want.',
-    },
-    {
-      icon: <DollarSign className="w-5 h-5" />,
-      title: 'Free to start',
-      desc: 'Build, preview, and export your resume as a PDF without paying anything to get started.',
-    },
+    { icon: <Clock className="w-5 h-5" />,          title: t('home.why.advantages.formatting.title'), desc: t('home.why.advantages.formatting.desc') },
+    { icon: <Shield className="w-5 h-5" />,         title: t('home.why.advantages.standard.title'),   desc: t('home.why.advantages.standard.desc') },
+    { icon: <Languages className="w-5 h-5" />,      title: t('home.why.advantages.language.title'),   desc: t('home.why.advantages.language.desc') },
+    { icon: <Sparkles className="w-5 h-5" />,       title: t('home.why.advantages.ai.title'),         desc: t('home.why.advantages.ai.desc') },
+    { icon: <LayoutTemplate className="w-5 h-5" />, title: t('home.why.advantages.templates.title'),  desc: t('home.why.advantages.templates.desc') },
+    { icon: <DollarSign className="w-5 h-5" />,     title: t('home.why.advantages.free.title'),       desc: t('home.why.advantages.free.desc') },
   ];
 
   const audience = [
-    {
-      icon: <GraduationCap className="w-6 h-6" />,
-      title: 'International students',
-      desc: 'Studying in Korea and applying for part-time jobs, internships, or your first full-time role.',
-      color: 'from-indigo-500 to-blue-500',
-    },
-    {
-      icon: <Briefcase className="w-6 h-6" />,
-      title: 'Job seekers',
-      desc: 'Applying to Korean companies and need a resume and 자기소개서 that meet local standards.',
-      color: 'from-purple-500 to-pink-500',
-    },
-    {
-      icon: <BookOpen className="w-6 h-6" />,
-      title: 'Researchers & grad students',
-      desc: 'Add publications, theses, and conference papers (학위논문, 학술논문, 프로시딩) to an academic CV.',
-      color: 'from-emerald-500 to-teal-500',
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: 'Newcomers to Korea',
-      desc: 'From Uzbekistan, Kazakhstan, and beyond — build a professional profile in your own language.',
-      color: 'from-orange-500 to-amber-500',
-    },
+    { icon: <GraduationCap className="w-6 h-6" />, title: t('home.who.audience.students.title'),    desc: t('home.who.audience.students.desc'),    color: 'from-indigo-500 to-blue-500' },
+    { icon: <Briefcase className="w-6 h-6" />,     title: t('home.who.audience.jobSeekers.title'),  desc: t('home.who.audience.jobSeekers.desc'),  color: 'from-purple-500 to-pink-500' },
+    { icon: <BookOpen className="w-6 h-6" />,      title: t('home.who.audience.researchers.title'), desc: t('home.who.audience.researchers.desc'), color: 'from-emerald-500 to-teal-500' },
+    { icon: <Globe className="w-6 h-6" />,         title: t('home.who.audience.newcomers.title'),   desc: t('home.who.audience.newcomers.desc'),   color: 'from-orange-500 to-amber-500' },
   ];
 
   return (
@@ -394,13 +350,13 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-50 dark:bg-green-500/10 text-green-700 dark:text-green-400 text-sm font-medium mb-4">
               <Star className="w-3.5 h-3.5" />
-              Why Koreer
+              {t('home.why.badge')}
             </div>
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Built for landing a job in Korea
+              {t('home.why.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              Everything a foreign applicant needs to compete for Korean roles — in one place.
+              {t('home.why.subtitle')}
             </p>
           </div>
 
@@ -429,13 +385,13 @@ export default async function HomePage({ params }: HomePageProps) {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-50 dark:bg-purple-500/10 text-purple-700 dark:text-purple-400 text-sm font-medium mb-4">
               <GraduationCap className="w-3.5 h-3.5" />
-              Who is it for
+              {t('home.who.badge')}
             </div>
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Who Koreer helps
+              {t('home.who.title')}
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-              If you&apos;re building a career in Korea, Koreer is made for you.
+              {t('home.who.subtitle')}
             </p>
           </div>
 

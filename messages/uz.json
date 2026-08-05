@@ -100,6 +100,60 @@
       "title": "Koreya Martabangizni Boshlashga Tayyormisiz?",
       "subtitle": "Koreer yordamida Koreyada ish topgan minglab xorijiy talabalar bilan qo'shiling.",
       "button": "Bepul Hisob Yaratish"
+    },
+    "why": {
+      "badge": "Nega Koreer",
+      "title": "Koreyada ish topish uchun yaratilgan",
+      "subtitle": "Chet ellik nomzodga koreys ish o‘rinlari uchun kerak bo‘lgan hamma narsa — bir joyda.",
+      "advantages": {
+        "formatting": {
+          "title": "Formatlashda soatlab vaqt tejang",
+          "desc": "Taxminlar yo‘q. Ma’lumotni kiriting — bir necha kunda emas, daqiqada koreys standartidagi 이력서 oling."
+        },
+        "standard": {
+          "title": "Standart bo‘yicha koreys uslubi",
+          "desc": "Har bir shablon haqiqiy koreys korporativ talablariga mos — rasm joylashuvi, bo‘limlar va rasmiy ohang."
+        },
+        "language": {
+          "title": "Sizning tilingiz, koreyscha natija",
+          "desc": "O‘zbek, rus, ingliz yoki koreys tilida ishlang. Yakuniy hujjat koreys ish beruvchilar uchun jilolangan."
+        },
+        "ai": {
+          "title": "AI yozuv yordami",
+          "desc": "자기소개서 da qotib qoldingizmi? Tabiiy, professional koreys tilida darhol AI takliflarini oling."
+        },
+        "templates": {
+          "title": "Professional shablonlar",
+          "desc": "Zamonaviydan klassik koreys rasmiy shakllarigacha — xohlagan kompaniyangizga mos dizaynni tanlang."
+        },
+        "free": {
+          "title": "Bepul boshlash",
+          "desc": "Hech narsa to‘lamasdan rezyume yarating, ko‘ring va PDF qilib yuklab oling."
+        }
+      }
+    },
+    "who": {
+      "badge": "Kimlar uchun",
+      "title": "Koreer kimlarga yordam beradi",
+      "subtitle": "Agar Koreyada karyera qurayotgan bo‘lsangiz, Koreer siz uchun.",
+      "audience": {
+        "students": {
+          "title": "Xalqaro talabalar",
+          "desc": "Koreyada o‘qib, part-time ish, amaliyot yoki birinchi to‘liq stavka ishga topshirayotganlar."
+        },
+        "jobSeekers": {
+          "title": "Ish qidiruvchilar",
+          "desc": "Koreys kompaniyalariga topshirayotgan va mahalliy standartlarga mos rezyume va 자기소개서 kerak bo‘lganlar."
+        },
+        "researchers": {
+          "title": "Tadqiqotchilar va magistrlar",
+          "desc": "Nashrlar, dissertatsiyalar va konferentsiya maqolalarini (학위논문, 학술논문, 프로시딩) akademik CV’ga qo‘shing."
+        },
+        "newcomers": {
+          "title": "Koreyaga yangi kelganlar",
+          "desc": "O‘zbekiston, Qozog‘iston va boshqa joylardan — o‘z tilingizda professional profil yarating."
+        }
+      }
     }
   },
   "auth": {

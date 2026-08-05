@@ -100,6 +100,60 @@
       "title": "Ready to Start Your Korean Career?",
       "subtitle": "Join thousands of international students who landed jobs in Korea with Koreer.",
       "button": "Create Free Account"
+    },
+    "why": {
+      "badge": "Why Koreer",
+      "title": "Built for landing a job in Korea",
+      "subtitle": "Everything a foreign applicant needs to compete for Korean roles — in one place.",
+      "advantages": {
+        "formatting": {
+          "title": "Save hours of formatting",
+          "desc": "Skip the guesswork. Fill in your details and get a Korean-standard 이력서 in minutes, not days."
+        },
+        "standard": {
+          "title": "Korean-standard by default",
+          "desc": "Every template follows real Korean corporate expectations — photo placement, sections, and formal tone."
+        },
+        "language": {
+          "title": "Your language, Korean output",
+          "desc": "Work in Uzbek, Russian, English or Korean. The final document is polished for Korean employers."
+        },
+        "ai": {
+          "title": "AI writing help",
+          "desc": "Stuck on your 자기소개서? Get instant AI suggestions written in natural, professional Korean."
+        },
+        "templates": {
+          "title": "Professional templates",
+          "desc": "From modern to classic Korean official forms — pick the design that fits the company you want."
+        },
+        "free": {
+          "title": "Free to start",
+          "desc": "Build, preview, and export your resume as a PDF without paying anything to get started."
+        }
+      }
+    },
+    "who": {
+      "badge": "Who is it for",
+      "title": "Who Koreer helps",
+      "subtitle": "If you're building a career in Korea, Koreer is made for you.",
+      "audience": {
+        "students": {
+          "title": "International students",
+          "desc": "Studying in Korea and applying for part-time jobs, internships, or your first full-time role."
+        },
+        "jobSeekers": {
+          "title": "Job seekers",
+          "desc": "Applying to Korean companies and need a resume and 자기소개서 that meet local standards."
+        },
+        "researchers": {
+          "title": "Researchers & grad students",
+          "desc": "Add publications, theses, and conference papers (학위논문, 학술논문, 프로시딩) to an academic CV."
+        },
+        "newcomers": {
+          "title": "Newcomers to Korea",
+          "desc": "From Uzbekistan, Kazakhstan, and beyond — build a professional profile in your own language."
+        }
+      }
     }
   },
   "auth": {
