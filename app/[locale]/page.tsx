@@ -189,14 +189,14 @@ export default async function HomePage({ params }: HomePageProps) {
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in">
             <Link
-              href="/en/auth/register"
+              href={`/${locale}/auth/register`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-indigo-600 text-white font-semibold text-lg hover:bg-indigo-700 active:bg-indigo-800 transition-all duration-150 shadow-lg hover:shadow-indigo-500/30 group"
             >
               {t('home.hero.cta')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href="/en/resume"
+              href={`/${locale}/resume`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold text-lg hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-150"
             >
               {t('home.hero.ctaSecondary')}
@@ -445,7 +445,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 ))}
               </ul>
               <Link
-                href="/en/resume"
+                href={`/${locale}/resume`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-all duration-150 shadow-sm hover:shadow-indigo-500/20 group"
               >
                 Start Building
@@ -515,7 +515,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 {t('home.cta.subtitle')}
               </p>
               <Link
-                href="/en/auth/register"
+                href={`/${locale}/auth/register`}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white text-indigo-700 font-bold text-lg hover:bg-indigo-50 transition-all duration-150 shadow-xl group"
               >
                 {t('home.cta.button')}
