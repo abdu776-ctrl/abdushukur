@@ -154,6 +154,23 @@
           "desc": "From Uzbekistan, Kazakhstan, and beyond — build a professional profile in your own language."
         }
       }
+    },
+    "demo": {
+      "badge": "Watch how it works",
+      "title": "See Koreer in action",
+      "subtitle": "A quick tour of building a Korean resume — from your details to a polished, ready-to-send PDF."
+    },
+    "templates": {
+      "badge": "Korean Resume Templates",
+      "title": "Professional Korean 이력서 Templates",
+      "desc": "Our templates follow Korean corporate standards with sections for personal photo, education history, and career objectives — all formatted exactly how Korean employers expect.",
+      "cta": "Start Building",
+      "points": {
+        "p1": "Korean standard format (한국 표준 양식)",
+        "p2": "Automatic 존댓말 suggestions",
+        "p3": "Photo placement guidance",
+        "p4": "TOPIK level integration"
+      }
     }
   },
   "auth": {

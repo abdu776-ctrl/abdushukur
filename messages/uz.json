@@ -154,6 +154,23 @@
           "desc": "O‘zbekiston, Qozog‘iston va boshqa joylardan — o‘z tilingizda professional profil yarating."
         }
       }
+    },
+    "demo": {
+      "badge": "Qanday ishlashini ko‘ring",
+      "title": "Koreer amalda",
+      "subtitle": "Koreys rezyume yasash jarayoni bilan qisqacha tanishing — ma’lumot kiritishdan tayyor PDF’gacha."
+    },
+    "templates": {
+      "badge": "Koreys rezyume shablonlari",
+      "title": "Professional koreys 이력서 shablonlari",
+      "desc": "Shablonlarimiz koreys korporativ standartlariga mos — rasm, ta’lim tarixi va maqsad bo‘limlari bilan, aynan koreys ish beruvchilar kutgandek.",
+      "cta": "Yaratishni boshlash",
+      "points": {
+        "p1": "Koreys standart shakli (한국 표준 양식)",
+        "p2": "Avtomatik 존댓말 takliflari",
+        "p3": "Rasm joylashuvi bo‘yicha yo‘riqnoma",
+        "p4": "TOPIK darajasini hisobga olish"
+      }
     }
   },
   "auth": {

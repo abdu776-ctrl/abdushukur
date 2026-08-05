@@ -301,13 +301,13 @@ export default async function HomePage({ params }: HomePageProps) {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 text-sm font-medium mb-6">
             <Play className="w-3.5 h-3.5" />
-            Watch how it works
+            {t('home.demo.badge')}
           </div>
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            See Koreer in action
+            {t('home.demo.title')}
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-10">
-            A quick tour of building a Korean resume — from your details to a polished, ready-to-send PDF.
+            {t('home.demo.subtitle')}
           </p>
 
           {/*
@@ -419,22 +419,20 @@ export default async function HomePage({ params }: HomePageProps) {
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-500/10 text-indigo-700 dark:text-indigo-400 text-sm font-medium mb-6">
                 <Star className="w-3.5 h-3.5" />
-                Korean Resume Templates
+                {t('home.templates.badge')}
               </div>
               <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-                Professional Korean
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"> 이력서 </span>
-                Templates
+                {t('home.templates.title')}
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-                Our templates follow Korean corporate standards with sections for personal photo, education history, and career objectives — all formatted exactly how Korean employers expect.
+                {t('home.templates.desc')}
               </p>
               <ul className="space-y-4 mb-8">
                 {[
-                  'Korean standard format (한국 표준 양식)',
-                  'Automatic 존댓말 suggestions',
-                  'Photo placement guidance',
-                  'TOPIK level integration',
+                  t('home.templates.points.p1'),
+                  t('home.templates.points.p2'),
+                  t('home.templates.points.p3'),
+                  t('home.templates.points.p4'),
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-3 text-gray-700 dark:text-gray-300">
                     <div className="w-6 h-6 rounded-full bg-green-100 dark:bg-green-500/10 flex items-center justify-center flex-shrink-0">
@@ -448,7 +446,7 @@ export default async function HomePage({ params }: HomePageProps) {
                 href={`/${locale}/resume`}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition-all duration-150 shadow-sm hover:shadow-indigo-500/20 group"
               >
-                Start Building
+                {t('home.templates.cta')}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
