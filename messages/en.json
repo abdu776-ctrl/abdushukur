@@ -32,7 +32,8 @@
       "pdfError": "Could not export the PDF. Open \"Preview\" first, then try again.",
       "wordError": "Could not save the Word file. Open \"Preview\" first, then try again.",
       "pdfReady": "PDF downloaded.",
-      "wordReady": "Word file downloaded."
+      "wordReady": "Word file downloaded.",
+      "printHint": "Print dialog opened — choose “Save as PDF” to get a text-based file."
     }
   },
   "nav": {

@@ -5,7 +5,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { exportToPDF, exportToWord } from '@/lib/utils';
+import { printDocument, exportToWord } from '@/lib/utils';
 import { TextTranslator } from '@/components/TextTranslator';
 import { GuidancePanel } from './GuidancePanel';
 import { GuidanceIntro } from './GuidanceIntro';
@@ -163,8 +163,9 @@ export function CoverLetterBuilder() {
     try {
       if (!showPreview) setShowPreview(true);
       await new Promise((r) => setTimeout(r, 100));
-      await exportToPDF('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
-      setToast({ type: 'success', message: tc('toast.pdfReady') });
+      // Text-based export: keeps the text selectable and ATS-readable.
+      printDocument('cover-letter-preview', `cover-letter-${company || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.printHint') });
     } catch (err) {
       console.error('PDF export failed:', err);
       setToast({ type: 'error', message: tc('toast.pdfError') });

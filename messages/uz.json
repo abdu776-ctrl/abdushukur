@@ -32,7 +32,8 @@
       "pdfError": "PDF yuklab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
       "wordError": "Word faylni saqlab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
       "pdfReady": "PDF yuklab olindi.",
-      "wordReady": "Word fayl yuklab olindi."
+      "wordReady": "Word fayl yuklab olindi.",
+      "printHint": "Chop etish oynasi ochildi — matnli fayl olish uchun “PDF sifatida saqlash”ni tanlang."
     }
   },
   "nav": {

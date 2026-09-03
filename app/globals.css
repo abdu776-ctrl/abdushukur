@@ -284,3 +284,54 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Text-based PDF export ────────────────────────────────────────────────
+   printDocument() clones the preview into #print-root and prints only that,
+   so the exported file keeps selectable text (readable by an ATS) instead of
+   the flattened image the canvas export produces. */
+#print-root {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 12mm;
+  }
+
+  /* Print only the cloned document. */
+  html.printing body > *:not(#print-root) {
+    display: none !important;
+  }
+
+  html.printing #print-root {
+    display: block !important;
+  }
+
+  /* The clone sat inside a scrolling, rounded, shadowed card on screen —
+     none of that belongs on paper. */
+  html.printing #print-root > * {
+    max-height: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Keep template header bands and accent colours on paper. */
+  html.printing #print-root,
+  html.printing #print-root * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  html.printing,
+  html.printing body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+}

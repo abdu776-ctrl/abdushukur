@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/Badge';
 import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
-import { exportToPDF, exportToWord } from '@/lib/utils';
+import { printDocument, exportToWord } from '@/lib/utils';
 import {
   User,
   GraduationCap,
@@ -192,8 +192,9 @@ export function ResumeBuilder() {
       if (!showPreview) setShowPreview(true);
       // Give the preview a moment to mount if it was just shown.
       await new Promise((r) => setTimeout(r, 100));
-      await exportToPDF('resume-preview', `resume-${personal.fullName || 'koreer'}`);
-      setToast({ type: 'success', message: tc('toast.pdfReady') });
+      // Text-based export: keeps the text selectable and ATS-readable.
+      printDocument('resume-preview', `resume-${personal.fullName || 'koreer'}`);
+      setToast({ type: 'success', message: tc('toast.printHint') });
     } catch (err) {
       console.error('PDF export failed:', err);
       setToast({ type: 'error', message: tc('toast.pdfError') });
