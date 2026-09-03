@@ -511,6 +511,14 @@
       "insert": "'Nega Koreya' paragrafini qo‘shish",
       "create": "'Nega Koreya' hikoyasini yaratish",
       "warning": "Chet ellik nomzod uchun 'nega Koreya' ko‘pincha kerak. Bo‘lmasa, ketib qolish xavfi deb o‘qilishi mumkin."
+    },
+    "jobPosting": {
+      "label": "Maqsadli ish e’loni (ixtiyoriy)",
+      "placeholder": "Ish e’lonini shu yerga qo‘ying — AI shunga moslab yozadi."
+    },
+    "ai": {
+      "error": "AI javob bera olmadi. Qayta urinib ko‘ring.",
+      "outlineApplied": "Shaxsiy ma’lumot yo‘q — AI moslashtirilgan reja va savollar qo‘ydi."
     }
   },
   "aiAssistant": {

@@ -511,6 +511,14 @@
       "insert": "Insert 'Why Korea' closing",
       "create": "Create your 'Why Korea' story",
       "warning": "For foreign applicants, 'why Korea' is usually expected. Without it, employers may read a retention risk."
+    },
+    "jobPosting": {
+      "label": "Target job posting (optional)",
+      "placeholder": "Paste the job posting here — the AI will tailor your writing to it."
+    },
+    "ai": {
+      "error": "AI could not respond. Please try again.",
+      "outlineApplied": "No personal details yet — AI added a tailored outline and questions to answer."
     }
   },
   "aiAssistant": {

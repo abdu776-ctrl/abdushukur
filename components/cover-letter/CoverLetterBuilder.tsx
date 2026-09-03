@@ -64,6 +64,8 @@ export function CoverLetterBuilder() {
   const [toast, setToast] = useState<ToastData | null>(null);
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
+  // Pasted target job posting — the AI tailors each section to it.
+  const [jobPosting, setJobPosting] = useState('');
   const [showPreview, setShowPreview] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [aiLoading, setAiLoading] = useState<string | null>(null);
@@ -118,19 +120,39 @@ export function CoverLetterBuilder() {
     setExpandedId((cur) => (cur === id ? null : cur));
   }
 
+  // Real AI assist: tailors THIS section to the pasted job posting using the
+  // applicant's own material. Never fabricates a personal history — with no
+  // material it returns a tailored outline plus questions to answer.
   async function handleAISuggest(section: CLSection) {
     setAiLoading(section.id);
-    await new Promise((r) => setTimeout(r, 1500));
-    // Sample scaffolding for the four standard types only.
-    const samples: Partial<Record<SectionType, string>> = {
-      growth: `저는 우즈베키스탄에서 태어나 어려서부터 기술과 혁신에 깊은 관심을 가지고 성장하였습니다...`,
-      personality: `저의 가장 큰 장점은 끈기와 빠른 학습 능력입니다...`,
-      motivation: `귀사의 ${company || '회사'}에 지원하게 된 것은 혁신 기술과 글로벌 리더십 때문입니다...`,
-      aspiration: `입사 후 첫 1년 동안 귀사의 업무 방식과 문화를 깊이 이해하고 성과를 내는 데 집중하겠습니다...`,
-    };
-    const sample = samples[section.type];
-    if (sample) updateSection(section.id, { content: sample });
-    setAiLoading(null);
+    try {
+      const res = await fetch('/api/tailor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          sectionType: section.type,
+          sectionTitle: section.title,
+          company,
+          position,
+          jobPosting,
+          content: section.content,
+          charLimit: section.charLimit,
+          locale,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data?.text) {
+        setToast({ type: 'error', message: data?.error || t('ai.error') });
+        return;
+      }
+      updateSection(section.id, { content: data.text });
+      if (data.outline) setToast({ type: 'success', message: t('ai.outlineApplied') });
+    } catch (err) {
+      console.error('AI tailor failed:', err);
+      setToast({ type: 'error', message: t('ai.error') });
+    } finally {
+      setAiLoading(null);
+    }
   }
 
   async function handleExport() {
@@ -190,6 +212,14 @@ export function CoverLetterBuilder() {
             <Input label={t('targetCompany')} placeholder="Samsung, Kakao, Naver..." value={company} onChange={(e) => setCompany(e.target.value)} leftIcon={<Building2 className="w-4 h-4" />} />
             <Input label={t('targetPosition')} placeholder="Software Engineer..." value={position} onChange={(e) => setPosition(e.target.value)} />
           </div>
+          <Textarea
+            label={t('jobPosting.label')}
+            placeholder={t('jobPosting.placeholder')}
+            value={jobPosting}
+            rows={4}
+            onChange={(e) => setJobPosting(e.target.value)}
+            className="resize-none"
+          />
         </div>
 
         {/* Sections */}
@@ -290,11 +320,9 @@ export function CoverLetterBuilder() {
                           defaultTo="ko"
                           onApply={(v) => updateSection(section.id, { content: v })}
                         />
-                        {section.type !== 'custom' && (
-                          <Button variant="secondary" size="sm" icon={<Sparkles className="w-3.5 h-3.5 text-indigo-500" />} loading={aiLoading === section.id} onClick={() => handleAISuggest(section)}>
-                            {t('aiHelp')}
-                          </Button>
-                        )}
+                        <Button variant="secondary" size="sm" icon={<Sparkles className="w-3.5 h-3.5 text-indigo-500" />} loading={aiLoading === section.id} onClick={() => handleAISuggest(section)}>
+                          {t('aiHelp')}
+                        </Button>
                       </div>
                     </div>
                   </div>
