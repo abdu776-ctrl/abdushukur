@@ -583,6 +583,9 @@
     },
     "whyKorea": {
       "title": "Nega Koreya"
+    },
+    "career": {
+      "title": "Karyera profili"
     }
   },
   "nationalities": {
@@ -618,5 +621,37 @@
     "combineHint": "Avval yuqoridagi uch savolga javob bering.",
     "save": "Saqlash",
     "saved": "Saqlandi"
+  },
+  "careerProfile": {
+    "title": "Karyera profili",
+    "subtitle": "Buni bir marta to‘ldiring. Har bir hujjat va har bir AI taklifi shundan foydalanadi — shunda AI savol berish o‘rniga haqiqiy matn yozadi.",
+    "save": "Profilni saqlash",
+    "saved": "Saqlandi",
+    "fields": {
+      "headline": {
+        "label": "Bir qatorli tavsif",
+        "placeholder": "masalan: Hanyang universitetida dizayn magistranti, UX yo‘nalishida."
+      },
+      "skills": {
+        "label": "Ko‘nikma va vositalar",
+        "placeholder": "Figma, React, TypeScript, foydalanuvchi tadqiqoti…"
+      },
+      "education": {
+        "label": "Ta’lim",
+        "placeholder": "Universitet, yo‘nalish, yillar — masalan: Hanyang universiteti, Dizayn, 2023–2025."
+      },
+      "experience": {
+        "label": "Tajriba va loyihalar",
+        "placeholder": "Ish, amaliyot, loyihalar — aynan nima qilganingiz va natijasi bilan."
+      },
+      "languages": {
+        "label": "Tillar",
+        "placeholder": "Koreys (TOPIK 4), ingliz (yuqori), o‘zbek (ona tili)…"
+      },
+      "strengths": {
+        "label": "Kuchli tomonlar va yutuqlar",
+        "placeholder": "Mukofotlar, stipendiyalar, o‘zingiz ishonchli bo‘lgan narsalar."
+      }
+    }
   }
 }

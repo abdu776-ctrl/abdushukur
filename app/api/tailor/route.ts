@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
       position = '',
       jobPosting = '',
       content = '',
+      profile = '',
       charLimit = 800,
       locale = 'uz',
     } = body ?? {};
@@ -43,7 +44,11 @@ export async function POST(req: NextRequest) {
 
     const userLang = LANG_NAME[locale] || 'Uzbek';
     const brief = SECTION_BRIEF[sectionType] || SECTION_BRIEF.custom;
-    const hasMaterial = String(content).trim().length >= 40;
+    // Material can come from what they already wrote in this section, or from
+    // their saved career profile — either is real, applicant-supplied fact.
+    const hasDraft = String(content).trim().length >= 40;
+    const hasProfile = String(profile).trim().length >= 20;
+    const hasMaterial = hasDraft || hasProfile;
 
     const system = [
       'You help an international applicant in South Korea write a 자기소개서 (Korean self-introduction letter).',
@@ -63,11 +68,15 @@ export async function POST(req: NextRequest) {
     if (position) parts.push(`Target position: ${position}`);
     if (sectionTitle) parts.push(`Section title: ${sectionTitle}`);
     if (jobPosting.trim()) parts.push(`Job posting (tailor to this):\n${String(jobPosting).slice(0, 4000)}`);
-    parts.push(
-      hasMaterial
-        ? `The applicant's own notes / current draft (use ONLY these facts):\n${String(content).slice(0, 4000)}`
-        : 'The applicant has NOT provided their own material yet. Follow HARD RULE 2 — give a tailored outline and specific questions, do not invent a story.'
-    );
+    if (hasProfile) {
+      parts.push(`The applicant's saved career profile (real facts — use these):\n${String(profile).slice(0, 3000)}`);
+    }
+    if (hasDraft) {
+      parts.push(`The applicant's notes / current draft for this section (use ONLY these facts):\n${String(content).slice(0, 4000)}`);
+    }
+    if (!hasMaterial) {
+      parts.push('The applicant has NOT provided their own material yet. Follow HARD RULE 2 — give a tailored outline and specific questions, do not invent a story.');
+    }
 
     const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',

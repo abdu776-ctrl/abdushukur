@@ -11,6 +11,7 @@ import { GuidancePanel } from './GuidancePanel';
 import { GuidanceIntro } from './GuidanceIntro';
 import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
 import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/whyKorea';
+import { loadProfile, profileToPrompt } from '@/lib/profile';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
@@ -136,6 +137,8 @@ export function CoverLetterBuilder() {
           position,
           jobPosting,
           content: section.content,
+          // Saved career profile — real, applicant-supplied facts the AI may use.
+          profile: profileToPrompt(loadProfile()),
           charLimit: section.charLimit,
           locale,
         }),

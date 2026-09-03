@@ -583,6 +583,9 @@
     },
     "whyKorea": {
       "title": "왜 한국인가"
+    },
+    "career": {
+      "title": "커리어 프로필"
     }
   },
   "nationalities": {
@@ -618,5 +621,37 @@
     "combineHint": "먼저 위 세 가지 질문에 답해 주세요.",
     "save": "저장",
     "saved": "저장됨"
+  },
+  "careerProfile": {
+    "title": "커리어 프로필",
+    "subtitle": "한 번만 입력하세요. 모든 문서와 AI 제안이 이 내용을 사용하므로, AI가 질문 대신 실제 내용을 작성할 수 있습니다.",
+    "save": "프로필 저장",
+    "saved": "저장됨",
+    "fields": {
+      "headline": {
+        "label": "한 줄 소개",
+        "placeholder": "예: UX를 중심으로 공부하는 한양대학교 디자인 석사과정 학생."
+      },
+      "skills": {
+        "label": "기술 · 도구",
+        "placeholder": "Figma, React, TypeScript, 사용자 리서치…"
+      },
+      "education": {
+        "label": "학력",
+        "placeholder": "학교, 전공, 기간 — 예: 한양대학교 디자인, 2023–2025."
+      },
+      "experience": {
+        "label": "경력 · 프로젝트",
+        "placeholder": "직무, 인턴십, 프로젝트 — 실제로 한 일과 결과를 함께."
+      },
+      "languages": {
+        "label": "언어",
+        "placeholder": "한국어(TOPIK 4급), 영어(상급), 우즈베크어(모국어)…"
+      },
+      "strengths": {
+        "label": "강점 · 성과",
+        "placeholder": "수상, 장학금, 스스로 자신 있는 부분."
+      }
+    }
   }
 }

@@ -6,6 +6,7 @@ import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { WhyKoreaBuilder } from '@/components/why-korea/WhyKoreaBuilder';
+import { CareerProfileForm } from '@/components/profile/CareerProfileForm';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { locales, localeNames, localeFlags } from '@/lib/i18n';
@@ -24,12 +25,13 @@ import {
   ChevronRight,
   Camera,
   MapPin,
+  Briefcase,
 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 
-type SettingsTab = 'profile' | 'whyKorea' | 'appearance' | 'language' | 'notifications' | 'account';
+type SettingsTab = 'profile' | 'career' | 'whyKorea' | 'appearance' | 'language' | 'notifications' | 'account';
 
-const TAB_IDS: SettingsTab[] = ['profile', 'whyKorea', 'appearance', 'language', 'notifications', 'account'];
+const TAB_IDS: SettingsTab[] = ['profile', 'career', 'whyKorea', 'appearance', 'language', 'notifications', 'account'];
 
 export default function SettingsPage() {
   const t = useTranslations();
@@ -57,6 +59,7 @@ export default function SettingsPage() {
 
   const tabs = [
     { id: 'profile' as SettingsTab, icon: <User className="w-4 h-4" />, label: t('settings.profile.title') },
+    { id: 'career' as SettingsTab, icon: <Briefcase className="w-4 h-4" />, label: t('settings.career.title') },
     { id: 'whyKorea' as SettingsTab, icon: <MapPin className="w-4 h-4" />, label: t('settings.whyKorea.title') },
     { id: 'appearance' as SettingsTab, icon: <Palette className="w-4 h-4" />, label: t('settings.appearance.title') },
     { id: 'language' as SettingsTab, icon: <Globe className="w-4 h-4" />, label: t('settings.language.title') },
@@ -159,6 +162,9 @@ export default function SettingsPage() {
                 </div>
               </div>
             )}
+
+            {/* Career profile */}
+            {activeTab === 'career' && <CareerProfileForm />}
 
             {/* Why Korea */}
             {activeTab === 'whyKorea' && <WhyKoreaBuilder />}

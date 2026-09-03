@@ -583,6 +583,9 @@
     },
     "whyKorea": {
       "title": "Why Korea"
+    },
+    "career": {
+      "title": "Career profile"
     }
   },
   "nationalities": {
@@ -618,5 +621,37 @@
     "combineHint": "Answer the three questions above first.",
     "save": "Save",
     "saved": "Saved"
+  },
+  "careerProfile": {
+    "title": "Career profile",
+    "subtitle": "Fill this in once. Every document and every AI suggestion uses it, so the AI can write real content instead of asking you questions.",
+    "save": "Save profile",
+    "saved": "Saved",
+    "fields": {
+      "headline": {
+        "label": "One-line headline",
+        "placeholder": "e.g. Design master’s student at Hanyang University, focused on UX."
+      },
+      "skills": {
+        "label": "Skills & tools",
+        "placeholder": "Figma, React, TypeScript, user research…"
+      },
+      "education": {
+        "label": "Education",
+        "placeholder": "School, major, years — e.g. Hanyang University, Design, 2023–2025."
+      },
+      "experience": {
+        "label": "Experience & projects",
+        "placeholder": "Jobs, internships, projects — with what you actually did and the result."
+      },
+      "languages": {
+        "label": "Languages",
+        "placeholder": "Korean (TOPIK 4), English (advanced), Uzbek (native)…"
+      },
+      "strengths": {
+        "label": "Strengths & achievements",
+        "placeholder": "Awards, scholarships, things you are genuinely good at."
+      }
+    }
   }
 }
