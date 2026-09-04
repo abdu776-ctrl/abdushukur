@@ -42,6 +42,7 @@
     "resume": "Resume",
     "coverLetter": "Cover Letter",
     "aiAssistant": "AI Assistant",
+    "documents": "Saved",
     "settings": "Settings",
     "templates": "Templates"
   },
@@ -670,6 +671,27 @@
     "saved": "Saved to your account.",
     "saveError": "Could not save. Please try again.",
     "signInToSave": "Sign in to save this document to your account.",
-    "untitled": "Untitled"
+    "untitled": "Untitled",
+    "title": "Saved documents",
+    "subtitle": "Everything you have saved to your account. Open one to keep editing it.",
+    "loading": "Loading your documents…",
+    "empty": "You have not saved anything yet.",
+    "emptyHint": "Create a resume or a cover letter, then press Save.",
+    "signInToView": "Sign in to see the documents saved to your account.",
+    "signIn": "Sign in",
+    "open": "Open",
+    "opened": "Document opened. Saving again updates this same copy.",
+    "loadError": "Could not open this document.",
+    "notFound": "This document no longer exists.",
+    "signInToOpen": "Sign in to open this saved document.",
+    "delete": "Delete",
+    "confirmDelete": "Delete this document?",
+    "deleted": "Document deleted.",
+    "deleteError": "Could not delete. Please try again.",
+    "kindResume": "Resume",
+    "kindCoverLetter": "Cover letter",
+    "newResume": "New resume",
+    "newCoverLetter": "New cover letter",
+    "editing": "Editing a saved document"
   }
 }

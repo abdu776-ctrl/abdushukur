@@ -42,6 +42,7 @@
     "resume": "Rezyume",
     "coverLetter": "Motivatsion xat",
     "aiAssistant": "AI Yordamchi",
+    "documents": "Saqlanganlar",
     "settings": "Sozlamalar",
     "templates": "Shablonlar"
   },
@@ -670,6 +671,27 @@
     "saved": "Akkauntingizga saqlandi.",
     "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
     "signInToSave": "Bu hujjatni akkauntingizga saqlash uchun tizimga kiring.",
-    "untitled": "Nomsiz"
+    "untitled": "Nomsiz",
+    "title": "Saqlangan hujjatlar",
+    "subtitle": "Akkauntingizga saqlagan barcha hujjatlar. Davom ettirish uchun ustiga bosing.",
+    "loading": "Hujjatlar yuklanmoqda…",
+    "empty": "Hozircha hech narsa saqlamagansiz.",
+    "emptyHint": "Rezyume yoki motivatsion xat yarating, so‘ng “Saqlash” tugmasini bosing.",
+    "signInToView": "Saqlangan hujjatlarni ko‘rish uchun tizimga kiring.",
+    "signIn": "Kirish",
+    "open": "Ochish",
+    "opened": "Hujjat ochildi. Qayta saqlasangiz, shu nusxa yangilanadi.",
+    "loadError": "Bu hujjatni ochib bo‘lmadi.",
+    "notFound": "Bu hujjat endi mavjud emas.",
+    "signInToOpen": "Saqlangan hujjatni ochish uchun tizimga kiring.",
+    "delete": "O‘chirish",
+    "confirmDelete": "Bu hujjat o‘chirilsinmi?",
+    "deleted": "Hujjat o‘chirildi.",
+    "deleteError": "O‘chirib bo‘lmadi. Qayta urinib ko‘ring.",
+    "kindResume": "Rezyume",
+    "kindCoverLetter": "Motivatsion xat",
+    "newResume": "Yangi rezyume",
+    "newCoverLetter": "Yangi motivatsion xat",
+    "editing": "Saqlangan hujjat tahrirlanmoqda"
   }
 }

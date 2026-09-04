@@ -12,7 +12,8 @@ import { GuidanceIntro } from './GuidanceIntro';
 import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
 import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/whyKorea';
 import { loadProfile, profileToPrompt } from '@/lib/profile';
-import { saveDocument, NotSignedInError } from '@/lib/documents';
+import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
+import { useAuth } from '@/lib/useAuth';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
@@ -75,6 +76,8 @@ export function CoverLetterBuilder() {
   // row instead of creating a duplicate.
   const [documentId, setDocumentId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [loadingDoc, setLoadingDoc] = useState(false);
+  const { status: authStatus } = useAuth();
 
   async function handleSave() {
     setSaving(true);
@@ -115,14 +118,61 @@ export function CoverLetterBuilder() {
     setNarrative(loadNarrative());
   }, []);
 
+  // Reopening a saved cover letter: /cover-letter?doc=<id>. Waiting for the auth
+  // status matters — Row Level Security returns nothing until the session is
+  // restored from storage.
+  useEffect(() => {
+    if (authStatus === 'loading') return;
+    const id = new URLSearchParams(window.location.search).get('doc');
+    if (!id) return;
+
+    if (authStatus !== 'authenticated') {
+      setToast({ type: 'error', message: td('signInToOpen') });
+      return;
+    }
+
+    let active = true;
+    setLoadingDoc(true);
+    loadDocument(id)
+      .then((doc) => {
+        if (!active) return;
+        if (!doc || doc.kind !== 'cover_letter') {
+          setToast({ type: 'error', message: td('notFound') });
+          return;
+        }
+        const d = doc.data as Record<string, unknown>;
+        if (typeof d.company === 'string') setCompany(d.company);
+        if (typeof d.position === 'string') setPosition(d.position);
+        if (typeof d.jobPosting === 'string') setJobPosting(d.jobPosting);
+        if (Array.isArray(d.sections) && d.sections.length > 0) {
+          setSections(d.sections as CLSection[]);
+        }
+        setDocumentId(doc.id);
+        setToast({ type: 'success', message: td('opened') });
+      })
+      .catch((err) => {
+        console.error('open cover letter failed:', err);
+        if (active) setToast({ type: 'error', message: td('loadError') });
+      })
+      .finally(() => {
+        if (active) setLoadingDoc(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [authStatus, td]);
+
   function insertWhyKorea(sectionId: string, content: string) {
     const add = narrative?.draftText.trim();
     if (!add) return;
     updateSection(sectionId, { content: content ? `${content}\n\n${add}` : add });
   }
 
-  // Show the "Before you write" intro on first visit unless dismissed.
+  // Show the "Before you write" intro on first visit unless dismissed. Skipped
+  // when reopening a saved letter — the user is continuing, not starting.
   useEffect(() => {
+    if (new URLSearchParams(window.location.search).get('doc')) return;
     try {
       if (localStorage.getItem(INTRO_DISMISSED_KEY) !== 'true') setShowIntro(true);
     } catch { /* ignore */ }
@@ -220,6 +270,16 @@ export function CoverLetterBuilder() {
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Editor */}
       <div className="w-full lg:w-[520px] flex-shrink-0 space-y-4">
+        {/* Editing an existing saved document — makes it obvious that Save
+            updates this copy instead of creating another one. */}
+        {documentId && (
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20">
+            <Save className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+            <span className="text-xs font-medium text-indigo-700 dark:text-indigo-300">
+              {td('editing')}
+            </span>
+          </div>
+        )}
         {/* Actions bar */}
         <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800">
           <div className="flex-1 text-sm text-gray-500 dark:text-gray-400">
@@ -231,7 +291,7 @@ export function CoverLetterBuilder() {
           <Button variant="secondary" size="sm" icon={showPreview ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />} onClick={() => setShowPreview(!showPreview)} className="lg:hidden">
             {t('preview')}
           </Button>
-          <Button variant="secondary" size="sm" icon={<Save className="w-3.5 h-3.5" />} loading={saving} onClick={handleSave}>{td('save')}</Button>
+          <Button variant="secondary" size="sm" icon={<Save className="w-3.5 h-3.5" />} loading={saving || loadingDoc} onClick={handleSave}>{td('save')}</Button>
           <Button variant="secondary" size="sm" icon={<FileType className="w-4 h-4" />} onClick={handleExportWord}>Word</Button>
           <Button variant="primary" size="sm" icon={<Download className="w-4 h-4" />} loading={exporting} onClick={handleExport}>PDF</Button>
         </div>

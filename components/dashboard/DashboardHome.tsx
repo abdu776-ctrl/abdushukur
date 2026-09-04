@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/useAuth';
 import { listDocuments } from '@/lib/documents';
+import { documentHref } from '@/components/documents/DocumentsList';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
@@ -13,7 +14,6 @@ import {
   Clock,
   ChevronRight,
   Lightbulb,
-  Download,
   LogIn,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
@@ -27,14 +27,15 @@ type DashboardDocument = {
   updatedAt: string;
 };
 
-function formatWhen(iso: string): string {
-  const diffMs = Date.now() - new Date(iso).getTime();
-  const mins = Math.round(diffMs / 60000);
-  if (mins < 1) return 'just now';
-  if (mins < 60) return `${mins}m ago`;
-  const hours = Math.round(mins / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.round(hours / 24)}d ago`;
+/** Absolute, locale-formatted timestamp. Relative strings ("3d ago") were
+ *  hardcoded English and leaked into the other three locales. */
+function formatWhen(iso: string, locale: string): string {
+  try {
+    return new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' })
+      .format(new Date(iso));
+  } catch {
+    return new Date(iso).toLocaleString();
+  }
 }
 
 function greetingPeriod(): 'morning' | 'afternoon' | 'evening' {
@@ -70,7 +71,7 @@ export function DashboardHome({ locale }: { locale: string }) {
             type: r.kind === 'resume' ? 'resume' : 'cover-letter',
             title: r.title,
             company: r.company,
-            updatedAt: formatWhen(r.updated_at),
+            updatedAt: formatWhen(r.updated_at, locale),
           }))
         );
       })
@@ -80,7 +81,7 @@ export function DashboardHome({ locale }: { locale: string }) {
     return () => {
       active = false;
     };
-  }, [isSignedIn]);
+  }, [isSignedIn, locale]);
 
   const aiChats = 0;
 
@@ -192,6 +193,12 @@ export function DashboardHome({ locale }: { locale: string }) {
             <>
               <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
                 <h2 className="font-semibold text-gray-900 dark:text-white">{t('recentDocuments.title')}</h2>
+                <Link
+                  href={`/${locale}/documents`}
+                  className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  {t('recentDocuments.viewAll')}
+                </Link>
               </div>
               {loadingDocs ? (
                 <div className="p-4 space-y-3" aria-busy="true">
@@ -211,7 +218,11 @@ export function DashboardHome({ locale }: { locale: string }) {
               ) : (
                 <div className="divide-y divide-gray-100 dark:divide-gray-800">
                   {documents.map((doc) => (
-                    <div key={doc.id} className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group">
+                    <Link
+                      key={doc.id}
+                      href={documentHref(locale, { id: doc.id, kind: doc.type === 'resume' ? 'resume' : 'cover_letter' })}
+                      className="flex items-center gap-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
+                    >
                       <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${doc.type === 'resume' ? 'bg-blue-50 dark:bg-blue-500/10' : 'bg-purple-50 dark:bg-purple-500/10'}`}>
                         {doc.type === 'resume' ? <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" /> : <PenLine className="w-5 h-5 text-purple-600 dark:text-purple-400" />}
                       </div>
@@ -225,11 +236,8 @@ export function DashboardHome({ locale }: { locale: string }) {
                           {doc.company ? `${doc.company} · ` : ''}{doc.updatedAt}
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <button className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"><Download className="w-3.5 h-3.5" /></button>
-                        <button className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"><ChevronRight className="w-3.5 h-3.5" /></button>
-                      </div>
-                    </div>
+                      <ChevronRight className="w-4 h-4 text-gray-400 flex-shrink-0 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors" />
+                    </Link>
                   ))}
                 </div>
               )}

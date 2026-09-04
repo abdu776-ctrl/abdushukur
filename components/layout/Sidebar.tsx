@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
   FileText,
+  FolderOpen,
   PenLine,
   Sparkles,
   Settings,
@@ -59,6 +60,11 @@ export function Sidebar() {
       icon: <Sparkles className="w-4 h-4" />,
       label: t('nav.aiAssistant'),
       badge: 'AI',
+    },
+    {
+      href: `/${locale}/documents`,
+      icon: <FolderOpen className="w-4 h-4" />,
+      label: t('nav.documents'),
     },
   ];
 

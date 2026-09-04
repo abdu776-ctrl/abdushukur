@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { Input, Textarea } from '@/components/ui/Input';
 import { MonthYearPicker } from '@/components/ui/MonthYearPicker';
@@ -11,7 +11,8 @@ import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
 import { printDocument, exportToWord } from '@/lib/utils';
-import { saveDocument, NotSignedInError } from '@/lib/documents';
+import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
+import { useAuth } from '@/lib/useAuth';
 import {
   User,
   GraduationCap,
@@ -107,6 +108,59 @@ export function ResumeBuilder() {
   // row instead of creating a duplicate.
   const [documentId, setDocumentId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [loadingDoc, setLoadingDoc] = useState(false);
+
+  // Reopening a saved resume: /resume?doc=<id>. Waiting for the auth status
+  // matters — Row Level Security returns nothing until the session is restored.
+  const { status: authStatus } = useAuth();
+
+  useEffect(() => {
+    if (authStatus === 'loading') return;
+    const id = new URLSearchParams(window.location.search).get('doc');
+    if (!id) return;
+
+    if (authStatus !== 'authenticated') {
+      setToast({ type: 'error', message: td('signInToOpen') });
+      return;
+    }
+
+    let active = true;
+    setLoadingDoc(true);
+    loadDocument(id)
+      .then((doc) => {
+        if (!active) return;
+        if (!doc || doc.kind !== 'resume') {
+          setToast({ type: 'error', message: td('notFound') });
+          return;
+        }
+        const d = doc.data as Record<string, unknown>;
+        if (d.personal) setPersonal({ ...defaultPersonal, ...(d.personal as PersonalInfo) });
+        if (Array.isArray(d.education)) setEducation(d.education as Education[]);
+        if (Array.isArray(d.experience)) setExperience(d.experience as WorkExperience[]);
+        if (Array.isArray(d.skills)) setSkills(d.skills as Skill[]);
+        if (Array.isArray(d.awards)) setAwards(d.awards as Award[]);
+        if (Array.isArray(d.certificates)) setCertificates(d.certificates as Certificate[]);
+        if (Array.isArray(d.projects)) setProjects(d.projects as Project[]);
+        if (Array.isArray(d.volunteer)) setVolunteer(d.volunteer as Volunteer[]);
+        if (Array.isArray(d.publications)) setPublications(d.publications as Publication[]);
+        if (typeof d.layoutId === 'string') setLayoutId(d.layoutId as LayoutId);
+        if (typeof d.themeId === 'string') setThemeId(d.themeId as ThemeId);
+        if (Array.isArray(d.sectionOrder)) setSectionOrder(d.sectionOrder as string[]);
+        setDocumentId(doc.id);
+        setToast({ type: 'success', message: td('opened') });
+      })
+      .catch((err) => {
+        console.error('open resume failed:', err);
+        if (active) setToast({ type: 'error', message: td('loadError') });
+      })
+      .finally(() => {
+        if (active) setLoadingDoc(false);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [authStatus, td]);
 
   async function handleSave() {
     setSaving(true);
@@ -250,6 +304,16 @@ export function ResumeBuilder() {
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Left: Editor */}
       <div className="w-full lg:w-[480px] flex-shrink-0 space-y-4">
+        {/* Editing an existing saved document — makes it obvious that Save
+            updates this copy instead of creating another one. */}
+        {documentId && (
+          <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20">
+            <Save className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400 flex-shrink-0" />
+            <span className="text-xs font-medium text-indigo-700 dark:text-indigo-300">
+              {td('editing')}
+            </span>
+          </div>
+        )}
         {/* Template & Actions bar */}
         <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800">
           <button
@@ -278,7 +342,7 @@ export function ResumeBuilder() {
             variant="secondary"
             size="sm"
             icon={<Save className="w-4 h-4" />}
-            loading={saving}
+            loading={saving || loadingDoc}
             onClick={handleSave}
           >
             {td('save')}
