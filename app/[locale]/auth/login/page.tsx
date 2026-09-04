@@ -10,6 +10,7 @@ import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, Lock, Github, Chrome } from 'lucide-react';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { getSupabase } from '@/lib/supabase';
 
 export default function LoginPage() {
   const t = useTranslations();
@@ -17,17 +18,37 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   function handleGoogleLogin() {
     signIn('google', { callbackUrl: `/${locale}/dashboard` });
   }
 
+  // Real email/password sign-in through Supabase.
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    setError('');
+
+    const supabase = getSupabase();
+    if (!supabase) {
+      setError(t('auth.notConfigured'));
+      return;
+    }
+
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    window.location.href = `/${locale}/dashboard`;
+    try {
+      const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
+      if (signInError) {
+        setError(signInError.message);
+        return;
+      }
+      window.location.href = `/${locale}/dashboard`;
+    } catch (err) {
+      console.error('sign in failed:', err);
+      setError(t('auth.genericError'));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -91,6 +112,9 @@ export default function LoginPage() {
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
+              {error && (
+                <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              )}
               <Input
                 type="email"
                 label={t('auth.login.email')}

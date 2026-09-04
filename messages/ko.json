@@ -200,8 +200,13 @@
       "submit": "계정 만들기",
       "hasAccount": "이미 계정이 있으신가요?",
       "signIn": "로그인",
-      "agreeTerms": "이용약관 및 개인정보처리방침에 동의합니다"
-    }
+      "agreeTerms": "이용약관 및 개인정보처리방침에 동의합니다",
+      "passwordHint": "최소 8자",
+      "passwordMismatch": "비밀번호가 일치하지 않습니다.",
+      "checkEmail": "이메일에서 계정을 확인한 뒤 로그인해 주세요."
+    },
+    "notConfigured": "로그인이 아직 설정되지 않았습니다. 잠시 후 다시 시도해 주세요.",
+    "genericError": "문제가 발생했습니다. 다시 시도해 주세요."
   },
   "dashboard": {
     "greeting": "좋은 {time}이에요, {name}님!",

@@ -1,6 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
+import { useAuth } from '@/lib/useAuth';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
@@ -47,9 +47,9 @@ function greetingPeriod(): 'morning' | 'afternoon' | 'evening' {
 
 export function DashboardHome({ locale }: { locale: string }) {
   const t = useTranslations('dashboard');
-  const { data: session, status } = useSession();
-  const isSignedIn = status === 'authenticated' && !!session?.user;
-  const user = session?.user;
+  // Unified session — Supabase or NextAuth.
+  const { user, status } = useAuth();
+  const isSignedIn = status === 'authenticated' && !!user;
 
   const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true';
   const documents: DashboardDocument[] = isSignedIn && useMock ? MOCK_DASHBOARD_DATA.documents : [];

@@ -9,6 +9,7 @@ import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, Lock, User, Globe, Chrome, Github } from 'lucide-react';
 import { useState } from 'react';
 import { signIn } from 'next-auth/react';
+import { getSupabase } from '@/lib/supabase';
 
 const nationalities = [
   { value: 'uzbekistan', flag: '🇺🇿', label: 'Uzbekistan' },
@@ -25,18 +26,64 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [nationality, setNationality] = useState('');
   const [agreed, setAgreed] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm, setConfirm] = useState('');
+  const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
 
   function handleGoogleLogin() {
     signIn('google', { callbackUrl: `/${locale}/dashboard` });
   }
 
+  // Real email/password registration through Supabase. Password auth also works
+  // inside the Android WebView, where Google blocks its OAuth flow.
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!agreed) return;
+    setError('');
+    setNotice('');
+
+    if (password !== confirm) {
+      setError(t('auth.register.passwordMismatch'));
+      return;
+    }
+
+    const supabase = getSupabase();
+    if (!supabase) {
+      setError(t('auth.notConfigured'));
+      return;
+    }
+
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setLoading(false);
-    window.location.href = `/${locale}/dashboard`;
+    try {
+      const { data, error: signUpError } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          data: { full_name: fullName, nationality },
+          emailRedirectTo: `${window.location.origin}/${locale}/dashboard`,
+        },
+      });
+
+      if (signUpError) {
+        setError(signUpError.message);
+        return;
+      }
+
+      // With email confirmation enabled Supabase returns no session yet.
+      if (data.session) {
+        window.location.href = `/${locale}/dashboard`;
+      } else {
+        setNotice(t('auth.register.checkEmail'));
+      }
+    } catch (err) {
+      console.error('sign up failed:', err);
+      setError(t('auth.genericError'));
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -106,6 +153,8 @@ export default function RegisterPage() {
                 leftIcon={<User className="w-4 h-4" />}
                 required
                 autoComplete="name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
               />
               <Input
                 type="email"
@@ -114,6 +163,8 @@ export default function RegisterPage() {
                 leftIcon={<Mail className="w-4 h-4" />}
                 required
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <Input
                 type="password"
@@ -121,8 +172,11 @@ export default function RegisterPage() {
                 placeholder="••••••••"
                 leftIcon={<Lock className="w-4 h-4" />}
                 required
+                minLength={8}
                 autoComplete="new-password"
-                hint="Minimum 8 characters"
+                hint={t('auth.register.passwordHint')}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <Input
                 type="password"
@@ -131,7 +185,16 @@ export default function RegisterPage() {
                 leftIcon={<Lock className="w-4 h-4" />}
                 required
                 autoComplete="new-password"
+                value={confirm}
+                onChange={(e) => setConfirm(e.target.value)}
               />
+
+              {error && (
+                <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              )}
+              {notice && (
+                <p role="status" className="text-sm text-green-600 dark:text-green-400">{notice}</p>
+              )}
 
               {/* Nationality Select */}
               <div className="space-y-1.5">

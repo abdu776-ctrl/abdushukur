@@ -200,8 +200,13 @@
       "submit": "Create account",
       "hasAccount": "Already have an account?",
       "signIn": "Sign in",
-      "agreeTerms": "I agree to the Terms of Service and Privacy Policy"
-    }
+      "agreeTerms": "I agree to the Terms of Service and Privacy Policy",
+      "passwordHint": "Minimum 8 characters",
+      "passwordMismatch": "The passwords do not match.",
+      "checkEmail": "Check your email to confirm your account, then sign in."
+    },
+    "notConfigured": "Sign-in is not configured yet. Please try again later.",
+    "genericError": "Something went wrong. Please try again."
   },
   "dashboard": {
     "greeting": "Good {time}, {name}!",

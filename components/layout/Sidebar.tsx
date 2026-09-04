@@ -15,7 +15,7 @@ import {
   User,
 } from 'lucide-react';
 import { useState } from 'react';
-import { useSession, signOut } from 'next-auth/react';
+import { useAuth, signOutEverywhere } from '@/lib/useAuth';
 import { LogOut } from 'lucide-react';
 
 interface NavItem {
@@ -30,11 +30,13 @@ export function Sidebar() {
   const locale = useLocale();
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
-  const { data: session } = useSession();
+  // Unified session — a user signed in through Supabase or NextAuth is shown
+  // the same way.
+  const { user } = useAuth();
 
-  const userName = session?.user?.name || 'Guest';
-  const userEmail = session?.user?.email || 'Not signed in';
-  const userImage = session?.user?.image;
+  const userName = user?.name || user?.email?.split('@')[0] || 'Guest';
+  const userEmail = user?.email || 'Not signed in';
+  const userImage = user?.image;
 
   const navItems: NavItem[] = [
     {
@@ -184,9 +186,9 @@ export function Sidebar() {
                 <p className="text-sm font-medium text-gray-900 dark:text-white truncate">{userName}</p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{userEmail}</p>
               </div>
-              {session && (
+              {user && (
                 <button
-                  onClick={() => signOut({ callbackUrl: `/${locale}` })}
+                  onClick={() => signOutEverywhere(`/${locale}`)}
                   title={t('common.logout')}
                   className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors shrink-0"
                 >

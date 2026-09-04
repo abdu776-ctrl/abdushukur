@@ -200,8 +200,13 @@
       "submit": "Hisob yaratish",
       "hasAccount": "Allaqachon hisobingiz bormi?",
       "signIn": "Kirish",
-      "agreeTerms": "Foydalanish shartlari va Maxfiylik siyosatiga roziman"
-    }
+      "agreeTerms": "Foydalanish shartlari va Maxfiylik siyosatiga roziman",
+      "passwordHint": "Kamida 8 ta belgi",
+      "passwordMismatch": "Parollar mos kelmadi.",
+      "checkEmail": "Akkauntni tasdiqlash uchun emailingizni tekshiring, so‘ng kiring."
+    },
+    "notConfigured": "Kirish hali sozlanmagan. Keyinroq urinib ko‘ring.",
+    "genericError": "Xatolik yuz berdi. Qayta urinib ko‘ring."
   },
   "dashboard": {
     "greeting": "Xayrli {time}, {name}!",
