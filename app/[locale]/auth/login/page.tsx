@@ -9,8 +9,8 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, Lock, Github, Chrome } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { signIn } from 'next-auth/react';
 import { getSupabase } from '@/lib/supabase';
+import { signInWithGoogle } from '@/lib/useAuth';
 
 export default function LoginPage() {
   const t = useTranslations();
@@ -56,8 +56,10 @@ export default function LoginPage() {
     }
   }
 
-  function handleGoogleLogin() {
-    signIn('google', { callbackUrl: `/${locale}/dashboard` });
+  async function handleGoogleLogin() {
+    setError('');
+    const message = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
+    if (message) setError(message === 'not-configured' ? t('auth.notConfigured') : message);
   }
 
   // Real email/password sign-in through Supabase.

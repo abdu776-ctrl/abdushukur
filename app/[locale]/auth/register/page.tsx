@@ -8,8 +8,8 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, Lock, User, Globe, Chrome, Github } from 'lucide-react';
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
 import { getSupabase } from '@/lib/supabase';
+import { signInWithGoogle } from '@/lib/useAuth';
 
 const nationalities = [
   { value: 'uzbekistan', flag: '🇺🇿', label: 'Uzbekistan' },
@@ -33,8 +33,10 @@ export default function RegisterPage() {
   const [error, setError] = useState('');
   const [notice, setNotice] = useState('');
 
-  function handleGoogleLogin() {
-    signIn('google', { callbackUrl: `/${locale}/dashboard` });
+  async function handleGoogleLogin() {
+    setError('');
+    const message = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
+    if (message) setError(message === 'not-configured' ? t('auth.notConfigured') : message);
   }
 
   // Real email/password registration through Supabase. Password auth also works
