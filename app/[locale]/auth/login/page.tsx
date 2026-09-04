@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, Lock, Github, Chrome } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { getSupabase } from '@/lib/supabase';
 
@@ -19,6 +19,42 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
+  const [needsConfirmation, setNeedsConfirmation] = useState(false);
+  const [resending, setResending] = useState(false);
+
+  // Supabase reports a bad or expired confirmation link in the URL hash.
+  // Surface it here instead of leaving the user on a blank page.
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash.includes('error')) {
+      setError(t('auth.linkExpired'));
+      setNeedsConfirmation(true);
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, [t]);
+
+  async function handleResendConfirmation() {
+    const supabase = getSupabase();
+    if (!supabase || !email) return;
+    setResending(true);
+    setError('');
+    setNotice('');
+    try {
+      const { error: resendError } = await supabase.auth.resend({
+        type: 'signup',
+        email,
+        options: { emailRedirectTo: `${window.location.origin}/${locale}/dashboard` },
+      });
+      if (resendError) setError(resendError.message);
+      else setNotice(t('auth.resendSent'));
+    } catch (err) {
+      console.error('resend failed:', err);
+      setError(t('auth.genericError'));
+    } finally {
+      setResending(false);
+    }
+  }
 
   function handleGoogleLogin() {
     signIn('google', { callbackUrl: `/${locale}/dashboard` });
@@ -39,7 +75,9 @@ export default function LoginPage() {
     try {
       const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
       if (signInError) {
-        setError(signInError.message);
+        const unconfirmed = /not confirmed|confirm your email/i.test(signInError.message);
+        setNeedsConfirmation(unconfirmed);
+        setError(unconfirmed ? t('auth.notConfirmed') : signInError.message);
         return;
       }
       window.location.href = `/${locale}/dashboard`;
@@ -114,6 +152,19 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {error && (
                 <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>
+              )}
+              {notice && (
+                <p role="status" className="text-sm text-green-600 dark:text-green-400">{notice}</p>
+              )}
+              {needsConfirmation && (
+                <button
+                  type="button"
+                  onClick={handleResendConfirmation}
+                  disabled={!email || resending}
+                  className="text-sm font-medium text-indigo-600 dark:text-indigo-400 underline underline-offset-2 disabled:opacity-50"
+                >
+                  {t('auth.resend')}
+                </button>
               )}
               <Input
                 type="email"

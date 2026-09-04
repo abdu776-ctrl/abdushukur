@@ -206,7 +206,11 @@
       "checkEmail": "Akkauntni tasdiqlash uchun emailingizni tekshiring, so‘ng kiring."
     },
     "notConfigured": "Kirish hali sozlanmagan. Keyinroq urinib ko‘ring.",
-    "genericError": "Xatolik yuz berdi. Qayta urinib ko‘ring."
+    "genericError": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
+    "resend": "Tasdiq xatini qayta yuborish",
+    "resendSent": "Tasdiq xati yuborildi — pochtangizni tekshiring.",
+    "linkExpired": "Tasdiq havolasi yaroqsiz yoki eskirgan. Quyida email va parolingizni kiriting, so‘ng qayta yuboring.",
+    "notConfirmed": "Emailingiz hali tasdiqlanmagan."
   },
   "dashboard": {
     "greeting": "Xayrli {time}, {name}!",

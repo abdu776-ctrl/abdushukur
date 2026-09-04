@@ -206,7 +206,11 @@
       "checkEmail": "Check your email to confirm your account, then sign in."
     },
     "notConfigured": "Sign-in is not configured yet. Please try again later.",
-    "genericError": "Something went wrong. Please try again."
+    "genericError": "Something went wrong. Please try again.",
+    "resend": "Resend confirmation email",
+    "resendSent": "Confirmation email sent — check your inbox.",
+    "linkExpired": "That confirmation link is invalid or has expired. Enter your email and password below, then resend it.",
+    "notConfirmed": "Your email is not confirmed yet."
   },
   "dashboard": {
     "greeting": "Good {time}, {name}!",
