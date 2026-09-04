@@ -11,6 +11,7 @@ import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
 import { printDocument, exportToWord } from '@/lib/utils';
+import { saveDocument, NotSignedInError } from '@/lib/documents';
 import {
   User,
   GraduationCap,
@@ -33,6 +34,7 @@ import {
   GripVertical,
   ArrowUp,
   ArrowDown,
+  Save,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication } from '@/types';
@@ -63,6 +65,7 @@ const defaultEducation: Education = {
 export function ResumeBuilder() {
   const t = useTranslations('resume');
   const tc = useTranslations('common');
+  const td = useTranslations('documents');
   const [toast, setToast] = useState<ToastData | null>(null);
   const [activeSection, setActiveSection] = useState<Section>('personal');
   const [showPreview, setShowPreview] = useState(false);
@@ -99,6 +102,35 @@ export function ResumeBuilder() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [volunteer, setVolunteer] = useState<Volunteer[]>([]);
   const [publications, setPublications] = useState<Publication[]>([]);
+
+  // Saved-document state. documentId is kept so a second save updates the same
+  // row instead of creating a duplicate.
+  const [documentId, setDocumentId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  async function handleSave() {
+    setSaving(true);
+    try {
+      const saved = await saveDocument({
+        id: documentId,
+        kind: 'resume',
+        title: personal.fullName?.trim() || td('untitled'),
+        company: '',
+        data: {
+          personal, education, experience, skills, awards, certificates,
+          projects, volunteer, publications, layoutId, themeId, sectionOrder,
+        },
+      });
+      setDocumentId(saved.id);
+      setToast({ type: 'success', message: td('saved') });
+    } catch (err) {
+      const message = err instanceof NotSignedInError ? td('signInToSave') : td('saveError');
+      if (!(err instanceof NotSignedInError)) console.error('save resume failed:', err);
+      setToast({ type: 'error', message });
+    } finally {
+      setSaving(false);
+    }
+  }
 
   const sections = [
     { id: 'personal' as Section, icon: <User className="w-4 h-4" />, label: t('sections.personal') },
@@ -241,6 +273,15 @@ export function ResumeBuilder() {
             className="lg:hidden"
           >
             {showPreview ? t('builder.hide') : t('builder.preview')}
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            icon={<Save className="w-4 h-4" />}
+            loading={saving}
+            onClick={handleSave}
+          >
+            {td('save')}
           </Button>
           <Button
             variant="secondary"

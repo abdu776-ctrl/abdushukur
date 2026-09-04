@@ -12,6 +12,7 @@ import { GuidanceIntro } from './GuidanceIntro';
 import type { CoverLetterSectionType } from '@/lib/coverLetterGuidance';
 import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/whyKorea';
 import { loadProfile, profileToPrompt } from '@/lib/profile';
+import { saveDocument, NotSignedInError } from '@/lib/documents';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
@@ -28,6 +29,7 @@ import {
   Trash2,
   MapPin,
   AlertTriangle,
+  Save,
 } from 'lucide-react';
 
 // A section's guidance/help follows its TYPE, not its position, so renaming a
@@ -61,12 +63,39 @@ function newId() {
 export function CoverLetterBuilder() {
   const t = useTranslations('coverLetter');
   const tc = useTranslations('common');
+  const td = useTranslations('documents');
   const locale = useLocale();
   const [toast, setToast] = useState<ToastData | null>(null);
   const [company, setCompany] = useState('');
   const [position, setPosition] = useState('');
   // Pasted target job posting — the AI tailors each section to it.
   const [jobPosting, setJobPosting] = useState('');
+
+  // Saved-document state. documentId is kept so a second save updates the same
+  // row instead of creating a duplicate.
+  const [documentId, setDocumentId] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  async function handleSave() {
+    setSaving(true);
+    try {
+      const saved = await saveDocument({
+        id: documentId,
+        kind: 'cover_letter',
+        title: company.trim() || position.trim() || td('untitled'),
+        company,
+        data: { company, position, jobPosting, sections },
+      });
+      setDocumentId(saved.id);
+      setToast({ type: 'success', message: td('saved') });
+    } catch (err) {
+      const message = err instanceof NotSignedInError ? td('signInToSave') : td('saveError');
+      if (!(err instanceof NotSignedInError)) console.error('save cover letter failed:', err);
+      setToast({ type: 'error', message });
+    } finally {
+      setSaving(false);
+    }
+  }
   const [showPreview, setShowPreview] = useState(false);
   const [exporting, setExporting] = useState(false);
   const [aiLoading, setAiLoading] = useState<string | null>(null);
@@ -202,6 +231,7 @@ export function CoverLetterBuilder() {
           <Button variant="secondary" size="sm" icon={showPreview ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />} onClick={() => setShowPreview(!showPreview)} className="lg:hidden">
             {t('preview')}
           </Button>
+          <Button variant="secondary" size="sm" icon={<Save className="w-3.5 h-3.5" />} loading={saving} onClick={handleSave}>{td('save')}</Button>
           <Button variant="secondary" size="sm" icon={<FileType className="w-4 h-4" />} onClick={handleExportWord}>Word</Button>
           <Button variant="primary" size="sm" icon={<Download className="w-4 h-4" />} loading={exporting} onClick={handleExport}>PDF</Button>
         </div>

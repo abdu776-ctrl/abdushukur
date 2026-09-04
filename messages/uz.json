@@ -659,5 +659,13 @@
         "placeholder": "Mukofotlar, stipendiyalar, o‘zingiz ishonchli bo‘lgan narsalar."
       }
     }
+  },
+  "documents": {
+    "save": "Saqlash",
+    "saving": "Saqlanmoqda…",
+    "saved": "Akkauntingizga saqlandi.",
+    "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
+    "signInToSave": "Bu hujjatni akkauntingizga saqlash uchun tizimga kiring.",
+    "untitled": "Nomsiz"
   }
 }

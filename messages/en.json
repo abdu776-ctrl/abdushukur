@@ -659,5 +659,13 @@
         "placeholder": "Awards, scholarships, things you are genuinely good at."
       }
     }
+  },
+  "documents": {
+    "save": "Save",
+    "saving": "Saving…",
+    "saved": "Saved to your account.",
+    "saveError": "Could not save. Please try again.",
+    "signInToSave": "Sign in to save this document to your account.",
+    "untitled": "Untitled"
   }
 }

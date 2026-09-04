@@ -1,6 +1,8 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/useAuth';
+import { listDocuments } from '@/lib/documents';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
@@ -23,20 +25,17 @@ type DashboardDocument = {
   title: string;
   company: string;
   updatedAt: string;
-  template: string;
 };
 
-// Demo content only — NEVER shown unless NEXT_PUBLIC_USE_MOCK_DATA === "true"
-// AND the visitor is signed in. There is no persistence layer yet, so real
-// signed-in users see empty/zeroed state until the data layer lands.
-const MOCK_DASHBOARD_DATA: { documents: DashboardDocument[]; aiChats: number } = {
-  documents: [
-    { id: '1', type: 'resume', title: 'Software Engineer Resume', company: 'Samsung Electronics', updatedAt: '2 hours ago', template: 'Modern' },
-    { id: '2', type: 'cover-letter', title: '자기소개서 - Kakao', company: 'Kakao Corp', updatedAt: '1 day ago', template: 'Korean Standard' },
-    { id: '3', type: 'resume', title: 'Product Manager Resume', company: 'Naver', updatedAt: '3 days ago', template: 'Classic' },
-  ],
-  aiChats: 14,
-};
+function formatWhen(iso: string): string {
+  const diffMs = Date.now() - new Date(iso).getTime();
+  const mins = Math.round(diffMs / 60000);
+  if (mins < 1) return 'just now';
+  if (mins < 60) return `${mins}m ago`;
+  const hours = Math.round(mins / 60);
+  if (hours < 24) return `${hours}h ago`;
+  return `${Math.round(hours / 24)}d ago`;
+}
 
 function greetingPeriod(): 'morning' | 'afternoon' | 'evening' {
   const hour = new Date().getHours();
@@ -51,9 +50,39 @@ export function DashboardHome({ locale }: { locale: string }) {
   const { user, status } = useAuth();
   const isSignedIn = status === 'authenticated' && !!user;
 
-  const useMock = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true';
-  const documents: DashboardDocument[] = isSignedIn && useMock ? MOCK_DASHBOARD_DATA.documents : [];
-  const aiChats = isSignedIn && useMock ? MOCK_DASHBOARD_DATA.aiChats : 0;
+  // Real saved documents for this user (RLS scopes the query server-side).
+  const [documents, setDocuments] = useState<DashboardDocument[]>([]);
+  const [loadingDocs, setLoadingDocs] = useState(false);
+
+  useEffect(() => {
+    if (!isSignedIn) {
+      setDocuments([]);
+      return;
+    }
+    let active = true;
+    setLoadingDocs(true);
+    listDocuments()
+      .then((rows) => {
+        if (!active) return;
+        setDocuments(
+          rows.map((r) => ({
+            id: r.id,
+            type: r.kind === 'resume' ? 'resume' : 'cover-letter',
+            title: r.title,
+            company: r.company,
+            updatedAt: formatWhen(r.updated_at),
+          }))
+        );
+      })
+      .finally(() => {
+        if (active) setLoadingDocs(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [isSignedIn]);
+
+  const aiChats = 0;
 
   const resumeCount = documents.filter((d) => d.type === 'resume').length;
   const coverLetterCount = documents.filter((d) => d.type === 'cover-letter').length;
@@ -164,7 +193,11 @@ export function DashboardHome({ locale }: { locale: string }) {
               <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-800">
                 <h2 className="font-semibold text-gray-900 dark:text-white">{t('recentDocuments.title')}</h2>
               </div>
-              {documents.length === 0 ? (
+              {loadingDocs ? (
+                <div className="p-4 space-y-3" aria-busy="true">
+                  {[0, 1, 2].map((i) => <Skeleton key={i} className="h-16 rounded-xl" />)}
+                </div>
+              ) : documents.length === 0 ? (
                 <div className="flex flex-col items-center justify-center text-center px-6 py-14">
                   <div className="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center mb-4">
                     <FileText className="w-6 h-6 text-gray-400" />
@@ -185,11 +218,11 @@ export function DashboardHome({ locale }: { locale: string }) {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <p className="font-medium text-gray-900 dark:text-white text-sm truncate">{doc.title}</p>
-                          <Badge variant={doc.type === 'resume' ? 'info' : 'purple'} size="sm">{doc.template}</Badge>
+                          <Badge variant={doc.type === 'resume' ? 'info' : 'purple'} size="sm">{doc.type === 'resume' ? t('stats.resumes') : t('stats.coverLetters')}</Badge>
                         </div>
                         <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5 flex items-center gap-1">
                           <Clock className="w-3 h-3" />
-                          {doc.updatedAt}
+                          {doc.company ? `${doc.company} · ` : ''}{doc.updatedAt}
                         </p>
                       </div>
                       <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
