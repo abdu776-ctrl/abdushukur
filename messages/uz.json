@@ -237,7 +237,9 @@
       "submit": "Yangi parolni saqlash",
       "success": "Parol yangilandi.",
       "invalidLink": "Bu tiklash havolasi yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang."
-    }
+    },
+    "webviewBlocked": "Google orqali kirishni bu yerda ochib bo‘lmaydi. Koreer'ni brauzerda oching yoki quyida elektron pochta va parol bilan kiring.",
+    "continueInBrowser": "Google orqali kirishni ochilgan brauzerda davom ettiring, so‘ng shu yerga qayting."
   },
   "dashboard": {
     "greeting": "Xayrli {time}, {name}!",

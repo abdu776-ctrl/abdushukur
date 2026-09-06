@@ -3,6 +3,12 @@
 import { useEffect, useState } from 'react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
 import { getSupabase } from './supabase';
+import {
+  isNativeApp,
+  isEmbeddedWebView,
+  openExternal,
+  NATIVE_AUTH_REDIRECT,
+} from './native';
 
 // Single source of truth for the session.
 //
@@ -66,16 +72,90 @@ export function useAuth(): { user: AuthUser | null; status: AuthStatus } {
   return { user, status: user ? 'authenticated' : 'unauthenticated' };
 }
 
-/** Start the Google flow. Supabase sends the user to Google and back to
- *  `redirectTo`, arriving with a real Supabase session — so saving works. */
-export async function signInWithGoogle(redirectTo: string): Promise<string | null> {
+export type GoogleSignInResult =
+  | { ok: true; note?: 'continue-in-browser' }
+  | { ok: false; reason: 'not-configured' }
+  | { ok: false; reason: 'blocked' }
+  | { ok: false; reason: 'error'; message: string };
+
+/**
+ * Start the Google flow.
+ *
+ * Google refuses OAuth inside an embedded WebView, so the route depends on
+ * where the page is running:
+ *
+ *  - Native shell → ask Supabase for the URL without redirecting, open it in
+ *    Custom Tabs, and let the deep link bring the session back.
+ *  - Someone else's in-app browser (Telegram, Instagram, …) → push the same URL
+ *    out to the system browser; the user continues there.
+ *  - Ordinary browser → the plain redirect, unchanged.
+ */
+export async function signInWithGoogle(redirectTo: string): Promise<GoogleSignInResult> {
   const supabase = getSupabase();
-  if (!supabase) return 'not-configured';
+  if (!supabase) return { ok: false, reason: 'not-configured' };
+
+  const native = isNativeApp();
+  const embedded = native || isEmbeddedWebView();
+
+  if (embedded) {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: native ? NATIVE_AUTH_REDIRECT : redirectTo,
+        skipBrowserRedirect: true,
+      },
+    });
+    if (error) return { ok: false, reason: 'error', message: error.message };
+    if (!data.url) return { ok: false, reason: 'blocked' };
+
+    const opened = await openExternal(data.url);
+    if (!opened) return { ok: false, reason: 'blocked' };
+    return native ? { ok: true } : { ok: true, note: 'continue-in-browser' };
+  }
+
   const { error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: { redirectTo },
   });
-  return error ? error.message : null;
+  return error ? { ok: false, reason: 'error', message: error.message } : { ok: true };
+}
+
+/**
+ * Turn the deep link the native shell was reopened with into a real session.
+ * Handles both the implicit flow (tokens in the fragment) and PKCE (a code in
+ * the query), so it keeps working if the client's flow type changes.
+ */
+export async function completeNativeSignIn(url: string): Promise<boolean> {
+  const supabase = getSupabase();
+  if (!supabase) return false;
+
+  let parsed: URL;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return false;
+  }
+
+  const fragment = new URLSearchParams(parsed.hash.replace(/^#/, ''));
+  const accessToken = fragment.get('access_token');
+  const refreshToken = fragment.get('refresh_token');
+  if (accessToken && refreshToken) {
+    const { error } = await supabase.auth.setSession({
+      access_token: accessToken,
+      refresh_token: refreshToken,
+    });
+    if (error) console.error('native sign-in failed:', error.message);
+    return !error;
+  }
+
+  const code = parsed.searchParams.get('code');
+  if (code) {
+    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    if (error) console.error('native sign-in failed:', error.message);
+    return !error;
+  }
+
+  return false;
 }
 
 export async function signOutEverywhere(callbackUrl: string) {

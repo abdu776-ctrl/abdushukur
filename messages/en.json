@@ -237,7 +237,9 @@
       "submit": "Save new password",
       "success": "Password updated.",
       "invalidLink": "This reset link is invalid or has expired. Request a new one."
-    }
+    },
+    "webviewBlocked": "Google sign-in cannot open here. Open koreer in your browser, or sign in with your email and password below.",
+    "continueInBrowser": "Continue signing in with Google in the browser that just opened, then come back here."
   },
   "dashboard": {
     "greeting": "Good {time}, {name}!",

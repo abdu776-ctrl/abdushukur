@@ -36,8 +36,15 @@ export default function RegisterPage() {
 
   async function handleGoogleLogin() {
     setError('');
-    const message = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
-    if (message) setError(message === 'not-configured' ? t('auth.notConfigured') : message);
+    setNotice('');
+    const result = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
+    if (result.ok) {
+      if (result.note === 'continue-in-browser') setNotice(t('auth.continueInBrowser'));
+      return;
+    }
+    if (result.reason === 'not-configured') setError(t('auth.notConfigured'));
+    else if (result.reason === 'blocked') setError(t('auth.webviewBlocked'));
+    else setError(result.message);
   }
 
   // Real email/password registration through Supabase. Password auth also works
@@ -134,6 +141,15 @@ export default function RegisterPage() {
               </button>
             </div>
 
+            {/* Status — kept above the fold so a Google or sign-up message is
+                visible without scrolling past the whole form. */}
+            {error && (
+              <p role="alert" className="text-sm text-red-600 dark:text-red-400 mb-4">{error}</p>
+            )}
+            {notice && (
+              <p role="status" className="text-sm text-green-600 dark:text-green-400 mb-4">{notice}</p>
+            )}
+
             {/* Divider */}
             <div className="relative flex items-center gap-4 mb-6">
               <div className="flex-1 h-px bg-gray-200 dark:bg-gray-700" />
@@ -187,13 +203,6 @@ export default function RegisterPage() {
                 value={confirm}
                 onChange={(e) => setConfirm(e.target.value)}
               />
-
-              {error && (
-                <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>
-              )}
-              {notice && (
-                <p role="status" className="text-sm text-green-600 dark:text-green-400">{notice}</p>
-              )}
 
               {/* Nationality Select */}
               <div className="space-y-1.5">

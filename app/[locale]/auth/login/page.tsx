@@ -58,8 +58,15 @@ export default function LoginPage() {
 
   async function handleGoogleLogin() {
     setError('');
-    const message = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
-    if (message) setError(message === 'not-configured' ? t('auth.notConfigured') : message);
+    setNotice('');
+    const result = await signInWithGoogle(`${window.location.origin}/${locale}/dashboard`);
+    if (result.ok) {
+      if (result.note === 'continue-in-browser') setNotice(t('auth.continueInBrowser'));
+      return;
+    }
+    if (result.reason === 'not-configured') setError(t('auth.notConfigured'));
+    else if (result.reason === 'blocked') setError(t('auth.webviewBlocked'));
+    else setError(result.message);
   }
 
   // Real email/password sign-in through Supabase.
