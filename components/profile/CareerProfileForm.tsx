@@ -6,6 +6,8 @@ import { Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { Briefcase, Save, Check } from 'lucide-react';
 import { loadProfile, saveProfile, emptyProfile, type CareerProfile } from '@/lib/profile';
+import { syncCareerProfile, upsertProfileFields, profileToRow } from '@/lib/profileRemote';
+import { useAuth } from '@/lib/useAuth';
 
 type FieldKey = keyof Omit<CareerProfile, 'updatedAt'>;
 
@@ -26,11 +28,28 @@ export function CareerProfileForm() {
   const t = useTranslations('careerProfile');
   const [profile, setProfile] = useState<CareerProfile>(emptyProfile);
   const [saved, setSaved] = useState(false);
+  const { status } = useAuth();
 
   useEffect(() => {
     const stored = loadProfile();
     if (stored) setProfile(stored);
   }, []);
+
+  // Once signed in, reconcile with the server copy so the profile follows the
+  // user across devices instead of living in one browser.
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    let active = true;
+    syncCareerProfile(loadProfile()).then((remote) => {
+      if (active && remote) {
+        setProfile(remote);
+        saveProfile(remote);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [status]);
 
   function patch(key: FieldKey, value: string) {
     setProfile((prev) => ({ ...prev, [key]: value }));
@@ -40,6 +59,7 @@ export function CareerProfileForm() {
   function handleSave() {
     setProfile(saveProfile(profile));
     setSaved(true);
+    if (status === 'authenticated') void upsertProfileFields(profileToRow(profile));
   }
 
   return (

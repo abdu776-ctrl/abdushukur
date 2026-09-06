@@ -6,18 +6,19 @@ import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
-import { Sparkles, Mail, Lock, User, Globe, Chrome, Github } from 'lucide-react';
+import { Sparkles, Mail, Lock, User, Globe, Chrome } from 'lucide-react';
 import { useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { signInWithGoogle } from '@/lib/useAuth';
 
+// Value is the stored code; the visible label comes from the locale files.
 const nationalities = [
-  { value: 'uzbekistan', flag: '🇺🇿', label: 'Uzbekistan' },
-  { value: 'kazakhstan', flag: '🇰🇿', label: 'Kazakhstan' },
-  { value: 'kyrgyzstan', flag: '🇰🇬', label: 'Kyrgyzstan' },
-  { value: 'mongolia', flag: '🇲🇳', label: 'Mongolia' },
-  { value: 'vietnam', flag: '🇻🇳', label: 'Vietnam' },
-  { value: 'other', flag: '🌍', label: 'Other' },
+  { value: 'uzbekistan', flag: '🇺🇿' },
+  { value: 'kazakhstan', flag: '🇰🇿' },
+  { value: 'kyrgyzstan', flag: '🇰🇬' },
+  { value: 'mongolia', flag: '🇲🇳' },
+  { value: 'vietnam', flag: '🇻🇳' },
+  { value: 'other', flag: '🌍' },
 ];
 
 export default function RegisterPage() {
@@ -129,11 +130,7 @@ export default function RegisterPage() {
                 className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-150"
               >
                 <Chrome className="w-4 h-4 text-blue-500" />
-                Continue with Google
-              </button>
-              <button className="w-full flex items-center justify-center gap-3 px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-150">
-                <Github className="w-4 h-4" />
-                Continue with GitHub
+                {t('auth.continueWithGoogle')}
               </button>
             </div>
 
@@ -211,10 +208,10 @@ export default function RegisterPage() {
                     className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-150 appearance-none"
                     required
                   >
-                    <option value="" disabled>Select your country...</option>
+                    <option value="" disabled>{t('auth.register.selectCountry')}</option>
                     {nationalities.map((n) => (
                       <option key={n.value} value={n.value}>
-                        {n.flag} {n.label}
+                        {n.flag} {t(`auth.register.countries.${n.value}`)}
                       </option>
                     ))}
                   </select>
@@ -240,6 +237,20 @@ export default function RegisterPage() {
                 </div>
                 <span className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                   {t('auth.register.agreeTerms')}
+                  <br />
+                  <Link
+                    href={`/${locale}/terms`}
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    {t('legal.terms.title')}
+                  </Link>
+                  {' · '}
+                  <Link
+                    href={`/${locale}/privacy`}
+                    className="text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    {t('legal.privacy.title')}
+                  </Link>
                 </span>
               </label>
 

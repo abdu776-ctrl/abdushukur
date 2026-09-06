@@ -497,7 +497,7 @@ export default async function HomePage({ params }: HomePageProps) {
         </div>
       </section>
 
-      <Footer />
+      <Footer locale={locale} />
     </div>
   );
 }

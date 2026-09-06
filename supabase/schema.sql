@@ -62,6 +62,32 @@ create policy "documents are self-service"
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 
+-- ── Account deletion ────────────────────────────────────────────────────────
+-- App stores require a way for a user to delete their own account from inside
+-- the app. A signed-in user cannot delete from auth.users directly, so this
+-- security-definer function does it on their behalf — and only ever for
+-- themselves, because it uses auth.uid() rather than an argument.
+--
+-- Deleting the auth user cascades to profiles and documents (both reference
+-- auth.users with on delete cascade), so nothing is left behind.
+create or replace function public.delete_current_user()
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if auth.uid() is null then
+    raise exception 'not signed in';
+  end if;
+  delete from auth.users where id = auth.uid();
+end;
+$$;
+
+revoke all on function public.delete_current_user() from public;
+revoke all on function public.delete_current_user() from anon;
+grant execute on function public.delete_current_user() to authenticated;
+
 -- ── Keep updated_at honest ──────────────────────────────────────────────────
 create or replace function public.touch_updated_at()
 returns trigger

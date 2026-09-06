@@ -203,6 +203,15 @@
       "signIn": "Sign in",
       "agreeTerms": "I agree to the Terms of Service and Privacy Policy",
       "passwordHint": "Minimum 8 characters",
+      "selectCountry": "Select your country...",
+      "countries": {
+        "uzbekistan": "Uzbekistan",
+        "kazakhstan": "Kazakhstan",
+        "kyrgyzstan": "Kyrgyzstan",
+        "mongolia": "Mongolia",
+        "vietnam": "Vietnam",
+        "other": "Other"
+      },
       "passwordMismatch": "The passwords do not match.",
       "checkEmail": "Check your email to confirm your account, then sign in."
     },
@@ -211,7 +220,24 @@
     "resend": "Resend confirmation email",
     "resendSent": "Confirmation email sent — check your inbox.",
     "linkExpired": "That confirmation link is invalid or has expired. Enter your email and password below, then resend it.",
-    "notConfirmed": "Your email is not confirmed yet."
+    "notConfirmed": "Your email is not confirmed yet.",
+    "continueWithGoogle": "Continue with Google",
+    "forgot": {
+      "title": "Reset your password",
+      "subtitle": "Enter your email and we will send you a reset link.",
+      "submit": "Send reset link",
+      "sent": "If that email has an account, a reset link is on its way.",
+      "back": "Back to sign in"
+    },
+    "reset": {
+      "title": "Choose a new password",
+      "subtitle": "Enter a new password for your account.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "submit": "Save new password",
+      "success": "Password updated.",
+      "invalidLink": "This reset link is invalid or has expired. Request a new one."
+    }
   },
   "dashboard": {
     "greeting": "Good {time}, {name}!",
@@ -585,12 +611,32 @@
     "notifications": {
       "title": "Notifications",
       "email": "Email notifications",
-      "tips": "Career tips & updates"
+      "tips": "Career tips & updates",
+      "emailDesc": "Receive updates about your documents by email.",
+      "tipsDesc": "Weekly career tips for the Korean job market.",
+      "templates": "New templates",
+      "templatesDesc": "Get notified when new resume templates are available."
     },
     "account": {
       "title": "Account",
-      "deleteAccount": "Delete Account",
-      "deleteWarning": "This action cannot be undone."
+      "deleteAccount": "Delete account",
+      "deleteWarning": "This action cannot be undone.",
+      "deleteDetail": "Your account, every saved resume and cover letter, and your career profile are permanently deleted.",
+      "deleteConfirmHint": "Type your email address to confirm:",
+      "deleting": "Deleting…",
+      "deleted": "Your account has been deleted.",
+      "deleteError": "Could not delete the account. Please try again.",
+      "signedInAs": "Signed in as",
+      "signInRequired": "Sign in to manage your account.",
+      "changePassword": "Change password",
+      "changePasswordDesc": "Set a new password for your account.",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password",
+      "passwordUpdated": "Password updated.",
+      "exportData": "Download my data",
+      "exportDataDesc": "A JSON file with your documents and profile.",
+      "exportEmpty": "There is nothing to download yet.",
+      "exportError": "Could not prepare the download. Please try again."
     },
     "whyKorea": {
       "title": "Why Korea"
@@ -693,5 +739,111 @@
     "newResume": "New resume",
     "newCoverLetter": "New cover letter",
     "editing": "Editing a saved document"
+  },
+  "legal": {
+    "lastUpdated": "Last updated",
+    "back": "Back to Koreer",
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "Koreer helps international applicants write Korean resumes (이력서) and self-introduction letters (자기소개서). This policy explains what we store, why we store it, and how you can remove it.",
+      "collect": {
+        "t": "What we collect",
+        "account": "Account: your email address and password (stored only as a hash we cannot read). If you sign up with a form, the name and country you enter; if you sign in with Google, the name, email and profile picture Google gives us.",
+        "documents": "Documents: everything you type into a resume or cover letter — including your name, phone number, address, date of birth, nationality, education, work history and, if you upload one, your photo. Photos are stored inside the document itself.",
+        "profile": "Career profile: the background, skills and \"Why Korea\" answers you save in Settings, so they can be reused across documents.",
+        "technical": "Technical: a sign-in token and your language choice, kept in your browser. We do not use advertising or analytics trackers."
+      },
+      "use": {
+        "t": "How we use it",
+        "b": "Only to run the service: to sign you in, to store and show your documents, to produce PDF and Word files, and to generate the AI suggestions you ask for. We do not sell your data and we do not use it to train AI models."
+      },
+      "ai": {
+        "t": "AI processing",
+        "b": "When you press an AI button, the text of that section — and the career profile you chose to save — is sent to Groq, our AI provider, to generate a suggestion. Nothing is sent unless you ask for it. AI output can be wrong: always check it before sending a document to an employer."
+      },
+      "share": {
+        "t": "Who else processes your data",
+        "b": "We use three providers, each only for the purpose listed. We do not share your data with anyone else.",
+        "supabase": "Supabase — accounts and database (your documents and profile are stored here).",
+        "vercel": "Vercel — hosting the website.",
+        "groq": "Groq — generating AI suggestions when you request them."
+      },
+      "retention": {
+        "t": "How long we keep it",
+        "b": "Your documents stay until you delete them. Your account and everything in it stay until you delete the account. Deleting the account removes your documents and profile permanently — there is no recovery."
+      },
+      "rights": {
+        "t": "Your choices",
+        "b": "In Settings → Account you can change your password, download everything we hold about you as a JSON file, and delete your account. You can also delete individual documents at any time from your saved documents."
+      },
+      "security": {
+        "t": "Security",
+        "b": "Every row in our database is protected by row-level security, so a signed-in user can only ever read and write their own data. Traffic is encrypted in transit. No system is perfectly secure, so please avoid putting information in a document that you would not want stored."
+      },
+      "children": {
+        "t": "Children",
+        "b": "Koreer is intended for job seekers and students of working age. We do not knowingly collect data from children under 14."
+      },
+      "changes": {
+        "t": "Changes to this policy",
+        "b": "If we change how data is handled, we will update this page and the date above."
+      },
+      "contact": {
+        "t": "Contact",
+        "b": "Questions about your data, or a request to delete it, can be sent to:"
+      }
+    },
+    "terms": {
+      "title": "Terms of Use",
+      "intro": "By using Koreer you agree to these terms. If you do not agree, please do not use the service.",
+      "service": {
+        "t": "What Koreer is",
+        "b": "Koreer is a tool for writing Korean resumes and self-introduction letters, with optional AI assistance. It is a writing tool — it is not a recruitment agency, an employer, an immigration adviser, or a legal service."
+      },
+      "account": {
+        "t": "Your account",
+        "b": "You are responsible for keeping your password safe and for what happens under your account. Give an email address you actually control — it is the only way to reset your password."
+      },
+      "acceptable": {
+        "t": "Acceptable use",
+        "b": "Do not use Koreer to write documents for someone else without their knowledge, to enter another person's data, to submit false information to employers, or to attack or overload the service."
+      },
+      "content": {
+        "t": "Your content is yours",
+        "b": "You keep full ownership of everything you write. We store it only to provide the service and never publish it. We claim no rights over your documents."
+      },
+      "ai": {
+        "t": "About AI suggestions",
+        "b": "AI output is a draft, not a fact. It can be inaccurate or inappropriate for a specific company. You are responsible for checking every document before you send it. Anything Koreer says about hiring practices, visas or Korean law is general information — verify it with an official source. Using Koreer does not guarantee an interview or a job."
+      },
+      "availability": {
+        "t": "Availability",
+        "b": "The service is provided as is. We may change or pause features, and we cannot promise it will always be available or error-free. Export your important documents so you always have your own copy."
+      },
+      "termination": {
+        "t": "Ending your use",
+        "b": "You can delete your account at any time in Settings → Account. We may suspend an account that breaks these terms."
+      },
+      "liability": {
+        "t": "Limits",
+        "b": "To the extent the law allows, Koreer is not liable for hiring outcomes, lost opportunities, or damages arising from use of the service."
+      },
+      "changes": {
+        "t": "Changes to these terms",
+        "b": "If these terms change, this page and the date above are updated. Continuing to use Koreer means you accept the updated terms."
+      },
+      "contact": {
+        "t": "Contact",
+        "b": "For questions about these terms:"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "AI-powered career tools for international applicants building a career in Korea.",
+    "product": "Product",
+    "languages": "Languages",
+    "forStudents": "For applicants from",
+    "contact": "Contact",
+    "copyright": "© {year} Koreer. Made for international applicants in Korea."
   }
 }

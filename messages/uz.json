@@ -203,6 +203,15 @@
       "signIn": "Kirish",
       "agreeTerms": "Foydalanish shartlari va Maxfiylik siyosatiga roziman",
       "passwordHint": "Kamida 8 ta belgi",
+      "selectCountry": "Mamlakatingizni tanlang...",
+      "countries": {
+        "uzbekistan": "O‘zbekiston",
+        "kazakhstan": "Qozog‘iston",
+        "kyrgyzstan": "Qirg‘iziston",
+        "mongolia": "Mo‘g‘uliston",
+        "vietnam": "Vyetnam",
+        "other": "Boshqa"
+      },
       "passwordMismatch": "Parollar mos kelmadi.",
       "checkEmail": "Akkauntni tasdiqlash uchun emailingizni tekshiring, so‘ng kiring."
     },
@@ -211,7 +220,24 @@
     "resend": "Tasdiq xatini qayta yuborish",
     "resendSent": "Tasdiq xati yuborildi — pochtangizni tekshiring.",
     "linkExpired": "Tasdiq havolasi yaroqsiz yoki eskirgan. Quyida email va parolingizni kiriting, so‘ng qayta yuboring.",
-    "notConfirmed": "Emailingiz hali tasdiqlanmagan."
+    "notConfirmed": "Emailingiz hali tasdiqlanmagan.",
+    "continueWithGoogle": "Google bilan davom etish",
+    "forgot": {
+      "title": "Parolni tiklash",
+      "subtitle": "Elektron pochtangizni kiriting — tiklash havolasini yuboramiz.",
+      "submit": "Havolani yuborish",
+      "sent": "Agar bu pochta ro‘yxatdan o‘tgan bo‘lsa, tiklash havolasi yuborildi.",
+      "back": "Kirish sahifasiga qaytish"
+    },
+    "reset": {
+      "title": "Yangi parol tanlang",
+      "subtitle": "Akkauntingiz uchun yangi parol kiriting.",
+      "newPassword": "Yangi parol",
+      "confirmPassword": "Yangi parolni tasdiqlang",
+      "submit": "Yangi parolni saqlash",
+      "success": "Parol yangilandi.",
+      "invalidLink": "Bu tiklash havolasi yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang."
+    }
   },
   "dashboard": {
     "greeting": "Xayrli {time}, {name}!",
@@ -585,12 +611,32 @@
     "notifications": {
       "title": "Bildirishnomalar",
       "email": "Elektron pochta bildirisnomalar",
-      "tips": "Martaba maslahatlari va yangilanishlar"
+      "tips": "Martaba maslahatlari va yangilanishlar",
+      "emailDesc": "Hujjatlaringiz haqidagi yangilanishlarni pochta orqali oling.",
+      "tipsDesc": "Koreya mehnat bozori uchun haftalik martaba maslahatlari.",
+      "templates": "Yangi shablonlar",
+      "templatesDesc": "Yangi rezyume shablonlari chiqqanda xabar oling."
     },
     "account": {
       "title": "Hisob",
-      "deleteAccount": "Hisobni O'chirish",
-      "deleteWarning": "Bu amalni bekor qilib bo'lmaydi."
+      "deleteAccount": "Akkauntni o‘chirish",
+      "deleteWarning": "Bu amalni bekor qilib bo‘lmaydi.",
+      "deleteDetail": "Akkauntingiz, barcha saqlangan rezyume va motivatsion xatlar hamda karyera profilingiz butunlay o‘chiriladi.",
+      "deleteConfirmHint": "Tasdiqlash uchun elektron pochtangizni yozing:",
+      "deleting": "O‘chirilmoqda…",
+      "deleted": "Akkauntingiz o‘chirildi.",
+      "deleteError": "Akkauntni o‘chirib bo‘lmadi. Qayta urinib ko‘ring.",
+      "signedInAs": "Kirgan hisob",
+      "signInRequired": "Akkauntni boshqarish uchun tizimga kiring.",
+      "changePassword": "Parolni o‘zgartirish",
+      "changePasswordDesc": "Akkauntingiz uchun yangi parol o‘rnating.",
+      "newPassword": "Yangi parol",
+      "confirmPassword": "Yangi parolni tasdiqlang",
+      "passwordUpdated": "Parol yangilandi.",
+      "exportData": "Ma’lumotlarimni yuklab olish",
+      "exportDataDesc": "Hujjatlaringiz va profilingiz JSON fayl sifatida.",
+      "exportEmpty": "Hozircha yuklab oladigan narsa yo‘q.",
+      "exportError": "Faylni tayyorlab bo‘lmadi. Qayta urinib ko‘ring."
     },
     "whyKorea": {
       "title": "Nega Koreya"
@@ -693,5 +739,111 @@
     "newResume": "Yangi rezyume",
     "newCoverLetter": "Yangi motivatsion xat",
     "editing": "Saqlangan hujjat tahrirlanmoqda"
+  },
+  "legal": {
+    "lastUpdated": "Oxirgi yangilanish",
+    "back": "Koreer'ga qaytish",
+    "privacy": {
+      "title": "Maxfiylik siyosati",
+      "intro": "Koreer chet ellik nomzodlarga koreyscha rezyume (이력서) va motivatsion xat (자기소개서) yozishda yordam beradi. Bu siyosat qanday ma’lumot saqlanishini, nima uchun saqlanishini va uni qanday o‘chirishingizni tushuntiradi.",
+      "collect": {
+        "t": "Qanday ma’lumot yig‘amiz",
+        "account": "Akkaunt: elektron pochtangiz va parolingiz (parol faqat biz o‘qiy olmaydigan hash ko‘rinishida saqlanadi). Forma orqali ro‘yxatdan o‘tsangiz — kiritgan ism va mamlakatingiz; Google orqali kirsangiz — Google bergan ism, pochta va profil rasmi.",
+        "documents": "Hujjatlar: rezyume yoki motivatsion xatga yozgan hamma narsangiz — ism, telefon, manzil, tug‘ilgan sana, millat, ta’lim, ish tajribasi va yuklagan bo‘lsangiz fotosuratingiz. Fotosurat hujjatning ichida saqlanadi.",
+        "profile": "Karyera profili: Sozlamalarda saqlagan ma’lumot, ko‘nikmalar va “Nega Koreya” javoblaringiz — ular hujjatlarda qayta ishlatiladi.",
+        "technical": "Texnik: brauzeringizda saqlanadigan kirish tokeni va til tanlovingiz. Reklama yoki analitika kuzatuvchilaridan foydalanmaymiz."
+      },
+      "use": {
+        "t": "Nima uchun ishlatamiz",
+        "b": "Faqat xizmatni ishlatish uchun: tizimga kiritish, hujjatlaringizni saqlash va ko‘rsatish, PDF va Word fayl tayyorlash hamda siz so‘ragan AI takliflarini yaratish. Ma’lumotingizni sotmaymiz va AI modellarini o‘qitish uchun ishlatmaymiz."
+      },
+      "ai": {
+        "t": "AI qayta ishlash",
+        "b": "AI tugmasini bosganingizda o‘sha bo‘lim matni va siz saqlagan karyera profili taklif yaratish uchun AI provayderimiz Groq'ga yuboriladi. Siz so‘ramaguningizcha hech narsa yuborilmaydi. AI natijasi xato bo‘lishi mumkin — hujjatni ish beruvchiga yuborishdan oldin doim tekshiring."
+      },
+      "share": {
+        "t": "Yana kim ma’lumotni qayta ishlaydi",
+        "b": "Uchta provayderdan foydalanamiz, har biri faqat quyida ko‘rsatilgan maqsadda. Ma’lumotingizni boshqa hech kimga bermaymiz.",
+        "supabase": "Supabase — akkauntlar va ma’lumotlar bazasi (hujjatlar va profil shu yerda saqlanadi).",
+        "vercel": "Vercel — saytni joylashtirish.",
+        "groq": "Groq — siz so‘raganda AI takliflarini yaratish."
+      },
+      "retention": {
+        "t": "Qancha vaqt saqlaymiz",
+        "b": "Hujjatlaringiz siz o‘chirmaguningizcha turadi. Akkauntingiz va undagi hamma narsa akkauntni o‘chirmaguningizcha turadi. Akkauntni o‘chirish hujjatlar va profilni butunlay o‘chiradi — tiklab bo‘lmaydi."
+      },
+      "rights": {
+        "t": "Sizning huquqingiz",
+        "b": "Sozlamalar → Hisob bo‘limida parolni o‘zgartirishingiz, sizga tegishli barcha ma’lumotni JSON fayl sifatida yuklab olishingiz va akkauntni o‘chirishingiz mumkin. Alohida hujjatlarni ham istalgan vaqtda o‘chirasiz."
+      },
+      "security": {
+        "t": "Xavfsizlik",
+        "b": "Ma’lumotlar bazasidagi har bir qator qator darajasidagi xavfsizlik (RLS) bilan himoyalangan: tizimga kirgan foydalanuvchi faqat o‘z ma’lumotini o‘qiy va o‘zgartira oladi. Trafik shifrlanadi. Hech bir tizim mutlaq xavfsiz emas — saqlanishini istamaydigan ma’lumotni hujjatga yozmang."
+      },
+      "children": {
+        "t": "Bolalar",
+        "b": "Koreer mehnatga layoqatli yoshdagi ish qidiruvchilar va talabalar uchun mo‘ljallangan. 14 yoshgacha bo‘lgan bolalardan bila turib ma’lumot yig‘maymiz."
+      },
+      "changes": {
+        "t": "Siyosatdagi o‘zgarishlar",
+        "b": "Ma’lumot bilan ishlash tartibi o‘zgarsa, bu sahifa va yuqoridagi sana yangilanadi."
+      },
+      "contact": {
+        "t": "Aloqa",
+        "b": "Ma’lumotingiz haqidagi savollar yoki o‘chirish so‘rovini quyidagi manzilga yuboring:"
+      }
+    },
+    "terms": {
+      "title": "Foydalanish shartlari",
+      "intro": "Koreer'dan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz. Rozi bo‘lmasangiz, xizmatdan foydalanmang.",
+      "service": {
+        "t": "Koreer nima",
+        "b": "Koreer — koreyscha rezyume va motivatsion xat yozish uchun vosita, ixtiyoriy AI yordami bilan. Bu yozuv vositasi: ish topish agentligi, ish beruvchi, migratsiya maslahatchisi yoki yuridik xizmat emas."
+      },
+      "account": {
+        "t": "Akkauntingiz",
+        "b": "Parolingiz xavfsizligi va akkauntingiz ostida sodir bo‘ladigan ishlar uchun siz javobgarsiz. O‘zingiz nazorat qiladigan pochta manzilini kiriting — parolni tiklashning yagona yo‘li shu."
+      },
+      "acceptable": {
+        "t": "Ruxsat etilgan foydalanish",
+        "b": "Koreer'dan boshqa odam uchun uning xabarisiz hujjat yozishda, o‘zgalarning ma’lumotini kiritishda, ish beruvchiga soxta ma’lumot topshirishda yoki xizmatga hujum qilish/ortiqcha yuklashda foydalanmang."
+      },
+      "content": {
+        "t": "Kontent sizniki",
+        "b": "Yozgan hamma narsangiz to‘liq sizniki bo‘lib qoladi. Biz uni faqat xizmat ko‘rsatish uchun saqlaymiz va hech qachon e’lon qilmaymiz. Hujjatlaringizga da’vo qilmaymiz."
+      },
+      "ai": {
+        "t": "AI takliflari haqida",
+        "b": "AI natijasi — bu qoralama, dalil emas. U noaniq yoki muayyan kompaniyaga nomuvofiq bo‘lishi mumkin. Har bir hujjatni yuborishdan oldin tekshirish sizning zimmangizda. Koreer ishga qabul qilish tartibi, viza yoki Koreya qonunlari haqida aytgan narsalar umumiy ma’lumot — rasmiy manbadan tasdiqlang. Koreer'dan foydalanish suhbat yoki ish kafolatlamaydi."
+      },
+      "availability": {
+        "t": "Mavjudlik",
+        "b": "Xizmat “bor holicha” taqdim etiladi. Imkoniyatlarni o‘zgartirishimiz yoki to‘xtatishimiz mumkin; doimiy ishlashini yoki xatosizligini va’da qila olmaymiz. Muhim hujjatlarni eksport qilib, o‘zingizda nusxasini saqlang."
+      },
+      "termination": {
+        "t": "Foydalanishni tugatish",
+        "b": "Akkauntingizni istalgan vaqtda Sozlamalar → Hisob bo‘limidan o‘chirasiz. Ushbu shartlarni buzgan akkauntni to‘xtatib qo‘yishimiz mumkin."
+      },
+      "liability": {
+        "t": "Cheklovlar",
+        "b": "Qonun ruxsat bergan darajada, Koreer ishga qabul natijalari, boy berilgan imkoniyatlar yoki xizmatdan foydalanish natijasida yuzaga kelgan zarar uchun javobgar emas."
+      },
+      "changes": {
+        "t": "Shartlardagi o‘zgarishlar",
+        "b": "Shartlar o‘zgarsa, bu sahifa va yuqoridagi sana yangilanadi. Foydalanishni davom ettirish yangilangan shartlarga rozilik bildirish demakdir."
+      },
+      "contact": {
+        "t": "Aloqa",
+        "b": "Shartlar bo‘yicha savollar uchun:"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Koreyada karyera qurayotgan chet ellik nomzodlar uchun AI vositalari.",
+    "product": "Mahsulot",
+    "languages": "Tillar",
+    "forStudents": "Quyidagi mamlakatlardan",
+    "contact": "Aloqa",
+    "copyright": "© {year} Koreer. Koreyadagi chet ellik nomzodlar uchun yaratilgan."
   }
 }

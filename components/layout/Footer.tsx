@@ -1,8 +1,29 @@
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
+import { locales, localeNames, localeFlags } from '@/lib/i18n';
+import { SUPPORT_EMAIL } from '@/lib/legal';
 
-export function Footer() {
+const COUNTRIES = [
+  { key: 'uzbekistan', flag: '🇺🇿' },
+  { key: 'kazakhstan', flag: '🇰🇿' },
+  { key: 'kyrgyzstan', flag: '🇰🇬' },
+  { key: 'mongolia', flag: '🇲🇳' },
+  { key: 'vietnam', flag: '🇻🇳' },
+];
+
+export async function Footer({ locale }: { locale: string }) {
+  const t = await getTranslations({ locale });
   const currentYear = new Date().getFullYear();
+
+  // Every link here goes somewhere real — a footer full of href="#" is worse
+  // than a shorter footer.
+  const productLinks = [
+    { href: `/${locale}/resume`, label: t('nav.resume') },
+    { href: `/${locale}/cover-letter`, label: t('nav.coverLetter') },
+    { href: `/${locale}/ai-assistant`, label: t('nav.aiAssistant') },
+    { href: `/${locale}/documents`, label: t('nav.documents') },
+  ];
 
   return (
     <footer className="bg-gray-950 text-gray-400 py-16">
@@ -16,18 +37,18 @@ export function Footer() {
               </div>
               <span className="font-bold text-xl text-white">Koreer</span>
             </div>
-            <p className="text-sm leading-relaxed text-gray-500">
-              AI-powered career tools for international students pursuing opportunities in Korea.
-            </p>
+            <p className="text-sm leading-relaxed text-gray-500">{t('footer.tagline')}</p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm">Product</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">{t('footer.product')}</h4>
             <ul className="space-y-3 text-sm">
-              {['Resume Builder', 'Cover Letter', 'AI Assistant', 'Templates', 'PDF Export'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="hover:text-white transition-colors">{item}</Link>
+              {productLinks.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="hover:text-white transition-colors">
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -35,36 +56,28 @@ export function Footer() {
 
           {/* Languages */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm">Languages</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">{t('footer.languages')}</h4>
             <ul className="space-y-3 text-sm">
-              {[
-                { flag: '🇺🇸', name: 'English' },
-                { flag: '🇰🇷', name: '한국어' },
-                { flag: '🇺🇿', name: "O'zbek" },
-                { flag: '🇷🇺', name: 'Русский' },
-              ].map((lang) => (
-                <li key={lang.name}>
-                  <Link href="#" className="hover:text-white transition-colors flex items-center gap-2">
-                    <span>{lang.flag}</span> {lang.name}
+              {locales.map((l) => (
+                <li key={l}>
+                  <Link
+                    href={`/${l}`}
+                    className="hover:text-white transition-colors flex items-center gap-2"
+                  >
+                    <span>{localeFlags[l]}</span> {localeNames[l]}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Students */}
+          {/* Where applicants come from */}
           <div>
-            <h4 className="font-semibold text-white mb-4 text-sm">For Students From</h4>
+            <h4 className="font-semibold text-white mb-4 text-sm">{t('footer.forStudents')}</h4>
             <ul className="space-y-3 text-sm">
-              {[
-                { flag: '🇺🇿', name: 'Uzbekistan' },
-                { flag: '🇰🇿', name: 'Kazakhstan' },
-                { flag: '🇰🇬', name: 'Kyrgyzstan' },
-                { flag: '🇲🇳', name: 'Mongolia' },
-                { flag: '🇻🇳', name: 'Vietnam' },
-              ].map((country) => (
-                <li key={country.name} className="flex items-center gap-2">
-                  <span>{country.flag}</span> {country.name}
+              {COUNTRIES.map((c) => (
+                <li key={c.key} className="flex items-center gap-2">
+                  <span>{c.flag}</span> {t(`auth.register.countries.${c.key}`)}
                 </li>
               ))}
             </ul>
@@ -73,12 +86,18 @@ export function Footer() {
 
         <div className="pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-gray-600">
-            © {currentYear} Koreer. Built with ❤️ for international students in Korea.
+            {t('footer.copyright', { year: currentYear })}
           </p>
           <div className="flex items-center gap-6 text-sm">
-            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-white transition-colors">Contact</Link>
+            <Link href={`/${locale}/privacy`} className="hover:text-white transition-colors">
+              {t('legal.privacy.title')}
+            </Link>
+            <Link href={`/${locale}/terms`} className="hover:text-white transition-colors">
+              {t('legal.terms.title')}
+            </Link>
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-white transition-colors">
+              {t('footer.contact')}
+            </a>
           </div>
         </div>
       </div>

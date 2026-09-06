@@ -9,6 +9,8 @@ import {
   loadNarrative, saveNarrative, emptyNarrative, composeDraft,
   type WhyKoreaNarrative,
 } from '@/lib/whyKorea';
+import { syncNarrative, upsertProfileFields, narrativeToRow } from '@/lib/profileRemote';
+import { useAuth } from '@/lib/useAuth';
 
 /**
  * Profile-level guided builder for the "Why Korea" narrative. Persists to
@@ -20,10 +22,28 @@ export function WhyKoreaBuilder() {
   const [n, setN] = useState<WhyKoreaNarrative>(emptyNarrative);
   const [saved, setSaved] = useState(false);
 
+  const { status } = useAuth();
+
   useEffect(() => {
     const stored = loadNarrative();
     if (stored) setN(stored);
   }, []);
+
+  // Once signed in, reconcile with the server copy so the narrative follows the
+  // user across devices instead of living in one browser.
+  useEffect(() => {
+    if (status !== 'authenticated') return;
+    let active = true;
+    syncNarrative(loadNarrative()).then((remote) => {
+      if (active && remote) {
+        setN(remote);
+        saveNarrative(remote);
+      }
+    });
+    return () => {
+      active = false;
+    };
+  }, [status]);
 
   function patch(p: Partial<WhyKoreaNarrative>) {
     setN((prev) => ({ ...prev, ...p }));
@@ -41,6 +61,7 @@ export function WhyKoreaBuilder() {
     const record = saveNarrative(n);
     setN(record);
     setSaved(true);
+    if (status === 'authenticated') void upsertProfileFields(narrativeToRow(record));
   }
 
   const field = (

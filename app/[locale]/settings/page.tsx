@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { WhyKoreaBuilder } from '@/components/why-korea/WhyKoreaBuilder';
 import { CareerProfileForm } from '@/components/profile/CareerProfileForm';
+import { AccountPanel } from '@/components/settings/AccountPanel';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { locales, localeNames, localeFlags } from '@/lib/i18n';
@@ -21,8 +22,6 @@ import {
   Moon,
   Monitor,
   Save,
-  AlertTriangle,
-  ChevronRight,
   Camera,
   MapPin,
   Briefcase,
@@ -278,9 +277,9 @@ export default function SettingsPage() {
                   {t('settings.notifications.title')}
                 </h2>
                 {[
-                  { label: t('settings.notifications.email'), desc: 'Receive updates about your documents via email', defaultOn: true },
-                  { label: t('settings.notifications.tips'), desc: 'Weekly career tips for Korean job market', defaultOn: true },
-                  { label: 'New templates', desc: 'Get notified when new resume templates are available', defaultOn: false },
+                  { label: t('settings.notifications.email'), desc: t('settings.notifications.emailDesc'), defaultOn: true },
+                  { label: t('settings.notifications.tips'), desc: t('settings.notifications.tipsDesc'), defaultOn: true },
+                  { label: t('settings.notifications.templates'), desc: t('settings.notifications.templatesDesc'), defaultOn: false },
                 ].map((item) => (
                   <ToggleRow key={item.label} {...item} />
                 ))}
@@ -288,51 +287,7 @@ export default function SettingsPage() {
             )}
 
             {/* Account */}
-            {activeTab === 'account' && (
-              <div className="space-y-4 animate-fade-in">
-                <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6">
-                  <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2 mb-4">
-                    <Shield className="w-4 h-4 text-indigo-500" />
-                    {t('settings.account.title')}
-                  </h2>
-                  <div className="space-y-3">
-                    {[
-                      { label: 'Change Password', desc: 'Update your account password' },
-                      { label: 'Export Data', desc: 'Download all your documents and data' },
-                      { label: 'Connected Apps', desc: 'Manage third-party app connections' },
-                    ].map((item) => (
-                      <button
-                        key={item.label}
-                        className="w-full flex items-center justify-between p-3 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-left"
-                      >
-                        <div>
-                          <p className="text-sm font-medium text-gray-900 dark:text-white">{item.label}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{item.desc}</p>
-                        </div>
-                        <ChevronRight className="w-4 h-4 text-gray-400" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="bg-red-50 dark:bg-red-500/5 rounded-2xl border border-red-200 dark:border-red-500/20 p-6">
-                  <div className="flex items-start gap-3 mb-4">
-                    <AlertTriangle className="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <h3 className="font-semibold text-red-700 dark:text-red-400">
-                        {t('settings.account.deleteAccount')}
-                      </h3>
-                      <p className="text-sm text-red-600 dark:text-red-500 mt-1">
-                        {t('settings.account.deleteWarning')} This will permanently delete all your resumes, cover letters, and AI conversations.
-                      </p>
-                    </div>
-                  </div>
-                  <Button variant="danger" size="sm">
-                    {t('settings.account.deleteAccount')}
-                  </Button>
-                </div>
-              </div>
-            )}
+            {activeTab === 'account' && <AccountPanel locale={locale} />}
           </div>
         </div>
       </div>
