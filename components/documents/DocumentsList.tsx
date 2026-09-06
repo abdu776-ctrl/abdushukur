@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
-import { listDocuments, deleteDocument, type SavedDocument } from '@/lib/documents';
+import { listDocuments, deleteDocument, documentHref, type SavedDocument } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Badge } from '@/components/ui/Badge';
@@ -17,12 +17,6 @@ import {
   LogIn,
   Clock,
 } from 'lucide-react';
-
-/** Where a saved document reopens. The builder reads `?doc=` and rehydrates. */
-export function documentHref(locale: string, doc: { id: string; kind: string }) {
-  const path = doc.kind === 'resume' ? 'resume' : 'cover-letter';
-  return `/${locale}/${path}?doc=${doc.id}`;
-}
 
 function formatWhen(iso: string, locale: string): string {
   try {

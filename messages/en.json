@@ -42,7 +42,7 @@
     "resume": "Resume",
     "coverLetter": "Cover Letter",
     "aiAssistant": "AI Assistant",
-    "documents": "Saved",
+    "documents": "My saved documents",
     "settings": "Settings",
     "templates": "Templates"
   },
@@ -672,7 +672,7 @@
     "saveError": "Could not save. Please try again.",
     "signInToSave": "Sign in to save this document to your account.",
     "untitled": "Untitled",
-    "title": "Saved documents",
+    "title": "My saved documents",
     "subtitle": "Everything you have saved to your account. Open one to keep editing it.",
     "loading": "Loading your documents…",
     "empty": "You have not saved anything yet.",

@@ -42,7 +42,7 @@
     "resume": "Rezyume",
     "coverLetter": "Motivatsion xat",
     "aiAssistant": "AI Yordamchi",
-    "documents": "Saqlanganlar",
+    "documents": "Saqlangan hujjatlarim",
     "settings": "Sozlamalar",
     "templates": "Shablonlar"
   },
@@ -672,7 +672,7 @@
     "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
     "signInToSave": "Bu hujjatni akkauntingizga saqlash uchun tizimga kiring.",
     "untitled": "Nomsiz",
-    "title": "Saqlangan hujjatlar",
+    "title": "Saqlangan hujjatlarim",
     "subtitle": "Akkauntingizga saqlagan barcha hujjatlar. Davom ettirish uchun ustiga bosing.",
     "loading": "Hujjatlar yuklanmoqda…",
     "empty": "Hozircha hech narsa saqlamagansiz.",

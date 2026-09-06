@@ -42,7 +42,7 @@
     "resume": "이력서",
     "coverLetter": "자기소개서",
     "aiAssistant": "AI 어시스턴트",
-    "documents": "저장한 문서",
+    "documents": "내가 저장한 문서",
     "settings": "설정",
     "templates": "템플릿"
   },
@@ -672,7 +672,7 @@
     "saveError": "저장하지 못했습니다. 다시 시도해 주세요.",
     "signInToSave": "이 문서를 계정에 저장하려면 로그인하세요.",
     "untitled": "제목 없음",
-    "title": "저장한 문서",
+    "title": "내가 저장한 문서",
     "subtitle": "계정에 저장한 모든 문서입니다. 눌러서 이어서 작성하세요.",
     "loading": "문서를 불러오는 중…",
     "empty": "아직 저장한 문서가 없습니다.",

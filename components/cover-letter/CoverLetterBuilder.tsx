@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Input, Textarea } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
@@ -78,6 +79,7 @@ export function CoverLetterBuilder() {
   const [saving, setSaving] = useState(false);
   const [loadingDoc, setLoadingDoc] = useState(false);
   const { status: authStatus } = useAuth();
+  const docParam = useSearchParams().get('doc');
 
   async function handleSave() {
     setSaving(true);
@@ -123,7 +125,7 @@ export function CoverLetterBuilder() {
   // restored from storage.
   useEffect(() => {
     if (authStatus === 'loading') return;
-    const id = new URLSearchParams(window.location.search).get('doc');
+    const id = docParam;
     if (!id) return;
 
     if (authStatus !== 'authenticated') {
@@ -140,13 +142,16 @@ export function CoverLetterBuilder() {
           setToast({ type: 'error', message: td('notFound') });
           return;
         }
+        // Replaced, not merged — otherwise text from the previously open letter
+        // would survive into the one being opened.
         const d = doc.data as Record<string, unknown>;
-        if (typeof d.company === 'string') setCompany(d.company);
-        if (typeof d.position === 'string') setPosition(d.position);
-        if (typeof d.jobPosting === 'string') setJobPosting(d.jobPosting);
+        setCompany(typeof d.company === 'string' ? d.company : '');
+        setPosition(typeof d.position === 'string' ? d.position : '');
+        setJobPosting(typeof d.jobPosting === 'string' ? d.jobPosting : '');
         if (Array.isArray(d.sections) && d.sections.length > 0) {
           setSections(d.sections as CLSection[]);
         }
+        setExpandedId(null);
         setDocumentId(doc.id);
         setToast({ type: 'success', message: td('opened') });
       })
@@ -161,7 +166,7 @@ export function CoverLetterBuilder() {
     return () => {
       active = false;
     };
-  }, [authStatus, td]);
+  }, [authStatus, docParam, td]);
 
   function insertWhyKorea(sectionId: string, content: string) {
     const add = narrative?.draftText.trim();

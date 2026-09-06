@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/useAuth';
-import { listDocuments } from '@/lib/documents';
-import { documentHref } from '@/components/documents/DocumentsList';
+import { listDocuments, documentHref } from '@/lib/documents';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {

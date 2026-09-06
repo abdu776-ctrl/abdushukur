@@ -20,6 +20,21 @@ export interface SavedDocument {
   updated_at: string;
 }
 
+/** Where a saved document reopens. The builders read `?doc=` and rehydrate. */
+export function documentHref(locale: string, doc: { id: string; kind: string }): string {
+  return `/${locale}/${doc.kind === 'resume' ? 'resume' : 'cover-letter'}?doc=${doc.id}`;
+}
+
+/** Fired after a save or delete so open lists (the sidebar) can refresh
+ *  without a full page reload. */
+export const DOCUMENTS_CHANGED_EVENT = 'koreer:documents-changed';
+
+function notifyDocumentsChanged() {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(DOCUMENTS_CHANGED_EVENT));
+  }
+}
+
 /** Thrown when the caller needs to tell the user to sign in. */
 export class NotSignedInError extends Error {
   constructor() {
@@ -103,6 +118,7 @@ export async function saveDocument(input: {
     .single();
 
   if (error) throw new Error(error.message);
+  notifyDocumentsChanged();
   return data as SavedDocument;
 }
 
@@ -111,4 +127,5 @@ export async function deleteDocument(id: string): Promise<void> {
   if (!supabase) throw new NotSignedInError();
   const { error } = await supabase.from('documents').delete().eq('id', id);
   if (error) throw new Error(error.message);
+  notifyDocumentsChanged();
 }

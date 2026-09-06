@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { CoverLetterBuilder } from '@/components/cover-letter/CoverLetterBuilder';
@@ -18,7 +19,11 @@ export default async function CoverLetterPage({ params }: { params: Promise<{ lo
             {t('coverLetter.subtitle')}
           </p>
         </div>
-        <CoverLetterBuilder />
+        {/* The builder reads ?doc= to reopen a saved letter, so it needs a
+            Suspense boundary to stay prerenderable. */}
+        <Suspense fallback={null}>
+          <CoverLetterBuilder />
+        </Suspense>
       </div>
     </DashboardLayout>
   );

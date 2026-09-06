@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { useSearchParams } from 'next/navigation';
 import { Input, Textarea } from '@/components/ui/Input';
 import { MonthYearPicker } from '@/components/ui/MonthYearPicker';
 import { Toast, type ToastData } from '@/components/ui/Toast';
@@ -113,10 +114,11 @@ export function ResumeBuilder() {
   // Reopening a saved resume: /resume?doc=<id>. Waiting for the auth status
   // matters — Row Level Security returns nothing until the session is restored.
   const { status: authStatus } = useAuth();
+  const docParam = useSearchParams().get('doc');
 
   useEffect(() => {
     if (authStatus === 'loading') return;
-    const id = new URLSearchParams(window.location.search).get('doc');
+    const id = docParam;
     if (!id) return;
 
     if (authStatus !== 'authenticated') {
@@ -133,19 +135,28 @@ export function ResumeBuilder() {
           setToast({ type: 'error', message: td('notFound') });
           return;
         }
+        // Every field is replaced, not merged — otherwise data from the
+        // previously open document would leak into the one being opened.
         const d = doc.data as Record<string, unknown>;
-        if (d.personal) setPersonal({ ...defaultPersonal, ...(d.personal as PersonalInfo) });
-        if (Array.isArray(d.education)) setEducation(d.education as Education[]);
-        if (Array.isArray(d.experience)) setExperience(d.experience as WorkExperience[]);
-        if (Array.isArray(d.skills)) setSkills(d.skills as Skill[]);
-        if (Array.isArray(d.awards)) setAwards(d.awards as Award[]);
-        if (Array.isArray(d.certificates)) setCertificates(d.certificates as Certificate[]);
-        if (Array.isArray(d.projects)) setProjects(d.projects as Project[]);
-        if (Array.isArray(d.volunteer)) setVolunteer(d.volunteer as Volunteer[]);
-        if (Array.isArray(d.publications)) setPublications(d.publications as Publication[]);
-        if (typeof d.layoutId === 'string') setLayoutId(d.layoutId as LayoutId);
-        if (typeof d.themeId === 'string') setThemeId(d.themeId as ThemeId);
-        if (Array.isArray(d.sectionOrder)) setSectionOrder(d.sectionOrder as string[]);
+        const list = <T,>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
+        setPersonal({ ...defaultPersonal, ...((d.personal as PersonalInfo) ?? {}) });
+        setEducation(
+          Array.isArray(d.education) && d.education.length > 0
+            ? (d.education as Education[])
+            : [{ ...defaultEducation }]
+        );
+        setExperience(list<WorkExperience>(d.experience));
+        setSkills(list<Skill>(d.skills));
+        setAwards(list<Award>(d.awards));
+        setCertificates(list<Certificate>(d.certificates));
+        setProjects(list<Project>(d.projects));
+        setVolunteer(list<Volunteer>(d.volunteer));
+        setPublications(list<Publication>(d.publications));
+        setLayoutId(typeof d.layoutId === 'string' ? (d.layoutId as LayoutId) : DEFAULT_LAYOUT);
+        setThemeId(typeof d.themeId === 'string' ? (d.themeId as ThemeId) : DEFAULT_THEME);
+        setSectionOrder(
+          Array.isArray(d.sectionOrder) ? (d.sectionOrder as string[]) : DEFAULT_SECTION_ORDER
+        );
         setDocumentId(doc.id);
         setToast({ type: 'success', message: td('opened') });
       })
@@ -160,7 +171,7 @@ export function ResumeBuilder() {
     return () => {
       active = false;
     };
-  }, [authStatus, td]);
+  }, [authStatus, docParam, td]);
 
   async function handleSave() {
     setSaving(true);

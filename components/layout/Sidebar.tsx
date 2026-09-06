@@ -15,9 +15,18 @@ import {
   ChevronRight,
   User,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth, signOutEverywhere } from '@/lib/useAuth';
+import {
+  listDocuments,
+  documentHref,
+  DOCUMENTS_CHANGED_EVENT,
+  type SavedDocument,
+} from '@/lib/documents';
 import { LogOut } from 'lucide-react';
+
+/** How many saved documents fit in the sidebar before it gets crowded. */
+const SIDEBAR_DOC_LIMIT = 6;
 
 interface NavItem {
   href: string;
@@ -33,7 +42,42 @@ export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   // Unified session — a user signed in through Supabase or NextAuth is shown
   // the same way.
-  const { user } = useAuth();
+  const { user, status } = useAuth();
+
+  // The user's saved documents, listed one per line under the nav item so they
+  // are reachable from anywhere without opening the full page first.
+  const [docs, setDocs] = useState<SavedDocument[]>([]);
+  // Which saved document is open, so its row can be highlighted. Read from the
+  // URL in an effect — `window` is not available while prerendering.
+  const [activeDocId, setActiveDocId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setActiveDocId(new URLSearchParams(window.location.search).get('doc'));
+  }, [pathname]);
+
+  useEffect(() => {
+    if (status !== 'authenticated') {
+      setDocs([]);
+      return;
+    }
+    let active = true;
+    const load = () => {
+      listDocuments()
+        .then((rows) => {
+          if (active) setDocs(rows);
+        })
+        .catch(() => {
+          /* the full page reports errors; the sidebar just stays empty */
+        });
+    };
+    load();
+    // A save or delete anywhere in the app refreshes this list in place.
+    window.addEventListener(DOCUMENTS_CHANGED_EVENT, load);
+    return () => {
+      active = false;
+      window.removeEventListener(DOCUMENTS_CHANGED_EVENT, load);
+    };
+  }, [status]);
 
   const userName = user?.name || user?.email?.split('@')[0] || 'Guest';
   const userEmail = user?.email || 'Not signed in';
@@ -141,7 +185,7 @@ export function Sidebar() {
             </span>
             {!collapsed && (
               <>
-                <span className="text-sm font-medium flex-1">{item.label}</span>
+                <span className="text-sm font-medium flex-1 truncate">{item.label}</span>
                 {item.badge && (
                   <span className="text-xs font-bold px-1.5 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400">
                     {item.badge}
@@ -151,6 +195,52 @@ export function Sidebar() {
             )}
           </Link>
         ))}
+
+        {/* Saved documents, one per line under "Saved documents". Hidden while
+            collapsed — the titles need the width to stay readable. */}
+        {!collapsed && docs.length > 0 && (
+          <ul className="pl-3 pt-0.5 space-y-0.5">
+            {docs.slice(0, SIDEBAR_DOC_LIMIT).map((doc) => {
+              const href = documentHref(locale, doc);
+              const isResume = doc.kind === 'resume';
+              return (
+                <li key={doc.id}>
+                  <Link
+                    href={href}
+                    title={doc.title || t('documents.untitled')}
+                    onClick={() => setActiveDocId(doc.id)}
+                    className={cn(
+                      'flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-lg border-l-2 transition-colors',
+                      activeDocId === doc.id
+                        ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-50/60 dark:bg-indigo-500/10'
+                        : 'border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
+                    )}
+                  >
+                    {isResume ? (
+                      <FileText className="w-3.5 h-3.5 shrink-0 text-blue-500" />
+                    ) : (
+                      <PenLine className="w-3.5 h-3.5 shrink-0 text-purple-500" />
+                    )}
+                    <span className="text-xs truncate">
+                      {doc.title || t('documents.untitled')}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+
+            {docs.length > SIDEBAR_DOC_LIMIT && (
+              <li>
+                <Link
+                  href={`/${locale}/documents`}
+                  className="block pl-6 pr-2 py-1.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  {t('dashboard.recentDocuments.viewAll')}
+                </Link>
+              </li>
+            )}
+          </ul>
+        )}
       </nav>
 
       {/* Bottom section */}

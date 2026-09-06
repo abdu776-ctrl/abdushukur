@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { ResumeBuilder } from '@/components/resume/ResumeBuilder';
@@ -18,7 +19,11 @@ export default async function ResumePage({ params }: { params: Promise<{ locale:
             {t('resume.subtitle')}
           </p>
         </div>
-        <ResumeBuilder />
+        {/* The builder reads ?doc= to reopen a saved resume, so it needs a
+            Suspense boundary to stay prerenderable. */}
+        <Suspense fallback={null}>
+          <ResumeBuilder />
+        </Suspense>
       </div>
     </DashboardLayout>
   );
