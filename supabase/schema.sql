@@ -62,6 +62,54 @@ create policy "documents are self-service"
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 
+-- ── AI usage quota ──────────────────────────────────────────────────────────
+-- The AI routes call a paid provider, and they were open to anyone: a script
+-- could have emptied the account overnight. Each caller gets a daily budget,
+-- counted here so the limit survives across serverless instances.
+--
+-- A signed-in caller is counted by user id. A guest is counted by a HASH of
+-- their IP address — the address itself is never stored.
+create table if not exists public.ai_usage (
+  bucket_key  text not null,
+  day         date not null default current_date,
+  count       integer not null default 0,
+  primary key (bucket_key, day)
+);
+
+-- Nobody reads this table from the browser; only the function below touches it.
+alter table public.ai_usage enable row level security;
+
+-- Claim one unit of the caller's daily budget. Returns true when the request
+-- may proceed. Security definer, so it can write to a table nothing else can.
+create or replace function public.consume_ai_quota(p_key text, p_limit integer)
+returns boolean
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  new_count integer;
+begin
+  if p_key is null or length(p_key) = 0 or p_limit <= 0 then
+    return false;
+  end if;
+
+  insert into public.ai_usage (bucket_key, day, count)
+  values (p_key, current_date, 1)
+  on conflict (bucket_key, day)
+    do update set count = public.ai_usage.count + 1
+  returning count into new_count;
+
+  return new_count <= p_limit;
+end;
+$$;
+
+revoke all on function public.consume_ai_quota(text, integer) from public;
+grant execute on function public.consume_ai_quota(text, integer) to anon, authenticated;
+
+-- Yesterday's rows are dead weight; drop them opportunistically.
+create index if not exists ai_usage_day_idx on public.ai_usage (day);
+
 -- ── Account deletion ────────────────────────────────────────────────────────
 -- App stores require a way for a user to delete their own account from inside
 -- the app. A signed-in user cannot delete from auth.users directly, so this

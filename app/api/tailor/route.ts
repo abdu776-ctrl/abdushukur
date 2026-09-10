@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { guardAiRequest } from '@/lib/aiGuard';
 
 // Tailors a 자기소개서 section to a specific job posting using the applicant's
 // OWN material. It must never invent a personal history — if the applicant has
@@ -22,6 +23,13 @@ const LANG_NAME: Record<string, string> = {
 
 export async function POST(req: NextRequest) {
   try {
+    // Tailoring writes into a document the user is building, so this one is
+    // for account holders only.
+    const guard = await guardAiRequest(req, { requireAccount: true });
+    if (!guard.ok) {
+      return Response.json({ error: guard.reason }, { status: guard.status ?? 429 });
+    }
+
     const body = await req.json();
     const {
       sectionType = 'custom',
@@ -37,10 +45,7 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
-      return Response.json(
-        { error: 'AI is not configured yet. Please set the GROQ_API_KEY environment variable.' },
-        { status: 503 }
-      );
+      return Response.json({ error: 'unavailable' }, { status: 503 });
     }
 
     const userLang = LANG_NAME[locale] || 'Uzbek';

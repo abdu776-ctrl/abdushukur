@@ -15,6 +15,7 @@ import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/
 import { loadProfile, profileToPrompt } from '@/lib/profile';
 import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
+import { aiFetch, aiErrorKey } from '@/lib/aiClient';
 import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
@@ -67,6 +68,7 @@ export function CoverLetterBuilder() {
   const t = useTranslations('coverLetter');
   const tc = useTranslations('common');
   const td = useTranslations('documents');
+  const terr = useTranslations('errors');
   const locale = useLocale();
   const [toast, setToast] = useState<ToastData | null>(null);
   const [company, setCompany] = useState('');
@@ -273,25 +275,31 @@ export function CoverLetterBuilder() {
   async function handleAISuggest(section: CLSection) {
     setAiLoading(section.id);
     try {
-      const res = await fetch('/api/tailor', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sectionType: section.type,
-          sectionTitle: section.title,
-          company,
-          position,
-          jobPosting,
-          content: section.content,
-          // Saved career profile — real, applicant-supplied facts the AI may use.
-          profile: profileToPrompt(loadProfile()),
-          charLimit: section.charLimit,
-          locale,
-        }),
+      const res = await aiFetch('/api/tailor', {
+        sectionType: section.type,
+        sectionTitle: section.title,
+        company,
+        position,
+        jobPosting,
+        content: section.content,
+        // Saved career profile — real, applicant-supplied facts the AI may use.
+        profile: profileToPrompt(loadProfile()),
+        charLimit: section.charLimit,
+        locale,
       });
+
+      if (!res.ok) {
+        // Tailoring needs an account, and everyone has a daily budget — say
+        // which it is instead of a generic failure.
+        const detail = await res.text().catch(() => '');
+        const key = aiErrorKey(res.status, authStatus === 'authenticated', detail);
+        setToast({ type: 'error', message: key ? terr(key) : t('ai.error') });
+        return;
+      }
+
       const data = await res.json();
-      if (!res.ok || !data?.text) {
-        setToast({ type: 'error', message: data?.error || t('ai.error') });
+      if (!data?.text) {
+        setToast({ type: 'error', message: t('ai.error') });
         return;
       }
       updateSection(section.id, { content: data.text });

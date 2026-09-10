@@ -772,7 +772,7 @@
         "account": "Akkaunt: elektron pochtangiz va parolingiz (parol faqat biz o‘qiy olmaydigan hash ko‘rinishida saqlanadi). Forma orqali ro‘yxatdan o‘tsangiz — kiritgan ism va mamlakatingiz; Google orqali kirsangiz — Google bergan ism, pochta va profil rasmi.",
         "documents": "Hujjatlar: rezyume yoki motivatsion xatga yozgan hamma narsangiz — ism, telefon, manzil, tug‘ilgan sana, millat, ta’lim, ish tajribasi va yuklagan bo‘lsangiz fotosuratingiz. Fotosurat hujjatning ichida saqlanadi.",
         "profile": "Karyera profili: Sozlamalarda saqlagan ma’lumot, ko‘nikmalar va “Nega Koreya” javoblaringiz — ular hujjatlarda qayta ishlatiladi.",
-        "technical": "Texnik: brauzeringizda saqlanadigan kirish tokeni va til tanlovingiz. Reklama yoki analitika kuzatuvchilaridan foydalanmaymiz."
+        "technical": "Texnik: brauzeringizda saqlanadigan kirish tokeni va til tanlovingiz. AI imkoniyatlari suiiste'mol qilinmasligi uchun kunlik so‘rovlar sonini ham hisoblaymiz — akkauntingiz bo‘yicha yoki tizimga kirmagan mehmon uchun IP manzilingizning qaytarilmas xeshi bo‘yicha; manzilning o‘zi hech qachon saqlanmaydi. Reklama yoki analitika kuzatuvchilaridan foydalanmaymiz."
       },
       "use": {
         "t": "Nima uchun ishlatamiz",
@@ -896,6 +896,12 @@
     "errorTitle": "Xatolik yuz berdi",
     "errorBody": "Kutilmagan xatolik. Qayta urinib ko‘ring yoki bosh sahifaga qayting.",
     "retry": "Qayta urinish",
-    "goHome": "Koreer’ga o‘tish"
+    "goHome": "Koreer’ga o‘tish",
+    "aiSignIn": "Bu yerda AI yordamidan foydalanish uchun tizimga kiring.",
+    "aiQuotaGuest": "Bugungi bepul AI so‘rovlaringiz tugadi. Ko‘proq olish uchun tizimga kiring.",
+    "aiQuotaUser": "Bugungi AI chegarasiga yetdingiz. Ertaga qayta urinib ko‘ring.",
+    "aiTooFast": "Juda ko‘p so‘rov. Biroz kuting va qayta urinib ko‘ring.",
+    "aiUnavailable": "AI hozircha mavjud emas. Keyinroq urinib ko‘ring.",
+    "aiTooLong": "Bu matn juda uzun. Qisqartirib, qayta urinib ko‘ring."
   }
 }

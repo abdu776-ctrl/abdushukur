@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { guardAiRequest } from '@/lib/aiGuard';
 
 const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
@@ -95,10 +96,18 @@ async function fallbackTranslate(text: string, from: string, to: string, mode: s
 
 export async function POST(req: NextRequest) {
   try {
+    const guard = await guardAiRequest(req);
+    if (!guard.ok) {
+      return NextResponse.json({ error: guard.reason }, { status: guard.status ?? 429 });
+    }
+
     const { text, from = 'auto', to, mode = 'text' } = await req.json();
 
     if (!text || typeof text !== 'string' || !to) {
       return NextResponse.json({ error: 'Missing text or target language' }, { status: 400 });
+    }
+    if (text.length > 5000) {
+      return NextResponse.json({ error: 'too-large' }, { status: 413 });
     }
 
     const apiKey = process.env.GROQ_API_KEY;

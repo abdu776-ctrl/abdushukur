@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useEscapeKey, useFocusTrap } from '@/lib/hooks';
+import { aiFetch, aiErrorKey } from '@/lib/aiClient';
+import { useAuth } from '@/lib/useAuth';
 import { Languages, X, ArrowRight, ArrowLeftRight, Loader2, Copy, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -37,6 +39,8 @@ export function NameTranslator({
 }: NameTranslatorProps) {
   const tc = useTranslations('common');
   const tt = useTranslations('translator');
+  const terr = useTranslations('errors');
+  const { status: authStatus } = useAuth();
   const tr = useTranslations('resume');
   const [open, setOpen] = useState(false);
   useEscapeKey(() => setOpen(false), open);
@@ -75,12 +79,13 @@ export function NameTranslator({
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/translate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text, from: f, to: t, mode: 'name' }),
-      });
-      if (!res.ok) throw new Error('failed');
+      const res = await aiFetch('/api/translate', { text, from: f, to: t, mode: 'name' });
+      if (!res.ok) {
+        const detail = await res.text().catch(() => '');
+        const key = aiErrorKey(res.status, authStatus === 'authenticated', detail);
+        setError(key ? terr(key) : tt('error'));
+        return;
+      }
       const data = await res.json();
       setResult((data.translated as string) || '');
     } catch {

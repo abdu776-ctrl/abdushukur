@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server';
+import { guardAiRequest } from '@/lib/aiGuard';
 
 const SYSTEM_PROMPT = `You are Koreer's AI Career Assistant, an expert on getting a job in South Korea as an international student or foreign applicant (Korean resumes 이력서, 자기소개서, interviews, salary, workplace culture, and visa basics). Answer in the user's language (Uzbek, Russian, English, Korean, Chinese or Vietnamese). Be concrete, practical, and encouraging; use short paragraphs and bullets; include useful Korean terms with a short translation; keep it concise. For visa/legal specifics, remind the user to verify with official sources.
 
@@ -8,6 +9,14 @@ const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 export async function POST(req: NextRequest) {
   try {
+    // Guests get a small daily budget so the assistant can be tried before
+    // signing up; the cap and the burst limit keep a script from running the
+    // provider bill up.
+    const guard = await guardAiRequest(req);
+    if (!guard.ok) {
+      return new Response(guard.reason ?? 'refused', { status: guard.status ?? 429 });
+    }
+
     const { messages } = await req.json();
 
     if (!Array.isArray(messages) || messages.length === 0) {
@@ -16,10 +25,9 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
-      return new Response(
-        'AI is not configured yet. Please set the GROQ_API_KEY environment variable.',
-        { status: 503 }
-      );
+      // Deliberately terse: the client turns this into a translated message,
+      // and a visitor has no business seeing our environment variable names.
+      return new Response('unavailable', { status: 503 });
     }
 
     const chatMessages = [

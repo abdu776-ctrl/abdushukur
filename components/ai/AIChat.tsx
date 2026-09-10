@@ -3,6 +3,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
+import { aiFetch, aiErrorKey } from '@/lib/aiClient';
+import { useAuth } from '@/lib/useAuth';
 import { cn } from '@/lib/utils';
 import {
   Sparkles,
@@ -34,6 +36,8 @@ function greetingMessage(text: string): Message {
 
 export function AIChat() {
   const t = useTranslations('aiAssistant');
+  const terr = useTranslations('errors');
+  const { status: authStatus } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [chats, setChats] = useState<ChatSession[]>([]);
   const [chatId, setChatId] = useState<string>('');
@@ -167,15 +171,14 @@ export function AIChat() {
     }
 
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: history }),
-      });
+      const res = await aiFetch('/api/chat', { messages: history });
 
       if (!res.ok || !res.body) {
-        const errText = await res.text().catch(() => '');
-        throw new Error(errText || 'request failed');
+        const detail = await res.text().catch(() => '');
+        // A refusal from the guard is expected and explainable; anything else
+        // falls through to the generic error below.
+        const key = aiErrorKey(res.status, authStatus === 'authenticated', detail);
+        throw new Error(key ? terr(key) : t('error'));
       }
 
       const reader = res.body.getReader();

@@ -772,7 +772,7 @@
         "account": "Tài khoản: địa chỉ email và mật khẩu của bạn (mật khẩu chỉ được lưu dưới dạng mã băm mà chúng tôi không đọc được). Nếu đăng ký bằng biểu mẫu, thêm tên và quốc gia bạn nhập; nếu đăng nhập bằng Google, là tên, email và ảnh đại diện do Google cung cấp.",
         "documents": "Tài liệu: mọi thứ bạn nhập vào sơ yếu lý lịch hoặc thư giới thiệu — gồm họ tên, số điện thoại, địa chỉ, ngày sinh, quốc tịch, học vấn, quá trình làm việc và ảnh thẻ nếu bạn tải lên. Ảnh được lưu ngay bên trong tài liệu.",
         "profile": "Hồ sơ nghề nghiệp: thông tin nền tảng, kỹ năng và câu trả lời “Vì sao Hàn Quốc” bạn lưu trong Cài đặt, để dùng lại cho nhiều tài liệu.",
-        "technical": "Kỹ thuật: mã đăng nhập và lựa chọn ngôn ngữ, lưu trong trình duyệt của bạn. Chúng tôi không dùng công cụ quảng cáo hay phân tích theo dõi."
+        "technical": "Kỹ thuật: mã đăng nhập và lựa chọn ngôn ngữ, lưu trong trình duyệt của bạn. Để tránh lạm dụng các tính năng AI, chúng tôi cũng đếm số yêu cầu mỗi ngày — theo tài khoản của bạn, hoặc với khách chưa đăng nhập thì theo một mã băm một chiều của địa chỉ IP; bản thân địa chỉ không được lưu. Chúng tôi không dùng công cụ quảng cáo hay phân tích theo dõi."
       },
       "use": {
         "t": "Chúng tôi dùng dữ liệu để làm gì",
@@ -896,6 +896,12 @@
     "errorTitle": "Đã có lỗi xảy ra",
     "errorBody": "Lỗi không mong muốn. Hãy thử lại hoặc quay về trang chủ.",
     "retry": "Thử lại",
-    "goHome": "Về Koreer"
+    "goHome": "Về Koreer",
+    "aiSignIn": "Đăng nhập để dùng trợ giúp AI ở đây.",
+    "aiQuotaGuest": "Bạn đã dùng hết lượt AI miễn phí hôm nay. Đăng nhập để có thêm.",
+    "aiQuotaUser": "Bạn đã đạt giới hạn AI trong ngày. Vui lòng thử lại vào ngày mai.",
+    "aiTooFast": "Quá nhiều yêu cầu. Vui lòng đợi một lát rồi thử lại.",
+    "aiUnavailable": "AI hiện không khả dụng. Vui lòng thử lại sau.",
+    "aiTooLong": "Văn bản quá dài. Hãy rút ngắn rồi thử lại."
   }
 }
