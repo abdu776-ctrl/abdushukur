@@ -1,4 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
+import { SITE_URL } from '@/lib/siteUrl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
@@ -15,7 +16,6 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://koreer.vercel.app';
 const OG_LOCALE: Record<string, string> = {
   en: 'en_US', ko: 'ko_KR', uz: 'uz_UZ', ru: 'ru_RU', zh: 'zh_CN', vi: 'vi_VN',
 };

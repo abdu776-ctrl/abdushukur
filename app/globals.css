@@ -227,8 +227,29 @@
     @apply bg-white text-black;
   }
 
-  .page-break {
-    page-break-before: always;
+  /* Keep an entry whole. Without this a two-page résumé could split a single
+     education or work entry across the page break — heading on one page, dates
+     and detail on the next. Rows, list items and headings all stay together
+     with what follows them. */
+  html.printing #print-root tr,
+  html.printing #print-root li,
+  html.printing #print-root img {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  html.printing #print-root h1,
+  html.printing #print-root h2,
+  html.printing #print-root h3,
+  html.printing #print-root h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  /* Section blocks in the single-column layouts. */
+  html.printing #print-root [data-print-block] {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
 

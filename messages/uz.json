@@ -889,5 +889,13 @@
     "expiredLink": "Bu havola yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang.",
     "network": "Serverga ulanib bo‘lmadi. Internetni tekshirib, qayta urining.",
     "generic": "Xatolik yuz berdi. Qayta urinib ko‘ring."
+  },
+  "errors": {
+    "notFoundTitle": "Sahifa topilmadi",
+    "notFoundBody": "Bunday sahifa yo‘q yoki boshqa manzilga ko‘chirilgan.",
+    "errorTitle": "Xatolik yuz berdi",
+    "errorBody": "Kutilmagan xatolik. Qayta urinib ko‘ring yoki bosh sahifaga qayting.",
+    "retry": "Qayta urinish",
+    "goHome": "Koreer’ga o‘tish"
   }
 }

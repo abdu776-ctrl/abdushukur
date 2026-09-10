@@ -889,5 +889,13 @@
     "expiredLink": "Liên kết không hợp lệ hoặc đã hết hạn. Hãy yêu cầu liên kết mới.",
     "network": "Không kết nối được máy chủ. Kiểm tra kết nối rồi thử lại.",
     "generic": "Đã có lỗi xảy ra. Vui lòng thử lại."
+  },
+  "errors": {
+    "notFoundTitle": "Không tìm thấy trang",
+    "notFoundBody": "Trang này không tồn tại hoặc đã được chuyển đi.",
+    "errorTitle": "Đã có lỗi xảy ra",
+    "errorBody": "Lỗi không mong muốn. Hãy thử lại hoặc quay về trang chủ.",
+    "retry": "Thử lại",
+    "goHome": "Về Koreer"
   }
 }

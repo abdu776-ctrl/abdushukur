@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { SITE_URL } from '@/lib/siteUrl';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -8,9 +9,6 @@ const inter = Inter({
   display: 'swap',
 });
 
-// Canonical site URL for share metadata. Set NEXT_PUBLIC_SITE_URL in the
-// environment (e.g. https://koreer.vercel.app); falls back to the live domain.
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://koreer.vercel.app';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

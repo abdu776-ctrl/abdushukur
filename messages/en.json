@@ -889,5 +889,13 @@
     "expiredLink": "That link is invalid or has expired. Request a new one.",
     "network": "Could not reach the server. Check your connection and try again.",
     "generic": "Something went wrong. Please try again."
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundBody": "That page does not exist, or it has moved.",
+    "errorTitle": "Something went wrong",
+    "errorBody": "An unexpected error occurred. Try again, or go back to the start.",
+    "retry": "Try again",
+    "goHome": "Go to Koreer"
   }
 }
