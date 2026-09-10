@@ -6,7 +6,7 @@ import path from 'path';
 
 const MESSAGES_DIR = 'messages';
 const DEFAULT_LOCALE = 'en';
-const LOCALES = ['en', 'ko', 'uz', 'ru'];
+const LOCALES = ['en', 'ko', 'uz', 'ru', 'zh', 'vi'];
 
 function flatten(obj, prefix = '') {
   const keys = [];

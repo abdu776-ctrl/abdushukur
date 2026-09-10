@@ -16,7 +16,9 @@ export function generateStaticParams() {
 }
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://koreer.vercel.app';
-const OG_LOCALE: Record<string, string> = { en: 'en_US', ko: 'ko_KR', uz: 'uz_UZ', ru: 'ru_RU' };
+const OG_LOCALE: Record<string, string> = {
+  en: 'en_US', ko: 'ko_KR', uz: 'uz_UZ', ru: 'ru_RU', zh: 'zh_CN', vi: 'vi_VN',
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

@@ -17,6 +17,7 @@ const nationalities = [
   { value: 'kazakhstan', flag: '🇰🇿' },
   { value: 'kyrgyzstan', flag: '🇰🇬' },
   { value: 'mongolia', flag: '🇲🇳' },
+  { value: 'china', flag: '🇨🇳' },
   { value: 'vietnam', flag: '🇻🇳' },
   { value: 'other', flag: '🌍' },
 ];

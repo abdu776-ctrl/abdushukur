@@ -1,7 +1,7 @@
 import { defineRouting } from 'next-intl/routing';
 
 export const routing = defineRouting({
-  locales: ['en', 'ko', 'uz', 'ru'],
+  locales: ['en', 'ko', 'uz', 'ru', 'zh', 'vi'],
   defaultLocale: 'en',
   localePrefix: 'always',
 });
@@ -13,6 +13,8 @@ export const localeNames: Record<Locale, string> = {
   ko: '한국어',
   uz: "O'zbek",
   ru: 'Русский',
+  zh: '中文',
+  vi: 'Tiếng Việt',
 };
 
 export const localeFlags: Record<Locale, string> = {
@@ -20,4 +22,6 @@ export const localeFlags: Record<Locale, string> = {
   ko: '🇰🇷',
   uz: '🇺🇿',
   ru: '🇷🇺',
+  zh: '🇨🇳',
+  vi: '🇻🇳',
 };

@@ -9,6 +9,7 @@ const COUNTRIES = [
   { key: 'kazakhstan', flag: '🇰🇿' },
   { key: 'kyrgyzstan', flag: '🇰🇬' },
   { key: 'mongolia', flag: '🇲🇳' },
+  { key: 'china', flag: '🇨🇳' },
   { key: 'vietnam', flag: '🇻🇳' },
 ];
 

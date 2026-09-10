@@ -1,0 +1,853 @@
+{
+  "common": {
+    "appName": "Koreer",
+    "tagline": "你的韩国求职 AI 助手",
+    "loading": "加载中...",
+    "save": "保存",
+    "cancel": "取消",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "download": "下载",
+    "export": "导出 PDF",
+    "preview": "预览",
+    "back": "返回",
+    "next": "下一步",
+    "finish": "完成",
+    "or": "或",
+    "and": "和",
+    "yes": "是",
+    "no": "否",
+    "close": "关闭",
+    "search": "搜索",
+    "filter": "筛选",
+    "settings": "设置",
+    "profile": "个人资料",
+    "logout": "退出登录",
+    "darkMode": "深色模式",
+    "language": "语言",
+    "new": "新建",
+    "untitled": "未命名",
+    "toast": {
+      "pdfError": "无法导出 PDF。请先打开“预览”，然后重试。",
+      "wordError": "无法保存 Word 文件。请先打开“预览”，然后重试。",
+      "pdfReady": "PDF 已下载。",
+      "wordReady": "Word 文件已下载。",
+      "printHint": "打印窗口已打开 — 选择“另存为 PDF”即可得到可复制文字的文件。"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "dashboard": "控制面板",
+    "resume": "简历",
+    "coverLetter": "自我介绍书",
+    "aiAssistant": "AI 助手",
+    "documents": "我保存的文档",
+    "settings": "设置",
+    "templates": "模板"
+  },
+  "home": {
+    "hero": {
+      "badge": "AI 驱动的求职工具",
+      "title": "在韩国找到理想的工作",
+      "subtitle": "借助 AI 撰写专业的韩式简历和自我介绍书。专为来自乌兹别克斯坦、哈萨克斯坦、吉尔吉斯斯坦、蒙古、中国和越南的留学生打造。",
+      "cta": "免费开始",
+      "ctaSecondary": "查看模板",
+      "trustedBy": "以下国家的学生正在使用"
+    },
+    "features": {
+      "title": "求职成功所需的一切",
+      "subtitle": "我们的 AI 平台会陪你走完韩国求职的每一步。",
+      "ai": {
+        "title": "AI 写作助手",
+        "desc": "由先进 AI 为你的简历和自我介绍书提供个性化建议与改进。"
+      },
+      "resume": {
+        "title": "韩式简历生成器",
+        "desc": "按照韩国标准撰写专业的 이력서，配有引导式流程和精美模板。"
+      },
+      "coverLetter": {
+        "title": "자기소개서 生成器",
+        "desc": "写出能打动韩国雇主、符合当地文化的自我介绍书。"
+      },
+      "multilingual": {
+        "title": "多语言支持",
+        "desc": "用你最熟悉的语言使用本应用 — 乌兹别克语、俄语、英语、韩语、中文或越南语。"
+      },
+      "pdf": {
+        "title": "PDF 导出",
+        "desc": "几秒钟内导出可直接投递给韩国雇主的专业 PDF 文件。"
+      },
+      "templates": {
+        "title": "专业模板",
+        "desc": "从专为韩国企业和求职场景设计的模板中挑选。"
+      }
+    },
+    "howItWorks": {
+      "title": "三步即可开始",
+      "step1": {
+        "title": "创建账号",
+        "desc": "免费注册，告诉我们你的背景和在韩国的目标岗位。"
+      },
+      "step2": {
+        "title": "撰写文件",
+        "desc": "使用 AI 辅助生成器完成韩式简历和自我介绍书。"
+      },
+      "step3": {
+        "title": "导出并投递",
+        "desc": "下载专业 PDF，开始向心仪的韩国企业投递。"
+      }
+    },
+    "cta": {
+      "title": "准备好开启你的韩国职业生涯了吗？",
+      "subtitle": "加入成千上万通过 Koreer 在韩国找到工作的留学生。",
+      "button": "创建免费账号"
+    },
+    "why": {
+      "badge": "为什么选择 Koreer",
+      "title": "为在韩国找到工作而生",
+      "subtitle": "外国求职者在韩国竞争岗位所需的一切 — 都在这里。",
+      "advantages": {
+        "formatting": {
+          "title": "省下数小时排版时间",
+          "desc": "不用再靠猜。填好信息，几分钟就能得到符合韩国标准的 이력서，而不是花上几天。"
+        },
+        "standard": {
+          "title": "默认符合韩国标准",
+          "desc": "每个模板都贴合韩国企业的真实要求 — 照片位置、栏目结构和正式语气。"
+        },
+        "language": {
+          "title": "用你的语言，产出韩语文件",
+          "desc": "用乌兹别克语、俄语、英语、韩语、中文或越南语操作，最终文件为韩国雇主打磨完成。"
+        },
+        "ai": {
+          "title": "AI 写作帮助",
+          "desc": "자기소개서 写不下去？立即获得自然、专业韩语的 AI 建议。"
+        },
+        "templates": {
+          "title": "专业模板",
+          "desc": "从现代风格到韩国传统正式表格 — 挑选适合目标公司的设计。"
+        },
+        "free": {
+          "title": "免费开始",
+          "desc": "无需付费即可创建、预览并导出 PDF 简历。"
+        }
+      }
+    },
+    "who": {
+      "badge": "适合谁使用",
+      "title": "Koreer 能帮到谁",
+      "subtitle": "只要你在韩国发展职业，Koreer 就是为你而做的。",
+      "audience": {
+        "students": {
+          "title": "留学生",
+          "desc": "在韩国读书，正在申请兼职、实习或第一份全职工作。"
+        },
+        "jobSeekers": {
+          "title": "求职者",
+          "desc": "投递韩国企业，需要符合当地标准的简历和 자기소개서。"
+        },
+        "researchers": {
+          "title": "研究人员与研究生",
+          "desc": "把论文、学位论文和会议论文（학위논문、학술논문、프로시딩）加入学术履历。"
+        },
+        "newcomers": {
+          "title": "刚来韩国的人",
+          "desc": "来自乌兹别克斯坦、哈萨克斯坦等地 — 用母语建立专业档案。"
+        }
+      }
+    },
+    "demo": {
+      "badge": "看看它怎么用",
+      "title": "Koreer 实际演示",
+      "subtitle": "快速了解韩式简历的制作过程 — 从填写信息到可直接投递的 PDF。",
+      "comingSoon": "演示视频即将上线",
+      "walkthrough": "产品演示"
+    },
+    "templates": {
+      "badge": "韩式简历模板",
+      "title": "专业韩式 이력서 模板",
+      "desc": "我们的模板遵循韩国企业标准，包含证件照、学历和求职意向等栏目 — 全部按照韩国雇主期待的格式排版。",
+      "cta": "开始制作",
+      "points": {
+        "p1": "韩国标准格式（한국 표준 양식）",
+        "p2": "自动 존댓말 敬语建议",
+        "p3": "证件照放置指引",
+        "p4": "支持填写 TOPIK 等级"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "欢迎回来",
+      "subtitle": "登录以继续你的韩国求职之路",
+      "email": "电子邮箱",
+      "password": "密码",
+      "forgotPassword": "忘记密码？",
+      "submit": "登录",
+      "noAccount": "还没有账号？",
+      "signUp": "注册",
+      "continueWith": "或使用以下方式继续"
+    },
+    "register": {
+      "title": "创建账号",
+      "subtitle": "加入 Koreer，开启你的韩国职业之旅",
+      "fullName": "姓名",
+      "email": "电子邮箱",
+      "password": "密码",
+      "confirmPassword": "确认密码",
+      "nationality": "国籍",
+      "preferredLanguage": "首选语言",
+      "submit": "创建账号",
+      "hasAccount": "已经有账号了？",
+      "signIn": "登录",
+      "agreeTerms": "我同意《使用条款》和《隐私政策》",
+      "passwordHint": "至少 8 个字符",
+      "selectCountry": "请选择你的国家...",
+      "countries": {
+        "uzbekistan": "乌兹别克斯坦",
+        "kazakhstan": "哈萨克斯坦",
+        "kyrgyzstan": "吉尔吉斯斯坦",
+        "mongolia": "蒙古",
+        "china": "中国",
+        "vietnam": "越南",
+        "other": "其他"
+      },
+      "passwordMismatch": "两次输入的密码不一致。",
+      "checkEmail": "请查收邮件确认账号，然后再登录。"
+    },
+    "notConfigured": "登录功能尚未配置，请稍后再试。",
+    "genericError": "出了点问题，请重试。",
+    "resend": "重新发送确认邮件",
+    "resendSent": "确认邮件已发送 — 请查看收件箱。",
+    "linkExpired": "该确认链接无效或已过期。请在下方输入邮箱和密码，然后重新发送。",
+    "notConfirmed": "你的邮箱尚未确认。",
+    "continueWithGoogle": "使用 Google 继续",
+    "forgot": {
+      "title": "重置密码",
+      "subtitle": "输入你的邮箱，我们会发送重置链接。",
+      "submit": "发送重置链接",
+      "sent": "如果该邮箱已注册，重置链接已经发出。",
+      "back": "返回登录"
+    },
+    "reset": {
+      "title": "设置新密码",
+      "subtitle": "为你的账号输入一个新密码。",
+      "newPassword": "新密码",
+      "confirmPassword": "确认新密码",
+      "submit": "保存新密码",
+      "success": "密码已更新。",
+      "invalidLink": "该重置链接无效或已过期，请重新申请。"
+    },
+    "webviewBlocked": "此处无法打开 Google 登录。请在浏览器中打开 Koreer，或在下方使用邮箱和密码登录。",
+    "continueInBrowser": "请在刚打开的浏览器中完成 Google 登录，然后回到这里。"
+  },
+  "dashboard": {
+    "greeting": "{time}好，{name}！",
+    "morning": "早上",
+    "afternoon": "下午",
+    "evening": "晚上",
+    "overview": "这是你的求职进度概览",
+    "stats": {
+      "resumes": "简历",
+      "coverLetters": "自我介绍书",
+      "aiChats": "AI 对话",
+      "lastActivity": "最近活动"
+    },
+    "quickActions": {
+      "title": "快捷操作",
+      "createResume": "新建简历",
+      "createCoverLetter": "撰写自我介绍书",
+      "askAI": "询问 AI 助手"
+    },
+    "recentDocuments": {
+      "title": "最近的文档",
+      "empty": "还没有文档，创建第一份吧！",
+      "viewAll": "查看全部"
+    },
+    "tips": {
+      "title": "求职提示",
+      "tip1": "是否需要贴照片取决于企业。盲选招聘（블라인드 채용）禁止填写照片、年龄和籍贯 — 请务必查看招聘公告。",
+      "tip2": "自我介绍书通常按 성장과정、성격、지원동기、포부 的结构来写",
+      "tip3": "所有正式文件都要使用韩语敬语（존댓말）"
+    },
+    "welcomeGuest": "欢迎来到 Koreer",
+    "signInPrompt": "登录后即可保存简历和自我介绍书，并管理你的投递进度。",
+    "signIn": "登录",
+    "newDocument": "新建文档",
+    "ctaBanner": {
+      "title": "制作你的韩式简历 이력서",
+      "subtitle": "选一个模板，填好信息，几分钟内导出专业 PDF。",
+      "createResume": "创建简历"
+    },
+    "docsAppearHere": "你的简历和自我介绍书会显示在这里。"
+  },
+  "resume": {
+    "title": "简历生成器",
+    "subtitle": "制作专业的韩式简历",
+    "templates": {
+      "title": "选择设计",
+      "layoutHeading": "版式",
+      "colorHeading": "颜色",
+      "apply": "应用",
+      "layoutCount": "{count} 种版式",
+      "selectedLabel": "已选择",
+      "layout": {
+        "korean": {
+          "name": "이력서（韩国表格）",
+          "desc": "带证件照框的韩国标准简历表格"
+        },
+        "korean-nophoto": {
+          "name": "이력서（无照片）",
+          "desc": "不含证件照框的韩国简历表格"
+        },
+        "modern": {
+          "name": "现代",
+          "desc": "双栏布局，彩色标题栏配照片"
+        },
+        "classic": {
+          "name": "经典",
+          "desc": "单栏布局，带分隔线的栏目标题"
+        },
+        "minimal": {
+          "name": "极简",
+          "desc": "单栏布局，留白充足"
+        },
+        "sidebar": {
+          "name": "侧边栏",
+          "desc": "彩色侧栏配证件照"
+        },
+        "compact": {
+          "name": "紧凑",
+          "desc": "紧凑双栏，一页容纳更多内容"
+        },
+        "academic": {
+          "name": "学术",
+          "desc": "衬线字体，突出论文成果"
+        },
+        "tech": {
+          "name": "开发者",
+          "desc": "等宽字体，终端风格"
+        },
+        "dark": {
+          "name": "深色",
+          "desc": "深色背景配彩色标题栏"
+        }
+      },
+      "color": {
+        "indigo": "靛蓝",
+        "navy": "藏青",
+        "forest": "森绿",
+        "teal": "青绿",
+        "crimson": "绯红",
+        "amber": "琥珀",
+        "rose": "玫红",
+        "slate": "灰蓝"
+      }
+    },
+    "sections": {
+      "personal": "个人信息",
+      "education": "教育经历",
+      "experience": "工作经历",
+      "skills": "技能",
+      "awards": "获奖与奖学金",
+      "certificates": "证书",
+      "projects": "项目",
+      "volunteer": "志愿服务",
+      "publications": "论文与出版",
+      "languages": "语言能力",
+      "certifications": "资格认证"
+    },
+    "personal": {
+      "fullName": "姓名",
+      "fullNameKorean": "韩语姓名",
+      "email": "邮箱",
+      "phone": "电话",
+      "dateOfBirth": "出生日期",
+      "nationality": "国籍",
+      "address": "地址",
+      "photo": "证件照",
+      "uploadPhoto": "上传照片",
+      "translateName": "自动翻译姓名",
+      "toKorean": "转为韩语",
+      "toLatin": "转为拉丁字母"
+    },
+    "education": {
+      "add": "添加教育经历",
+      "institution": "学校 / 机构",
+      "degree": "学位",
+      "field": "专业",
+      "startDate": "入学时间",
+      "endDate": "毕业时间",
+      "gpa": "GPA / 成绩",
+      "current": "目前在读"
+    },
+    "experience": {
+      "add": "添加工作经历",
+      "company": "公司",
+      "position": "职位",
+      "startDate": "开始时间",
+      "endDate": "结束时间",
+      "current": "目前在职",
+      "description": "工作内容",
+      "achievements": "主要成果"
+    },
+    "skills": {
+      "add": "添加技能",
+      "name": "技能名称",
+      "level": "熟练程度",
+      "category": "类别",
+      "beginner": "入门",
+      "intermediate": "中等",
+      "advanced": "熟练",
+      "expert": "精通"
+    },
+    "awards": {
+      "add": "添加获奖 / 奖学金",
+      "title": "奖项名称",
+      "organization": "授予机构 / 学校",
+      "date": "时间",
+      "type": "类型",
+      "typeAward": "获奖（수상）",
+      "typeScholarship": "奖学金（장학금）",
+      "typeHonor": "荣誉 / 表彰（표창）",
+      "description": "说明"
+    },
+    "certificates": {
+      "add": "添加证书",
+      "name": "证书名称",
+      "issuer": "颁发机构",
+      "date": "颁发日期",
+      "score": "分数 / 结果",
+      "credentialId": "证书编号"
+    },
+    "projects": {
+      "add": "添加项目",
+      "title": "项目名称",
+      "role": "你的角色",
+      "startDate": "开始时间",
+      "endDate": "结束时间",
+      "current": "进行中的项目",
+      "technologies": "使用的技术",
+      "description": "项目说明",
+      "url": "项目链接（选填）"
+    },
+    "volunteer": {
+      "add": "添加志愿活动",
+      "organization": "机构",
+      "role": "角色 / 活动",
+      "startDate": "开始时间",
+      "endDate": "结束时间",
+      "current": "目前仍在参与",
+      "description": "说明"
+    },
+    "publications": {
+      "add": "添加论文",
+      "title": "标题",
+      "type": "类型",
+      "typeThesis": "学位论文（학위논문）",
+      "typeJournal": "期刊论文（학술논문）",
+      "typeProceedings": "会议论文（프로시딩）",
+      "publisher": "期刊 / 出版方 / 学校",
+      "date": "发表日期",
+      "authors": "作者",
+      "doi": "DOI / 链接",
+      "description": "摘要 / 说明"
+    },
+    "builder": {
+      "template": "模板",
+      "preview": "预览",
+      "hide": "隐藏",
+      "aiFill": "AI 填写",
+      "photoHint": "JPG、PNG，最大 5MB",
+      "livePreview": "实时预览",
+      "yourName": "你的姓名",
+      "fillToPreview": "填写信息后即可看到预览"
+    },
+    "sectionOrder": {
+      "title": "栏目顺序",
+      "note": "适用于单栏模板（经典系列）。其他版式保持固定设计。"
+    }
+  },
+  "coverLetter": {
+    "title": "자기소개서 生成器",
+    "subtitle": "写出打动人的韩式自我介绍书",
+    "targetCompany": "目标公司",
+    "targetPosition": "目标职位",
+    "sections": {
+      "growth": "성장과정（成长经历）",
+      "personality": "성격의 장단점（性格优缺点）",
+      "motivation": "지원동기（应聘动机）",
+      "aspiration": "입사 후 포부（入职后的抱负）"
+    },
+    "aiHelp": "获取 AI 建议",
+    "translate": "翻译",
+    "wordCount": "{count} 个词",
+    "characterCount": "{count} 个字",
+    "guidance": {
+      "growth": "写出塑造了你的关键经历，用具体例子说明你的坚持与成长。",
+      "personality": "诚实地写出优点和缺点，并说明你如何改进缺点，展现自我认知。",
+      "motivation": "研究这家公司，具体提到打动你的产品、价值观或最新举措。",
+      "aspiration": "目标要具体 — 明确可行的计划比空泛的抱负更有说服力。",
+      "custom": "直接回答公司的问题，用具体的例子、数字、日期和事件名称支撑。"
+    },
+    "addSection": "添加栏目",
+    "newSectionTitle": "新栏目",
+    "sectionTitleLabel": "栏目标题",
+    "charLimitLabel": "字数上限",
+    "removeSection": "删除栏目",
+    "total": "合计",
+    "characters": "字",
+    "preview": "预览",
+    "applicationDetails": "投递信息",
+    "guidancePanel": {
+      "title": "本栏目的写作指南"
+    },
+    "kind": {
+      "formula": "写作公式",
+      "mistake": "常见错误",
+      "tip": "小提示",
+      "checklist": "检查清单",
+      "example": "示例"
+    },
+    "intro": {
+      "title": "动笔之前",
+      "subtitle": "适用于整篇自我介绍书的几条原则。",
+      "dontShowAgain": "不再显示",
+      "gotIt": "知道了",
+      "reopen": "写作指南"
+    },
+    "rules": {
+      "core-depth": {
+        "title": "深度胜过广度",
+        "body": "不要浅浅地罗列很多经历 — 把一件事分析透。一篇好文章赢在解读，而不是罗列事件。"
+      },
+      "core-competency": {
+        "title": "能力优先于身份",
+        "body": "不要一上来就强调自己是“外国人”。身份只是一个切入点 — 文章的核心必须是你的能力。"
+      },
+      "growth-formula": {
+        "title": "一个场景 · 四步公式（500 字）",
+        "body": "第一步（10%）：选一个决定性的场景 — 不是你的一生，只要一个关键瞬间。\n第二步（30%）：写清时间、地点和你做了什么，让人能想象出画面。\n第三步（40%，最重要）：用一句话点出它塑造的价值观 — “我是一个 ___ 的人。”\n第四步（20%）：把这个价值观与目标岗位以及能为公司带来的价值连接起来。"
+      },
+      "growth-example": {
+        "title": "第三步示例",
+        "body": "例如：“即使失败，我也会继续寻找方法。”先写出第三步这句话，再把它与岗位联系起来。"
+      },
+      "growth-mistakes": {
+        "title": "要避免的 4 个错误",
+        "body": "1. 流水账式罗列：以“我出生于 1998 年……”开头，在许多招聘人员看来会显得平淡 — 最好避免。\n2. 家庭套话：像“我在充满爱的家庭中长大”这类句子、夸赞父母、涉及宗教或政治，通常还是避开为好。\n3. 罗列事件：把一段经历分析透，通常比浅浅地写五段（交换、实习、志愿服务）更有效。\n4. 与其反复说“因为我是外国人”，建议把身份当作切入点，把能力放在核心位置。\n※ 不同公司的期待可能不同 — 请查看招聘公告。"
+      },
+      "motivation-formula": {
+        "title": "为什么是这家公司 · 为什么是这个岗位",
+        "body": "A 轴（公司）：提到该公司最近的新闻、新产品或业务拓展。例如：“得知贵公司计划于 2025 年进入东南亚市场……”。\nB 轴（岗位）：说明你过去的经历契合这份工作的哪一部分。\n给外国求职者的建议：在结尾加 2–3 句“为什么选择韩国、为什么选择这家公司”。"
+      },
+      "motivation-length": {
+        "title": "500 字如何分配",
+        "body": "把 500 字这样分配：公司相关 200 字 + 岗位相关 200 字 + 个人故事 100 字。"
+      }
+    },
+    "whyKorea": {
+      "insert": "插入“为什么选择韩国”结尾",
+      "create": "撰写你的“为什么选择韩国”",
+      "warning": "对外国求职者来说，“为什么选择韩国”通常是被期待的内容。缺少它，雇主可能担心你难以长期留下。"
+    },
+    "jobPosting": {
+      "label": "目标招聘公告（选填）",
+      "placeholder": "把招聘公告粘贴到这里 — AI 会据此调整你的内容。"
+    },
+    "ai": {
+      "error": "AI 未能回应，请重试。",
+      "outlineApplied": "暂时没有你的个人信息 — AI 先给出了一份提纲和需要你回答的问题。"
+    }
+  },
+  "aiAssistant": {
+    "title": "AI 求职助手",
+    "subtitle": "为你的韩国求职提供个性化帮助",
+    "placeholder": "关于韩国求职，有什么想问的都可以...",
+    "suggestions": {
+      "title": "推荐问题",
+      "q1": "韩式简历的证件照有什么要求？",
+      "q2": "자기소개서 应该写些什么？",
+      "q3": "帮我看看投递韩国公司的简历",
+      "q4": "在韩国面试时该怎么谈期望薪资？",
+      "q5": "韩国面试常见问题有哪些？"
+    },
+    "thinking": "思考中...",
+    "send": "发送",
+    "newChat": "新对话",
+    "history": "对话记录",
+    "greeting": "我是你的韩国求职 AI 助手！我可以帮你：\n\n• **韩式简历（이력서）** — 格式、内容、证件照要求\n• **자기소개서** — 结构、写作技巧、文化差异\n• **面试准备** — 韩国常见面试问题\n• **薪资谈判** — 韩国职场惯例\n• **文化提示** — 韩国职场礼仪\n\n今天想从哪里开始？",
+    "chats": {
+      "resumeTips": "韩式简历技巧",
+      "interview": "面试问题",
+      "coverLetter": "자기소개서 指南"
+    },
+    "starters": {
+      "resumeTips": "请给我一些撰写韩式简历（이력서）的建议。",
+      "interview": "韩国求职面试常见问题有哪些？该怎么回答？",
+      "coverLetter": "韩国的 자기소개서 该怎么写？请说明结构。"
+    }
+  },
+  "settings": {
+    "title": "设置",
+    "profile": {
+      "title": "个人资料",
+      "name": "显示名称",
+      "email": "电子邮箱",
+      "nationality": "国籍",
+      "bio": "个人简介",
+      "saveChanges": "保存更改"
+    },
+    "appearance": {
+      "title": "外观",
+      "theme": "主题",
+      "light": "浅色",
+      "dark": "深色",
+      "system": "跟随系统"
+    },
+    "language": {
+      "title": "语言与地区",
+      "appLanguage": "应用语言",
+      "documentLanguage": "默认文档语言"
+    },
+    "notifications": {
+      "title": "通知",
+      "email": "邮件通知",
+      "tips": "求职提示与更新",
+      "emailDesc": "通过邮件接收有关你文档的通知。",
+      "tipsDesc": "每周推送韩国就业市场的求职建议。",
+      "templates": "新模板",
+      "templatesDesc": "有新的简历模板时通知我。"
+    },
+    "account": {
+      "title": "账号",
+      "deleteAccount": "删除账号",
+      "deleteWarning": "此操作无法撤销。",
+      "deleteDetail": "你的账号、所有已保存的简历和自我介绍书，以及职业档案都会被永久删除。",
+      "deleteConfirmHint": "请输入你的邮箱以确认：",
+      "deleting": "正在删除…",
+      "deleted": "你的账号已删除。",
+      "deleteError": "无法删除账号，请重试。",
+      "signedInAs": "当前登录",
+      "signInRequired": "请登录后管理你的账号。",
+      "changePassword": "修改密码",
+      "changePasswordDesc": "为你的账号设置新密码。",
+      "newPassword": "新密码",
+      "confirmPassword": "确认新密码",
+      "passwordUpdated": "密码已更新。",
+      "exportData": "下载我的数据",
+      "exportDataDesc": "包含你的文档和个人档案的 JSON 文件。",
+      "exportEmpty": "目前还没有可下载的内容。",
+      "exportError": "无法准备下载文件，请重试。"
+    },
+    "whyKorea": {
+      "title": "为什么选择韩国"
+    },
+    "career": {
+      "title": "职业档案"
+    }
+  },
+  "nationalities": {
+    "uzbekistan": "乌兹别克斯坦",
+    "kazakhstan": "哈萨克斯坦",
+    "kyrgyzstan": "吉尔吉斯斯坦",
+    "mongolia": "蒙古",
+    "china": "中国",
+    "vietnam": "越南",
+    "other": "其他"
+  },
+  "whyKorea": {
+    "title": "为什么选择韩国",
+    "subtitle": "把“为什么选择韩国”写好一次，之后每次投递都能复用。",
+    "fields": {
+      "arrivalContext": {
+        "label": "你最初是怎么来到韩国的",
+        "placeholder": "你第一次来韩国是什么时候、为什么？（例如交换学期、读学位、家庭原因）— 一两句话即可。"
+      },
+      "alternativesWeighed": {
+        "label": "你曾经考虑过的其他选择",
+        "placeholder": "你认真考虑过哪个国家或哪条路？为什么最后选择了韩国？"
+      },
+      "reasonToStay": {
+        "label": "为什么要在这里发展职业",
+        "placeholder": "是什么让你决定在这里工作，而不只是读书？"
+      }
+    },
+    "draft": {
+      "label": "最终版本（2–3 句）",
+      "placeholder": "根据上面的回答整理成 2–3 句话。可以先点“合并我的回答”生成草稿。"
+    },
+    "combine": "合并我的回答",
+    "combineHint": "请先回答上面三个问题。",
+    "save": "保存",
+    "saved": "已保存"
+  },
+  "careerProfile": {
+    "title": "职业档案",
+    "subtitle": "填写一次即可。每份文档和每次 AI 建议都会用到它，这样 AI 才能写出真实内容，而不是反过来问你问题。",
+    "save": "保存档案",
+    "saved": "已保存",
+    "fields": {
+      "headline": {
+        "label": "一句话介绍",
+        "placeholder": "例如：汉阳大学设计学硕士在读，专注 UX 方向。"
+      },
+      "skills": {
+        "label": "技能与工具",
+        "placeholder": "Figma、React、TypeScript、用户研究…"
+      },
+      "education": {
+        "label": "教育经历",
+        "placeholder": "学校、专业、年份 — 例如：汉阳大学，设计学，2023–2025。"
+      },
+      "experience": {
+        "label": "经历与项目",
+        "placeholder": "工作、实习、项目 — 写清你实际做了什么以及结果。"
+      },
+      "languages": {
+        "label": "语言能力",
+        "placeholder": "韩语（TOPIK 4 级）、英语（高级）、中文（母语）…"
+      },
+      "strengths": {
+        "label": "优势与成就",
+        "placeholder": "获奖、奖学金，以及你真正擅长的事。"
+      }
+    }
+  },
+  "documents": {
+    "save": "保存",
+    "saving": "保存中…",
+    "saved": "已保存到你的账号。",
+    "saveError": "保存失败，请重试。",
+    "signInToSave": "请登录后将此文档保存到你的账号。",
+    "untitled": "未命名",
+    "title": "我保存的文档",
+    "subtitle": "你保存到账号里的全部内容。点击即可继续编辑。",
+    "loading": "正在加载你的文档…",
+    "empty": "你还没有保存任何内容。",
+    "emptyHint": "先创建一份简历或自我介绍书，然后点击“保存”。",
+    "signInToView": "请登录以查看保存在账号中的文档。",
+    "signIn": "登录",
+    "open": "打开",
+    "opened": "文档已打开。再次保存会更新这一份。",
+    "loadError": "无法打开该文档。",
+    "notFound": "该文档已不存在。",
+    "signInToOpen": "请登录以打开这份已保存的文档。",
+    "delete": "删除",
+    "confirmDelete": "确定删除这份文档吗？",
+    "deleted": "文档已删除。",
+    "deleteError": "删除失败，请重试。",
+    "kindResume": "简历",
+    "kindCoverLetter": "自我介绍书",
+    "newResume": "新建简历",
+    "newCoverLetter": "新建自我介绍书",
+    "editing": "正在编辑已保存的文档"
+  },
+  "legal": {
+    "lastUpdated": "最后更新",
+    "back": "返回 Koreer",
+    "privacy": {
+      "title": "隐私政策",
+      "intro": "Koreer 帮助外国求职者撰写韩式简历（이력서）和自我介绍书（자기소개서）。本政策说明我们保存哪些信息、为什么保存，以及你如何删除它们。",
+      "collect": {
+        "t": "我们收集哪些信息",
+        "account": "账号：你的邮箱和密码（密码仅以我们无法读取的哈希值保存）。通过表单注册时，还有你填写的姓名和国家；通过 Google 登录时，则是 Google 提供的姓名、邮箱和头像。",
+        "documents": "文档：你在简历或自我介绍书中填写的全部内容 — 包括姓名、电话、地址、出生日期、国籍、学历、工作经历，以及你上传的证件照。照片保存在文档内部。",
+        "profile": "职业档案：你在设置中保存的背景、技能和“为什么选择韩国”的回答，以便在多份文档中复用。",
+        "technical": "技术信息：保存在你浏览器中的登录令牌和语言选择。我们不使用广告或分析追踪工具。"
+      },
+      "use": {
+        "t": "我们如何使用这些信息",
+        "b": "仅用于提供服务：登录、保存和展示你的文档、生成 PDF 和 Word 文件，以及生成你主动请求的 AI 建议。我们不出售你的数据，也不用它训练 AI 模型。"
+      },
+      "ai": {
+        "t": "AI 处理",
+        "b": "当你点击 AI 按钮时，该栏目的文字以及你选择保存的职业档案会发送给我们的 AI 服务商 Groq 以生成建议。除非你主动请求，否则不会发送任何内容。AI 的输出可能有误：投递给雇主前请务必检查。"
+      },
+      "share": {
+        "t": "还有谁会处理你的数据",
+        "b": "我们使用三家服务商，各自仅用于下列用途。除此之外不会与任何人共享你的数据。",
+        "supabase": "Supabase — 账号与数据库（你的文档和档案保存在这里）。",
+        "vercel": "Vercel — 网站托管。",
+        "groq": "Groq — 在你请求时生成 AI 建议。"
+      },
+      "retention": {
+        "t": "我们保存多久",
+        "b": "你的文档会一直保留，直到你删除它们。你的账号及其中的一切会保留到你删除账号为止。删除账号会永久移除你的文档和档案，无法恢复。"
+      },
+      "rights": {
+        "t": "你的选择",
+        "b": "在「设置 → 账号」中，你可以修改密码、将我们持有的全部数据下载为 JSON 文件，以及删除账号。你也可以随时在已保存的文档中删除单份文件。"
+      },
+      "security": {
+        "t": "安全",
+        "b": "数据库中的每一行都受行级安全策略保护，已登录用户只能读写自己的数据。传输过程经过加密。没有任何系统是绝对安全的，因此请不要在文档中填写你不希望被保存的信息。"
+      },
+      "children": {
+        "t": "未成年人",
+        "b": "Koreer 面向达到工作年龄的求职者和学生。我们不会有意收集 14 岁以下儿童的信息。"
+      },
+      "changes": {
+        "t": "本政策的变更",
+        "b": "如果数据处理方式发生变化，我们会更新本页面和上方的日期。"
+      },
+      "contact": {
+        "t": "联系方式",
+        "b": "关于你的数据的问题，或删除请求，可发送至："
+      }
+    },
+    "terms": {
+      "title": "使用条款",
+      "intro": "使用 Koreer 即表示你同意本条款。如果你不同意，请不要使用本服务。",
+      "service": {
+        "t": "Koreer 是什么",
+        "b": "Koreer 是撰写韩式简历和自我介绍书的工具，AI 辅助为可选功能。它只是一个写作工具 — 不是招聘中介、雇主、移民顾问，也不是法律服务。"
+      },
+      "account": {
+        "t": "你的账号",
+        "b": "你需要自行保管密码，并对账号下发生的行为负责。请填写你真正可以使用的邮箱 — 这是找回密码的唯一途径。"
+      },
+      "acceptable": {
+        "t": "可接受的使用方式",
+        "b": "请勿使用 Koreer 在他人不知情的情况下替其撰写文件、填写他人信息、向雇主提交虚假信息，或攻击、超负荷使用本服务。"
+      },
+      "content": {
+        "t": "你的内容属于你",
+        "b": "你写下的一切完全归你所有。我们保存它只是为了提供服务，绝不会公开。我们不主张对你文档的任何权利。"
+      },
+      "ai": {
+        "t": "关于 AI 建议",
+        "b": "AI 的输出是草稿，不是事实。它可能不准确，或不适合某家具体公司。投递前检查每一份文件是你的责任。Koreer 关于招聘惯例、签证或韩国法律的说明均为一般性信息 — 请以官方来源为准。使用 Koreer 不保证获得面试或工作。"
+      },
+      "availability": {
+        "t": "服务可用性",
+        "b": "本服务按“现状”提供。我们可能更改或暂停功能，也无法保证始终可用或完全无误。请导出重要文件，随时保留自己的副本。"
+      },
+      "termination": {
+        "t": "结束使用",
+        "b": "你可以随时在「设置 → 账号」中删除账号。对于违反本条款的账号，我们可能予以停用。"
+      },
+      "liability": {
+        "t": "责任限制",
+        "b": "在法律允许的范围内，Koreer 不对招聘结果、错失的机会或因使用本服务而产生的损失承担责任。"
+      },
+      "changes": {
+        "t": "本条款的变更",
+        "b": "条款变更时，我们会更新本页面和上方的日期。继续使用 Koreer 即表示你接受更新后的条款。"
+      },
+      "contact": {
+        "t": "联系方式",
+        "b": "关于本条款的问题："
+      }
+    }
+  },
+  "footer": {
+    "tagline": "为在韩国发展职业的外国求职者打造的 AI 工具。",
+    "product": "产品",
+    "languages": "语言",
+    "forStudents": "适用于来自",
+    "contact": "联系我们",
+    "copyright": "© {year} Koreer. 为在韩国的外国求职者而做。"
+  }
+}

@@ -17,6 +17,7 @@ const SECTION_BRIEF: Record<string, string> = {
 
 const LANG_NAME: Record<string, string> = {
   ko: 'Korean', en: 'English', uz: 'Uzbek', ru: 'Russian',
+  zh: 'Chinese (Simplified)', vi: 'Vietnamese',
 };
 
 export async function POST(req: NextRequest) {
@@ -58,7 +59,7 @@ export async function POST(req: NextRequest) {
       '1. NEVER invent facts about the applicant. Do not make up a birthplace, family, school, employer, project, award, number, or achievement. Use ONLY what the applicant actually provided.',
       '2. If the applicant has given little or nothing to work from, DO NOT write a fake story. Instead return a short tailored outline for this section plus 3–5 specific questions they must answer, based on the job posting. Write that outline and those questions in ' + userLang + '.',
       '3. When the applicant HAS provided material, rewrite and tailor THEIR material — keep their real facts, improve structure, tone and fit to the posting.',
-      '4. Write the 자기소개서 text itself in Korean, using Hangul only. Never use Chinese characters (Hanja). Use formal 존댓말.',
+      '4. Write the 자기소개서 text itself in Korean, using Hangul only. Never use Chinese characters (Hanja) inside the Korean text, even when the user writes to you in Chinese. Use formal 존댓말.',
       `5. Keep the Korean text within about ${charLimit} characters.`,
       '6. Output only the text itself — no headings like "Here is", no explanations, no markdown fences.',
     ].join('\n');

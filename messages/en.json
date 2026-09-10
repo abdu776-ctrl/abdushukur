@@ -50,7 +50,7 @@
     "hero": {
       "badge": "AI-Powered Career Tools",
       "title": "Land Your Dream Job in Korea",
-      "subtitle": "Create professional Korean resumes and self-introduction letters with AI assistance. Designed for international students from Uzbekistan, Kazakhstan, Kyrgyzstan, Mongolia, and Vietnam.",
+      "subtitle": "Create professional Korean resumes and self-introduction letters with AI assistance. Designed for international students from Uzbekistan, Kazakhstan, Kyrgyzstan, Mongolia, China, and Vietnam.",
       "cta": "Get Started Free",
       "ctaSecondary": "See Templates",
       "trustedBy": "Trusted by students from"
@@ -72,7 +72,7 @@
       },
       "multilingual": {
         "title": "Multilingual Support",
-        "desc": "Use the app in Uzbek, Korean, English, or Russian — whichever feels most comfortable for you."
+        "desc": "Use the app in the language you are most comfortable with — Uzbek, Russian, English, Korean, Chinese or Vietnamese."
       },
       "pdf": {
         "title": "PDF Export",
@@ -118,7 +118,7 @@
         },
         "language": {
           "title": "Your language, Korean output",
-          "desc": "Work in Uzbek, Russian, English or Korean. The final document is polished for Korean employers."
+          "desc": "Work in Uzbek, Russian, English, Korean, Chinese or Vietnamese. The final document is polished for Korean employers."
         },
         "ai": {
           "title": "AI writing help",
@@ -209,6 +209,7 @@
         "kazakhstan": "Kazakhstan",
         "kyrgyzstan": "Kyrgyzstan",
         "mongolia": "Mongolia",
+        "china": "China",
         "vietnam": "Vietnam",
         "other": "Other"
       },
@@ -652,6 +653,7 @@
     "kazakhstan": "Kazakhstan",
     "kyrgyzstan": "Kyrgyzstan",
     "mongolia": "Mongolia",
+    "china": "China",
     "vietnam": "Vietnam",
     "other": "Other"
   },

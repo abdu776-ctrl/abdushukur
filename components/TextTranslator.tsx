@@ -13,6 +13,8 @@ const LANGS: Lang[] = [
   { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'ko', label: '한국어', flag: '🇰🇷' },
+  { code: 'zh', label: '中文', flag: '🇨🇳' },
+  { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳' },
 ];
 const TARGET_LANGS = LANGS.filter((l) => l.code !== 'auto');
 

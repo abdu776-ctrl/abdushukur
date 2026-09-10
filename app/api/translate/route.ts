@@ -7,6 +7,8 @@ const LANG_NAMES: Record<string, string> = {
   ru: 'Russian',
   en: 'English',
   ko: 'Korean',
+  zh: 'Chinese (Simplified)',
+  vi: 'Vietnamese',
 };
 
 // ── Groq (primary — reliable for names and sentences) ────────────────────────

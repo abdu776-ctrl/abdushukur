@@ -50,7 +50,7 @@
     "hero": {
       "badge": "AI-asosli Martaba Vositalari",
       "title": "Koreyada Orzuingizdagi Ishni Toping",
-      "subtitle": "AI yordami bilan professional koreyscha rezyume va o'z-o'zini taqdimot xatlarini yarating. O'zbekiston, Qozog'iston, Qirg'iziston, Mo'g'uliston va Vyetnamdan kelgan talabalar uchun mo'ljallangan.",
+      "subtitle": "AI yordami bilan professional koreyscha rezyume va o'z-o'zini taqdimot xatlarini yarating. O'zbekiston, Qozog'iston, Qirg'iziston, Mo'g'uliston, Xitoy va Vyetnamdan kelgan talabalar uchun mo'ljallangan.",
       "cta": "Bepul Boshlash",
       "ctaSecondary": "Shablonlarni Ko'rish",
       "trustedBy": "Quyidagi mamlakatlar talabalariga ishoniladi"
@@ -72,7 +72,7 @@
       },
       "multilingual": {
         "title": "Ko'p Tilli Qo'llab-quvvatlash",
-        "desc": "Ilovadan o'zbek, koreys, ingliz yoki rus tilida foydalaning."
+        "desc": "Ilovadan o‘zingizga qulay tilda foydalaning — o‘zbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida."
       },
       "pdf": {
         "title": "PDF Eksport",
@@ -118,7 +118,7 @@
         },
         "language": {
           "title": "Sizning tilingiz, koreyscha natija",
-          "desc": "O‘zbek, rus, ingliz yoki koreys tilida ishlang. Yakuniy hujjat koreys ish beruvchilar uchun jilolangan."
+          "desc": "O‘zbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida ishlang. Yakuniy hujjat koreys ish beruvchilar uchun jilolangan."
         },
         "ai": {
           "title": "AI yozuv yordami",
@@ -209,6 +209,7 @@
         "kazakhstan": "Qozog‘iston",
         "kyrgyzstan": "Qirg‘iziston",
         "mongolia": "Mo‘g‘uliston",
+        "china": "Xitoy",
         "vietnam": "Vyetnam",
         "other": "Boshqa"
       },
@@ -652,6 +653,7 @@
     "kazakhstan": "Qozog'iston",
     "kyrgyzstan": "Qirg'iziston",
     "mongolia": "Mo'g'uliston",
+    "china": "Xitoy",
     "vietnam": "Vyetnam",
     "other": "Boshqa"
   },

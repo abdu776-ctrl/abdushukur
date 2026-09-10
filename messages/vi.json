@@ -1,0 +1,853 @@
+{
+  "common": {
+    "appName": "Koreer",
+    "tagline": "Trợ lý AI cho sự nghiệp của bạn tại Hàn Quốc",
+    "loading": "Đang tải...",
+    "save": "Lưu",
+    "cancel": "Huỷ",
+    "delete": "Xoá",
+    "edit": "Sửa",
+    "create": "Tạo",
+    "download": "Tải xuống",
+    "export": "Xuất PDF",
+    "preview": "Xem trước",
+    "back": "Quay lại",
+    "next": "Tiếp theo",
+    "finish": "Hoàn tất",
+    "or": "hoặc",
+    "and": "và",
+    "yes": "Có",
+    "no": "Không",
+    "close": "Đóng",
+    "search": "Tìm kiếm",
+    "filter": "Bộ lọc",
+    "settings": "Cài đặt",
+    "profile": "Hồ sơ",
+    "logout": "Đăng xuất",
+    "darkMode": "Chế độ tối",
+    "language": "Ngôn ngữ",
+    "new": "Mới",
+    "untitled": "Chưa đặt tên",
+    "toast": {
+      "pdfError": "Không xuất được PDF. Hãy mở “Xem trước” trước, rồi thử lại.",
+      "wordError": "Không lưu được tệp Word. Hãy mở “Xem trước” trước, rồi thử lại.",
+      "pdfReady": "Đã tải PDF.",
+      "wordReady": "Đã tải tệp Word.",
+      "printHint": "Hộp thoại in đã mở — chọn “Lưu dưới dạng PDF” để có tệp giữ được chữ."
+    }
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "dashboard": "Bảng điều khiển",
+    "resume": "Sơ yếu lý lịch",
+    "coverLetter": "Thư giới thiệu bản thân",
+    "aiAssistant": "Trợ lý AI",
+    "documents": "Tài liệu đã lưu của tôi",
+    "settings": "Cài đặt",
+    "templates": "Mẫu"
+  },
+  "home": {
+    "hero": {
+      "badge": "Công cụ nghề nghiệp hỗ trợ bởi AI",
+      "title": "Tìm công việc mơ ước tại Hàn Quốc",
+      "subtitle": "Viết sơ yếu lý lịch và thư giới thiệu bản thân chuẩn Hàn với sự hỗ trợ của AI. Dành cho du học sinh từ Uzbekistan, Kazakhstan, Kyrgyzstan, Mông Cổ, Trung Quốc và Việt Nam.",
+      "cta": "Bắt đầu miễn phí",
+      "ctaSecondary": "Xem mẫu",
+      "trustedBy": "Được sinh viên từ các nước sau tin dùng"
+    },
+    "features": {
+      "title": "Mọi thứ bạn cần để thành công",
+      "subtitle": "Nền tảng AI của chúng tôi đồng hành cùng bạn qua từng bước ứng tuyển tại Hàn Quốc.",
+      "ai": {
+        "title": "Trợ lý viết bằng AI",
+        "desc": "Nhận gợi ý và chỉnh sửa cá nhân hoá cho sơ yếu lý lịch và thư giới thiệu, dựa trên AI tiên tiến."
+      },
+      "resume": {
+        "title": "Công cụ tạo 이력서",
+        "desc": "Tạo 이력서 chuyên nghiệp đúng chuẩn Hàn Quốc với quy trình hướng dẫn và mẫu đẹp."
+      },
+      "coverLetter": {
+        "title": "Công cụ tạo 자기소개서",
+        "desc": "Viết thư giới thiệu bản thân thuyết phục, phù hợp với nhà tuyển dụng và văn hoá Hàn Quốc."
+      },
+      "multilingual": {
+        "title": "Hỗ trợ đa ngôn ngữ",
+        "desc": "Dùng ứng dụng bằng ngôn ngữ bạn quen nhất — tiếng Uzbek, Nga, Anh, Hàn, Trung hoặc Việt."
+      },
+      "pdf": {
+        "title": "Xuất PDF",
+        "desc": "Xuất tài liệu thành PDF chuyên nghiệp, sẵn sàng gửi cho nhà tuyển dụng Hàn Quốc chỉ trong vài giây."
+      },
+      "templates": {
+        "title": "Mẫu chuyên nghiệp",
+        "desc": "Chọn từ các mẫu được thiết kế riêng cho công ty Hàn Quốc và hồ sơ ứng tuyển."
+      }
+    },
+    "howItWorks": {
+      "title": "Bắt đầu với 3 bước đơn giản",
+      "step1": {
+        "title": "Tạo tài khoản",
+        "desc": "Đăng ký miễn phí và cho chúng tôi biết về bạn cùng công việc bạn nhắm tới ở Hàn Quốc."
+      },
+      "step2": {
+        "title": "Soạn tài liệu",
+        "desc": "Dùng công cụ có AI hỗ trợ để tạo 이력서 và 자기소개서 của bạn."
+      },
+      "step3": {
+        "title": "Xuất file và ứng tuyển",
+        "desc": "Tải PDF chuyên nghiệp và bắt đầu nộp hồ sơ vào các công ty Hàn Quốc bạn mong muốn."
+      }
+    },
+    "cta": {
+      "title": "Sẵn sàng bắt đầu sự nghiệp tại Hàn Quốc?",
+      "subtitle": "Cùng hàng nghìn du học sinh đã tìm được việc làm ở Hàn Quốc với Koreer.",
+      "button": "Tạo tài khoản miễn phí"
+    },
+    "why": {
+      "badge": "Vì sao chọn Koreer",
+      "title": "Được tạo ra để giúp bạn có việc ở Hàn Quốc",
+      "subtitle": "Mọi thứ một ứng viên nước ngoài cần để cạnh tranh vào các vị trí ở Hàn Quốc — tại một nơi.",
+      "advantages": {
+        "formatting": {
+          "title": "Tiết kiệm hàng giờ định dạng",
+          "desc": "Không phải mò mẫm. Điền thông tin và nhận 이력서 chuẩn Hàn trong vài phút, thay vì vài ngày."
+        },
+        "standard": {
+          "title": "Chuẩn Hàn Quốc ngay từ đầu",
+          "desc": "Mỗi mẫu đều bám sát yêu cầu thực tế của doanh nghiệp Hàn — vị trí ảnh, các mục và văn phong trang trọng."
+        },
+        "language": {
+          "title": "Ngôn ngữ của bạn, kết quả tiếng Hàn",
+          "desc": "Làm việc bằng tiếng Uzbek, Nga, Anh, Hàn, Trung hoặc Việt. Tài liệu cuối cùng được trau chuốt cho nhà tuyển dụng Hàn Quốc."
+        },
+        "ai": {
+          "title": "AI hỗ trợ viết",
+          "desc": "Bí ý khi viết 자기소개서? Nhận ngay gợi ý AI bằng tiếng Hàn tự nhiên, chuyên nghiệp."
+        },
+        "templates": {
+          "title": "Mẫu chuyên nghiệp",
+          "desc": "Từ hiện đại đến biểu mẫu chính thức truyền thống của Hàn Quốc — chọn thiết kế hợp với công ty bạn nhắm tới."
+        },
+        "free": {
+          "title": "Bắt đầu miễn phí",
+          "desc": "Tạo, xem trước và xuất sơ yếu lý lịch ra PDF mà không phải trả gì để bắt đầu."
+        }
+      }
+    },
+    "who": {
+      "badge": "Dành cho ai",
+      "title": "Koreer giúp được những ai",
+      "subtitle": "Nếu bạn đang xây dựng sự nghiệp ở Hàn Quốc, Koreer được làm ra cho bạn.",
+      "audience": {
+        "students": {
+          "title": "Du học sinh",
+          "desc": "Đang học tại Hàn Quốc và ứng tuyển làm thêm, thực tập hoặc công việc toàn thời gian đầu tiên."
+        },
+        "jobSeekers": {
+          "title": "Người tìm việc",
+          "desc": "Nộp hồ sơ vào công ty Hàn Quốc và cần 이력서 cùng 자기소개서 đúng chuẩn địa phương."
+        },
+        "researchers": {
+          "title": "Nhà nghiên cứu và học viên cao học",
+          "desc": "Thêm bài báo, luận văn và báo cáo hội thảo (학위논문, 학술논문, 프로시딩) vào CV học thuật."
+        },
+        "newcomers": {
+          "title": "Người mới đến Hàn Quốc",
+          "desc": "Từ Uzbekistan, Kazakhstan và nhiều nơi khác — xây dựng hồ sơ chuyên nghiệp bằng chính ngôn ngữ của bạn."
+        }
+      }
+    },
+    "demo": {
+      "badge": "Xem cách hoạt động",
+      "title": "Koreer trong thực tế",
+      "subtitle": "Xem nhanh quá trình tạo một 이력서 — từ thông tin của bạn đến file PDF sẵn sàng gửi đi.",
+      "comingSoon": "Video demo sắp có",
+      "walkthrough": "Giới thiệu sản phẩm"
+    },
+    "templates": {
+      "badge": "Mẫu 이력서 Hàn Quốc",
+      "title": "Mẫu 이력서 chuyên nghiệp chuẩn Hàn",
+      "desc": "Các mẫu của chúng tôi tuân theo tiêu chuẩn doanh nghiệp Hàn Quốc, có mục ảnh thẻ, quá trình học tập và mục tiêu nghề nghiệp — trình bày đúng như nhà tuyển dụng Hàn mong đợi.",
+      "cta": "Bắt đầu tạo",
+      "points": {
+        "p1": "Định dạng chuẩn Hàn Quốc (한국 표준 양식)",
+        "p2": "Gợi ý kính ngữ 존댓말 tự động",
+        "p3": "Hướng dẫn đặt ảnh thẻ",
+        "p4": "Ghi trình độ TOPIK"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Chào mừng trở lại",
+      "subtitle": "Đăng nhập để tiếp tục hành trình sự nghiệp tại Hàn Quốc",
+      "email": "Địa chỉ email",
+      "password": "Mật khẩu",
+      "forgotPassword": "Quên mật khẩu?",
+      "submit": "Đăng nhập",
+      "noAccount": "Chưa có tài khoản?",
+      "signUp": "Đăng ký",
+      "continueWith": "Hoặc tiếp tục với"
+    },
+    "register": {
+      "title": "Tạo tài khoản",
+      "subtitle": "Tham gia Koreer và bắt đầu sự nghiệp tại Hàn Quốc",
+      "fullName": "Họ và tên",
+      "email": "Địa chỉ email",
+      "password": "Mật khẩu",
+      "confirmPassword": "Xác nhận mật khẩu",
+      "nationality": "Quốc tịch",
+      "preferredLanguage": "Ngôn ngữ ưa thích",
+      "submit": "Tạo tài khoản",
+      "hasAccount": "Đã có tài khoản?",
+      "signIn": "Đăng nhập",
+      "agreeTerms": "Tôi đồng ý với Điều khoản sử dụng và Chính sách bảo mật",
+      "passwordHint": "Tối thiểu 8 ký tự",
+      "selectCountry": "Chọn quốc gia của bạn...",
+      "countries": {
+        "uzbekistan": "Uzbekistan",
+        "kazakhstan": "Kazakhstan",
+        "kyrgyzstan": "Kyrgyzstan",
+        "mongolia": "Mông Cổ",
+        "china": "Trung Quốc",
+        "vietnam": "Việt Nam",
+        "other": "Khác"
+      },
+      "passwordMismatch": "Mật khẩu không khớp.",
+      "checkEmail": "Hãy kiểm tra email để xác nhận tài khoản, sau đó đăng nhập."
+    },
+    "notConfigured": "Chức năng đăng nhập chưa được thiết lập. Vui lòng thử lại sau.",
+    "genericError": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+    "resend": "Gửi lại email xác nhận",
+    "resendSent": "Đã gửi email xác nhận — hãy kiểm tra hộp thư.",
+    "linkExpired": "Liên kết xác nhận không hợp lệ hoặc đã hết hạn. Nhập email và mật khẩu bên dưới rồi gửi lại.",
+    "notConfirmed": "Email của bạn chưa được xác nhận.",
+    "continueWithGoogle": "Tiếp tục với Google",
+    "forgot": {
+      "title": "Đặt lại mật khẩu",
+      "subtitle": "Nhập email của bạn, chúng tôi sẽ gửi liên kết đặt lại.",
+      "submit": "Gửi liên kết đặt lại",
+      "sent": "Nếu email đó đã có tài khoản, liên kết đặt lại đang được gửi đi.",
+      "back": "Quay lại đăng nhập"
+    },
+    "reset": {
+      "title": "Chọn mật khẩu mới",
+      "subtitle": "Nhập mật khẩu mới cho tài khoản của bạn.",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "submit": "Lưu mật khẩu mới",
+      "success": "Đã cập nhật mật khẩu.",
+      "invalidLink": "Liên kết đặt lại này không hợp lệ hoặc đã hết hạn. Hãy yêu cầu liên kết mới."
+    },
+    "webviewBlocked": "Không thể mở đăng nhập Google ở đây. Hãy mở Koreer trong trình duyệt, hoặc đăng nhập bằng email và mật khẩu bên dưới.",
+    "continueInBrowser": "Hãy hoàn tất đăng nhập Google trong trình duyệt vừa mở, rồi quay lại đây."
+  },
+  "dashboard": {
+    "greeting": "Chào {time}, {name}!",
+    "morning": "buổi sáng",
+    "afternoon": "buổi chiều",
+    "evening": "buổi tối",
+    "overview": "Đây là tổng quan tiến độ sự nghiệp của bạn",
+    "stats": {
+      "resumes": "Sơ yếu lý lịch",
+      "coverLetters": "Thư giới thiệu",
+      "aiChats": "Cuộc trò chuyện AI",
+      "lastActivity": "Hoạt động gần nhất"
+    },
+    "quickActions": {
+      "title": "Thao tác nhanh",
+      "createResume": "Tạo sơ yếu lý lịch mới",
+      "createCoverLetter": "Viết thư giới thiệu",
+      "askAI": "Hỏi trợ lý AI"
+    },
+    "recentDocuments": {
+      "title": "Tài liệu gần đây",
+      "empty": "Chưa có tài liệu nào. Hãy tạo tài liệu đầu tiên!",
+      "viewAll": "Xem tất cả"
+    },
+    "tips": {
+      "title": "Mẹo nghề nghiệp",
+      "tip1": "Có cần dán ảnh hay không tuỳ vào nhà tuyển dụng. Tuyển dụng ẩn danh (블라인드 채용) cấm ghi ảnh, tuổi và nơi sinh — hãy luôn đọc kỹ tin tuyển dụng.",
+      "tip2": "Thư giới thiệu bản thân thường theo cấu trúc 성장과정, 성격, 지원동기, 포부",
+      "tip3": "Dùng kính ngữ tiếng Hàn (존댓말) trong mọi tài liệu chính thức"
+    },
+    "welcomeGuest": "Chào mừng đến với Koreer",
+    "signInPrompt": "Đăng nhập để lưu sơ yếu lý lịch, thư giới thiệu và theo dõi hồ sơ ứng tuyển của bạn.",
+    "signIn": "Đăng nhập",
+    "newDocument": "Tài liệu mới",
+    "ctaBanner": {
+      "title": "Tạo 이력서 chuẩn Hàn của bạn",
+      "subtitle": "Chọn mẫu, điền thông tin và xuất PDF chuyên nghiệp — chỉ trong vài phút.",
+      "createResume": "Tạo sơ yếu lý lịch"
+    },
+    "docsAppearHere": "Sơ yếu lý lịch và thư giới thiệu của bạn sẽ xuất hiện ở đây."
+  },
+  "resume": {
+    "title": "Công cụ tạo sơ yếu lý lịch",
+    "subtitle": "Tạo sơ yếu lý lịch chuyên nghiệp chuẩn Hàn",
+    "templates": {
+      "title": "Chọn thiết kế",
+      "layoutHeading": "Bố cục",
+      "colorHeading": "Màu sắc",
+      "apply": "Áp dụng",
+      "layoutCount": "{count} bố cục",
+      "selectedLabel": "Đã chọn",
+      "layout": {
+        "korean": {
+          "name": "이력서 (biểu mẫu Hàn)",
+          "desc": "Bảng lý lịch chuẩn Hàn kèm ô ảnh thẻ"
+        },
+        "korean-nophoto": {
+          "name": "이력서 (không ảnh)",
+          "desc": "Bảng lý lịch chuẩn Hàn không có ô ảnh"
+        },
+        "modern": {
+          "name": "Hiện đại",
+          "desc": "Hai cột với phần đầu có màu và ảnh"
+        },
+        "classic": {
+          "name": "Cổ điển",
+          "desc": "Một cột với tiêu đề mục có đường kẻ"
+        },
+        "minimal": {
+          "name": "Tối giản",
+          "desc": "Một cột với nhiều khoảng trắng"
+        },
+        "sidebar": {
+          "name": "Cột bên",
+          "desc": "Cột bên có màu kèm ảnh thẻ"
+        },
+        "compact": {
+          "name": "Gọn",
+          "desc": "Hai cột dày, chứa được nhiều nội dung trong một trang"
+        },
+        "academic": {
+          "name": "Học thuật",
+          "desc": "Kiểu chữ có chân, nhấn mạnh công bố khoa học"
+        },
+        "tech": {
+          "name": "Lập trình viên",
+          "desc": "Chữ đều nét, phong cách terminal"
+        },
+        "dark": {
+          "name": "Tối",
+          "desc": "Nền tối với phần đầu có màu"
+        }
+      },
+      "color": {
+        "indigo": "Chàm",
+        "navy": "Xanh hải quân",
+        "forest": "Xanh rừng",
+        "teal": "Xanh mòng két",
+        "crimson": "Đỏ thẫm",
+        "amber": "Hổ phách",
+        "rose": "Hồng",
+        "slate": "Xám xanh"
+      }
+    },
+    "sections": {
+      "personal": "Thông tin cá nhân",
+      "education": "Học vấn",
+      "experience": "Kinh nghiệm làm việc",
+      "skills": "Kỹ năng",
+      "awards": "Giải thưởng và học bổng",
+      "certificates": "Chứng chỉ",
+      "projects": "Dự án",
+      "volunteer": "Hoạt động tình nguyện",
+      "publications": "Công bố khoa học",
+      "languages": "Ngôn ngữ",
+      "certifications": "Chứng nhận"
+    },
+    "personal": {
+      "fullName": "Họ và tên",
+      "fullNameKorean": "Tên bằng tiếng Hàn",
+      "email": "Email",
+      "phone": "Điện thoại",
+      "dateOfBirth": "Ngày sinh",
+      "nationality": "Quốc tịch",
+      "address": "Địa chỉ",
+      "photo": "Ảnh thẻ",
+      "uploadPhoto": "Tải ảnh lên",
+      "translateName": "Tự động dịch tên",
+      "toKorean": "Sang tiếng Hàn",
+      "toLatin": "Sang chữ Latinh"
+    },
+    "education": {
+      "add": "Thêm học vấn",
+      "institution": "Trường / Cơ sở đào tạo",
+      "degree": "Bằng cấp",
+      "field": "Chuyên ngành",
+      "startDate": "Ngày nhập học",
+      "endDate": "Ngày tốt nghiệp",
+      "gpa": "GPA / Điểm",
+      "current": "Đang học tại đây"
+    },
+    "experience": {
+      "add": "Thêm kinh nghiệm",
+      "company": "Công ty",
+      "position": "Vị trí",
+      "startDate": "Ngày bắt đầu",
+      "endDate": "Ngày kết thúc",
+      "current": "Đang làm việc tại đây",
+      "description": "Mô tả",
+      "achievements": "Thành tích chính"
+    },
+    "skills": {
+      "add": "Thêm kỹ năng",
+      "name": "Tên kỹ năng",
+      "level": "Mức thành thạo",
+      "category": "Nhóm",
+      "beginner": "Mới bắt đầu",
+      "intermediate": "Trung cấp",
+      "advanced": "Nâng cao",
+      "expert": "Chuyên gia"
+    },
+    "awards": {
+      "add": "Thêm giải thưởng / học bổng",
+      "title": "Tên giải thưởng",
+      "organization": "Tổ chức / Trường",
+      "date": "Thời gian",
+      "type": "Loại",
+      "typeAward": "Giải thưởng (수상)",
+      "typeScholarship": "Học bổng (장학금)",
+      "typeHonor": "Danh hiệu / Khen thưởng (표창)",
+      "description": "Mô tả"
+    },
+    "certificates": {
+      "add": "Thêm chứng chỉ",
+      "name": "Tên chứng chỉ",
+      "issuer": "Đơn vị cấp",
+      "date": "Ngày cấp",
+      "score": "Điểm / Kết quả",
+      "credentialId": "Mã số chứng chỉ"
+    },
+    "projects": {
+      "add": "Thêm dự án",
+      "title": "Tên dự án",
+      "role": "Vai trò của bạn",
+      "startDate": "Ngày bắt đầu",
+      "endDate": "Ngày kết thúc",
+      "current": "Dự án đang tiếp tục",
+      "technologies": "Công nghệ sử dụng",
+      "description": "Mô tả",
+      "url": "Liên kết dự án (tuỳ chọn)"
+    },
+    "volunteer": {
+      "add": "Thêm hoạt động tình nguyện",
+      "organization": "Tổ chức",
+      "role": "Vai trò / Hoạt động",
+      "startDate": "Ngày bắt đầu",
+      "endDate": "Ngày kết thúc",
+      "current": "Vẫn đang tham gia",
+      "description": "Mô tả"
+    },
+    "publications": {
+      "add": "Thêm công bố",
+      "title": "Tiêu đề",
+      "type": "Loại",
+      "typeThesis": "Luận văn / Luận án (학위논문)",
+      "typeJournal": "Bài báo khoa học (학술논문)",
+      "typeProceedings": "Báo cáo hội thảo (프로시딩)",
+      "publisher": "Tạp chí / Nhà xuất bản / Trường",
+      "date": "Ngày công bố",
+      "authors": "Tác giả",
+      "doi": "DOI / Liên kết",
+      "description": "Tóm tắt / Mô tả"
+    },
+    "builder": {
+      "template": "Mẫu",
+      "preview": "Xem trước",
+      "hide": "Ẩn",
+      "aiFill": "AI điền giúp",
+      "photoHint": "JPG, PNG tối đa 5MB",
+      "livePreview": "Xem trước trực tiếp",
+      "yourName": "Tên của bạn",
+      "fillToPreview": "Điền thông tin để xem bản xem trước"
+    },
+    "sectionOrder": {
+      "title": "Thứ tự các mục",
+      "note": "Áp dụng cho mẫu một cột (nhóm Cổ điển). Các bố cục khác giữ thiết kế cố định."
+    }
+  },
+  "coverLetter": {
+    "title": "Công cụ tạo 자기소개서",
+    "subtitle": "Viết thư giới thiệu bản thân chuẩn Hàn thật thuyết phục",
+    "targetCompany": "Công ty ứng tuyển",
+    "targetPosition": "Vị trí ứng tuyển",
+    "sections": {
+      "growth": "성장과정 (Quá trình trưởng thành)",
+      "personality": "성격의 장단점 (Điểm mạnh và điểm yếu)",
+      "motivation": "지원동기 (Động cơ ứng tuyển)",
+      "aspiration": "입사 후 포부 (Mục tiêu sau khi vào công ty)"
+    },
+    "aiHelp": "Nhận gợi ý từ AI",
+    "translate": "Dịch",
+    "wordCount": "{count} từ",
+    "characterCount": "{count} ký tự",
+    "guidance": {
+      "growth": "Kể những trải nghiệm đã định hình con người bạn, kèm ví dụ cụ thể về sự kiên trì và trưởng thành.",
+      "personality": "Hãy trung thực về điểm mạnh và điểm yếu, và cho thấy bạn hiểu bản thân bằng cách nói rõ bạn khắc phục điểm yếu ra sao.",
+      "motivation": "Tìm hiểu về công ty và nhắc đến sản phẩm, giá trị hoặc hoạt động cụ thể khiến bạn quan tâm.",
+      "aspiration": "Hãy nêu mục tiêu cụ thể — kế hoạch rõ ràng, thực tế thuyết phục hơn tham vọng chung chung.",
+      "custom": "Trả lời thẳng câu hỏi của công ty, dùng ví dụ cụ thể, con số, mốc thời gian và tên sự kiện."
+    },
+    "addSection": "Thêm mục",
+    "newSectionTitle": "Mục mới",
+    "sectionTitleLabel": "Tiêu đề mục",
+    "charLimitLabel": "Giới hạn ký tự",
+    "removeSection": "Xoá mục",
+    "total": "Tổng",
+    "characters": "ký tự",
+    "preview": "Xem trước",
+    "applicationDetails": "Thông tin ứng tuyển",
+    "guidancePanel": {
+      "title": "Hướng dẫn viết cho mục này"
+    },
+    "kind": {
+      "formula": "Công thức",
+      "mistake": "Lỗi thường gặp",
+      "tip": "Mẹo",
+      "checklist": "Danh sách kiểm tra",
+      "example": "Ví dụ"
+    },
+    "intro": {
+      "title": "Trước khi viết",
+      "subtitle": "Vài nguyên tắc áp dụng cho toàn bộ bài tự giới thiệu.",
+      "dontShowAgain": "Không hiện lại",
+      "gotIt": "Đã hiểu",
+      "reopen": "Hướng dẫn viết"
+    },
+    "rules": {
+      "core-depth": {
+        "title": "Sâu hơn là rộng",
+        "body": "Đừng liệt kê nhiều trải nghiệm một cách hời hợt — hãy phân tích thật sâu một trải nghiệm. Một bài viết mạnh thắng ở cách diễn giải, không phải ở danh sách sự kiện."
+      },
+      "core-competency": {
+        "title": "Năng lực quan trọng hơn danh tính",
+        "body": "Đừng mở đầu bằng việc bạn là “người nước ngoài”. Đó chỉ là một công cụ — năng lực của bạn mới phải là trung tâm của bài viết."
+      },
+      "growth-formula": {
+        "title": "Một cảnh · công thức 4 bước (500 ký tự)",
+        "body": "Bước 1 (10%): Chọn một khoảnh khắc quyết định — không phải cả cuộc đời, chỉ một thời điểm then chốt.\nBước 2 (30%): Tả rõ khi nào, ở đâu và bạn đã làm gì, để người đọc hình dung được.\nBước 3 (40%, quan trọng nhất): Nêu giá trị mà nó hình thành trong một câu — “Tôi là người ___.”\nBước 4 (20%): Nối giá trị đó với vị trí ứng tuyển và lợi ích mang lại cho công ty."
+      },
+      "growth-example": {
+        "title": "Ví dụ cho Bước 3",
+        "body": "Ví dụ: “Tôi là người vẫn tiếp tục tìm cách ngay cả sau khi thất bại.” Hãy viết câu Bước 3 trước, rồi nối nó với vị trí ứng tuyển."
+      },
+      "growth-mistakes": {
+        "title": "4 lỗi cần tránh",
+        "body": "1. Kể theo trình tự thời gian: mở đầu bằng “Tôi sinh năm 1998…” có thể khiến nhiều nhà tuyển dụng thấy nhạt — tốt hơn là tránh.\n2. Sáo ngữ về gia đình: thường nên tránh những câu như “Tôi lớn lên trong một gia đình đầy tình thương”, khoe về cha mẹ, hay nhắc đến tôn giáo/chính trị.\n3. Liệt kê sự kiện: phân tích sâu một trải nghiệm thường hiệu quả hơn viết hời hợt về năm trải nghiệm (trao đổi, thực tập, tình nguyện).\n4. Thay vì lặp lại “vì tôi là người nước ngoài”, nên xem danh tính là công cụ và đặt năng lực vào trung tâm.\n※ Kỳ vọng có thể khác nhau tuỳ công ty — hãy đọc kỹ tin tuyển dụng."
+      },
+      "motivation-formula": {
+        "title": "Vì sao công ty này · vì sao vị trí này",
+        "body": "Trục A (công ty): nhắc đến tin tức gần đây, sản phẩm mới hoặc kế hoạch mở rộng của công ty. Ví dụ: “Được biết quý công ty dự định tiến vào thị trường Đông Nam Á năm 2025…”.\nTrục B (vị trí): cho thấy kinh nghiệm trước đây của bạn phù hợp với phần nào của công việc này.\nMẹo cho ứng viên nước ngoài: thêm 2–3 câu ở cuối về “vì sao Hàn Quốc, vì sao công ty này”."
+      },
+      "motivation-length": {
+        "title": "Chia 500 ký tự",
+        "body": "Chia 500 ký tự như sau: 200 về công ty + 200 về vị trí + 100 cho câu chuyện cá nhân."
+      }
+    },
+    "whyKorea": {
+      "insert": "Chèn đoạn kết “Vì sao Hàn Quốc”",
+      "create": "Viết câu chuyện “Vì sao Hàn Quốc” của bạn",
+      "warning": "Với ứng viên nước ngoài, “vì sao Hàn Quốc” thường là điều nhà tuyển dụng mong đợi. Thiếu nó, họ có thể lo bạn sẽ không gắn bó lâu dài."
+    },
+    "jobPosting": {
+      "label": "Tin tuyển dụng mục tiêu (tuỳ chọn)",
+      "placeholder": "Dán tin tuyển dụng vào đây — AI sẽ điều chỉnh bài viết cho phù hợp."
+    },
+    "ai": {
+      "error": "AI chưa phản hồi được. Vui lòng thử lại.",
+      "outlineApplied": "Chưa có thông tin cá nhân — AI đã thêm một dàn ý phù hợp kèm các câu hỏi để bạn trả lời."
+    }
+  },
+  "aiAssistant": {
+    "title": "Trợ lý nghề nghiệp AI",
+    "subtitle": "Nhận hỗ trợ cá nhân hoá cho hồ sơ ứng tuyển tại Hàn Quốc",
+    "placeholder": "Hỏi tôi bất cứ điều gì về ứng tuyển ở Hàn Quốc...",
+    "suggestions": {
+      "title": "Câu hỏi gợi ý",
+      "q1": "Yêu cầu về ảnh thẻ trong 이력서 là gì?",
+      "q2": "Tôi nên viết gì trong 자기소개서?",
+      "q3": "Hãy xem giúp sơ yếu lý lịch của tôi cho công ty Hàn Quốc",
+      "q4": "Ở Hàn Quốc nên trả lời câu hỏi về mức lương mong muốn thế nào?",
+      "q5": "Những câu hỏi phỏng vấn phổ biến ở Hàn Quốc là gì?"
+    },
+    "thinking": "Đang suy nghĩ...",
+    "send": "Gửi",
+    "newChat": "Cuộc trò chuyện mới",
+    "history": "Lịch sử trò chuyện",
+    "greeting": "Tôi là trợ lý AI giúp bạn ứng tuyển tại Hàn Quốc! Tôi có thể hỗ trợ:\n\n• **Sơ yếu lý lịch Hàn (이력서)** — định dạng, nội dung, yêu cầu ảnh thẻ\n• **자기소개서** — cấu trúc, mẹo viết, khác biệt văn hoá\n• **Chuẩn bị phỏng vấn** — các câu hỏi phỏng vấn thường gặp ở Hàn Quốc\n• **Thương lượng lương** — thông lệ nơi làm việc Hàn Quốc\n• **Mẹo văn hoá** — phép tắc công sở Hàn Quốc\n\nHôm nay bạn muốn bắt đầu từ đâu?",
+    "chats": {
+      "resumeTips": "Mẹo viết 이력서",
+      "interview": "Câu hỏi phỏng vấn",
+      "coverLetter": "Hướng dẫn 자기소개서"
+    },
+    "starters": {
+      "resumeTips": "Hãy cho tôi vài mẹo để viết sơ yếu lý lịch Hàn Quốc (이력서).",
+      "interview": "Những câu hỏi phỏng vấn xin việc phổ biến ở Hàn Quốc là gì và nên trả lời ra sao?",
+      "coverLetter": "Viết 자기소개서 của Hàn Quốc như thế nào? Hãy giải thích cấu trúc."
+    }
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "profile": {
+      "title": "Hồ sơ",
+      "name": "Tên hiển thị",
+      "email": "Địa chỉ email",
+      "nationality": "Quốc tịch",
+      "bio": "Giới thiệu",
+      "saveChanges": "Lưu thay đổi"
+    },
+    "appearance": {
+      "title": "Giao diện",
+      "theme": "Chủ đề",
+      "light": "Sáng",
+      "dark": "Tối",
+      "system": "Theo hệ thống"
+    },
+    "language": {
+      "title": "Ngôn ngữ và khu vực",
+      "appLanguage": "Ngôn ngữ ứng dụng",
+      "documentLanguage": "Ngôn ngữ mặc định của tài liệu"
+    },
+    "notifications": {
+      "title": "Thông báo",
+      "email": "Thông báo qua email",
+      "tips": "Mẹo nghề nghiệp và cập nhật",
+      "emailDesc": "Nhận thông báo về tài liệu của bạn qua email.",
+      "tipsDesc": "Mẹo nghề nghiệp hằng tuần cho thị trường việc làm Hàn Quốc.",
+      "templates": "Mẫu mới",
+      "templatesDesc": "Được báo khi có mẫu sơ yếu lý lịch mới."
+    },
+    "account": {
+      "title": "Tài khoản",
+      "deleteAccount": "Xoá tài khoản",
+      "deleteWarning": "Hành động này không thể hoàn tác.",
+      "deleteDetail": "Tài khoản, toàn bộ sơ yếu lý lịch và thư giới thiệu đã lưu, cùng hồ sơ nghề nghiệp của bạn sẽ bị xoá vĩnh viễn.",
+      "deleteConfirmHint": "Nhập địa chỉ email của bạn để xác nhận:",
+      "deleting": "Đang xoá…",
+      "deleted": "Tài khoản của bạn đã bị xoá.",
+      "deleteError": "Không xoá được tài khoản. Vui lòng thử lại.",
+      "signedInAs": "Đang đăng nhập bằng",
+      "signInRequired": "Đăng nhập để quản lý tài khoản của bạn.",
+      "changePassword": "Đổi mật khẩu",
+      "changePasswordDesc": "Đặt mật khẩu mới cho tài khoản của bạn.",
+      "newPassword": "Mật khẩu mới",
+      "confirmPassword": "Xác nhận mật khẩu mới",
+      "passwordUpdated": "Đã cập nhật mật khẩu.",
+      "exportData": "Tải dữ liệu của tôi",
+      "exportDataDesc": "Tệp JSON chứa tài liệu và hồ sơ của bạn.",
+      "exportEmpty": "Hiện chưa có gì để tải xuống.",
+      "exportError": "Không chuẩn bị được tệp tải xuống. Vui lòng thử lại."
+    },
+    "whyKorea": {
+      "title": "Vì sao Hàn Quốc"
+    },
+    "career": {
+      "title": "Hồ sơ nghề nghiệp"
+    }
+  },
+  "nationalities": {
+    "uzbekistan": "Uzbekistan",
+    "kazakhstan": "Kazakhstan",
+    "kyrgyzstan": "Kyrgyzstan",
+    "mongolia": "Mông Cổ",
+    "china": "Trung Quốc",
+    "vietnam": "Việt Nam",
+    "other": "Khác"
+  },
+  "whyKorea": {
+    "title": "Vì sao Hàn Quốc",
+    "subtitle": "Viết câu chuyện “vì sao Hàn Quốc” một lần và dùng lại cho mọi hồ sơ ứng tuyển.",
+    "fields": {
+      "arrivalContext": {
+        "label": "Bạn đến Hàn Quốc lần đầu như thế nào",
+        "placeholder": "Bạn đến Hàn Quốc lần đầu khi nào và vì sao? (ví dụ: kỳ trao đổi, đi học, gia đình) — 1–2 câu."
+      },
+      "alternativesWeighed": {
+        "label": "Những lựa chọn khác bạn đã cân nhắc",
+        "placeholder": "Bạn từng nghiêm túc cân nhắc nước nào hoặc con đường nào khác, và vì sao lại chọn Hàn Quốc?"
+      },
+      "reasonToStay": {
+        "label": "Vì sao xây dựng sự nghiệp tại đây",
+        "placeholder": "Điều gì khiến bạn quyết định làm việc ở đây, chứ không chỉ đi học?"
+      }
+    },
+    "draft": {
+      "label": "Bản cuối (2–3 câu)",
+      "placeholder": "Rút gọn thành 2–3 câu dựa trên câu trả lời phía trên. Bấm “Ghép câu trả lời” để có bản nháp."
+    },
+    "combine": "Ghép câu trả lời",
+    "combineHint": "Hãy trả lời ba câu hỏi phía trên trước.",
+    "save": "Lưu",
+    "saved": "Đã lưu"
+  },
+  "careerProfile": {
+    "title": "Hồ sơ nghề nghiệp",
+    "subtitle": "Chỉ cần điền một lần. Mọi tài liệu và mọi gợi ý AI đều dùng đến nó, nhờ vậy AI viết được nội dung thật thay vì hỏi lại bạn.",
+    "save": "Lưu hồ sơ",
+    "saved": "Đã lưu",
+    "fields": {
+      "headline": {
+        "label": "Giới thiệu một dòng",
+        "placeholder": "Ví dụ: Học viên cao học ngành Thiết kế tại Đại học Hanyang, tập trung vào UX."
+      },
+      "skills": {
+        "label": "Kỹ năng và công cụ",
+        "placeholder": "Figma, React, TypeScript, nghiên cứu người dùng…"
+      },
+      "education": {
+        "label": "Học vấn",
+        "placeholder": "Trường, chuyên ngành, thời gian — ví dụ: Đại học Hanyang, Thiết kế, 2023–2025."
+      },
+      "experience": {
+        "label": "Kinh nghiệm và dự án",
+        "placeholder": "Công việc, thực tập, dự án — kèm việc bạn thực sự đã làm và kết quả."
+      },
+      "languages": {
+        "label": "Ngôn ngữ",
+        "placeholder": "Tiếng Hàn (TOPIK 4), tiếng Anh (nâng cao), tiếng Việt (bản ngữ)…"
+      },
+      "strengths": {
+        "label": "Điểm mạnh và thành tích",
+        "placeholder": "Giải thưởng, học bổng, những việc bạn thực sự giỏi."
+      }
+    }
+  },
+  "documents": {
+    "save": "Lưu",
+    "saving": "Đang lưu…",
+    "saved": "Đã lưu vào tài khoản của bạn.",
+    "saveError": "Không lưu được. Vui lòng thử lại.",
+    "signInToSave": "Đăng nhập để lưu tài liệu này vào tài khoản của bạn.",
+    "untitled": "Chưa đặt tên",
+    "title": "Tài liệu đã lưu của tôi",
+    "subtitle": "Tất cả những gì bạn đã lưu vào tài khoản. Mở một mục để tiếp tục chỉnh sửa.",
+    "loading": "Đang tải tài liệu của bạn…",
+    "empty": "Bạn chưa lưu tài liệu nào.",
+    "emptyHint": "Hãy tạo sơ yếu lý lịch hoặc thư giới thiệu, rồi bấm Lưu.",
+    "signInToView": "Đăng nhập để xem các tài liệu đã lưu trong tài khoản.",
+    "signIn": "Đăng nhập",
+    "open": "Mở",
+    "opened": "Đã mở tài liệu. Lưu lại sẽ cập nhật chính bản này.",
+    "loadError": "Không mở được tài liệu này.",
+    "notFound": "Tài liệu này không còn tồn tại.",
+    "signInToOpen": "Đăng nhập để mở tài liệu đã lưu này.",
+    "delete": "Xoá",
+    "confirmDelete": "Xoá tài liệu này?",
+    "deleted": "Đã xoá tài liệu.",
+    "deleteError": "Không xoá được. Vui lòng thử lại.",
+    "kindResume": "Sơ yếu lý lịch",
+    "kindCoverLetter": "Thư giới thiệu",
+    "newResume": "Sơ yếu lý lịch mới",
+    "newCoverLetter": "Thư giới thiệu mới",
+    "editing": "Đang chỉnh sửa tài liệu đã lưu"
+  },
+  "legal": {
+    "lastUpdated": "Cập nhật lần cuối",
+    "back": "Quay lại Koreer",
+    "privacy": {
+      "title": "Chính sách bảo mật",
+      "intro": "Koreer giúp ứng viên nước ngoài viết sơ yếu lý lịch Hàn Quốc (이력서) và thư giới thiệu bản thân (자기소개서). Chính sách này giải thích chúng tôi lưu gì, vì sao lưu và bạn xoá chúng bằng cách nào.",
+      "collect": {
+        "t": "Chúng tôi thu thập những gì",
+        "account": "Tài khoản: địa chỉ email và mật khẩu của bạn (mật khẩu chỉ được lưu dưới dạng mã băm mà chúng tôi không đọc được). Nếu đăng ký bằng biểu mẫu, thêm tên và quốc gia bạn nhập; nếu đăng nhập bằng Google, là tên, email và ảnh đại diện do Google cung cấp.",
+        "documents": "Tài liệu: mọi thứ bạn nhập vào sơ yếu lý lịch hoặc thư giới thiệu — gồm họ tên, số điện thoại, địa chỉ, ngày sinh, quốc tịch, học vấn, quá trình làm việc và ảnh thẻ nếu bạn tải lên. Ảnh được lưu ngay bên trong tài liệu.",
+        "profile": "Hồ sơ nghề nghiệp: thông tin nền tảng, kỹ năng và câu trả lời “Vì sao Hàn Quốc” bạn lưu trong Cài đặt, để dùng lại cho nhiều tài liệu.",
+        "technical": "Kỹ thuật: mã đăng nhập và lựa chọn ngôn ngữ, lưu trong trình duyệt của bạn. Chúng tôi không dùng công cụ quảng cáo hay phân tích theo dõi."
+      },
+      "use": {
+        "t": "Chúng tôi dùng dữ liệu để làm gì",
+        "b": "Chỉ để vận hành dịch vụ: đăng nhập, lưu và hiển thị tài liệu, tạo tệp PDF và Word, và sinh các gợi ý AI khi bạn yêu cầu. Chúng tôi không bán dữ liệu của bạn và không dùng nó để huấn luyện mô hình AI."
+      },
+      "ai": {
+        "t": "Xử lý bằng AI",
+        "b": "Khi bạn bấm nút AI, phần văn bản của mục đó — cùng hồ sơ nghề nghiệp bạn đã chọn lưu — được gửi tới Groq, nhà cung cấp AI của chúng tôi, để tạo gợi ý. Không có gì được gửi đi nếu bạn không yêu cầu. Kết quả AI có thể sai: hãy luôn kiểm tra trước khi gửi tài liệu cho nhà tuyển dụng."
+      },
+      "share": {
+        "t": "Còn ai xử lý dữ liệu của bạn",
+        "b": "Chúng tôi dùng ba nhà cung cấp, mỗi bên chỉ cho mục đích nêu dưới đây. Chúng tôi không chia sẻ dữ liệu của bạn với bất kỳ ai khác.",
+        "supabase": "Supabase — tài khoản và cơ sở dữ liệu (tài liệu và hồ sơ của bạn được lưu ở đây).",
+        "vercel": "Vercel — lưu trữ trang web.",
+        "groq": "Groq — tạo gợi ý AI khi bạn yêu cầu."
+      },
+      "retention": {
+        "t": "Chúng tôi lưu trong bao lâu",
+        "b": "Tài liệu của bạn được giữ cho đến khi bạn xoá. Tài khoản và mọi thứ trong đó được giữ cho đến khi bạn xoá tài khoản. Xoá tài khoản sẽ xoá vĩnh viễn tài liệu và hồ sơ — không thể khôi phục."
+      },
+      "rights": {
+        "t": "Quyền lựa chọn của bạn",
+        "b": "Trong Cài đặt → Tài khoản, bạn có thể đổi mật khẩu, tải toàn bộ dữ liệu chúng tôi lưu về dưới dạng tệp JSON, và xoá tài khoản. Bạn cũng có thể xoá từng tài liệu bất cứ lúc nào trong mục tài liệu đã lưu."
+      },
+      "security": {
+        "t": "Bảo mật",
+        "b": "Mỗi dòng dữ liệu đều được bảo vệ bằng chính sách bảo mật cấp dòng, nên người đã đăng nhập chỉ đọc và ghi được dữ liệu của chính mình. Dữ liệu được mã hoá khi truyền. Không hệ thống nào an toàn tuyệt đối, vì vậy đừng nhập vào tài liệu những thông tin bạn không muốn được lưu."
+      },
+      "children": {
+        "t": "Trẻ em",
+        "b": "Koreer dành cho người tìm việc và sinh viên trong độ tuổi lao động. Chúng tôi không cố ý thu thập dữ liệu của trẻ em dưới 14 tuổi."
+      },
+      "changes": {
+        "t": "Thay đổi chính sách",
+        "b": "Nếu cách xử lý dữ liệu thay đổi, chúng tôi sẽ cập nhật trang này và ngày ở phía trên."
+      },
+      "contact": {
+        "t": "Liên hệ",
+        "b": "Câu hỏi về dữ liệu của bạn, hoặc yêu cầu xoá dữ liệu, xin gửi tới:"
+      }
+    },
+    "terms": {
+      "title": "Điều khoản sử dụng",
+      "intro": "Khi sử dụng Koreer, bạn đồng ý với các điều khoản này. Nếu không đồng ý, vui lòng không sử dụng dịch vụ.",
+      "service": {
+        "t": "Koreer là gì",
+        "b": "Koreer là công cụ để viết sơ yếu lý lịch và thư giới thiệu bản thân chuẩn Hàn, có hỗ trợ AI tuỳ chọn. Đây là công cụ viết — không phải công ty tuyển dụng, nhà tuyển dụng, cố vấn di trú hay dịch vụ pháp lý."
+      },
+      "account": {
+        "t": "Tài khoản của bạn",
+        "b": "Bạn chịu trách nhiệm giữ an toàn mật khẩu và mọi hoạt động dưới tài khoản của mình. Hãy dùng địa chỉ email bạn thực sự kiểm soát — đó là cách duy nhất để đặt lại mật khẩu."
+      },
+      "acceptable": {
+        "t": "Sử dụng hợp lệ",
+        "b": "Không dùng Koreer để viết tài liệu cho người khác mà họ không biết, nhập dữ liệu của người khác, nộp thông tin sai sự thật cho nhà tuyển dụng, hoặc tấn công và làm quá tải dịch vụ."
+      },
+      "content": {
+        "t": "Nội dung của bạn thuộc về bạn",
+        "b": "Mọi thứ bạn viết vẫn hoàn toàn thuộc quyền sở hữu của bạn. Chúng tôi chỉ lưu để cung cấp dịch vụ và không bao giờ công bố. Chúng tôi không đòi hỏi quyền nào đối với tài liệu của bạn."
+      },
+      "ai": {
+        "t": "Về các gợi ý của AI",
+        "b": "Kết quả AI là bản nháp, không phải sự thật. Nó có thể thiếu chính xác hoặc không phù hợp với một công ty cụ thể. Bạn có trách nhiệm kiểm tra từng tài liệu trước khi gửi đi. Mọi điều Koreer nói về thông lệ tuyển dụng, thị thực hay luật pháp Hàn Quốc chỉ là thông tin chung — hãy đối chiếu với nguồn chính thức. Dùng Koreer không đảm bảo bạn được phỏng vấn hay nhận việc."
+      },
+      "availability": {
+        "t": "Khả năng truy cập",
+        "b": "Dịch vụ được cung cấp “như hiện có”. Chúng tôi có thể thay đổi hoặc tạm dừng tính năng và không thể hứa dịch vụ luôn sẵn sàng hay không có lỗi. Hãy xuất các tài liệu quan trọng để luôn có bản sao của riêng bạn."
+      },
+      "termination": {
+        "t": "Ngừng sử dụng",
+        "b": "Bạn có thể xoá tài khoản bất cứ lúc nào trong Cài đặt → Tài khoản. Chúng tôi có thể tạm khoá tài khoản vi phạm các điều khoản này."
+      },
+      "liability": {
+        "t": "Giới hạn trách nhiệm",
+        "b": "Trong phạm vi pháp luật cho phép, Koreer không chịu trách nhiệm về kết quả tuyển dụng, cơ hội bị bỏ lỡ hay thiệt hại phát sinh từ việc sử dụng dịch vụ."
+      },
+      "changes": {
+        "t": "Thay đổi điều khoản",
+        "b": "Nếu các điều khoản này thay đổi, trang này và ngày ở phía trên sẽ được cập nhật. Tiếp tục sử dụng Koreer nghĩa là bạn chấp nhận điều khoản mới."
+      },
+      "contact": {
+        "t": "Liên hệ",
+        "b": "Nếu có câu hỏi về các điều khoản này:"
+      }
+    }
+  },
+  "footer": {
+    "tagline": "Công cụ AI cho ứng viên nước ngoài đang xây dựng sự nghiệp tại Hàn Quốc.",
+    "product": "Sản phẩm",
+    "languages": "Ngôn ngữ",
+    "forStudents": "Dành cho ứng viên từ",
+    "contact": "Liên hệ",
+    "copyright": "© {year} Koreer. Được làm cho ứng viên nước ngoài tại Hàn Quốc."
+  }
+}
