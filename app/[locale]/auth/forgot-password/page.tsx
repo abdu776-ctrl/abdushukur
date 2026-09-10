@@ -9,9 +9,11 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Mail, ArrowLeft } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
+import { authErrorMessage } from '@/lib/authErrors';
 
 export default function ForgotPasswordPage() {
   const t = useTranslations();
+  const te = useTranslations('authErrors');
   const locale = useLocale();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
@@ -34,7 +36,7 @@ export default function ForgotPasswordPage() {
         redirectTo: `${window.location.origin}/${locale}/auth/reset-password`,
       });
       if (resetError) {
-        setError(resetError.message);
+        setError(authErrorMessage(resetError, te));
         return;
       }
       // Deliberately the same message whether or not the address is registered,

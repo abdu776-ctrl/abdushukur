@@ -878,5 +878,17 @@
     "swap": "Swap languages",
     "autoDetect": "Auto-detect",
     "error": "The translation service failed. Please try again."
+  },
+  "authErrors": {
+    "invalidCredentials": "The email or password is incorrect.",
+    "emailNotConfirmed": "Confirm your email address first — check your inbox.",
+    "userExists": "An account with this email already exists. Try signing in instead.",
+    "weakPassword": "That password is too weak. Use at least 8 characters.",
+    "rateLimit": "Too many attempts. Please wait a moment and try again.",
+    "samePassword": "The new password must be different from your current one.",
+    "invalidEmail": "That email address does not look valid.",
+    "expiredLink": "That link is invalid or has expired. Request a new one.",
+    "network": "Could not reach the server. Check your connection and try again.",
+    "generic": "Something went wrong. Please try again."
   }
 }

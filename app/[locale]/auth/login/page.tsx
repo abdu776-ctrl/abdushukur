@@ -11,9 +11,11 @@ import { Sparkles, Mail, Lock, Chrome } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { signInWithGoogle } from '@/lib/useAuth';
+import { authErrorMessage } from '@/lib/authErrors';
 
 export default function LoginPage() {
   const t = useTranslations();
+  const te = useTranslations('authErrors');
   const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -46,7 +48,7 @@ export default function LoginPage() {
         email,
         options: { emailRedirectTo: `${window.location.origin}/${locale}/dashboard` },
       });
-      if (resendError) setError(resendError.message);
+      if (resendError) setError(authErrorMessage(resendError, te));
       else setNotice(t('auth.resendSent'));
     } catch (err) {
       console.error('resend failed:', err);
@@ -66,7 +68,7 @@ export default function LoginPage() {
     }
     if (result.reason === 'not-configured') setError(t('auth.notConfigured'));
     else if (result.reason === 'blocked') setError(t('auth.webviewBlocked'));
-    else setError(result.message);
+    else setError(authErrorMessage(result, te));
   }
 
   // Real email/password sign-in through Supabase.
@@ -86,7 +88,7 @@ export default function LoginPage() {
       if (signInError) {
         const unconfirmed = /not confirmed|confirm your email/i.test(signInError.message);
         setNeedsConfirmation(unconfirmed);
-        setError(unconfirmed ? t('auth.notConfirmed') : signInError.message);
+        setError(unconfirmed ? t('auth.notConfirmed') : authErrorMessage(signInError, te));
         return;
       }
       window.location.href = `/${locale}/dashboard`;

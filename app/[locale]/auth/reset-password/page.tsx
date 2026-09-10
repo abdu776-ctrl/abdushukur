@@ -9,6 +9,7 @@ import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { LanguageSelector } from '@/components/LanguageSelector';
 import { Sparkles, Lock, ArrowLeft } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
+import { authErrorMessage } from '@/lib/authErrors';
 
 /**
  * Landing page for the emailed reset link. Supabase turns the link's hash into
@@ -17,6 +18,7 @@ import { getSupabase } from '@/lib/supabase';
  */
 export default function ResetPasswordPage() {
   const t = useTranslations();
+  const te = useTranslations('authErrors');
   const locale = useLocale();
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -65,7 +67,7 @@ export default function ResetPasswordPage() {
     try {
       const { error: updateError } = await supabase.auth.updateUser({ password });
       if (updateError) {
-        setError(updateError.message);
+        setError(authErrorMessage(updateError, te));
         return;
       }
       setDone(true);

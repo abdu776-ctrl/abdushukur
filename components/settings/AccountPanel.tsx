@@ -11,6 +11,7 @@ import { useAuth, signOutEverywhere } from '@/lib/useAuth';
 import { listDocuments } from '@/lib/documents';
 import { loadProfile } from '@/lib/profile';
 import { loadNarrative } from '@/lib/whyKorea';
+import { authErrorMessage } from '@/lib/authErrors';
 
 /**
  * Account management: change password, download everything, delete the account.
@@ -21,6 +22,7 @@ import { loadNarrative } from '@/lib/whyKorea';
  */
 export function AccountPanel({ locale }: { locale: string }) {
   const t = useTranslations('settings.account');
+  const te = useTranslations('authErrors');
   const tc = useTranslations('common');
   const ta = useTranslations('auth');
   const { user, status } = useAuth();
@@ -51,7 +53,7 @@ export function AccountPanel({ locale }: { locale: string }) {
     try {
       const { error } = await supabase.auth.updateUser({ password });
       if (error) {
-        setToast({ type: 'error', message: error.message });
+        setToast({ type: 'error', message: authErrorMessage(error, te) });
         return;
       }
       setPassword('');

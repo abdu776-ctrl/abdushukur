@@ -878,5 +878,17 @@
     "swap": "交换语言",
     "autoDetect": "自动检测",
     "error": "翻译服务出错，请重试。"
+  },
+  "authErrors": {
+    "invalidCredentials": "邮箱或密码不正确。",
+    "emailNotConfirmed": "请先确认你的邮箱 — 查看收件箱。",
+    "userExists": "该邮箱已注册，请直接登录。",
+    "weakPassword": "密码强度不够，请使用至少 8 个字符。",
+    "rateLimit": "尝试次数过多，请稍后再试。",
+    "samePassword": "新密码必须与当前密码不同。",
+    "invalidEmail": "邮箱地址格式不正确。",
+    "expiredLink": "该链接无效或已过期，请重新申请。",
+    "network": "无法连接服务器，请检查网络后重试。",
+    "generic": "出了点问题，请重试。"
   }
 }

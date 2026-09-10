@@ -878,5 +878,17 @@
     "swap": "Đổi ngôn ngữ",
     "autoDetect": "Tự động nhận diện",
     "error": "Dịch vụ dịch gặp lỗi. Vui lòng thử lại."
+  },
+  "authErrors": {
+    "invalidCredentials": "Email hoặc mật khẩu không đúng.",
+    "emailNotConfirmed": "Hãy xác nhận email trước — kiểm tra hộp thư của bạn.",
+    "userExists": "Đã có tài khoản với email này. Hãy thử đăng nhập.",
+    "weakPassword": "Mật khẩu quá yếu. Hãy dùng ít nhất 8 ký tự.",
+    "rateLimit": "Bạn đã thử quá nhiều lần. Vui lòng đợi một lát rồi thử lại.",
+    "samePassword": "Mật khẩu mới phải khác mật khẩu hiện tại.",
+    "invalidEmail": "Địa chỉ email này không hợp lệ.",
+    "expiredLink": "Liên kết không hợp lệ hoặc đã hết hạn. Hãy yêu cầu liên kết mới.",
+    "network": "Không kết nối được máy chủ. Kiểm tra kết nối rồi thử lại.",
+    "generic": "Đã có lỗi xảy ra. Vui lòng thử lại."
   }
 }

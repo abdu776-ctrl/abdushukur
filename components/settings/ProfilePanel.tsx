@@ -9,6 +9,7 @@ import { Toast, type ToastData } from '@/components/ui/Toast';
 import { User, Save } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/useAuth';
+import { authErrorMessage } from '@/lib/authErrors';
 
 // Value is the stored code; the label comes from the locale files.
 const COUNTRIES = [
@@ -30,6 +31,7 @@ const COUNTRIES = [
  */
 export function ProfilePanel() {
   const t = useTranslations('settings.profile');
+  const te = useTranslations('authErrors');
   const tr = useTranslations('auth.register');
   const tc = useTranslations('common');
   const { user, status } = useAuth();
@@ -67,7 +69,7 @@ export function ProfilePanel() {
         data: { full_name: name, nationality, bio },
       });
       if (error) {
-        setToast({ type: 'error', message: error.message });
+        setToast({ type: 'error', message: authErrorMessage(error, te) });
         return;
       }
       setToast({ type: 'success', message: t('saved') });

@@ -10,6 +10,7 @@ import { Sparkles, Mail, Lock, User, Globe, Chrome } from 'lucide-react';
 import { useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { signInWithGoogle } from '@/lib/useAuth';
+import { authErrorMessage } from '@/lib/authErrors';
 
 // Value is the stored code; the visible label comes from the locale files.
 const nationalities = [
@@ -24,6 +25,7 @@ const nationalities = [
 
 export default function RegisterPage() {
   const t = useTranslations();
+  const te = useTranslations('authErrors');
   const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [nationality, setNationality] = useState('');
@@ -45,7 +47,7 @@ export default function RegisterPage() {
     }
     if (result.reason === 'not-configured') setError(t('auth.notConfigured'));
     else if (result.reason === 'blocked') setError(t('auth.webviewBlocked'));
-    else setError(result.message);
+    else setError(authErrorMessage(result, te));
   }
 
   // Real email/password registration through Supabase. Password auth also works
@@ -79,7 +81,7 @@ export default function RegisterPage() {
       });
 
       if (signUpError) {
-        setError(signUpError.message);
+        setError(authErrorMessage(signUpError, te));
         return;
       }
 

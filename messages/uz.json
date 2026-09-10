@@ -878,5 +878,17 @@
     "swap": "Tillarni almashtirish",
     "autoDetect": "Avtomatik aniqlash",
     "error": "Tarjima xizmatida xatolik. Qayta urinib ko‘ring."
+  },
+  "authErrors": {
+    "invalidCredentials": "Elektron pochta yoki parol noto‘g‘ri.",
+    "emailNotConfirmed": "Avval pochtangizni tasdiqlang — kelgan xatni tekshiring.",
+    "userExists": "Bu pochta bilan akkaunt allaqachon mavjud. Tizimga kirib ko‘ring.",
+    "weakPassword": "Bu parol juda zaif. Kamida 8 ta belgi ishlating.",
+    "rateLimit": "Juda ko‘p urinish. Biroz kuting va qayta urinib ko‘ring.",
+    "samePassword": "Yangi parol joriy paroldan farq qilishi kerak.",
+    "invalidEmail": "Bu pochta manzili to‘g‘ri ko‘rinmayapti.",
+    "expiredLink": "Bu havola yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang.",
+    "network": "Serverga ulanib bo‘lmadi. Internetni tekshirib, qayta urining.",
+    "generic": "Xatolik yuz berdi. Qayta urinib ko‘ring."
   }
 }
