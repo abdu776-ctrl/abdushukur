@@ -404,10 +404,10 @@ export function ResumeBuilder() {
                 >
                   <GripVertical className="w-4 h-4 text-gray-400 flex-shrink-0" />
                   <span className="flex-1 text-sm text-gray-700 dark:text-gray-300 truncate">{t(`sections.${id}`)}</span>
-                  <button type="button" onClick={() => moveSection(i, i - 1)} disabled={i === 0} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title="Up">
+                  <button type="button" onClick={() => moveSection(i, i - 1)} disabled={i === 0} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title={t('sectionOrder.moveUp')}>
                     <ArrowUp className="w-3.5 h-3.5" />
                   </button>
-                  <button type="button" onClick={() => moveSection(i, i + 1)} disabled={i === sectionOrder.length - 1} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title="Down">
+                  <button type="button" onClick={() => moveSection(i, i + 1)} disabled={i === sectionOrder.length - 1} className="p-1 rounded-md text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 disabled:opacity-30 disabled:cursor-not-allowed" title={t('sectionOrder.moveDown')}>
                     <ArrowDown className="w-3.5 h-3.5" />
                   </button>
                 </div>
@@ -466,7 +466,7 @@ export function ResumeBuilder() {
                   <div className="flex items-center gap-4 p-3 border border-gray-200 dark:border-gray-700 rounded-xl">
                     <img
                       src={personal.photo}
-                      alt="Profile"
+                      alt={t('personal.photo')}
                       className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-indigo-200 dark:border-indigo-700"
                     />
                     <div className="flex-1 min-w-0">
@@ -476,7 +476,7 @@ export function ResumeBuilder() {
                         className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline mt-0.5 flex items-center gap-1"
                       >
                         <Camera className="w-3 h-3" />
-                        Change photo
+                        {t('personal.changePhoto')}
                       </button>
                     </div>
                     <button
@@ -552,14 +552,14 @@ export function ResumeBuilder() {
                 />
                 <Input
                   label={t('personal.nationality')}
-                  placeholder="Uzbekistan"
+                  placeholder="우즈베키스탄"
                   value={personal.nationality}
                   onChange={(e) => setPersonal({ ...personal, nationality: e.target.value })}
                 />
               </div>
               <Input
                 label={t('personal.address')}
-                placeholder="Seoul, South Korea"
+                placeholder="서울특별시 성동구"
                 value={personal.address || ''}
                 onChange={(e) => setPersonal({ ...personal, address: e.target.value })}
               />
@@ -590,7 +590,7 @@ export function ResumeBuilder() {
                   </div>
                   <Input
                     label={t('education.institution')}
-                    placeholder="Hanyang University"
+                    placeholder="한양대학교"
                     value={edu.institution}
                     onChange={(e) => {
                       const updated = [...education];
@@ -601,7 +601,7 @@ export function ResumeBuilder() {
                   <div className="grid grid-cols-2 gap-3">
                     <Input
                       label={t('education.degree')}
-                      placeholder="Bachelor's"
+                      placeholder="학사"
                       value={edu.degree}
                       onChange={(e) => {
                         const updated = [...education];
@@ -611,7 +611,7 @@ export function ResumeBuilder() {
                     />
                     <Input
                       label={t('education.field')}
-                      placeholder="Computer Science"
+                      placeholder="컴퓨터공학"
                       value={edu.field}
                       onChange={(e) => {
                         const updated = [...education];
@@ -693,7 +693,7 @@ export function ResumeBuilder() {
                   <div className="grid grid-cols-2 gap-3">
                     <Input
                       label={t('experience.company')}
-                      placeholder="Samsung Electronics"
+                      placeholder="삼성전자"
                       value={exp.company}
                       onChange={(e) => {
                         const updated = [...experience];
@@ -703,7 +703,7 @@ export function ResumeBuilder() {
                     />
                     <Input
                       label={t('experience.position')}
-                      placeholder="Software Engineer"
+                      placeholder="소프트웨어 엔지니어"
                       value={exp.position}
                       onChange={(e) => {
                         const updated = [...experience];
@@ -748,7 +748,7 @@ export function ResumeBuilder() {
                   </label>
                   <Textarea
                     label={t('experience.description')}
-                    placeholder="Describe your responsibilities and achievements..."
+                    placeholder="담당 업무와 성과를 구체적으로 작성하세요"
                     value={exp.description}
                     rows={3}
                     onChange={(e) => {

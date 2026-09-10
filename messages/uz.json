@@ -34,7 +34,13 @@
       "pdfReady": "PDF yuklab olindi.",
       "wordReady": "Word fayl yuklab olindi.",
       "printHint": "Chop etish oynasi ochildi — matnli fayl olish uchun “PDF sifatida saqlash”ni tanlang."
-    }
+    },
+    "guest": "Mehmon",
+    "notSignedIn": "Tizimga kirilmagan",
+    "year": "Yil",
+    "month": "Oy",
+    "switchToLight": "Yorug‘ rejimga o‘tish",
+    "switchToDark": "Qorong‘i rejimga o‘tish"
   },
   "nav": {
     "home": "Bosh sahifa",
@@ -370,7 +376,8 @@
       "uploadPhoto": "Fotosurat Yuklash",
       "translateName": "Ismni avtomatik tarjima",
       "toKorean": "Koreyschaga",
-      "toLatin": "Lotinchaga"
+      "toLatin": "Lotinchaga",
+      "changePhoto": "Rasmni almashtirish"
     },
     "education": {
       "add": "Ta'lim Qo'shish",
@@ -466,7 +473,9 @@
     },
     "sectionOrder": {
       "title": "Boʻlimlar tartibi",
-      "note": "Bir ustunli shablonlarga (Classic oilasi) qoʻllanadi. Boshqa dizaynlar oʻz tartibini saqlaydi."
+      "note": "Bir ustunli shablonlarga (Classic oilasi) qoʻllanadi. Boshqa dizaynlar oʻz tartibini saqlaydi.",
+      "moveUp": "Yuqoriga",
+      "moveDown": "Pastga"
     }
   },
   "coverLetter": {
@@ -587,7 +596,9 @@
       "resumeTips": "Koreys rezyumesi (이력서) yozish bo'yicha maslahat bering.",
       "interview": "Koreys ish suhbatida keng tarqalgan savollar qanaqa va ularga qanday javob berish kerak?",
       "coverLetter": "Koreys 자기소개서 qanday yoziladi? Tuzilishini tushuntiring."
-    }
+    },
+    "error": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
+    "noReply": "Kechirasiz, javob olinmadi. Qayta urinib ko‘ring."
   },
   "settings": {
     "title": "Sozlamalar",
@@ -597,7 +608,12 @@
       "email": "Elektron Pochta Manzili",
       "nationality": "Millat",
       "bio": "Bio",
-      "saveChanges": "O'zgarishlarni Saqlash"
+      "saveChanges": "O'zgarishlarni Saqlash",
+      "bioPlaceholder": "O‘zingiz va Koreyadagi martaba maqsadlaringiz haqida yozing...",
+      "emailFixed": "Elektron pochtani bu yerdan o‘zgartirib bo‘lmaydi.",
+      "saved": "Profil saqlandi.",
+      "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
+      "signInRequired": "Profilni tahrirlash uchun tizimga kiring."
     },
     "appearance": {
       "title": "Ko'rinish",
@@ -849,5 +865,16 @@
     "forStudents": "Quyidagi mamlakatlardan",
     "contact": "Aloqa",
     "copyright": "© {year} Koreer. Koreyadagi chet ellik nomzodlar uchun yaratilgan."
+  },
+  "translator": {
+    "source": "Matn",
+    "result": "Natija",
+    "textPlaceholder": "Matn kiriting…",
+    "namePlaceholder": "Ism familiya…",
+    "translate": "Tarjima qilish",
+    "apply": "Qo‘llash",
+    "swap": "Tillarni almashtirish",
+    "autoDetect": "Avtomatik aniqlash",
+    "error": "Tarjima xizmatida xatolik. Qayta urinib ko‘ring."
   }
 }

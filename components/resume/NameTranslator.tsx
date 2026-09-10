@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 type Lang = { code: string; label: string; flag: string };
 
 const LANGS: Lang[] = [
-  { code: 'auto', label: 'Auto-detect', flag: '🌐' },
+  { code: 'auto', label: '', flag: '🌐' },
   { code: 'uz', label: "O'zbek", flag: '🇺🇿' },
   { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -36,6 +36,8 @@ export function NameTranslator({
   onApplyKorean,
 }: NameTranslatorProps) {
   const tc = useTranslations('common');
+  const tt = useTranslations('translator');
+  const tr = useTranslations('resume');
   const [open, setOpen] = useState(false);
   useEscapeKey(() => setOpen(false), open);
   const trapRef = useFocusTrap<HTMLDivElement>(open);
@@ -82,7 +84,7 @@ export function NameTranslator({
       const data = await res.json();
       setResult((data.translated as string) || '');
     } catch {
-      setError('Tarjima xizmatida xatolik. Qayta urinib koʻring.');
+      setError(tt('error'));
     } finally {
       setLoading(false);
     }
@@ -155,7 +157,7 @@ export function NameTranslator({
               >
                 {LANGS.map((l) => (
                   <option key={l.code} value={l.code}>
-                    {l.flag} {l.label}
+                    {l.flag} {l.label || tt('autoDetect')}
                   </option>
                 ))}
               </select>
@@ -163,7 +165,7 @@ export function NameTranslator({
               <button
                 type="button"
                 onClick={swap}
-                title="Swap"
+                title={tt('swap')}
                 className="p-2 rounded-lg text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
               >
                 <ArrowLeftRight className="w-4 h-4" />
@@ -176,7 +178,7 @@ export function NameTranslator({
               >
                 {TARGET_LANGS.map((l) => (
                   <option key={l.code} value={l.code}>
-                    {l.flag} {l.label}
+                    {l.flag} {l.label || tt('autoDetect')}
                   </option>
                 ))}
               </select>
@@ -186,12 +188,12 @@ export function NameTranslator({
             <div className="px-5 py-4 space-y-3">
               <div>
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">
-                  Matn / Text
+                  {tt('source')}
                 </label>
                 <input
                   value={source}
                   onChange={(e) => setSource(e.target.value)}
-                  placeholder="Ism familiya..."
+                  placeholder={tt('namePlaceholder')}
                   className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') doTranslate(source, from, to);
@@ -206,12 +208,12 @@ export function NameTranslator({
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <ArrowRight className="w-4 h-4" />}
-                Tarjima qilish
+                {tt('translate')}
               </button>
 
               <div>
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">
-                  Natija / Result
+                  {tt('result')}
                 </label>
                 <div className="relative">
                   <input
@@ -249,7 +251,7 @@ export function NameTranslator({
                   'hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-40 disabled:cursor-not-allowed'
                 )}
               >
-                → Full Name (A)
+                → {tr('personal.fullName')}
               </button>
               <button
                 type="button"
@@ -263,7 +265,7 @@ export function NameTranslator({
                   'bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed'
                 )}
               >
-                → 한국어 이름
+                → {tr('personal.fullNameKorean')}
               </button>
             </div>
           </div>

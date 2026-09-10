@@ -8,7 +8,7 @@ import { useEscapeKey, useFocusTrap } from '@/lib/hooks';
 type Lang = { code: string; label: string; flag: string };
 
 const LANGS: Lang[] = [
-  { code: 'auto', label: 'Auto-detect', flag: '🌐' },
+  { code: 'auto', label: '', flag: '🌐' },
   { code: 'uz', label: "O'zbek", flag: '🇺🇿' },
   { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
@@ -36,6 +36,7 @@ export function TextTranslator({
   onApply,
 }: TextTranslatorProps) {
   const tc = useTranslations('common');
+  const tt = useTranslations('translator');
   const [open, setOpen] = useState(false);
   useEscapeKey(() => setOpen(false), open);
   const trapRef = useFocusTrap<HTMLDivElement>(open);
@@ -70,7 +71,7 @@ export function TextTranslator({
       const data = await res.json();
       setResult((data.translated as string) || '');
     } catch {
-      setError('Tarjima xizmatida xatolik. Qayta urinib koʻring.');
+      setError(tt('error'));
     } finally {
       setLoading(false);
     }
@@ -131,14 +132,14 @@ export function TextTranslator({
               >
                 {LANGS.map((l) => (
                   <option key={l.code} value={l.code}>
-                    {l.flag} {l.label}
+                    {l.flag} {l.label || tt('autoDetect')}
                   </option>
                 ))}
               </select>
               <button
                 type="button"
                 onClick={swap}
-                title="Swap"
+                title={tt('swap')}
                 className="p-2 rounded-lg text-gray-500 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex-shrink-0"
               >
                 <ArrowLeftRight className="w-4 h-4" />
@@ -150,7 +151,7 @@ export function TextTranslator({
               >
                 {TARGET_LANGS.map((l) => (
                   <option key={l.code} value={l.code}>
-                    {l.flag} {l.label}
+                    {l.flag} {l.label || tt('autoDetect')}
                   </option>
                 ))}
               </select>
@@ -159,13 +160,13 @@ export function TextTranslator({
             <div className="px-5 py-4 space-y-3 overflow-y-auto">
               <div>
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">
-                  Matn / Text
+                  {tt('source')}
                 </label>
                 <textarea
                   value={source}
                   onChange={(e) => setSource(e.target.value)}
                   rows={5}
-                  placeholder="Matn kiriting..."
+                  placeholder={tt('textPlaceholder')}
                   className="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
                 />
               </div>
@@ -177,12 +178,12 @@ export function TextTranslator({
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Languages className="w-4 h-4" />}
-                Tarjima qilish
+                {tt('translate')}
               </button>
 
               <div>
                 <label className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1.5">
-                  Natija / Result
+                  {tt('result')}
                 </label>
                 <textarea
                   value={result}
@@ -201,7 +202,7 @@ export function TextTranslator({
                 onClick={() => setOpen(false)}
                 className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
               >
-                Bekor qilish
+                {tc('cancel')}
               </button>
               <button
                 type="button"
@@ -212,7 +213,7 @@ export function TextTranslator({
                 }}
                 className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
-                Qoʻllash / Apply
+                {tt('apply')}
               </button>
             </div>
           </div>

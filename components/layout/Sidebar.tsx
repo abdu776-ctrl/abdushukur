@@ -79,8 +79,8 @@ export function Sidebar() {
     };
   }, [status]);
 
-  const userName = user?.name || user?.email?.split('@')[0] || 'Guest';
-  const userEmail = user?.email || 'Not signed in';
+  const userName = user?.name || user?.email?.split('@')[0] || t('common.guest');
+  const userEmail = user?.email || t('common.notSignedIn');
   const userImage = user?.image;
 
   const navItems: NavItem[] = [

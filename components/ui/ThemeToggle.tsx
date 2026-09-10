@@ -1,5 +1,7 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
+
 import { useTheme } from 'next-themes';
 import { Sun, Moon } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -10,6 +12,7 @@ interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
+  const t = useTranslations('common');
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -31,7 +34,7 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         'focus:outline-none focus:ring-2 focus:ring-indigo-500',
         className
       )}
-      aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={theme === 'dark' ? t('switchToLight') : t('switchToDark')}
     >
       {theme === 'dark' ? (
         <Sun className="w-4 h-4" />

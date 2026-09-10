@@ -75,10 +75,19 @@ async function googleTranslate(text: string, from: string, to: string): Promise<
     : '';
 }
 
+/** Rough source-language guess for the fallback translator, which cannot detect
+ *  the language itself for a bare name. Script is the only signal available. */
+function guessScript(text: string): string {
+  if (/[Ѐ-ӿ]/.test(text)) return 'ru';
+  if (/[一-鿿]/.test(text)) return 'zh-CN';
+  if (/[가-힯]/.test(text)) return 'ko';
+  if (/[ăâđêôơưĂÂĐÊÔƠƯ]|[̀-̣]/.test(text)) return 'vi';
+  return 'en';
+}
+
 async function fallbackTranslate(text: string, from: string, to: string, mode: string): Promise<string> {
   if (mode === 'name' && to === 'ko') {
-    const hasCyrillic = /[а-яА-ЯёЁ]/.test(text);
-    return googleTranslate(text, hasCyrillic ? 'ru' : 'en', 'ko');
+    return googleTranslate(text, guessScript(text), 'ko');
   }
   const sl = from && from !== 'auto' ? from : 'auto';
   return googleTranslate(text, sl, to);

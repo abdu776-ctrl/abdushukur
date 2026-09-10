@@ -1,5 +1,5 @@
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages, setRequestLocale } from 'next-intl/server';
+import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import { notFound } from 'next/navigation';
@@ -22,7 +22,19 @@ const OG_LOCALE: Record<string, string> = {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
+  const t = await getTranslations({ locale });
+
+  // Per-locale title and description — otherwise every language was announced
+  // to search engines and link previews in English.
+  const title = t('common.tagline');
+  const description = t('home.hero.subtitle');
+
   return {
+    // `default` is used by pages without their own title; `template` has to be
+    // restated here, because a nested layout that sets a title stops inheriting
+    // the parent's template for its own children.
+    title: { default: title, template: '%s | Koreer' },
+    description,
     alternates: {
       canonical: `${SITE_URL}/${locale}`,
       languages: Object.fromEntries(
@@ -32,7 +44,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       url: `${SITE_URL}/${locale}`,
       locale: OG_LOCALE[locale] || 'en_US',
+      title,
+      description,
     },
+    twitter: { title, description },
   };
 }
 

@@ -34,7 +34,13 @@
       "pdfReady": "PDF downloaded.",
       "wordReady": "Word file downloaded.",
       "printHint": "Print dialog opened — choose “Save as PDF” to get a text-based file."
-    }
+    },
+    "guest": "Guest",
+    "notSignedIn": "Not signed in",
+    "year": "Year",
+    "month": "Month",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
   },
   "nav": {
     "home": "Home",
@@ -370,7 +376,8 @@
       "uploadPhoto": "Upload Photo",
       "translateName": "Auto-translate name",
       "toKorean": "To Korean",
-      "toLatin": "To Latin"
+      "toLatin": "To Latin",
+      "changePhoto": "Change photo"
     },
     "education": {
       "add": "Add Education",
@@ -466,7 +473,9 @@
     },
     "sectionOrder": {
       "title": "Section order",
-      "note": "Applies to single-column templates (Classic family). Other layouts keep their fixed design."
+      "note": "Applies to single-column templates (Classic family). Other layouts keep their fixed design.",
+      "moveUp": "Move up",
+      "moveDown": "Move down"
     }
   },
   "coverLetter": {
@@ -587,7 +596,9 @@
       "resumeTips": "Give me tips for writing a Korean resume (이력서).",
       "interview": "What are common Korean job interview questions and how should I answer them?",
       "coverLetter": "How do I write a Korean 자기소개서? Explain the structure."
-    }
+    },
+    "error": "Something went wrong. Please try again.",
+    "noReply": "Sorry, no answer came back. Please try again."
   },
   "settings": {
     "title": "Settings",
@@ -597,7 +608,12 @@
       "email": "Email Address",
       "nationality": "Nationality",
       "bio": "Bio",
-      "saveChanges": "Save Changes"
+      "saveChanges": "Save Changes",
+      "bioPlaceholder": "Tell us about yourself and your career goals in Korea...",
+      "emailFixed": "Email cannot be changed here.",
+      "saved": "Profile saved.",
+      "saveError": "Could not save. Please try again.",
+      "signInRequired": "Sign in to edit your profile."
     },
     "appearance": {
       "title": "Appearance",
@@ -849,5 +865,16 @@
     "forStudents": "For applicants from",
     "contact": "Contact",
     "copyright": "© {year} Koreer. Made for international applicants in Korea."
+  },
+  "translator": {
+    "source": "Text",
+    "result": "Result",
+    "textPlaceholder": "Enter text…",
+    "namePlaceholder": "First and last name…",
+    "translate": "Translate",
+    "apply": "Apply",
+    "swap": "Swap languages",
+    "autoDetect": "Auto-detect",
+    "error": "The translation service failed. Please try again."
   }
 }

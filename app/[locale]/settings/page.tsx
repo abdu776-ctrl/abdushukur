@@ -2,12 +2,10 @@
 
 import { useTranslations, useLocale } from 'next-intl';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
-import { Input, Textarea } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Badge } from '@/components/ui/Badge';
 import { WhyKoreaBuilder } from '@/components/why-korea/WhyKoreaBuilder';
 import { CareerProfileForm } from '@/components/profile/CareerProfileForm';
 import { AccountPanel } from '@/components/settings/AccountPanel';
+import { ProfilePanel } from '@/components/settings/ProfilePanel';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import { locales, localeNames, localeFlags } from '@/lib/i18n';
@@ -21,8 +19,6 @@ import {
   Sun,
   Moon,
   Monitor,
-  Save,
-  Camera,
   MapPin,
   Briefcase,
 } from 'lucide-react';
@@ -38,8 +34,6 @@ export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
-  const [saving, setSaving] = useState(false);
-
   useEffect(() => setMounted(true), []);
 
   // Allow deep-linking to a tab, e.g. /settings?tab=whyKorea from the editor.
@@ -49,12 +43,6 @@ export default function SettingsPage() {
       setActiveTab(requested as SettingsTab);
     }
   }, []);
-
-  async function handleSave() {
-    setSaving(true);
-    await new Promise((r) => setTimeout(r, 1000));
-    setSaving(false);
-  }
 
   const tabs = [
     { id: 'profile' as SettingsTab, icon: <User className="w-4 h-4" />, label: t('settings.profile.title') },
@@ -100,67 +88,7 @@ export default function SettingsPage() {
           {/* Content */}
           <div className="flex-1 min-w-0">
             {/* Profile */}
-            {activeTab === 'profile' && (
-              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-6 animate-fade-in">
-                <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                  <User className="w-4 h-4 text-indigo-500" />
-                  {t('settings.profile.title')}
-                </h2>
-
-                {/* Avatar */}
-                <div className="flex items-center gap-4">
-                  <div className="relative">
-                    <div className="w-20 h-20 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
-                      A
-                    </div>
-                    <button className="absolute bottom-0 right-0 w-7 h-7 rounded-full bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 flex items-center justify-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
-                      <Camera className="w-3.5 h-3.5 text-gray-600 dark:text-gray-400" />
-                    </button>
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-900 dark:text-white">Abdushukur Yusupov</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">abdu776@hanyang.ac.kr</p>
-                    <Badge variant="success" size="sm" className="mt-1">🇺🇿 Uzbekistan</Badge>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <Input
-                    label={t('settings.profile.name')}
-                    defaultValue="Abdushukur Yusupov"
-                  />
-                  <Input
-                    label={t('settings.profile.email')}
-                    type="email"
-                    defaultValue="abdu776@hanyang.ac.kr"
-                  />
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
-                      {t('settings.profile.nationality')}
-                    </label>
-                    <select className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                      <option value="uzbekistan">🇺🇿 Uzbekistan</option>
-                      <option value="kazakhstan">🇰🇿 Kazakhstan</option>
-                      <option value="kyrgyzstan">🇰🇬 Kyrgyzstan</option>
-                      <option value="mongolia">🇲🇳 Mongolia</option>
-                      <option value="vietnam">🇻🇳 Vietnam</option>
-                    </select>
-                  </div>
-                </div>
-
-                <Textarea
-                  label={t('settings.profile.bio')}
-                  placeholder="Tell us about yourself and your career goals in Korea..."
-                  rows={3}
-                />
-
-                <div className="flex justify-end">
-                  <Button variant="primary" size="md" icon={<Save className="w-4 h-4" />} loading={saving} onClick={handleSave}>
-                    {t('settings.profile.saveChanges')}
-                  </Button>
-                </div>
-              </div>
-            )}
+            {activeTab === 'profile' && <ProfilePanel />}
 
             {/* Career profile */}
             {activeTab === 'career' && <CareerProfileForm />}

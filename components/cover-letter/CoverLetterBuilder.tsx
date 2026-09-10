@@ -309,7 +309,7 @@ export function CoverLetterBuilder() {
           </h3>
           <div className="grid grid-cols-2 gap-3">
             <Input label={t('targetCompany')} placeholder="Samsung, Kakao, Naver..." value={company} onChange={(e) => setCompany(e.target.value)} leftIcon={<Building2 className="w-4 h-4" />} />
-            <Input label={t('targetPosition')} placeholder="Software Engineer..." value={position} onChange={(e) => setPosition(e.target.value)} />
+            <Input label={t('targetPosition')} placeholder="소프트웨어 엔지니어..." value={position} onChange={(e) => setPosition(e.target.value)} />
           </div>
           <Textarea
             label={t('jobPosting.label')}

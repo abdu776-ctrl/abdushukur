@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  return { title: `${t('legal.terms.title')} — Koreer` };
+  return { title: t('legal.terms.title') };
 }
 
 export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {

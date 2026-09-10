@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { cn } from '@/lib/utils';
 
 const MIN_YEAR = 1950;
@@ -37,6 +37,7 @@ export function MonthYearPicker({
   yearLabel,
   monthLabel,
 }: MonthYearPickerProps) {
+  const t = useTranslations('common');
   const locale = useLocale();
 
   const [year = '', month = ''] = (value || '').split('-');
@@ -76,7 +77,7 @@ export function MonthYearPicker({
           value={year}
           disabled={disabled}
           onChange={(e) => handleYear(e.target.value)}
-          aria-label={yearLabel || 'Year'}
+          aria-label={yearLabel || t('year')}
         >
           <option value="">{yearLabel || '—'}</option>
           {years.map((y) => (
@@ -90,7 +91,7 @@ export function MonthYearPicker({
           value={month}
           disabled={disabled || !year}
           onChange={(e) => handleMonth(e.target.value)}
-          aria-label={monthLabel || 'Month'}
+          aria-label={monthLabel || t('month')}
         >
           <option value="">{monthLabel || '—'}</option>
           {months.map((m) => (

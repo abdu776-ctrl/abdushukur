@@ -34,7 +34,13 @@
       "pdfReady": "Đã tải PDF.",
       "wordReady": "Đã tải tệp Word.",
       "printHint": "Hộp thoại in đã mở — chọn “Lưu dưới dạng PDF” để có tệp giữ được chữ."
-    }
+    },
+    "guest": "Khách",
+    "notSignedIn": "Chưa đăng nhập",
+    "year": "Năm",
+    "month": "Tháng",
+    "switchToLight": "Chuyển sang chế độ sáng",
+    "switchToDark": "Chuyển sang chế độ tối"
   },
   "nav": {
     "home": "Trang chủ",
@@ -370,7 +376,8 @@
       "uploadPhoto": "Tải ảnh lên",
       "translateName": "Tự động dịch tên",
       "toKorean": "Sang tiếng Hàn",
-      "toLatin": "Sang chữ Latinh"
+      "toLatin": "Sang chữ Latinh",
+      "changePhoto": "Đổi ảnh"
     },
     "education": {
       "add": "Thêm học vấn",
@@ -466,7 +473,9 @@
     },
     "sectionOrder": {
       "title": "Thứ tự các mục",
-      "note": "Áp dụng cho mẫu một cột (nhóm Cổ điển). Các bố cục khác giữ thiết kế cố định."
+      "note": "Áp dụng cho mẫu một cột (nhóm Cổ điển). Các bố cục khác giữ thiết kế cố định.",
+      "moveUp": "Lên",
+      "moveDown": "Xuống"
     }
   },
   "coverLetter": {
@@ -587,7 +596,9 @@
       "resumeTips": "Hãy cho tôi vài mẹo để viết sơ yếu lý lịch Hàn Quốc (이력서).",
       "interview": "Những câu hỏi phỏng vấn xin việc phổ biến ở Hàn Quốc là gì và nên trả lời ra sao?",
       "coverLetter": "Viết 자기소개서 của Hàn Quốc như thế nào? Hãy giải thích cấu trúc."
-    }
+    },
+    "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+    "noReply": "Xin lỗi, chưa nhận được phản hồi. Vui lòng thử lại."
   },
   "settings": {
     "title": "Cài đặt",
@@ -597,7 +608,12 @@
       "email": "Địa chỉ email",
       "nationality": "Quốc tịch",
       "bio": "Giới thiệu",
-      "saveChanges": "Lưu thay đổi"
+      "saveChanges": "Lưu thay đổi",
+      "bioPlaceholder": "Hãy giới thiệu về bạn và mục tiêu nghề nghiệp tại Hàn Quốc...",
+      "emailFixed": "Không thể đổi email tại đây.",
+      "saved": "Đã lưu hồ sơ.",
+      "saveError": "Không lưu được. Vui lòng thử lại.",
+      "signInRequired": "Đăng nhập để chỉnh sửa hồ sơ."
     },
     "appearance": {
       "title": "Giao diện",
@@ -849,5 +865,16 @@
     "forStudents": "Dành cho ứng viên từ",
     "contact": "Liên hệ",
     "copyright": "© {year} Koreer. Được làm cho ứng viên nước ngoài tại Hàn Quốc."
+  },
+  "translator": {
+    "source": "Văn bản",
+    "result": "Kết quả",
+    "textPlaceholder": "Nhập văn bản…",
+    "namePlaceholder": "Nhập họ và tên…",
+    "translate": "Dịch",
+    "apply": "Áp dụng",
+    "swap": "Đổi ngôn ngữ",
+    "autoDetect": "Tự động nhận diện",
+    "error": "Dịch vụ dịch gặp lỗi. Vui lòng thử lại."
   }
 }

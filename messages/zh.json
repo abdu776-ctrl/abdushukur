@@ -34,7 +34,13 @@
       "pdfReady": "PDF 已下载。",
       "wordReady": "Word 文件已下载。",
       "printHint": "打印窗口已打开 — 选择“另存为 PDF”即可得到可复制文字的文件。"
-    }
+    },
+    "guest": "访客",
+    "notSignedIn": "未登录",
+    "year": "年",
+    "month": "月",
+    "switchToLight": "切换到浅色模式",
+    "switchToDark": "切换到深色模式"
   },
   "nav": {
     "home": "首页",
@@ -370,7 +376,8 @@
       "uploadPhoto": "上传照片",
       "translateName": "自动翻译姓名",
       "toKorean": "转为韩语",
-      "toLatin": "转为拉丁字母"
+      "toLatin": "转为拉丁字母",
+      "changePhoto": "更换照片"
     },
     "education": {
       "add": "添加教育经历",
@@ -466,7 +473,9 @@
     },
     "sectionOrder": {
       "title": "栏目顺序",
-      "note": "适用于单栏模板（经典系列）。其他版式保持固定设计。"
+      "note": "适用于单栏模板（经典系列）。其他版式保持固定设计。",
+      "moveUp": "上移",
+      "moveDown": "下移"
     }
   },
   "coverLetter": {
@@ -587,7 +596,9 @@
       "resumeTips": "请给我一些撰写韩式简历（이력서）的建议。",
       "interview": "韩国求职面试常见问题有哪些？该怎么回答？",
       "coverLetter": "韩国的 자기소개서 该怎么写？请说明结构。"
-    }
+    },
+    "error": "出了点问题，请重试。",
+    "noReply": "抱歉，没有收到回复，请重试。"
   },
   "settings": {
     "title": "设置",
@@ -597,7 +608,12 @@
       "email": "电子邮箱",
       "nationality": "国籍",
       "bio": "个人简介",
-      "saveChanges": "保存更改"
+      "saveChanges": "保存更改",
+      "bioPlaceholder": "介绍一下你自己以及你在韩国的职业目标...",
+      "emailFixed": "邮箱无法在此处修改。",
+      "saved": "个人资料已保存。",
+      "saveError": "保存失败，请重试。",
+      "signInRequired": "请登录后编辑个人资料。"
     },
     "appearance": {
       "title": "外观",
@@ -849,5 +865,16 @@
     "forStudents": "适用于来自",
     "contact": "联系我们",
     "copyright": "© {year} Koreer. 为在韩国的外国求职者而做。"
+  },
+  "translator": {
+    "source": "文本",
+    "result": "结果",
+    "textPlaceholder": "请输入文本…",
+    "namePlaceholder": "请输入姓名…",
+    "translate": "翻译",
+    "apply": "应用",
+    "swap": "交换语言",
+    "autoDetect": "自动检测",
+    "error": "翻译服务出错，请重试。"
   }
 }

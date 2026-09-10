@@ -120,13 +120,13 @@ export function AIChat() {
       }
 
       if (!started) {
-        pushChunk('Kechirasiz, javob olinmadi. Qayta urinib koʻring.');
+        pushChunk(t('noReply'));
       }
     } catch (err) {
       console.error('chat error:', err);
       const msg =
         (err instanceof Error && err.message) ||
-        'Xatolik yuz berdi. Qayta urinib koʻring.';
+        t('error');
       if (!started) {
         setMessages((prev) => [
           ...prev,

@@ -9,7 +9,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale });
-  return { title: `${t('legal.privacy.title')} — Koreer` };
+  return { title: t('legal.privacy.title') };
 }
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
