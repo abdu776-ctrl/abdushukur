@@ -115,13 +115,16 @@ export default async function HomePage({ params }: HomePageProps) {
     },
   ];
 
+  // Country names come from the locale files — they were English in every
+  // language, and China was missing.
   const nationalities = [
-    { flag: '🇺🇿', name: 'Uzbekistan' },
-    { flag: '🇰🇿', name: 'Kazakhstan' },
-    { flag: '🇰🇬', name: 'Kyrgyzstan' },
-    { flag: '🇲🇳', name: 'Mongolia' },
-    { flag: '🇻🇳', name: 'Vietnam' },
-  ];
+    { flag: '🇺🇿', key: 'uzbekistan' },
+    { flag: '🇰🇿', key: 'kazakhstan' },
+    { flag: '🇰🇬', key: 'kyrgyzstan' },
+    { flag: '🇲🇳', key: 'mongolia' },
+    { flag: '🇨🇳', key: 'china' },
+    { flag: '🇻🇳', key: 'vietnam' },
+  ].map((n) => ({ ...n, name: t(`auth.register.countries.${n.key}`) }));
 
   const advantages = [
     { icon: <Clock className="w-5 h-5" />,          title: t('home.why.advantages.formatting.title'), desc: t('home.why.advantages.formatting.desc') },
@@ -212,7 +215,7 @@ export default async function HomePage({ params }: HomePageProps) {
             <div className="flex items-center justify-center gap-6 flex-wrap">
               {nationalities.map((n) => (
                 <div
-                  key={n.name}
+                  key={n.key}
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-sm text-gray-600 dark:text-gray-400 font-medium"
                 >
                   <span className="text-lg">{n.flag}</span>
@@ -434,16 +437,16 @@ export default async function HomePage({ params }: HomePageProps) {
                   </div>
                   <div className="text-white">
                     <h3 className="text-xl font-bold">김민준 (Kim Minjun)</h3>
-                    <p className="text-indigo-200 text-sm">Software Engineer</p>
+                    <p className="text-indigo-200 text-sm">소프트웨어 엔지니어</p>
                     <p className="text-indigo-200 text-xs mt-0.5">seoul@example.com · 010-1234-5678</p>
                   </div>
                 </div>
                 {/* Resume body */}
                 <div className="p-6 space-y-4">
                   {[
-                    { label: '학력 (Education)', items: ['서울대학교 컴퓨터공학과 (2020-2024)', '학점 4.2/4.5'] },
-                    { label: '경력 (Experience)', items: ['카카오 인턴십 (2023.07-2023.12)', 'React, TypeScript 개발'] },
-                    { label: '기술 (Skills)', items: ['JavaScript, TypeScript, React', 'Korean (TOPIK 6급)', 'English (Advanced)'] },
+                    { label: `학력 (${t('resume.sections.education')})`, items: ['서울대학교 컴퓨터공학과 (2020-2024)', '학점 4.2/4.5'] },
+                    { label: `경력 (${t('resume.sections.experience')})`, items: ['카카오 인턴십 (2023.07-2023.12)', 'React, TypeScript 개발'] },
+                    { label: `기술 (${t('resume.sections.skills')})`, items: ['JavaScript, TypeScript, React', '한국어 (TOPIK 6급)', '영어 (고급)'] },
                   ].map((section) => (
                     <div key={section.label}>
                       <h4 className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2 border-b border-gray-100 dark:border-gray-800 pb-1">
@@ -461,7 +464,7 @@ export default async function HomePage({ params }: HomePageProps) {
               </div>
               {/* Floating badge */}
               <div className="absolute -top-4 -right-4 px-4 py-2 rounded-xl bg-green-500 text-white text-sm font-semibold shadow-lg">
-                ✓ Korean Standard
+                ✓ {t('home.templates.standardBadge')}
               </div>
             </div>
           </div>

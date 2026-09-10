@@ -180,7 +180,8 @@
         "p2": "Automatic 존댓말 suggestions",
         "p3": "Photo placement guidance",
         "p4": "TOPIK level integration"
-      }
+      },
+      "standardBadge": "Korean standard"
     }
   },
   "auth": {
@@ -598,7 +599,8 @@
       "coverLetter": "How do I write a Korean 자기소개서? Explain the structure."
     },
     "error": "Something went wrong. Please try again.",
-    "noReply": "Sorry, no answer came back. Please try again."
+    "noReply": "Sorry, no answer came back. Please try again.",
+    "disclaimer": "AI responses are for guidance only. Always verify with official sources."
   },
   "settings": {
     "title": "Settings",

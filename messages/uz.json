@@ -180,7 +180,8 @@
         "p2": "Avtomatik 존댓말 takliflari",
         "p3": "Rasm joylashuvi bo‘yicha yo‘riqnoma",
         "p4": "TOPIK darajasini hisobga olish"
-      }
+      },
+      "standardBadge": "Koreys standarti"
     }
   },
   "auth": {
@@ -598,7 +599,8 @@
       "coverLetter": "Koreys 자기소개서 qanday yoziladi? Tuzilishini tushuntiring."
     },
     "error": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
-    "noReply": "Kechirasiz, javob olinmadi. Qayta urinib ko‘ring."
+    "noReply": "Kechirasiz, javob olinmadi. Qayta urinib ko‘ring.",
+    "disclaimer": "AI javoblari faqat yo‘l-yo‘riq uchun. Har doim rasmiy manbalardan tekshiring."
   },
   "settings": {
     "title": "Sozlamalar",

@@ -180,7 +180,8 @@
         "p2": "Gợi ý kính ngữ 존댓말 tự động",
         "p3": "Hướng dẫn đặt ảnh thẻ",
         "p4": "Ghi trình độ TOPIK"
-      }
+      },
+      "standardBadge": "Chuẩn Hàn Quốc"
     }
   },
   "auth": {
@@ -598,7 +599,8 @@
       "coverLetter": "Viết 자기소개서 của Hàn Quốc như thế nào? Hãy giải thích cấu trúc."
     },
     "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
-    "noReply": "Xin lỗi, chưa nhận được phản hồi. Vui lòng thử lại."
+    "noReply": "Xin lỗi, chưa nhận được phản hồi. Vui lòng thử lại.",
+    "disclaimer": "Câu trả lời của AI chỉ mang tính tham khảo. Hãy luôn kiểm chứng với nguồn chính thức."
   },
   "settings": {
     "title": "Cài đặt",

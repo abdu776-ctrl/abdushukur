@@ -315,7 +315,7 @@ export function AIChat() {
             </button>
           </div>
           <p className="text-center text-xs text-gray-400 dark:text-gray-600 mt-2">
-            AI responses are for guidance only. Always verify with official sources.
+            {t('disclaimer')}
           </p>
         </div>
       </div>
