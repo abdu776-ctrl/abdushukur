@@ -59,7 +59,8 @@
       "subtitle": "Create professional Korean resumes and self-introduction letters with AI assistance. Designed for international students from Uzbekistan, Kazakhstan, Kyrgyzstan, Mongolia, China, and Vietnam.",
       "cta": "Get Started Free",
       "ctaSecondary": "See Templates",
-      "trustedBy": "Trusted by students from"
+      "trustedBy": "Trusted by students from",
+      "ctaNoAccount": "No account needed to start"
     },
     "features": {
       "title": "Everything You Need to Succeed",
@@ -472,7 +473,15 @@
       "photoHint": "JPG, PNG up to 5MB",
       "livePreview": "Live Preview",
       "yourName": "Your Name",
-      "fillToPreview": "Fill in your information to see the preview"
+      "fillToPreview": "Fill in your information to see the preview",
+      "progressTitle": "Your resume is {percent}% complete",
+      "progressDone": "Your resume is ready 🎉",
+      "nextStep": "Next: {section}",
+      "introTitle": "How this works",
+      "introStep1": "Fill in your details — the preview on the right updates as you type.",
+      "introStep2": "Pick a layout and colour that fits the company.",
+      "introStep3": "Export as PDF or Word when you are done.",
+      "introGotIt": "Got it"
     },
     "sectionOrder": {
       "title": "Section order",

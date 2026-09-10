@@ -4,7 +4,7 @@ import { routing } from './routing';
 export const locales = routing.locales;
 export const defaultLocale = routing.defaultLocale;
 export type Locale = (typeof routing.locales)[number];
-export { localeNames, localeFlags } from './routing';
+export { localeNames } from './routing';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   let locale = await requestLocale;

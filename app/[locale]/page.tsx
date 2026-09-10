@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { DemoVideo } from '@/components/DemoVideo';
+import { FlagBadge } from '@/components/ui/FlagBadge';
 import {
   Sparkles,
   FileText,
@@ -117,14 +118,8 @@ export default async function HomePage({ params }: HomePageProps) {
 
   // Country names come from the locale files — they were English in every
   // language, and China was missing.
-  const nationalities = [
-    { flag: '🇺🇿', key: 'uzbekistan' },
-    { flag: '🇰🇿', key: 'kazakhstan' },
-    { flag: '🇰🇬', key: 'kyrgyzstan' },
-    { flag: '🇲🇳', key: 'mongolia' },
-    { flag: '🇨🇳', key: 'china' },
-    { flag: '🇻🇳', key: 'vietnam' },
-  ].map((n) => ({ ...n, name: t(`auth.register.countries.${n.key}`) }));
+  const nationalities = ['uzbekistan', 'kazakhstan', 'kyrgyzstan', 'mongolia', 'china', 'vietnam']
+    .map((key) => ({ key, name: t(`auth.register.countries.${key}`) }));
 
   const advantages = [
     { icon: <Clock className="w-5 h-5" />,          title: t('home.why.advantages.formatting.title'), desc: t('home.why.advantages.formatting.desc') },
@@ -192,20 +187,27 @@ export default async function HomePage({ params }: HomePageProps) {
 
           {/* CTA buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in">
+            {/* The builder works without an account — the primary button now
+                goes straight there. Sending first-time visitors to a sign-up
+                form hid the one thing they came to see. */}
             <Link
-              href={`/${locale}/auth/register`}
+              href={`/${locale}/resume`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-indigo-600 text-white font-semibold text-lg hover:bg-indigo-700 active:bg-indigo-800 transition-all duration-150 shadow-lg hover:shadow-indigo-500/30 group"
             >
               {t('home.hero.cta')}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href={`/${locale}/resume`}
+              href={`/${locale}/auth/register`}
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl border-2 border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-semibold text-lg hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-900 transition-all duration-150"
             >
-              {t('home.hero.ctaSecondary')}
+              {t('auth.register.submit')}
             </Link>
           </div>
+
+          <p className="text-sm text-gray-500 dark:text-gray-500 -mt-12 mb-16 animate-fade-in">
+            {t('home.hero.ctaNoAccount')}
+          </p>
 
           {/* Trusted by */}
           <div className="animate-fade-in">
@@ -218,7 +220,7 @@ export default async function HomePage({ params }: HomePageProps) {
                   key={n.key}
                   className="flex items-center gap-2 px-4 py-2 rounded-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 text-sm text-gray-600 dark:text-gray-400 font-medium"
                 >
-                  <span className="text-lg">{n.flag}</span>
+                  <FlagBadge code={n.key} />
                   <span>{n.name}</span>
                 </div>
               ))}

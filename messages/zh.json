@@ -59,7 +59,8 @@
       "subtitle": "借助 AI 撰写专业的韩式简历和自我介绍书。专为来自乌兹别克斯坦、哈萨克斯坦、吉尔吉斯斯坦、蒙古、中国和越南的留学生打造。",
       "cta": "免费开始",
       "ctaSecondary": "查看模板",
-      "trustedBy": "以下国家的学生正在使用"
+      "trustedBy": "以下国家的学生正在使用",
+      "ctaNoAccount": "无需注册即可开始"
     },
     "features": {
       "title": "求职成功所需的一切",
@@ -472,7 +473,15 @@
       "photoHint": "JPG、PNG，最大 5MB",
       "livePreview": "实时预览",
       "yourName": "你的姓名",
-      "fillToPreview": "填写信息后即可看到预览"
+      "fillToPreview": "填写信息后即可看到预览",
+      "progressTitle": "简历完成度 {percent}%",
+      "progressDone": "简历已完成 🎉",
+      "nextStep": "下一步：{section}",
+      "introTitle": "使用方法",
+      "introStep1": "填写信息 — 右侧预览会实时更新。",
+      "introStep2": "挑选适合目标公司的版式和颜色。",
+      "introStep3": "完成后导出为 PDF 或 Word。",
+      "introGotIt": "知道了"
     },
     "sectionOrder": {
       "title": "栏目顺序",

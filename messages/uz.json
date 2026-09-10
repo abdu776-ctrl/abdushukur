@@ -59,7 +59,8 @@
       "subtitle": "AI yordami bilan professional koreyscha rezyume va o'z-o'zini taqdimot xatlarini yarating. O'zbekiston, Qozog'iston, Qirg'iziston, Mo'g'uliston, Xitoy va Vyetnamdan kelgan talabalar uchun mo'ljallangan.",
       "cta": "Bepul Boshlash",
       "ctaSecondary": "Shablonlarni Ko'rish",
-      "trustedBy": "Quyidagi mamlakatlar talabalariga ishoniladi"
+      "trustedBy": "Quyidagi mamlakatlar talabalariga ishoniladi",
+      "ctaNoAccount": "Boshlash uchun ro‘yxatdan o‘tish shart emas"
     },
     "features": {
       "title": "Muvaffaqiyat uchun Kerakli Hamma Narsa",
@@ -472,7 +473,15 @@
       "photoHint": "JPG, PNG, 5MB gacha",
       "livePreview": "Jonli koʻrinish",
       "yourName": "Ismingiz",
-      "fillToPreview": "Koʻrinishni koʻrish uchun maʼlumotlaringizni kiriting"
+      "fillToPreview": "Koʻrinishni koʻrish uchun maʼlumotlaringizni kiriting",
+      "progressTitle": "Rezyumengiz {percent}% tayyor",
+      "progressDone": "Rezyumengiz tayyor 🎉",
+      "nextStep": "Keyingi qadam: {section}",
+      "introTitle": "Qanday ishlaydi",
+      "introStep1": "Ma’lumotlaringizni to‘ldiring — o‘ngdagi ko‘rinish darhol yangilanadi.",
+      "introStep2": "Kompaniyaga mos shablon va rangni tanlang.",
+      "introStep3": "Tayyor bo‘lgach PDF yoki Word qilib yuklab oling.",
+      "introGotIt": "Tushunarli"
     },
     "sectionOrder": {
       "title": "Boʻlimlar tartibi",

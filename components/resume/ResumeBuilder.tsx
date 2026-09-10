@@ -16,6 +16,7 @@ import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
 import { readResumePhoto, PhotoTooLargeError } from '@/lib/photo';
 import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
+import { resumeProgress, type SectionId } from '@/lib/resumeProgress';
 import {
   User,
   GraduationCap,
@@ -39,10 +40,14 @@ import {
   ArrowUp,
   ArrowDown,
   Save,
+  Check,
+  Lightbulb,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { PersonalInfo, Education, WorkExperience, Skill, Award, Certificate, Project, Volunteer, Publication } from '@/types';
 import { DEFAULT_LAYOUT, DEFAULT_THEME, getTheme, type LayoutId, type ThemeId } from '@/lib/templates';
+
+const RESUME_INTRO_KEY = 'resume-intro-dismissed';
 
 type Section = 'personal' | 'education' | 'experience' | 'skills' | 'awards' | 'certificates' | 'projects' | 'volunteer' | 'publications';
 
@@ -154,6 +159,30 @@ export function ResumeBuilder() {
     projects, volunteer, publications, layoutId, themeId, sectionOrder,
   }), [personal, education, experience, skills, awards, certificates,
        projects, volunteer, publications, layoutId, themeId, sectionOrder]);
+
+  // How complete the résumé is, and which section to point at next.
+  const progress = useMemo(
+    () => resumeProgress({
+      personal, education, experience, skills,
+      awards, certificates, projects, volunteer, publications,
+    }),
+    [personal, education, experience, skills, awards, certificates,
+     projects, volunteer, publications]
+  );
+
+  // First-run hint. An inline card rather than a modal — it explains without
+  // standing in the way, and disappears for good once dismissed.
+  const [showIntro, setShowIntro] = useState(false);
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(RESUME_INTRO_KEY) !== 'true') setShowIntro(true);
+    } catch { /* storage unavailable */ }
+  }, []);
+
+  function dismissIntro() {
+    setShowIntro(false);
+    try { localStorage.setItem(RESUME_INTRO_KEY, 'true'); } catch { /* ignore */ }
+  }
 
   // A brand-new document: restore whatever was being written before the page
   // was refreshed or the language was switched.
@@ -385,6 +414,68 @@ export function ResumeBuilder() {
     <div className="flex flex-col lg:flex-row gap-6">
       {/* Left: Editor */}
       <div className="w-full lg:w-[480px] flex-shrink-0 space-y-4">
+        {/* First-run hint. Inline and dismissible; a modal here would block the
+            very form it is describing. */}
+        {showIntro && (
+          <div className="relative rounded-2xl border border-indigo-100 dark:border-indigo-500/20 bg-indigo-50/60 dark:bg-indigo-500/5 p-4 pr-10">
+            <button
+              type="button"
+              onClick={dismissIntro}
+              aria-label={t('builder.introGotIt')}
+              className="absolute top-3 right-3 p-1 rounded-lg text-indigo-400 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:bg-indigo-500/10 transition-colors"
+            >
+              <X className="w-3.5 h-3.5" />
+            </button>
+            <p className="flex items-center gap-2 text-sm font-semibold text-indigo-700 dark:text-indigo-300 mb-2">
+              <Lightbulb className="w-4 h-4" />
+              {t('builder.introTitle')}
+            </p>
+            <ol className="space-y-1 text-xs text-indigo-900/80 dark:text-indigo-200/80 leading-relaxed">
+              <li>1. {t('builder.introStep1')}</li>
+              <li>2. {t('builder.introStep2')}</li>
+              <li>3. {t('builder.introStep3')}</li>
+            </ol>
+          </div>
+        )}
+
+        {/* Progress. Nothing told the user how far along they were, or what was
+            still missing — the commonest question in a form this long. */}
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-4">
+          <div className="flex items-baseline justify-between gap-3 mb-2">
+            <p className="text-sm font-medium text-gray-900 dark:text-white">
+              {progress.percent === 100
+                ? t('builder.progressDone')
+                : t('builder.progressTitle', { percent: progress.percent })}
+            </p>
+            <span className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 tabular-nums">
+              {progress.percent}%
+            </span>
+          </div>
+
+          <div
+            className="h-1.5 rounded-full bg-gray-100 dark:bg-gray-800 overflow-hidden"
+            role="progressbar"
+            aria-valuenow={progress.percent}
+            aria-valuemin={0}
+            aria-valuemax={100}
+          >
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500"
+              style={{ width: `${progress.percent}%` }}
+            />
+          </div>
+
+          {progress.nextSection && (
+            <button
+              type="button"
+              onClick={() => setActiveSection(progress.nextSection as Section)}
+              className="mt-2.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+            >
+              {t('builder.nextStep', { section: t(`sections.${progress.nextSection}`) })}
+            </button>
+          )}
+        </div>
+
         {/* Editing an existing saved document — makes it obvious that Save
             updates this copy instead of creating another one. */}
         {documentId && (
@@ -486,24 +577,44 @@ export function ResumeBuilder() {
           )}
         </div>
 
-        {/* Section tabs */}
-        <div className="flex gap-1 p-1 bg-gray-100 dark:bg-gray-800/50 rounded-2xl overflow-x-auto scrollbar-hide">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => setActiveSection(section.id)}
-              title={section.label}
-              className={cn(
-                'flex flex-col items-center gap-1 py-2 px-2.5 rounded-xl text-xs font-medium transition-all duration-150 flex-shrink-0',
-                activeSection === section.id
-                  ? 'bg-white dark:bg-gray-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
-              )}
-            >
-              {section.icon}
-              <span className="text-[10px] leading-tight whitespace-nowrap">{section.label.split(' ')[0]}</span>
-            </button>
-          ))}
+        {/* Sections. A wrapping grid rather than a horizontal scroller: every
+            section is visible at once, and each one shows whether it holds
+            anything, so nothing is silently forgotten. */}
+        <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-gray-100 dark:bg-gray-800/50 rounded-2xl">
+          {sections.map((section) => {
+            const count = progress.counts[section.id as SectionId] ?? 0;
+            const isActive = activeSection === section.id;
+            return (
+              <button
+                key={section.id}
+                onClick={() => setActiveSection(section.id)}
+                title={section.label}
+                aria-current={isActive ? 'true' : undefined}
+                className={cn(
+                  'relative flex flex-col items-center gap-1 py-2.5 px-2 rounded-xl text-xs font-medium transition-all duration-150',
+                  isActive
+                    ? 'bg-white dark:bg-gray-900 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                    : count > 0
+                      ? 'text-gray-700 dark:text-gray-300 hover:bg-white/60 dark:hover:bg-gray-900/40'
+                      : 'text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400'
+                )}
+              >
+                {section.icon}
+                <span className="text-[10px] leading-tight text-center line-clamp-2">
+                  {section.label}
+                </span>
+
+                {count > 0 && (
+                  <span
+                    className="absolute top-1 right-1 min-w-[14px] h-[14px] px-1 rounded-full bg-emerald-500 text-white text-[9px] font-bold flex items-center justify-center"
+                    aria-hidden="true"
+                  >
+                    {section.id === 'personal' ? <Check className="w-2.5 h-2.5" /> : count}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
 
         {/* Section content */}

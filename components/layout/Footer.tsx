@@ -1,17 +1,11 @@
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import { Sparkles } from 'lucide-react';
-import { locales, localeNames, localeFlags } from '@/lib/i18n';
+import { locales, localeNames } from '@/lib/i18n';
+import { FlagBadge } from '@/components/ui/FlagBadge';
 import { SUPPORT_EMAIL } from '@/lib/legal';
 
-const COUNTRIES = [
-  { key: 'uzbekistan', flag: '🇺🇿' },
-  { key: 'kazakhstan', flag: '🇰🇿' },
-  { key: 'kyrgyzstan', flag: '🇰🇬' },
-  { key: 'mongolia', flag: '🇲🇳' },
-  { key: 'china', flag: '🇨🇳' },
-  { key: 'vietnam', flag: '🇻🇳' },
-];
+const COUNTRIES = ['uzbekistan', 'kazakhstan', 'kyrgyzstan', 'mongolia', 'china', 'vietnam'];
 
 export async function Footer({ locale }: { locale: string }) {
   const t = await getTranslations({ locale });
@@ -65,7 +59,7 @@ export async function Footer({ locale }: { locale: string }) {
                     href={`/${l}`}
                     className="hover:text-white transition-colors flex items-center gap-2"
                   >
-                    <span>{localeFlags[l]}</span> {localeNames[l]}
+                    <FlagBadge code={l} /> {localeNames[l]}
                   </Link>
                 </li>
               ))}
@@ -77,8 +71,8 @@ export async function Footer({ locale }: { locale: string }) {
             <h4 className="font-semibold text-white mb-4 text-sm">{t('footer.forStudents')}</h4>
             <ul className="space-y-3 text-sm">
               {COUNTRIES.map((c) => (
-                <li key={c.key} className="flex items-center gap-2">
-                  <span>{c.flag}</span> {t(`auth.register.countries.${c.key}`)}
+                <li key={c} className="flex items-center gap-2">
+                  <FlagBadge code={c} /> {t(`auth.register.countries.${c}`)}
                 </li>
               ))}
             </ul>

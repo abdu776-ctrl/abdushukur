@@ -11,16 +11,17 @@ import { useState } from 'react';
 import { getSupabase } from '@/lib/supabase';
 import { signInWithGoogle } from '@/lib/useAuth';
 import { authErrorMessage } from '@/lib/authErrors';
+import { flagCode } from '@/components/ui/FlagBadge';
 
 // Value is the stored code; the visible label comes from the locale files.
 const nationalities = [
-  { value: 'uzbekistan', flag: '🇺🇿' },
-  { value: 'kazakhstan', flag: '🇰🇿' },
-  { value: 'kyrgyzstan', flag: '🇰🇬' },
-  { value: 'mongolia', flag: '🇲🇳' },
-  { value: 'china', flag: '🇨🇳' },
-  { value: 'vietnam', flag: '🇻🇳' },
-  { value: 'other', flag: '🌍' },
+  { value: 'uzbekistan' },
+  { value: 'kazakhstan' },
+  { value: 'kyrgyzstan' },
+  { value: 'mongolia' },
+  { value: 'china' },
+  { value: 'vietnam' },
+  { value: 'other' },
 ];
 
 export default function RegisterPage() {
@@ -223,7 +224,7 @@ export default function RegisterPage() {
                     <option value="" disabled>{t('auth.register.selectCountry')}</option>
                     {nationalities.map((n) => (
                       <option key={n.value} value={n.value}>
-                        {n.flag} {t(`auth.register.countries.${n.value}`)}
+                        {flagCode(n.value)} · {t(`auth.register.countries.${n.value}`)}
                       </option>
                     ))}
                   </select>

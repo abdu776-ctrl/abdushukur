@@ -59,7 +59,8 @@
       "subtitle": "Viết sơ yếu lý lịch và thư giới thiệu bản thân chuẩn Hàn với sự hỗ trợ của AI. Dành cho du học sinh từ Uzbekistan, Kazakhstan, Kyrgyzstan, Mông Cổ, Trung Quốc và Việt Nam.",
       "cta": "Bắt đầu miễn phí",
       "ctaSecondary": "Xem mẫu",
-      "trustedBy": "Được sinh viên từ các nước sau tin dùng"
+      "trustedBy": "Được sinh viên từ các nước sau tin dùng",
+      "ctaNoAccount": "Không cần tài khoản để bắt đầu"
     },
     "features": {
       "title": "Mọi thứ bạn cần để thành công",
@@ -472,7 +473,15 @@
       "photoHint": "JPG, PNG tối đa 5MB",
       "livePreview": "Xem trước trực tiếp",
       "yourName": "Tên của bạn",
-      "fillToPreview": "Điền thông tin để xem bản xem trước"
+      "fillToPreview": "Điền thông tin để xem bản xem trước",
+      "progressTitle": "Hồ sơ hoàn thành {percent}%",
+      "progressDone": "Hồ sơ đã sẵn sàng 🎉",
+      "nextStep": "Tiếp theo: {section}",
+      "introTitle": "Cách hoạt động",
+      "introStep1": "Điền thông tin — bản xem trước bên phải cập nhật ngay.",
+      "introStep2": "Chọn bố cục và màu phù hợp với công ty.",
+      "introStep3": "Xong thì xuất ra PDF hoặc Word.",
+      "introGotIt": "Đã hiểu"
     },
     "sectionOrder": {
       "title": "Thứ tự các mục",

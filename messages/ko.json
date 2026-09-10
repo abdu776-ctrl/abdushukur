@@ -59,7 +59,8 @@
       "subtitle": "AI 도움을 받아 전문적인 한국 이력서와 자기소개서를 작성하세요. 우즈베키스탄, 카자흐스탄, 키르기스스탄, 몽골, 중국, 베트남 유학생을 위해 설계되었습니다.",
       "cta": "무료로 시작하기",
       "ctaSecondary": "템플릿 보기",
-      "trustedBy": "다음 국가 유학생들이 신뢰합니다"
+      "trustedBy": "다음 국가 유학생들이 신뢰합니다",
+      "ctaNoAccount": "계정 없이 바로 시작할 수 있습니다"
     },
     "features": {
       "title": "성공을 위한 모든 것",
@@ -472,7 +473,15 @@
       "photoHint": "JPG, PNG 최대 5MB",
       "livePreview": "실시간 미리보기",
       "yourName": "이름",
-      "fillToPreview": "정보를 입력하면 미리보기가 표시됩니다"
+      "fillToPreview": "정보를 입력하면 미리보기가 표시됩니다",
+      "progressTitle": "이력서 작성률 {percent}%",
+      "progressDone": "이력서가 완성되었습니다 🎉",
+      "nextStep": "다음 단계: {section}",
+      "introTitle": "이렇게 사용하세요",
+      "introStep1": "정보를 입력하면 오른쪽 미리보기가 바로 반영됩니다.",
+      "introStep2": "지원할 회사에 어울리는 레이아웃과 색상을 고르세요.",
+      "introStep3": "완성되면 PDF 또는 Word로 내보내세요.",
+      "introGotIt": "확인"
     },
     "sectionOrder": {
       "title": "섹션 순서",

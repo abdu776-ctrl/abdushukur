@@ -10,16 +10,17 @@ import { User, Save } from 'lucide-react';
 import { getSupabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/useAuth';
 import { authErrorMessage } from '@/lib/authErrors';
+import { flagCode } from '@/components/ui/FlagBadge';
 
 // Value is the stored code; the label comes from the locale files.
 const COUNTRIES = [
-  { value: 'uzbekistan', flag: '🇺🇿' },
-  { value: 'kazakhstan', flag: '🇰🇿' },
-  { value: 'kyrgyzstan', flag: '🇰🇬' },
-  { value: 'mongolia', flag: '🇲🇳' },
-  { value: 'china', flag: '🇨🇳' },
-  { value: 'vietnam', flag: '🇻🇳' },
-  { value: 'other', flag: '🌍' },
+  { value: 'uzbekistan' },
+  { value: 'kazakhstan' },
+  { value: 'kyrgyzstan' },
+  { value: 'mongolia' },
+  { value: 'china' },
+  { value: 'vietnam' },
+  { value: 'other' },
 ];
 
 /**
@@ -118,7 +119,7 @@ export function ProfilePanel() {
           <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
           {country && (
             <Badge variant="success" size="sm" className="mt-1">
-              {country.flag} {tr(`countries.${country.value}`)}
+              {flagCode(country.value)} · {tr(`countries.${country.value}`)}
             </Badge>
           )}
         </div>
@@ -151,7 +152,7 @@ export function ProfilePanel() {
             <option value="">{tr('selectCountry')}</option>
             {COUNTRIES.map((c) => (
               <option key={c.value} value={c.value}>
-                {c.flag} {tr(`countries.${c.value}`)}
+                {flagCode(c.value)} · {tr(`countries.${c.value}`)}
               </option>
             ))}
           </select>

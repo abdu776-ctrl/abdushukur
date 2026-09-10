@@ -9,7 +9,8 @@ import { AccountPanel } from '@/components/settings/AccountPanel';
 import { ProfilePanel } from '@/components/settings/ProfilePanel';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
-import { locales, localeNames, localeFlags } from '@/lib/i18n';
+import { locales, localeNames } from '@/lib/i18n';
+import { FlagBadge } from '@/components/ui/FlagBadge';
 import { useState, useEffect } from 'react';
 import {
   User,
@@ -187,7 +188,7 @@ export default function SettingsPage() {
                             : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                         )}
                       >
-                        <span className="text-2xl">{localeFlags[loc]}</span>
+                        <FlagBadge code={loc} className="w-8 h-6 text-[11px]" />
                         <div className="text-left">
                           <p className={cn(
                             'text-sm font-medium',
