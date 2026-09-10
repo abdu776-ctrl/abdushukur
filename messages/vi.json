@@ -602,7 +602,12 @@
     },
     "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
     "noReply": "Xin lỗi, chưa nhận được phản hồi. Vui lòng thử lại.",
-    "disclaimer": "Câu trả lời của AI chỉ mang tính tham khảo. Hãy luôn kiểm chứng với nguồn chính thức."
+    "disclaimer": "Câu trả lời của AI chỉ mang tính tham khảo. Hãy luôn kiểm chứng với nguồn chính thức.",
+    "noChats": "Các cuộc trò chuyện của bạn sẽ hiện ở đây.",
+    "deleteChat": "Xoá cuộc trò chuyện",
+    "copy": "Sao chép câu trả lời",
+    "copied": "Đã sao chép",
+    "startersTitle": "Bắt đầu với"
   },
   "settings": {
     "title": "Cài đặt",
@@ -628,17 +633,7 @@
     },
     "language": {
       "title": "Ngôn ngữ và khu vực",
-      "appLanguage": "Ngôn ngữ ứng dụng",
-      "documentLanguage": "Ngôn ngữ mặc định của tài liệu"
-    },
-    "notifications": {
-      "title": "Thông báo",
-      "email": "Thông báo qua email",
-      "tips": "Mẹo nghề nghiệp và cập nhật",
-      "emailDesc": "Nhận thông báo về tài liệu của bạn qua email.",
-      "tipsDesc": "Mẹo nghề nghiệp hằng tuần cho thị trường việc làm Hàn Quốc.",
-      "templates": "Mẫu mới",
-      "templatesDesc": "Được báo khi có mẫu sơ yếu lý lịch mới."
+      "appLanguage": "Ngôn ngữ ứng dụng"
     },
     "account": {
       "title": "Tài khoản",

@@ -602,7 +602,12 @@
     },
     "error": "出了点问题，请重试。",
     "noReply": "抱歉，没有收到回复，请重试。",
-    "disclaimer": "AI 回答仅供参考，请务必以官方来源为准。"
+    "disclaimer": "AI 回答仅供参考，请务必以官方来源为准。",
+    "noChats": "你的对话会显示在这里。",
+    "deleteChat": "删除对话",
+    "copy": "复制回答",
+    "copied": "已复制",
+    "startersTitle": "从这里开始"
   },
   "settings": {
     "title": "设置",
@@ -628,17 +633,7 @@
     },
     "language": {
       "title": "语言与地区",
-      "appLanguage": "应用语言",
-      "documentLanguage": "默认文档语言"
-    },
-    "notifications": {
-      "title": "通知",
-      "email": "邮件通知",
-      "tips": "求职提示与更新",
-      "emailDesc": "通过邮件接收有关你文档的通知。",
-      "tipsDesc": "每周推送韩国就业市场的求职建议。",
-      "templates": "新模板",
-      "templatesDesc": "有新的简历模板时通知我。"
+      "appLanguage": "应用语言"
     },
     "account": {
       "title": "账号",

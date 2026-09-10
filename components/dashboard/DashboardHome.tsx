@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/lib/useAuth';
 import { listDocuments, documentHref } from '@/lib/documents';
+import { countChats } from '@/lib/chats';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import {
@@ -82,7 +83,10 @@ export function DashboardHome({ locale }: { locale: string }) {
     };
   }, [isSignedIn, locale]);
 
-  const aiChats = 0;
+  // Was hardcoded to 0 forever. Conversations live in this browser, so the
+  // count is read after mount rather than during render.
+  const [aiChats, setAiChats] = useState(0);
+  useEffect(() => setAiChats(countChats()), [isSignedIn]);
 
   const resumeCount = documents.filter((d) => d.type === 'resume').length;
   const coverLetterCount = documents.filter((d) => d.type === 'cover-letter').length;

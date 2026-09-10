@@ -602,7 +602,12 @@
     },
     "error": "Something went wrong. Please try again.",
     "noReply": "Sorry, no answer came back. Please try again.",
-    "disclaimer": "AI responses are for guidance only. Always verify with official sources."
+    "disclaimer": "AI responses are for guidance only. Always verify with official sources.",
+    "noChats": "Your conversations will appear here.",
+    "deleteChat": "Delete conversation",
+    "copy": "Copy answer",
+    "copied": "Copied",
+    "startersTitle": "Start with"
   },
   "settings": {
     "title": "Settings",
@@ -628,17 +633,7 @@
     },
     "language": {
       "title": "Language & Region",
-      "appLanguage": "Application Language",
-      "documentLanguage": "Default Document Language"
-    },
-    "notifications": {
-      "title": "Notifications",
-      "email": "Email notifications",
-      "tips": "Career tips & updates",
-      "emailDesc": "Receive updates about your documents by email.",
-      "tipsDesc": "Weekly career tips for the Korean job market.",
-      "templates": "New templates",
-      "templatesDesc": "Get notified when new resume templates are available."
+      "appLanguage": "Application Language"
     },
     "account": {
       "title": "Account",

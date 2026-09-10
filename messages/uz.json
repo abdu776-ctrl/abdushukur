@@ -602,7 +602,12 @@
     },
     "error": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
     "noReply": "Kechirasiz, javob olinmadi. Qayta urinib ko‘ring.",
-    "disclaimer": "AI javoblari faqat yo‘l-yo‘riq uchun. Har doim rasmiy manbalardan tekshiring."
+    "disclaimer": "AI javoblari faqat yo‘l-yo‘riq uchun. Har doim rasmiy manbalardan tekshiring.",
+    "noChats": "Suhbatlaringiz shu yerda ko‘rinadi.",
+    "deleteChat": "Suhbatni o‘chirish",
+    "copy": "Javobni nusxalash",
+    "copied": "Nusxalandi",
+    "startersTitle": "Shundan boshlang"
   },
   "settings": {
     "title": "Sozlamalar",
@@ -628,17 +633,7 @@
     },
     "language": {
       "title": "Til va Mintaqa",
-      "appLanguage": "Ilova Tili",
-      "documentLanguage": "Standart Hujjat Tili"
-    },
-    "notifications": {
-      "title": "Bildirishnomalar",
-      "email": "Elektron pochta bildirisnomalar",
-      "tips": "Martaba maslahatlari va yangilanishlar",
-      "emailDesc": "Hujjatlaringiz haqidagi yangilanishlarni pochta orqali oling.",
-      "tipsDesc": "Koreya mehnat bozori uchun haftalik martaba maslahatlari.",
-      "templates": "Yangi shablonlar",
-      "templatesDesc": "Yangi rezyume shablonlari chiqqanda xabar oling."
+      "appLanguage": "Ilova Tili"
     },
     "account": {
       "title": "Hisob",

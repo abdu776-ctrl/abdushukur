@@ -10,27 +10,34 @@ import {
   Plus,
   User,
   Copy,
-  ThumbsUp,
-  ThumbsDown,
+  Check,
+  Trash2,
+  MessageSquare,
 } from 'lucide-react';
+import {
+  listChats,
+  saveChat,
+  deleteChat,
+  newChatId,
+  chatTitle,
+  type ChatSession,
+  type ChatMessage,
+} from '@/lib/chats';
 
-interface Message {
-  id: string;
-  role: 'user' | 'assistant';
-  content: string;
-  timestamp: Date;
+// The stored shape is the source of truth; `timestamp` was never used for
+// anything but ordering, which the stored `at` already does.
+type Message = ChatMessage;
+
+function greetingMessage(text: string): Message {
+  return { id: '0', role: 'assistant', content: text, at: new Date().toISOString() };
 }
 
 export function AIChat() {
   const t = useTranslations('aiAssistant');
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: '0',
-      role: 'assistant',
-      content: t('greeting'),
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [chats, setChats] = useState<ChatSession[]>([]);
+  const [chatId, setChatId] = useState<string>('');
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -39,6 +46,67 @@ export function AIChat() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
+
+  // Reopen the most recent conversation, so a refresh no longer wipes it.
+  useEffect(() => {
+    const stored = listChats();
+    setChats(stored);
+    if (stored.length > 0) {
+      setChatId(stored[0].id);
+      setMessages(stored[0].messages);
+    } else {
+      setChatId(newChatId());
+      setMessages([greetingMessage(t('greeting'))]);
+    }
+  }, [t]);
+
+  // Save once a reply has finished streaming — not on every chunk, which would
+  // rewrite storage dozens of times per answer.
+  useEffect(() => {
+    if (loading || !chatId) return;
+    if (!messages.some((m) => m.role === 'user')) return;
+    const session: ChatSession = {
+      id: chatId,
+      title: chatTitle(messages, t('newChat')),
+      messages,
+      updatedAt: new Date().toISOString(),
+    };
+    saveChat(session);
+    setChats(listChats());
+  }, [loading, messages, chatId, t]);
+
+  function openChat(id: string) {
+    if (loading) return;
+    const found = chats.find((c) => c.id === id);
+    if (!found) return;
+    setChatId(id);
+    setMessages(found.messages);
+    setInput('');
+  }
+
+  function removeChat(id: string) {
+    deleteChat(id);
+    const remaining = listChats();
+    setChats(remaining);
+    if (id !== chatId) return;
+    if (remaining.length > 0) {
+      setChatId(remaining[0].id);
+      setMessages(remaining[0].messages);
+    } else {
+      setChatId(newChatId());
+      setMessages([greetingMessage(t('greeting'))]);
+    }
+  }
+
+  async function copyMessage(message: Message) {
+    try {
+      await navigator.clipboard.writeText(message.content);
+      setCopiedId(message.id);
+      setTimeout(() => setCopiedId(null), 1500);
+    } catch (err) {
+      console.error('copy failed:', err);
+    }
+  }
 
   const suggestions = [
     t('suggestions.q1'),
@@ -56,9 +124,8 @@ export function AIChat() {
 
   function resetChat() {
     if (loading) return;
-    setMessages([
-      { id: '0', role: 'assistant', content: t('greeting'), timestamp: new Date() },
-    ]);
+    setChatId(newChatId());
+    setMessages([greetingMessage(t('greeting'))]);
     setInput('');
     inputRef.current?.focus();
   }
@@ -70,7 +137,7 @@ export function AIChat() {
       id: Date.now().toString(),
       role: 'user',
       content: text.trim(),
-      timestamp: new Date(),
+      at: new Date().toISOString(),
     };
 
     const history = [...messages, userMsg].map((m) => ({ role: m.role, content: m.content }));
@@ -90,7 +157,7 @@ export function AIChat() {
         setLoading(false);
         setMessages((prev) => [
           ...prev,
-          { id: assistantId, role: 'assistant', content: acc, timestamp: new Date() },
+          { id: assistantId, role: 'assistant', content: acc, at: new Date().toISOString() },
         ]);
       } else {
         setMessages((prev) =>
@@ -130,7 +197,7 @@ export function AIChat() {
       if (!started) {
         setMessages((prev) => [
           ...prev,
-          { id: assistantId, role: 'assistant', content: msg, timestamp: new Date() },
+          { id: assistantId, role: 'assistant', content: msg, at: new Date().toISOString() },
         ]);
       }
     } finally {
@@ -184,18 +251,56 @@ export function AIChat() {
           {t('newChat')}
         </Button>
         <div className="text-xs font-medium text-gray-500 dark:text-gray-400 px-1 mt-2">
-          {t('history')}
+          {chats.length > 0 ? t('history') : t('startersTitle')}
         </div>
-        {historyItems.map((item) => (
-          <button
-            key={item.label}
-            onClick={() => sendMessage(item.q)}
-            disabled={loading}
-            className="text-left px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors truncate"
-          >
-            {item.label}
-          </button>
-        ))}
+
+        {chats.length === 0 ? (
+          <>
+            {historyItems.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => sendMessage(item.q)}
+                disabled={loading}
+                className="text-left px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors truncate"
+              >
+                {item.label}
+              </button>
+            ))}
+            <p className="px-1 mt-2 text-xs text-gray-400 dark:text-gray-600 leading-relaxed">
+              {t('noChats')}
+            </p>
+          </>
+        ) : (
+          <div className="flex-1 overflow-y-auto space-y-0.5">
+            {chats.map((chat) => (
+              <div key={chat.id} className="group/chat relative">
+                <button
+                  onClick={() => openChat(chat.id)}
+                  disabled={loading}
+                  title={chat.title}
+                  className={cn(
+                    'w-full text-left pl-3 pr-8 py-2 rounded-lg text-sm truncate transition-colors disabled:opacity-50',
+                    chat.id === chatId
+                      ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
+                  )}
+                >
+                  <MessageSquare className="w-3.5 h-3.5 inline-block mr-2 -mt-0.5 opacity-60" />
+                  {chat.title}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeChat(chat.id)}
+                  aria-label={`${t('deleteChat')}: ${chat.title}`}
+                  title={t('deleteChat')}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors opacity-0 group-hover/chat:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100"
+                >
+                  <Trash2 className="w-3 h-3" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Main chat area */}
@@ -229,15 +334,20 @@ export function AIChat() {
                 </div>
                 {message.role === 'assistant' && (
                   <div className="flex items-center gap-2 mt-3 pt-2 border-t border-gray-100 dark:border-gray-700">
-                    <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
-                      <Copy className="w-3 h-3" />
+                    <button
+                      type="button"
+                      onClick={() => copyMessage(message)}
+                      aria-label={t('copy')}
+                      title={t('copy')}
+                      className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                    >
+                      {copiedId === message.id
+                        ? <Check className="w-3 h-3 text-green-500" />
+                        : <Copy className="w-3 h-3" />}
                     </button>
-                    <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400 hover:text-green-500 transition-colors">
-                      <ThumbsUp className="w-3 h-3" />
-                    </button>
-                    <button className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400 hover:text-red-500 transition-colors">
-                      <ThumbsDown className="w-3 h-3" />
-                    </button>
+                    {copiedId === message.id && (
+                      <span className="text-xs text-green-600 dark:text-green-400">{t('copied')}</span>
+                    )}
                   </div>
                 )}
               </div>

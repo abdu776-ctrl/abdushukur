@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslations, useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { DashboardLayout } from '@/components/layout/DashboardLayout';
 import { WhyKoreaBuilder } from '@/components/why-korea/WhyKoreaBuilder';
 import { CareerProfileForm } from '@/components/profile/CareerProfileForm';
@@ -14,7 +15,6 @@ import {
   User,
   Palette,
   Globe,
-  Bell,
   Shield,
   Sun,
   Moon,
@@ -24,17 +24,28 @@ import {
 } from 'lucide-react';
 import type { Locale } from '@/lib/i18n';
 
-type SettingsTab = 'profile' | 'career' | 'whyKorea' | 'appearance' | 'language' | 'notifications' | 'account';
+type SettingsTab = 'profile' | 'career' | 'whyKorea' | 'appearance' | 'language' | 'account';
 
-const TAB_IDS: SettingsTab[] = ['profile', 'career', 'whyKorea', 'appearance', 'language', 'notifications', 'account'];
+const TAB_IDS: SettingsTab[] = ['profile', 'career', 'whyKorea', 'appearance', 'language', 'account'];
 
 export default function SettingsPage() {
   const t = useTranslations();
   const locale = useLocale() as Locale;
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   useEffect(() => setMounted(true), []);
+
+  // The buttons in the Language tab used to be decoration — they had no click
+  // handler at all. Switching keeps the query string, so a document open in a
+  // builder survives the change.
+  function switchLocale(next: Locale) {
+    if (next === locale) return;
+    const segments = window.location.pathname.split('/');
+    segments[1] = next;
+    router.push(segments.join('/') + window.location.search);
+  }
 
   // Allow deep-linking to a tab, e.g. /settings?tab=whyKorea from the editor.
   useEffect(() => {
@@ -50,7 +61,6 @@ export default function SettingsPage() {
     { id: 'whyKorea' as SettingsTab, icon: <MapPin className="w-4 h-4" />, label: t('settings.whyKorea.title') },
     { id: 'appearance' as SettingsTab, icon: <Palette className="w-4 h-4" />, label: t('settings.appearance.title') },
     { id: 'language' as SettingsTab, icon: <Globe className="w-4 h-4" />, label: t('settings.language.title') },
-    { id: 'notifications' as SettingsTab, icon: <Bell className="w-4 h-4" />, label: t('settings.notifications.title') },
     { id: 'account' as SettingsTab, icon: <Shield className="w-4 h-4" />, label: t('settings.account.title') },
   ];
 
@@ -133,7 +143,7 @@ export default function SettingsPage() {
 
                 {/* Preview */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Preview</label>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">{t('common.preview')}</label>
                   <div className="rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
                     <div className="h-8 bg-white dark:bg-gray-950 border-b border-gray-200 dark:border-gray-800 flex items-center gap-2 px-3">
                       {['bg-red-400', 'bg-yellow-400', 'bg-green-400'].map((c) => (
@@ -169,6 +179,7 @@ export default function SettingsPage() {
                     {locales.map((loc) => (
                       <button
                         key={loc}
+                        onClick={() => switchLocale(loc)}
                         className={cn(
                           'flex items-center gap-3 p-3 rounded-xl border-2 transition-all duration-150',
                           loc === locale
@@ -197,23 +208,6 @@ export default function SettingsPage() {
               </div>
             )}
 
-            {/* Notifications */}
-            {activeTab === 'notifications' && (
-              <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 space-y-4 animate-fade-in">
-                <h2 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                  <Bell className="w-4 h-4 text-indigo-500" />
-                  {t('settings.notifications.title')}
-                </h2>
-                {[
-                  { label: t('settings.notifications.email'), desc: t('settings.notifications.emailDesc'), defaultOn: true },
-                  { label: t('settings.notifications.tips'), desc: t('settings.notifications.tipsDesc'), defaultOn: true },
-                  { label: t('settings.notifications.templates'), desc: t('settings.notifications.templatesDesc'), defaultOn: false },
-                ].map((item) => (
-                  <ToggleRow key={item.label} {...item} />
-                ))}
-              </div>
-            )}
-
             {/* Account */}
             {activeTab === 'account' && <AccountPanel locale={locale} />}
           </div>
@@ -223,27 +217,3 @@ export default function SettingsPage() {
   );
 }
 
-function ToggleRow({ label, desc, defaultOn }: { label: string; desc: string; defaultOn: boolean }) {
-  const [enabled, setEnabled] = useState(defaultOn);
-
-  return (
-    <div className="flex items-center justify-between py-3 border-b border-gray-100 dark:border-gray-800 last:border-0">
-      <div>
-        <p className="text-sm font-medium text-gray-900 dark:text-white">{label}</p>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{desc}</p>
-      </div>
-      <button
-        onClick={() => setEnabled(!enabled)}
-        className={cn(
-          'relative w-11 h-6 rounded-full transition-all duration-200 flex-shrink-0',
-          enabled ? 'bg-indigo-600' : 'bg-gray-200 dark:bg-gray-700'
-        )}
-      >
-        <div className={cn(
-          'absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-sm transition-transform duration-200',
-          enabled ? 'translate-x-5' : 'translate-x-0'
-        )} />
-      </button>
-    </div>
-  );
-}
