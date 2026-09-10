@@ -14,11 +14,13 @@ import {
   ChevronLeft,
   ChevronRight,
   User,
+  Trash2,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAuth, signOutEverywhere } from '@/lib/useAuth';
 import {
   listDocuments,
+  deleteDocument,
   documentHref,
   DOCUMENTS_CHANGED_EVENT,
   type SavedDocument,
@@ -54,6 +56,29 @@ export function Sidebar() {
   useEffect(() => {
     setActiveDocId(new URLSearchParams(window.location.search).get('doc'));
   }, [pathname]);
+
+  // Deleting from the sidebar, so a document can be removed from wherever the
+  // user happens to be — not only from the full documents page.
+  const [confirmId, setConfirmId] = useState<string | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
+
+  async function handleDelete(id: string) {
+    setDeletingId(id);
+    try {
+      await deleteDocument(id);
+      setDocs((prev) => prev.filter((d) => d.id !== id));
+      // If the deleted document is the one open in the builder, drop the ?doc=
+      // so the editor is not left showing something that no longer exists.
+      if (activeDocId === id) {
+        window.location.href = pathname;
+      }
+    } catch (err) {
+      console.error('delete document failed:', err);
+    } finally {
+      setDeletingId(null);
+      setConfirmId(null);
+    }
+  }
 
   useEffect(() => {
     if (status !== 'authenticated') {
@@ -203,14 +228,46 @@ export function Sidebar() {
             {docs.slice(0, SIDEBAR_DOC_LIMIT).map((doc) => {
               const href = documentHref(locale, doc);
               const isResume = doc.kind === 'resume';
+              const title = doc.title || t('documents.untitled');
+
+              // Confirming replaces the row, so a mis-click in a 256px column
+              // can never delete a document outright.
+              if (confirmId === doc.id) {
+                return (
+                  <li
+                    key={doc.id}
+                    className="flex items-center gap-1 pl-3 pr-2 py-1.5 rounded-lg border-l-2 border-red-400 bg-red-50 dark:bg-red-500/10"
+                  >
+                    <span className="text-xs text-red-700 dark:text-red-300 truncate flex-1">
+                      {t('documents.confirmShort')}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(doc.id)}
+                      disabled={deletingId === doc.id}
+                      className="px-1.5 py-0.5 rounded text-xs font-semibold text-white bg-red-600 hover:bg-red-700 disabled:opacity-60"
+                    >
+                      {t('common.yes')}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setConfirmId(null)}
+                      className="px-1.5 py-0.5 rounded text-xs font-medium text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    >
+                      {t('common.no')}
+                    </button>
+                  </li>
+                );
+              }
+
               return (
-                <li key={doc.id}>
+                <li key={doc.id} className="group/doc relative">
                   <Link
                     href={href}
-                    title={doc.title || t('documents.untitled')}
+                    title={title}
                     onClick={() => setActiveDocId(doc.id)}
                     className={cn(
-                      'flex items-center gap-2 pl-3 pr-2 py-1.5 rounded-lg border-l-2 transition-colors',
+                      'flex items-center gap-2 pl-3 pr-8 py-1.5 rounded-lg border-l-2 transition-colors',
                       activeDocId === doc.id
                         ? 'border-indigo-500 text-indigo-600 dark:text-indigo-400 bg-indigo-50/60 dark:bg-indigo-500/10'
                         : 'border-gray-200 dark:border-gray-800 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
@@ -221,10 +278,21 @@ export function Sidebar() {
                     ) : (
                       <PenLine className="w-3.5 h-3.5 shrink-0 text-purple-500" />
                     )}
-                    <span className="text-xs truncate">
-                      {doc.title || t('documents.untitled')}
-                    </span>
+                    <span className="text-xs truncate">{title}</span>
                   </Link>
+
+                  {/* Sits above the link rather than inside it — a button cannot
+                      be nested in an anchor. Always visible on touch, where
+                      there is no hover. */}
+                  <button
+                    type="button"
+                    onClick={() => setConfirmId(doc.id)}
+                    aria-label={`${t('documents.delete')}: ${title}`}
+                    title={t('documents.delete')}
+                    className="absolute right-1 top-1/2 -translate-y-1/2 p-1 rounded text-gray-400 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-500/10 transition-colors opacity-0 group-hover/doc:opacity-100 focus-visible:opacity-100 [@media(hover:none)]:opacity-100"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
                 </li>
               );
             })}

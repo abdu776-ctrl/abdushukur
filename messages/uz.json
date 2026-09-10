@@ -378,7 +378,8 @@
       "translateName": "Ismni avtomatik tarjima",
       "toKorean": "Koreyschaga",
       "toLatin": "Lotinchaga",
-      "changePhoto": "Rasmni almashtirish"
+      "changePhoto": "Rasmni almashtirish",
+      "photoUploaded": "Rasm yuklandi"
     },
     "education": {
       "add": "Ta'lim Qo'shish",
@@ -760,7 +761,8 @@
     "kindCoverLetter": "Motivatsion xat",
     "newResume": "Yangi rezyume",
     "newCoverLetter": "Yangi motivatsion xat",
-    "editing": "Saqlangan hujjat tahrirlanmoqda"
+    "editing": "Saqlangan hujjat tahrirlanmoqda",
+    "confirmShort": "O‘chirilsinmi?"
   },
   "legal": {
     "lastUpdated": "Oxirgi yangilanish",

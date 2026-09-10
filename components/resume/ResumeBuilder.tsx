@@ -470,7 +470,7 @@ export function ResumeBuilder() {
                       className="w-16 h-16 rounded-full object-cover flex-shrink-0 border-2 border-indigo-200 dark:border-indigo-700"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Photo uploaded</p>
+                      <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('personal.photoUploaded')}</p>
                       <button
                         onClick={() => photoInputRef.current?.click()}
                         className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline mt-0.5 flex items-center gap-1"

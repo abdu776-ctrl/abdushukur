@@ -378,7 +378,8 @@
       "translateName": "이름 자동 번역",
       "toKorean": "한국어로",
       "toLatin": "로마자로",
-      "changePhoto": "사진 변경"
+      "changePhoto": "사진 변경",
+      "photoUploaded": "사진이 업로드되었습니다"
     },
     "education": {
       "add": "학력 추가",
@@ -760,7 +761,8 @@
     "kindCoverLetter": "자기소개서",
     "newResume": "새 이력서",
     "newCoverLetter": "새 자기소개서",
-    "editing": "저장한 문서 편집 중"
+    "editing": "저장한 문서 편집 중",
+    "confirmShort": "삭제할까요?"
   },
   "legal": {
     "lastUpdated": "최종 수정",

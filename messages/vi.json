@@ -378,7 +378,8 @@
       "translateName": "Tự động dịch tên",
       "toKorean": "Sang tiếng Hàn",
       "toLatin": "Sang chữ Latinh",
-      "changePhoto": "Đổi ảnh"
+      "changePhoto": "Đổi ảnh",
+      "photoUploaded": "Đã tải ảnh lên"
     },
     "education": {
       "add": "Thêm học vấn",
@@ -760,7 +761,8 @@
     "kindCoverLetter": "Thư giới thiệu",
     "newResume": "Sơ yếu lý lịch mới",
     "newCoverLetter": "Thư giới thiệu mới",
-    "editing": "Đang chỉnh sửa tài liệu đã lưu"
+    "editing": "Đang chỉnh sửa tài liệu đã lưu",
+    "confirmShort": "Xoá?"
   },
   "legal": {
     "lastUpdated": "Cập nhật lần cuối",

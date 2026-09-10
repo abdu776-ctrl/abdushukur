@@ -378,7 +378,8 @@
       "translateName": "Auto-translate name",
       "toKorean": "To Korean",
       "toLatin": "To Latin",
-      "changePhoto": "Change photo"
+      "changePhoto": "Change photo",
+      "photoUploaded": "Photo uploaded"
     },
     "education": {
       "add": "Add Education",
@@ -760,7 +761,8 @@
     "kindCoverLetter": "Cover letter",
     "newResume": "New resume",
     "newCoverLetter": "New cover letter",
-    "editing": "Editing a saved document"
+    "editing": "Editing a saved document",
+    "confirmShort": "Delete?"
   },
   "legal": {
     "lastUpdated": "Last updated",
