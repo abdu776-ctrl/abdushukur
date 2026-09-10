@@ -379,7 +379,8 @@
       "toKorean": "Koreyschaga",
       "toLatin": "Lotinchaga",
       "changePhoto": "Rasmni almashtirish",
-      "photoUploaded": "Rasm yuklandi"
+      "photoUploaded": "Rasm yuklandi",
+      "photoTooLarge": "Bu rasm juda katta. 5MB dan kichigini tanlang."
     },
     "education": {
       "add": "Ta'lim Qo'shish",
@@ -762,7 +763,8 @@
     "newResume": "Yangi rezyume",
     "newCoverLetter": "Yangi motivatsion xat",
     "editing": "Saqlangan hujjat tahrirlanmoqda",
-    "confirmShort": "O‘chirilsinmi?"
+    "confirmShort": "O‘chirilsinmi?",
+    "draftRestored": "Saqlanmagan o‘zgarishlar tiklandi."
   },
   "legal": {
     "lastUpdated": "Oxirgi yangilanish",

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Input, Textarea } from '@/components/ui/Input';
@@ -15,6 +15,7 @@ import { loadNarrative, hasNarrativeDraft, type WhyKoreaNarrative } from '@/lib/
 import { loadProfile, profileToPrompt } from '@/lib/profile';
 import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
+import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
@@ -89,8 +90,12 @@ export function CoverLetterBuilder() {
         kind: 'cover_letter',
         title: company.trim() || position.trim() || td('untitled'),
         company,
-        data: { company, position, jobPosting, sections },
+        data: documentData,
       });
+      // The account copy is now current, so the local safety net can go.
+      justSyncedRef.current = true;
+      clearDraft(draftKey('cover_letter', documentId));
+      clearDraft(draftKey('cover_letter', saved.id));
       setDocumentId(saved.id);
       setToast({ type: 'success', message: td('saved') });
     } catch (err) {
@@ -120,6 +125,64 @@ export function CoverLetterBuilder() {
     setNarrative(loadNarrative());
   }, []);
 
+  // Single place that turns a stored letter — from the database or from a local
+  // draft — back into builder state. Replaced, never merged.
+  const applyData = useCallback((d: Record<string, unknown>) => {
+    setCompany(typeof d.company === 'string' ? d.company : '');
+    setPosition(typeof d.position === 'string' ? d.position : '');
+    setJobPosting(typeof d.jobPosting === 'string' ? d.jobPosting : '');
+    if (Array.isArray(d.sections) && d.sections.length > 0) {
+      setSections(d.sections as CLSection[]);
+    }
+    setExpandedId(null);
+  }, []);
+
+  // Serialized state that matches what is stored, and a one-shot flag saying
+  // the next render is that stored state rather than a user edit.
+  const cleanRef = useRef<string>('');
+  const justSyncedRef = useRef(false);
+
+  /** Everything worth saving, in one object. */
+  const documentData = useMemo(
+    () => ({ company, position, jobPosting, sections }),
+    [company, position, jobPosting, sections]
+  );
+
+  // A brand-new letter: restore whatever was being written before the page was
+  // refreshed or the language was switched.
+  const [draftChecked, setDraftChecked] = useState(false);
+  useEffect(() => {
+    if (docParam || draftChecked) return;
+    setDraftChecked(true);
+    const draft = loadDraft(draftKey('cover_letter', null));
+    if (draft) {
+      applyData(draft.data);
+      setToast({ type: 'success', message: td('draftRestored') });
+    } else {
+      justSyncedRef.current = true;
+    }
+  }, [docParam, draftChecked, applyData, td]);
+
+  // Keep the draft current while writing, debounced.
+  useEffect(() => {
+    if (loadingDoc) return;
+    const serialized = JSON.stringify(documentData);
+
+    // Just loaded or just saved: this state matches the stored copy, so record
+    // it as the clean baseline instead of writing a draft that would later look
+    // like unsaved work.
+    if (justSyncedRef.current) {
+      justSyncedRef.current = false;
+      cleanRef.current = serialized;
+      clearDraft(draftKey('cover_letter', documentId));
+      return;
+    }
+    if (serialized === cleanRef.current) return;
+
+    const id = setTimeout(() => saveDraft(draftKey('cover_letter', documentId), documentData), 800);
+    return () => clearTimeout(id);
+  }, [documentData, documentId, loadingDoc]);
+
   // Reopening a saved cover letter: /cover-letter?doc=<id>. Waiting for the auth
   // status matters — Row Level Security returns nothing until the session is
   // restored from storage.
@@ -142,18 +205,17 @@ export function CoverLetterBuilder() {
           setToast({ type: 'error', message: td('notFound') });
           return;
         }
-        // Replaced, not merged — otherwise text from the previously open letter
-        // would survive into the one being opened.
-        const d = doc.data as Record<string, unknown>;
-        setCompany(typeof d.company === 'string' ? d.company : '');
-        setPosition(typeof d.position === 'string' ? d.position : '');
-        setJobPosting(typeof d.jobPosting === 'string' ? d.jobPosting : '');
-        if (Array.isArray(d.sections) && d.sections.length > 0) {
-          setSections(d.sections as CLSection[]);
-        }
-        setExpandedId(null);
+        // A local draft newer than the saved copy means the user wrote
+        // something and never pressed Save — their work wins.
+        const draft = loadDraft(draftKey('cover_letter', doc.id));
+        const useDraft = draftIsNewer(draft, doc.updated_at);
+        applyData((useDraft ? draft!.data : doc.data) as Record<string, unknown>);
+        justSyncedRef.current = true;
         setDocumentId(doc.id);
-        setToast({ type: 'success', message: td('opened') });
+        setToast({
+          type: 'success',
+          message: useDraft ? td('draftRestored') : td('opened'),
+        });
       })
       .catch((err) => {
         console.error('open cover letter failed:', err);
@@ -166,7 +228,7 @@ export function CoverLetterBuilder() {
     return () => {
       active = false;
     };
-  }, [authStatus, docParam, td]);
+  }, [authStatus, docParam, td, applyData]);
 
   function insertWhyKorea(sectionId: string, content: string) {
     const add = narrative?.draftText.trim();

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import { useSearchParams } from 'next/navigation';
 import { Input, Textarea } from '@/components/ui/Input';
@@ -14,6 +14,8 @@ import { NameTranslator } from './NameTranslator';
 import { printDocument, exportToWord } from '@/lib/utils';
 import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
+import { readResumePhoto, PhotoTooLargeError } from '@/lib/photo';
+import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
 import {
   User,
   GraduationCap,
@@ -116,6 +118,79 @@ export function ResumeBuilder() {
   const { status: authStatus } = useAuth();
   const docParam = useSearchParams().get('doc');
 
+  // Single place that turns a stored document — from the database or from a
+  // local draft — back into builder state. Every field is replaced, never
+  // merged, so nothing from the previous document survives.
+  const applyData = useCallback((d: Record<string, unknown>) => {
+    const list = <T,>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
+    setPersonal({ ...defaultPersonal, ...((d.personal as PersonalInfo) ?? {}) });
+    setEducation(
+      Array.isArray(d.education) && d.education.length > 0
+        ? (d.education as Education[])
+        : [{ ...defaultEducation }]
+    );
+    setExperience(list<WorkExperience>(d.experience));
+    setSkills(list<Skill>(d.skills));
+    setAwards(list<Award>(d.awards));
+    setCertificates(list<Certificate>(d.certificates));
+    setProjects(list<Project>(d.projects));
+    setVolunteer(list<Volunteer>(d.volunteer));
+    setPublications(list<Publication>(d.publications));
+    setLayoutId(typeof d.layoutId === 'string' ? (d.layoutId as LayoutId) : DEFAULT_LAYOUT);
+    setThemeId(typeof d.themeId === 'string' ? (d.themeId as ThemeId) : DEFAULT_THEME);
+    setSectionOrder(
+      Array.isArray(d.sectionOrder) ? (d.sectionOrder as string[]) : DEFAULT_SECTION_ORDER
+    );
+  }, []);
+
+  // Serialized state that matches what is stored, and a one-shot flag saying
+  // the next render is that stored state rather than a user edit.
+  const cleanRef = useRef<string>('');
+  const justSyncedRef = useRef(false);
+
+  /** Everything worth saving, in one object. */
+  const documentData = useMemo(() => ({
+    personal, education, experience, skills, awards, certificates,
+    projects, volunteer, publications, layoutId, themeId, sectionOrder,
+  }), [personal, education, experience, skills, awards, certificates,
+       projects, volunteer, publications, layoutId, themeId, sectionOrder]);
+
+  // A brand-new document: restore whatever was being written before the page
+  // was refreshed or the language was switched.
+  const [draftChecked, setDraftChecked] = useState(false);
+  useEffect(() => {
+    if (docParam || draftChecked) return;
+    setDraftChecked(true);
+    const draft = loadDraft(draftKey('resume', null));
+    if (draft) {
+      applyData(draft.data);
+      setToast({ type: 'success', message: td('draftRestored') });
+    } else {
+      justSyncedRef.current = true;
+    }
+  }, [docParam, draftChecked, applyData, td]);
+
+  // Keep the draft current while typing. Debounced, so a photo is not
+  // re-serialised on every keystroke.
+  useEffect(() => {
+    if (loadingDoc) return;
+    const serialized = JSON.stringify(documentData);
+
+    // Just loaded or just saved: this state matches the stored copy, so record
+    // it as the clean baseline instead of writing a draft that would later look
+    // like unsaved work.
+    if (justSyncedRef.current) {
+      justSyncedRef.current = false;
+      cleanRef.current = serialized;
+      clearDraft(draftKey('resume', documentId));
+      return;
+    }
+    if (serialized === cleanRef.current) return;
+
+    const id = setTimeout(() => saveDraft(draftKey('resume', documentId), documentData), 800);
+    return () => clearTimeout(id);
+  }, [documentData, documentId, loadingDoc]);
+
   useEffect(() => {
     if (authStatus === 'loading') return;
     const id = docParam;
@@ -135,30 +210,17 @@ export function ResumeBuilder() {
           setToast({ type: 'error', message: td('notFound') });
           return;
         }
-        // Every field is replaced, not merged — otherwise data from the
-        // previously open document would leak into the one being opened.
-        const d = doc.data as Record<string, unknown>;
-        const list = <T,>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
-        setPersonal({ ...defaultPersonal, ...((d.personal as PersonalInfo) ?? {}) });
-        setEducation(
-          Array.isArray(d.education) && d.education.length > 0
-            ? (d.education as Education[])
-            : [{ ...defaultEducation }]
-        );
-        setExperience(list<WorkExperience>(d.experience));
-        setSkills(list<Skill>(d.skills));
-        setAwards(list<Award>(d.awards));
-        setCertificates(list<Certificate>(d.certificates));
-        setProjects(list<Project>(d.projects));
-        setVolunteer(list<Volunteer>(d.volunteer));
-        setPublications(list<Publication>(d.publications));
-        setLayoutId(typeof d.layoutId === 'string' ? (d.layoutId as LayoutId) : DEFAULT_LAYOUT);
-        setThemeId(typeof d.themeId === 'string' ? (d.themeId as ThemeId) : DEFAULT_THEME);
-        setSectionOrder(
-          Array.isArray(d.sectionOrder) ? (d.sectionOrder as string[]) : DEFAULT_SECTION_ORDER
-        );
+        // A local draft newer than the saved copy means the user typed
+        // something and never pressed Save — their work wins.
+        const draft = loadDraft(draftKey('resume', doc.id));
+        const useDraft = draftIsNewer(draft, doc.updated_at);
+        applyData((useDraft ? draft!.data : doc.data) as Record<string, unknown>);
+        justSyncedRef.current = true;
         setDocumentId(doc.id);
-        setToast({ type: 'success', message: td('opened') });
+        setToast({
+          type: 'success',
+          message: useDraft ? td('draftRestored') : td('opened'),
+        });
       })
       .catch((err) => {
         console.error('open resume failed:', err);
@@ -171,7 +233,7 @@ export function ResumeBuilder() {
     return () => {
       active = false;
     };
-  }, [authStatus, docParam, td]);
+  }, [authStatus, docParam, td, applyData]);
 
   async function handleSave() {
     setSaving(true);
@@ -181,11 +243,13 @@ export function ResumeBuilder() {
         kind: 'resume',
         title: personal.fullName?.trim() || td('untitled'),
         company: '',
-        data: {
-          personal, education, experience, skills, awards, certificates,
-          projects, volunteer, publications, layoutId, themeId, sectionOrder,
-        },
+        data: documentData,
       });
+      // The account copy is now current, so the local safety net can go — and
+      // the pre-save "new" draft must not reappear on the next visit.
+      justSyncedRef.current = true;
+      clearDraft(draftKey('resume', documentId));
+      clearDraft(draftKey('resume', saved.id));
       setDocumentId(saved.id);
       setToast({ type: 'success', message: td('saved') });
     } catch (err) {
@@ -272,15 +336,21 @@ export function ResumeBuilder() {
   }
   function removePublication(id: string) { setPublications(publications.filter((p) => p.id !== id)); }
 
-  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+  async function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      setPersonal((prev) => ({ ...prev, photo: ev.target?.result as string }));
-    };
-    reader.readAsDataURL(file);
     e.target.value = '';
+    try {
+      const photo = await readResumePhoto(file);
+      setPersonal((prev) => ({ ...prev, photo }));
+    } catch (err) {
+      if (err instanceof PhotoTooLargeError) {
+        setToast({ type: 'error', message: t('personal.photoTooLarge') });
+      } else {
+        console.error('photo upload failed:', err);
+        setToast({ type: 'error', message: tc('toast.pdfError') });
+      }
+    }
   }
 
   async function handleExport() {

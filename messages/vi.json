@@ -379,7 +379,8 @@
       "toKorean": "Sang tiếng Hàn",
       "toLatin": "Sang chữ Latinh",
       "changePhoto": "Đổi ảnh",
-      "photoUploaded": "Đã tải ảnh lên"
+      "photoUploaded": "Đã tải ảnh lên",
+      "photoTooLarge": "Ảnh quá lớn. Hãy chọn tệp dưới 5MB."
     },
     "education": {
       "add": "Thêm học vấn",
@@ -762,7 +763,8 @@
     "newResume": "Sơ yếu lý lịch mới",
     "newCoverLetter": "Thư giới thiệu mới",
     "editing": "Đang chỉnh sửa tài liệu đã lưu",
-    "confirmShort": "Xoá?"
+    "confirmShort": "Xoá?",
+    "draftRestored": "Đã khôi phục các thay đổi chưa lưu."
   },
   "legal": {
     "lastUpdated": "Cập nhật lần cuối",

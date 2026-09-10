@@ -379,7 +379,8 @@
       "toKorean": "转为韩语",
       "toLatin": "转为拉丁字母",
       "changePhoto": "更换照片",
-      "photoUploaded": "照片已上传"
+      "photoUploaded": "照片已上传",
+      "photoTooLarge": "图片太大，请选择小于 5MB 的文件。"
     },
     "education": {
       "add": "添加教育经历",
@@ -762,7 +763,8 @@
     "newResume": "新建简历",
     "newCoverLetter": "新建自我介绍书",
     "editing": "正在编辑已保存的文档",
-    "confirmShort": "删除？"
+    "confirmShort": "删除？",
+    "draftRestored": "已恢复未保存的修改。"
   },
   "legal": {
     "lastUpdated": "最后更新",

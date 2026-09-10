@@ -28,7 +28,10 @@ export function LanguageSelector() {
   function switchLocale(newLocale: Locale) {
     const segments = pathname.split('/');
     segments[1] = newLocale;
-    router.push(segments.join('/'));
+    // Keep the query string: without it, switching language on
+    // /uz/resume?doc=<id> dropped the ?doc= and the open document vanished.
+    const search = typeof window === 'undefined' ? '' : window.location.search;
+    router.push(segments.join('/') + search);
     setOpen(false);
   }
 

@@ -379,7 +379,8 @@
       "toKorean": "To Korean",
       "toLatin": "To Latin",
       "changePhoto": "Change photo",
-      "photoUploaded": "Photo uploaded"
+      "photoUploaded": "Photo uploaded",
+      "photoTooLarge": "That image is too large. Choose one under 5MB."
     },
     "education": {
       "add": "Add Education",
@@ -762,7 +763,8 @@
     "newResume": "New resume",
     "newCoverLetter": "New cover letter",
     "editing": "Editing a saved document",
-    "confirmShort": "Delete?"
+    "confirmShort": "Delete?",
+    "draftRestored": "Unsaved changes restored."
   },
   "legal": {
     "lastUpdated": "Last updated",

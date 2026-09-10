@@ -379,7 +379,8 @@
       "toKorean": "한국어로",
       "toLatin": "로마자로",
       "changePhoto": "사진 변경",
-      "photoUploaded": "사진이 업로드되었습니다"
+      "photoUploaded": "사진이 업로드되었습니다",
+      "photoTooLarge": "이미지가 너무 큽니다. 5MB 미만 파일을 선택하세요."
     },
     "education": {
       "add": "학력 추가",
@@ -762,7 +763,8 @@
     "newResume": "새 이력서",
     "newCoverLetter": "새 자기소개서",
     "editing": "저장한 문서 편집 중",
-    "confirmShort": "삭제할까요?"
+    "confirmShort": "삭제할까요?",
+    "draftRestored": "저장하지 않은 변경 사항을 복구했습니다."
   },
   "legal": {
     "lastUpdated": "최종 수정",
