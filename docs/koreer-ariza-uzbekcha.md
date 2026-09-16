@@ -21,20 +21,37 @@ Va loyihaning butun mantiqini bir gapda ifodalaydigan jumla:
 
 ## 2. Muammo — uch qatlam
 
-### 2.1. Yuqori qatlam: Koreyada imkoniyat ochilmoqda
+### 2.1. Yuqori qatlam: jalb qilish muvaffaqiyatli bo'ldi — muammo keyingi bosqichda
 
-Koreya aholi kamayishi va hududiy ishchi kuchi tanqisligiga duch kelgan. Yechim
-sifatida davlat **chet ellik kadrlarni qabul qilish va ushlab qolish** yo'nalishiga
-o'tmoqda:
+**Koreya chet ellik talabalarni jalb qilishda yutdi.** 2026 yilda oliy ta'lim
+muassasalaridagi chet ellik talabalar soni **307,464 nafarga** yetdi — tarixda
+birinchi marta 300 mingdan oshdi. Bir yilda 54,030 nafar (21.3%) o'sdi.
+*(Manba: 교육부·한국교육개발원 «2026년 교육기본통계», 2026.04.01 holatiga)*
 
-- Talabalar jalb qilish siyosati (Study Korea 300K) — 2027 yilgacha chet ellik
-  talabalar sonini 300 mingga yetkazish maqsadi
-- Aholisi kamayayotgan hududlar (인구감소지역) — u yerdagi kichik korxonalar odam
-  topolmay ishlab chiqarishni qisqartirmoqda
-- Hududiy maxsus viza (F-2-R), E-7 va E-9 kvotalarining kengayishi
+Koreyada yashovchi chet elliklar umumiy soni ham **2,874,278 nafar**
+(2026 yil iyun oxiri holatiga).
+*(Manba: 법무부 «출입국·외국인정책 통계월보», 2026 yil iyun soni)*
 
-**Ya'ni:** ish o'rni viloyatlarda, ishlamoqchi bo'lgan chet elliklar poytaxt
-universitetlarida, qonuniy yo'l esa allaqachon ochiq. **Lekin ular uchrasha olmayapti.**
+**Lekin jalb qilingan kadr qolmayapti:**
+
+- Chet ellik talabalarning **86.5% i bitirgach Koreyada ishlashni xohlaydi**
+- Ammo **bitiruvchilarning taxminan yarmi Koreyani tark etadi.** Yashash muddatini
+  tugatib ketayotganlar ulushi bir yil ichida 35.6% dan **42.9%** ga chiqdi
+
+Ayni paytda ishchi kuchi juda kerak. 행정안전부 tomonidan belgilangan **aholisi
+kamayayotgan hududlar — 89 ta** (yana 18 ta "e'tibor hududi"). U yerdagi kichik
+korxonalar odam topa olmayapti. **Hududiy maxsus viza (F-2-R)** kabi qonuniy
+yo'llar esa ochiq.
+
+> **Ishlashni xohlaydiganlar — 86.5%. Haqiqatan qoladiganlar — yarmi.**
+> **Ish o'rni viloyatlarda, qonun yo'li ochiq. Lekin ular bog'lanmayapti.**
+
+Davlat siyosatining keyingi vazifasi endi **jalb qilish emas — ishga joylashtirish
+va joylashtirish**.
+
+> **Bu — arizangizning eng kuchli ochilishi.** Chunki siz "davlat maqsad qo'ygan"
+> demaysiz, balki "maqsad allaqachon bajarildi, endi yangi muammo paydo bo'ldi,
+> va men aynan o'shanda turibman" deysiz. Hakam uchun bu butunlay boshqa daraja.
 
 ### 2.2. O'rta qatlam: to'siq — ish o'rni emas, ikki varaq qog'oz
 
@@ -119,9 +136,32 @@ Bular **mavjud va ishlaydi** — veb va Android ilovasi sifatida joylashtirilgan
 | **E'longa moslab tahrirlash (AI)** | Ish e'lonini qo'yasiz — AI **faqat siz kiritgan ma'lumot asosida** 자기소개서 bo'limlarini o'sha e'longa moslaydi |
 | **AI karyera maslahatchisi** | Rezyume, 자기소개서, intervyu, maosh, ish muhiti, viza asoslari — ona tilingizda savol-javob |
 | **"Nega Koreya" yaratuvchisi** | Chet ellikdan albatta so'raladigan savolga javobni tuzilgan savollar orqali chiqarib, qoralamaga aylantiradi |
-| **6 til** | Koreys, ingliz, xitoy, vyetnam, o'zbek, rus — interfeys to'liq tarjima qilingan |
+| **6 til** | Koreys, ingliz, xitoy, vyetnam, o'zbek, rus — interfeys to'liq tarjima qilingan. **Talabalarning 64% ini ona tilida qamraydi** (pastda) |
 | **PDF va Word** | Tayyor hujjatni darhol yuklab olish |
 | **Saqlash va qayta tahrirlash** | Hujjatlar hisobda saqlanadi, istalgan vaqtda qayta ochiladi |
+
+---
+
+## 6.1. Tillar — tasodifiy emas, statistikaga aniq mos
+
+*(Manba: 교육부·한국교육개발원 «2026년 교육기본통계»)*
+
+| O'rin | Davlat | Talaba soni | Ulush | Koreer'da ona tili |
+|---|---|---|---|---|
+| 1 | Vyetnam | 96,834 | 31.5% | ✅ bor |
+| 2 | Xitoy | 78,890 | 25.7% | ✅ bor |
+| 3 | **O'zbekiston** | **20,876** | **6.8%** | ✅ bor |
+| 4 | Nepal | 20,118 | 6.5% | ❌ rejada |
+| 5 | Mo'g'uliston | 17,189 | 5.6% | ❌ rejada |
+
+- **Birinchi uchta davlat — jami 64.0%** — ona tilida qamralgan
+- Rus tili orqali Qozog'iston, Qirg'iziston va MDH qo'shimcha qamraladi
+- Qamralmagan qism — **nepal va mo'g'ul tili (12.1%, 37,307 nafar)** — rejada
+  ochiq yozilgan
+
+> Qamramagan qismni yashirmaslik — kuch belgisi. Hakam "bu odam o'z mahsulotini
+> aniq biladi" deb tushunadi. Va O'zbekiston 3-o'rinda turishi sizning
+> "men shu guruhdanman" degan dalilingizni raqam bilan tasdiqlaydi.
 
 ---
 
@@ -196,19 +236,21 @@ Koreer keng qamrovli ish platformasi emas. **이력서 va 자기소개서 — fa
 
 ---
 
-## 10. Bozor
+## 10. Bozor — raqamlar bilan
 
-| | Nima | Hajmi |
-|---|---|---|
-| **TAM** | Koreyadagi barcha chet elliklar (talabalar + ishchilar + ish izlovchilar) | `[    ]` — manba: 법무부 출입국·외국인정책 통계월보 |
-| **SAM** | Koreyada o'qiyotgan va shu yerda ishlamoqchi bo'lgan chet ellik talabalar | `[    ]` — manba: 교육부 교육기본통계 |
-| **SOM** | **Birinchi kirish nuqtasi:** Markaziy Osiyo talabalari + Hanyang va poytaxt universitetlari chet ellik talabalari | `[    ]` |
+| | Nima | Hajmi | Manba |
+|---|---|---|---|
+| **TAM** | Koreyadagi barcha chet elliklar | **2,874,278** | 법무부 통계월보, 2026.06 |
+| **SAM** | Koreyada ishlashni xohlovchi chet ellik talabalar | **~266,000**<br>(307,464 × 86.5%) | 교육부 교육기본통계 2026 |
+| **SOM** | Birinchi nuqta: o'zbekistonlik + MDH talabalari + Hanyang | **~20,000–30,000**<br>(O'zbekiston yolg'iz 20,876) | 교육부 교육기본통계 2026 |
 
-**Strategiya:** boshidanoq butun chet elliklarni nishonga olmaslik. **O'zingiz mansub
-bo'lgan va eng yaxshi biladigan guruhdan** boshlab, tekshirib, keyin Xitoy–Vyetnam
-yo'nalishiga, undan keyin viloyatlardagi chet ellik ishchilarga kengayish.
+**Strategiya:** boshidanoq hammasini olmaslik. **O'zingiz mansub bo'lgan va eng
+yaxshi biladigan guruhdan** (o'zbekistonlik va MDH talabalari + Hanyang) boshlab
+tekshirish, keyin Vyetnam–Xitoy yo'nalishiga (jami 57.2%) kengayish, undan keyin
+viloyatlardagi chet ellik ishchilarga.
 
-Kichik va aniq nishon — katta va noaniq da'vodan ishonchliroq.
+> SAM hisobi juda toza: **307,464 × 86.5% ≈ 266,000**. Ikkala raqam ham rasmiy
+> manbadan. Hakam kalkulyatorda tekshirsa ham to'g'ri chiqadi.
 
 ---
 
@@ -259,10 +301,10 @@ To'ldirilishi kerak: `[ mutaxassislik / bosqich ]`, `[ shaxsiy hikoya — 4-5 ga
 
 | Nima | Qayerdan |
 |---|---|
-| Chet ellik talabalar soni, davlatlar bo'yicha tarkibi | 교육부 교육기본통계 |
-| Koreyadagi chet elliklar umumiy soni | 법무부 출입국·외국인정책 통계월보 |
-| Aholisi kamayayotgan hududlar soni | 행정안전부 |
-| Hanyang'dagi chet ellik talabalar soni | 한양대 국제처 / 대학알리미 |
+| ~~Chet ellik talabalar soni va tarkibi~~ | ✅ **topildi va kiritildi** |
+| ~~Koreyadagi chet elliklar umumiy soni~~ | ✅ **topildi va kiritildi** |
+| ~~Aholisi kamayayotgan hududlar soni~~ | ✅ **topildi va kiritildi (89 ta)** |
+| Hanyang'dagi chet ellik talabalar soni | academyinfo.go.kr → 한양대학교 → 「외국인 학생 수」 |
 | Foydalanuvchi va intervyu soni | O'zingiz to'playsiz |
 | Shaxsiy hikoya | **Faqat siz** |
 | Mutaxassislik va bosqich | **Faqat siz** |
@@ -277,6 +319,7 @@ butun arizani yo'q qiladi.
 Bu jumlalarni yodlab qo'ying — intervyu va oditsiyada ishlaydi:
 
 1. **"Ish o'rni ochiq, lekin odam hujjatni yoza olmagani uchun kira olmayapti."**
+0. **"86.5% i qolishni xohlaydi. Yarmi ketadi. Orasidagi farq — ikki varaq qog'oz."**
 2. **"To'siq — ish o'rni emas, ikki varaq qog'oz."**
 3. **"Ular koreyschani bilmaydigan odamlar emas. Ular intervyuga yetsa o'tadigan odamlar."**
 4. **"Bizning AI o'ylab topmaydi. Ma'lumot yetmasa — savol beradi."**
