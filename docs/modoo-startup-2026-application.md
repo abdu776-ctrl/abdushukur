@@ -359,7 +359,31 @@ Koreer는 그 마지막 한 걸음을 담당합니다.
   → 아시아 확장 (일본은 이력서·직무경력서 구조가 동일),
     채용 기업 매칭 기능으로 확장
 
-### 6-4. 경쟁 분석
+### 6-4. 장기 비전 — 취업은 정착의 첫 단추입니다
+
+Koreer의 출발점은 취업 서류이지만, 그 서류가 풀리면 다음 단계가 이어집니다.
+
+```
+외국인 유학생  →  취업  →  지역사회 정착  →  공공서비스 접근
+   (현재)        (Koreer)      (확장)           (장기)
+```
+
+취업이 해결되면 체류 자격이 안정되고, 체류가 안정되면 지역에 정착하며,
+정착한 외국인은 비로소 지방자치단체의 정책과 공공서비스의 대상이 됩니다.
+**Koreer는 이 연쇄의 첫 단추를 담당합니다.**
+
+장기적으로는 외국인 주민이 자신의 체류 자격과 거주 지역에 맞는 공공서비스 정보를
+쉽게 확인할 수 있도록 확장할 수 있습니다. 다만 공공정책 정보는 **틀리면 이용자에게
+실질적 불이익이 발생하는 영역**이므로, 공신력 있는 데이터 연계와 검증 체계를 갖춘
+뒤에 접근해야 한다고 판단합니다. **따라서 본 지원 범위는 취업 서류에 한정합니다.**
+
+> UZ: Bu xatboshi — siyosat bilan bog'lanishni beradi, **lekin arizaning
+> qamrovini kengaytirmaydi**. Oxirgi jumla ataylab yozilgan: "shuning uchun
+> bu arizada faqat ish hujjatlari". Hakam buni o'qiganda "bu odam kengayishni
+> ko'radi, lekin chegarani ham biladi" deb tushunadi — bu **yetuklik belgisi**.
+> Hech narsa va'da qilmasdan vizyon ko'rsatishning eng xavfsiz yo'li.
+
+### 6-5. 경쟁 분석
 
 | 대안 | 한계 | Koreer |
 |------|------|--------|
