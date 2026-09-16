@@ -445,10 +445,12 @@ Koreer의 출발점은 취업 서류이지만, 그 서류가 풀리면 다음 �
 
 | 역할 | 성명 | 내용 |
 |------|------|------|
-| 대표 / 기획 · 디자인 · 개발 | **압두슈쿠르 올림조노프 (Olimjonov Abdushukur)** | 한양대학교 **디자인대학 시각디자인 전공 박사과정**. 2017년 입국, 한국 거주 9년차 · TOPIK 4급. 기획·디자인·프론트엔드·백엔드·배포 전 과정 1인 수행. 서비스 정식 배포 및 안드로이드 앱 패키징 완료 |
+| 대표 / 기획 · 디자인 · 개발 | **OLIMJONOV ABDUSHUKUR KHAYITVOY UGLI** | 한양대학교 **디자인대학 시각디자인 전공 박사과정**. 2017년 입국, 한국 거주 9년차 · TOPIK 4급. 기획·디자인·프론트엔드·백엔드·배포 전 과정 1인 수행. 서비스 정식 배포 및 안드로이드 앱 패키징 완료 |
 
-> UZ: Ismni **외국인등록증 dagi yozuv bilan bir xil** qiling. Agar pasportda
-> boshqacha bo'lsa, o'shanisini yozing — ariza va hujjatlar mos kelishi kerak.
+> UZ: Ism 외국인등록증 dagi inglizcha yozuv bilan **aynan bir xil**:
+> `OLIMJONOV ABDUSHUKUR KHAYITVOY UGLI`. Qisqartirmang, tartibini
+> o'zgartirmang, "Khayitvoy Ugli" qismini tushirib qoldirmang — tanlansangiz
+> 사업자등록 va pul o'tkazmasi shu ism bo'yicha ketadi.
 
 ### 7-1. 왜 이 사람이 이 문제를 풀 수 있는가
 
