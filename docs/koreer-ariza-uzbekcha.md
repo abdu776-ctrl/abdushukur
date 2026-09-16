@@ -1,0 +1,286 @@
+# Koreer — loyihaning to'liq asoslanishi (o'zbekcha)
+
+> Bu hujjat — Koreer loyihasining eng kuchli holatda bayon qilingan varianti.
+> Koreyscha ariza matni alohida faylda (`modoo-startup-2026-application.md`),
+> bu yerda esa **mazmunning o'zi** — siz tushunib, tekshirib, to'ldirishingiz uchun.
+> Har bir da'vo kod bilan tasdiqlangan; tasdiqlanmagani alohida belgilangan.
+
+---
+
+## 1. Koreer nima — bitta jumlada
+
+> **Chet ellik ish izlovchi o'z ona tilida yozadi — chiqishda koreys kompaniyasiga
+> topshirsa bo'ladigan 이력서 va 자기소개서 hosil bo'ladi.**
+
+Va loyihaning butun mantiqini bir gapda ifodalaydigan jumla:
+
+> **Ish o'rni ochiq, lekin odam hujjatni yoza olmagani uchun kira olmayapti.
+> Koreer o'sha hujjatni hal qiladi.**
+
+---
+
+## 2. Muammo — uch qatlam
+
+### 2.1. Yuqori qatlam: Koreyada imkoniyat ochilmoqda
+
+Koreya aholi kamayishi va hududiy ishchi kuchi tanqisligiga duch kelgan. Yechim
+sifatida davlat **chet ellik kadrlarni qabul qilish va ushlab qolish** yo'nalishiga
+o'tmoqda:
+
+- Talabalar jalb qilish siyosati (Study Korea 300K) — 2027 yilgacha chet ellik
+  talabalar sonini 300 mingga yetkazish maqsadi
+- Aholisi kamayayotgan hududlar (인구감소지역) — u yerdagi kichik korxonalar odam
+  topolmay ishlab chiqarishni qisqartirmoqda
+- Hududiy maxsus viza (F-2-R), E-7 va E-9 kvotalarining kengayishi
+
+**Ya'ni:** ish o'rni viloyatlarda, ishlamoqchi bo'lgan chet elliklar poytaxt
+universitetlarida, qonuniy yo'l esa allaqachon ochiq. **Lekin ular uchrasha olmayapti.**
+
+### 2.2. O'rta qatlam: to'siq — ish o'rni emas, ikki varaq qog'oz
+
+Koreys kompaniyasiga ishga kirish istisnosiz shu ikki hujjatdan boshlanadi:
+
+- **이력서** — rasm qayerga qo'yiladi, ta'lim teskari tartibda yoziladi, ish
+  tajribasi qanday belgilanadi. Buni chet ellikka **hech kim o'rgatmaydi**.
+- **자기소개서** — 성장과정 / 성격의 장단점 / 지원동기 / 입사 후 포부. Bu to'rt
+  bo'lim **yozilmagan qoida**. Chet ellik bunday struktura borligini ham bilmaydi.
+
+**Hujjatda yiqilgan odam intervyuga umuman yetmaydi.** Ya'ni koreys tilida ishlay
+oladigan odam, koreys tilida hujjat yoza olmagani uchun tushib qoladi.
+
+### 2.3. Pastki qatlam: "gapiradi, lekin yoza olmaydi"
+
+Bu — eng ko'p noto'g'ri tushuniladigan nuqta. Odatda "koreyschani bilmaydi" deyishadi.
+Aslida **gapirish va yozish orasidagi farq** ancha katta:
+
+| Tip | Holati | Hujjat bosqichida natija |
+|---|---|---|
+| **A** | Kundalik ish muloqotida koreyscha yetarli. Lekin **rasmiy yozma uslubda yoza olmaydi** | Yiqiladi |
+| **B** | O'qish va tinglash yaxshi, **yozish zaif** (TOPIK'da yozish bo'limi eng past) | Yiqiladi |
+| **C** | Koreyschasi boshlang'ich. Ona tilida aytadigan gapi ko'p | Urinib ham ko'rmaydi |
+
+**Uchala tip ham intervyuga yetsa o'tadigan odamlar.** Muammo — yetmaydi.
+
+---
+
+## 3. Kim uchun
+
+| Bosqich | Kim |
+|---|---|
+| **Birinchi** | Koreyadagi universitet va magistratura chet ellik talabalari — Xitoy, Vyetnam, O'zbekiston, Qozog'iston, Qirg'iziston, MDH |
+| **Ikkinchi** | Koreyada yashayotgan, ish almashtirmoqchi yoki doimiy shartnomaga o'tmoqchi chet ellik ishchilar |
+| **Uchinchi** | Chet eldan koreys kompaniyalariga ariza berayotganlar (K-Move va shunga o'xshash dasturlar) |
+
+---
+
+## 4. Mavjud yechimlar nega ishlamaydi
+
+| Nima | Nega yetarli emas |
+|---|---|
+| **Oddiy AI chatbotlar** | Koreys formatini bilmaydi. Odam aytmagan tajribani **o'ylab topadi**. Har safar noldan tushuntirish kerak |
+| **Chet el rezyume dasturlari** (Resume.io va h.k.) | G'arb uslubidagi bir betlik Resume uchun. **Koreys 이력서 / 자기소개서 formati umuman yo'q** |
+| **Koreys 자소서 첨삭 xizmatlari** | Koreyaliklar uchun, bittasi bir necha o'n ming von, chet ellik holatini ko'rgan mutaxassis kam |
+| **Tarjimonlar** (Papago va h.k.) | Jumlani tarjima qiladi, lekin **nima yozish kerakligini aytmaydi**. Tarjima uslubi darrov bilinadi |
+| **Universitet ish markazlari** | Koreyscha maslahat, xodim kam, navbat kutiladi |
+
+**Xulosa:** mavjud vositalar yo formatni bilmaydi, yo faqat tarjima qiladi, yo qimmat.
+**Ona tilida yozsang — koreys formatidagi koreyscha hujjat chiqaradigan vosita yo'q.**
+
+---
+
+## 5. Koreer qanday hal qiladi
+
+```
+① Profil kiritish     ② AI tahlil va yozish     ③ Koreys formatida hujjat
+   (ona tilida)          (faqat siz bergan           (이력서 / 자기소개서)
+                          ma'lumot asosida)
+        │                        │                        │
+        └────────────────────────┴────────────────────────┘
+                                 ↓
+        ④ E'longa moslab tahrirlash → ⑤ PDF / Word → topshirish
+```
+
+Asosiy g'oya: **ona tilida kiradi, koreys tilida chiqadi.** Foydalanuvchi tarjimon,
+shablon fayli va qidiruv oynasi orasida sarson bo'lmaydi — bitta oqim ichida
+topshirishga tayyor hujjat oladi.
+
+---
+
+## 6. Hozir nima bor (kod bilan tasdiqlangan)
+
+Bular **mavjud va ishlaydi** — veb va Android ilovasi sifatida joylashtirilgan.
+
+| Imkoniyat | Tafsilot |
+|---|---|
+| **Koreys rezyume yaratuvchi** | Bosqichma-bosqich forma. Rasm joyi, ta'lim teskari tartibi kabi koreys qoidalari sukut bo'yicha. **10 ta joylashuv × 8 ta rang** — koreys rasmiy shakli, rasmsiz shakl, modern, klassik, yon panel, ixcham, akademik CV |
+| **자기소개서 yaratuvchi + yo'riqnoma** | To'rt bo'limning har biri uchun "bu yerga nima yozish kerak" yo'riqnomasi. Bo'sh ekran oldida qotib qolmaslik uchun |
+| **Ona til → koreys tili** | Ichki tarjima. Tashqi tarjimonga chiqish shart emas |
+| **Ism transliteratsiyasi** | Chet el ismini koreys hujjatiga mos hangul yozuviga o'girish |
+| **E'longa moslab tahrirlash (AI)** | Ish e'lonini qo'yasiz — AI **faqat siz kiritgan ma'lumot asosida** 자기소개서 bo'limlarini o'sha e'longa moslaydi |
+| **AI karyera maslahatchisi** | Rezyume, 자기소개서, intervyu, maosh, ish muhiti, viza asoslari — ona tilingizda savol-javob |
+| **"Nega Koreya" yaratuvchisi** | Chet ellikdan albatta so'raladigan savolga javobni tuzilgan savollar orqali chiqarib, qoralamaga aylantiradi |
+| **6 til** | Koreys, ingliz, xitoy, vyetnam, o'zbek, rus — interfeys to'liq tarjima qilingan |
+| **PDF va Word** | Tayyor hujjatni darhol yuklab olish |
+| **Saqlash va qayta tahrirlash** | Hujjatlar hisobda saqlanadi, istalgan vaqtda qayta ochiladi |
+
+---
+
+## 7. Farqlovchi to'rt jihat — eng muhim qism
+
+### 7.1. O'ylab topmaydi (eng kuchli tamoyil)
+
+Tahrirlovchi AI **faqat foydalanuvchi kiritgan ma'lumotni** ishlatadi. Agar ma'lumot
+yetmasa — hikoya to'qimaydi, balki **"nimaga javob berishingiz kerak" degan savollar
+ro'yxatini qaytaradi**.
+
+Sababi oddiy: to'qib yozilgan 자기소개서 intervyuda darhol qulaydi. Odam o'zi
+yozmagan narsani himoya qila olmaydi.
+
+### 7.2. Tarjimon emas, hujjat vositasi
+
+Papago jumlani o'giradi. Lekin chet ellik qotib qoladigan joy tarjima emas —
+**"자기소개서 ga umuman nima yoziladi?"** degan savol. Koreer formatni, bo'lim
+strukturasini va yo'riqnomani beradi; tarjima esa o'sha oqimning bir bosqichi.
+
+### 7.3. Sof hangul (No-Hanja)
+
+AI koreys tilida yozganda xitoy ieroglifi (結尾, 誠實性) aralashtirib yuborishi
+odatiy hol. Bunday hujjat koreys kadrlar bo'limida g'alati ko'rinadi. Koreer'da
+bu tizim darajasida bloklangan — faqat sof hangul (결미, 정직성). Hatto xitoy
+tilida javob berayotganda ham koreyscha atamalar hangulda qoladi.
+
+### 7.4. Faqat ikkita hujjat — bu ongli tanlov
+
+Koreer keng qamrovli ish platformasi emas. **이력서 va 자기소개서 — faqat shu ikkitasi.**
+
+- Koreys ishga qabulining **birinchi darvozasi aynan shu ikki hujjat**, chet ellik
+  yiqiladigan joy ham shu
+- Keng va sayoz vositalar allaqachon ko'p. Koreer **shu ikkitasini oxirigacha
+  olib boradigan chuqurlik** bilan raqobatlashadi
+- Qamrov tor bo'lgani uchun koreys formatini mahsulot ichiga **chuqur joylash**
+  imkoni bo'ldi. Universal vositalar buni struktura jihatidan qila olmaydi
+
+---
+
+## 8. Hujjat nimaga asoslanadi
+
+| Hisobga olinadigan ma'lumot | Hujjatga ta'siri |
+|---|---|
+| Ta'lim va mutaxassislik | Lavozimga bog'lanish, teskari tartibda yozilishi |
+| Koreys tili darajasi (TOPIK va h.k.) | Sertifikatlar bo'limi, matn murakkabligi |
+| Koreyadagi tajriba (o'qish, ish, amaliyot) | 성장과정 va 지원동기 uchun asos |
+| Ko'nikma va kuchli tomonlar | 성격의 장단점, lavozimga mosligi |
+| Maqsadli lavozim / ish e'loni | Bo'limlarni moslab tahrirlash |
+
+> **Halol chegara:** hozir bu ma'lumotlar **erkin matn** sifatida yig'iladi va AI
+> shuni o'qiydi. "TOPIK darajasiga qarab avtomatik moslashtiradigan" **strukturaviy
+> tizim hali yo'q** — u rejada.
+
+---
+
+## 9. Rejadagi ishlar (grant puli aynan shunga ketadi)
+
+| Nima | Nega kerak | Qachon |
+|---|---|---|
+| **Kompaniya ma'lumotini avtomatik chiqarish** | Chet ellik 지원동기 yoza olmasligining asosiy sababi — **kompaniya haqida hech narsa bilmasligi**. Nom kiritilsa: faoliyati, qadriyatlari, so'nggi yangiliklari chiqadi va to'g'ridan-to'g'ri 지원동기 yozishga ulanadi. **Eng katta ta'sir beradigan keyingi qadam** | 1R–2R |
+| **Profilni strukturalash** (TOPIK darajasi, viza turi, mutaxassislik) | Til darajasi va viza turiga qarab hujjat uslubi hamda tavsiya etiladigan lavozimlarni avtomatik moslash | 1R–2R |
+| **Mo'g'ul tili** | Mo'g'uliston yirik talaba yuboruvchi davlat, hozir bu til yo'q | 1R |
+| **Koreys ish hujjatlariga ixtisoslashgan model** | Universal LLM'ga bog'liqlikni kamaytirish (2R'dagi GPU qo'llab-quvvatlashi bilan) | 2R |
+| **iOS ilovasi** | Hozir veb + Android | 2R |
+| **Universitet va hokimliklar uchun boshqaruv paneli** | Muassasa o'z talabalarining hujjat tayyorgarligini kuzatadi | 2R–3R |
+
+> **Muhim:** kompaniya ma'lumoti funksiyasi **hali qurilmagan**. Uni "bor" deb
+> yozish mumkin emas — 2-raund 관찰평가 bo'lgani uchun hakamlar ilovani ochib
+> ko'radi. Reja sifatida turgani esa **foydali**: "pulni nimaga sarflaysiz?"
+> degan savolga aniq javob bo'ladi.
+
+---
+
+## 10. Bozor
+
+| | Nima | Hajmi |
+|---|---|---|
+| **TAM** | Koreyadagi barcha chet elliklar (talabalar + ishchilar + ish izlovchilar) | `[    ]` — manba: 법무부 출입국·외국인정책 통계월보 |
+| **SAM** | Koreyada o'qiyotgan va shu yerda ishlamoqchi bo'lgan chet ellik talabalar | `[    ]` — manba: 교육부 교육기본통계 |
+| **SOM** | **Birinchi kirish nuqtasi:** Markaziy Osiyo talabalari + Hanyang va poytaxt universitetlari chet ellik talabalari | `[    ]` |
+
+**Strategiya:** boshidanoq butun chet elliklarni nishonga olmaslik. **O'zingiz mansub
+bo'lgan va eng yaxshi biladigan guruhdan** boshlab, tekshirib, keyin Xitoy–Vyetnam
+yo'nalishiga, undan keyin viloyatlardagi chet ellik ishchilarga kengayish.
+
+Kichik va aniq nishon — katta va noaniq da'vodan ishonchliroq.
+
+---
+
+## 11. Pul qanday topiladi
+
+| Model | Tafsilot |
+|---|---|
+| **Bepul (hozir)** | Rezyume yaratish, ko'rish, PDF — bepul. AI kunlik bepul limit bilan |
+| **Obuna** | Cheksiz AI tahrirlash, premium shablonlar, e'longa moslash, intervyuga tayyorgarlik |
+| **B2B — universitetlar** | Xalqaro bo'lim va ish markazlari o'z talabalariga to'liq beradi (muassasa shartnomasi) |
+| **B2G — hokimliklar** | Aholisi kamayayotgan hududlar hokimliklari, mehnat markazlari, chet ellik ishchilarni qo'llab-quvvatlash markazlari |
+| **B2B — kompaniyalar va agentliklar** | Chet ellik kadr yollaydigan kompaniyalar, ta'lim agentliklari, vositachilar |
+
+**Eng katta puli borlari — B2B va B2G**, chunki u yerda hisob foydalanuvchi soni
+bilan emas, **muassasa soni** bilan yuritiladi. Va hududiy hokimliklarda chet ellik
+kadr jalb qilish uchun ajratilgan byudjet bor.
+
+---
+
+## 12. Nega Hanyang
+
+- Koreer Hanyang'da, Hanyang talabalarining muammosini ko'rib yaratilgan
+- Ishlab chiquvchi **o'sha talabalardan biri** — maqsadli auditoriyani har kuni
+  kampusda uchratadi
+- Ya'ni **farazni tekshirish → tuzatish → qayta tekshirish** siklini eng tez
+  aylantirish mumkin bo'lgan muhit allaqachon mavjud
+
+> **Kuchli jumla:** *"Foydalanuvchini qidirib topishim shart emas — men ular bilan
+> birga o'qiyman."*
+
+Hanyang'dagi chet ellik talabalar soni: `[    ]` — 국제처 yoki 대학알리미 dan oling.
+
+---
+
+## 13. Nega aynan siz
+
+| | |
+|---|---|
+| **Muammoni bilish** | Muammoni tadqiq qilib emas, **o'zingiz boshdan kechirib** bilasiz |
+| **Yakka o'zi qilgan ish** | G'oya, dizayn, frontend, backend, joylashtirish — hammasi bir kishi tomonidan, **haqiqiy joylashtirishgacha yetkazilgan** |
+| **Foydalanuvchi = ishlab chiquvchi** | Mahsulotni ishlatadigan odam bilan yaratadigan odam bir shaxs |
+
+To'ldirilishi kerak: `[ mutaxassislik / bosqich ]`, `[ shaxsiy hikoya — 4-5 gap ]`
+
+---
+
+## 14. To'ldirilishi shart bo'lgan joylar
+
+| Nima | Qayerdan |
+|---|---|
+| Chet ellik talabalar soni, davlatlar bo'yicha tarkibi | 교육부 교육기본통계 |
+| Koreyadagi chet elliklar umumiy soni | 법무부 출입국·외국인정책 통계월보 |
+| Aholisi kamayayotgan hududlar soni | 행정안전부 |
+| Hanyang'dagi chet ellik talabalar soni | 한양대 국제처 / 대학알리미 |
+| Foydalanuvchi va intervyu soni | O'zingiz to'playsiz |
+| Shaxsiy hikoya | **Faqat siz** |
+| Mutaxassislik va bosqich | **Faqat siz** |
+
+**Taxminiy raqam yozmang.** Davlat arizasida tekshiriladi va bitta yolg'on raqam
+butun arizani yo'q qiladi.
+
+---
+
+## 15. Og'zaki taqdimot uchun kuchli jumlalar
+
+Bu jumlalarni yodlab qo'ying — intervyu va oditsiyada ishlaydi:
+
+1. **"Ish o'rni ochiq, lekin odam hujjatni yoza olmagani uchun kira olmayapti."**
+2. **"To'siq — ish o'rni emas, ikki varaq qog'oz."**
+3. **"Ular koreyschani bilmaydigan odamlar emas. Ular intervyuga yetsa o'tadigan odamlar."**
+4. **"Bizning AI o'ylab topmaydi. Ma'lumot yetmasa — savol beradi."**
+5. **"Tarjimon jumlani o'giradi. Lekin nima yozish kerakligini aytmaydi."**
+6. **"Qamrovni ataylab toraytirdik — shuning uchun chuqur qila oldik."**
+7. **"Foydalanuvchini qidirishim shart emas, men ular bilan birga o'qiyman."**
+8. **"Davlat eshikni ochdi. Lekin ariza yoza olmagan odam baribir kira olmaydi."**
