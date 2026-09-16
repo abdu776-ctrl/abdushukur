@@ -330,6 +330,73 @@ Tanishlaringiz aytgan **"yozsak ham sayoz chiqadi"** gapi — bu yangi va muhim 
 Muammo faqat grammatika emas: **자기소개서 ga qanday mazmun kerakligini bilmaslik.**
 Buni arizaga alohida tip qilib qo'shdim (A+ tipi).
 
+---
+
+## 13.1. Sizning mutaxassisligingiz — bu men kutmagan darajada kuchli
+
+**Olimjonov Abdushukur — Hanyang universiteti, Dizayn fakulteti, vizual dizayn
+yo'nalishi, PhD.**
+
+Men oldin arizaning bitta zaif tomonini aytgandim: *"qattiqqo'l texnik hakam
+Koreer'ni LLM ustidagi oddiy ilova deb belgilashi mumkin"*. **Vizual dizayn
+bo'yicha doktorantura bu e'tirozni yopadi.**
+
+### Nega — asosiy fikr
+
+> **이력서는 글이자 동시에 「디자인 산출물」입니다.**
+> *(Rezyume — bu matn, lekin ayni paytda dizayn mahsuloti.)*
+
+Koreys 이력서 sida qat'iy vizual qoidalar bor:
+- Rasm qayerga va qaysi o'lchamda qo'yiladi
+- Jadval qanday tuziladi
+- Qaysi bo'lim qaysi tartibda joylashadi
+- Shrift ierarxiyasi qanday bo'ladi
+
+**Siz har safar qoqilgan joylar — bularning hammasi dizayn masalasi edi.**
+Va bu — sizning tadqiqot sohangiz.
+
+### Uch xil qobiliyat — bitta odamda
+
+| Kerak bo'lgan qobiliyat | Sizda |
+|---|---|
+| **Muammoni bilish** | 9 yil, TOPIK 4, o'zingiz boshdan kechirgansiz |
+| **Hujjatni loyihalash** | **Vizual dizayn PhD** — koreys hujjat qoidalari aynan shu soha |
+| **Haqiqatan qurish** | Yakka o'zingiz yozib, joylashtirib, Android'ga chiqargansiz |
+
+Odatda bir odamda bularning ikkitasi bo'ladi. **Uchtasi kam uchraydi.**
+
+### Eng kuchli jumla
+
+> **"일반 개발자는 프롬프트를 복제할 수 있습니다.
+> 그러나 한국 문서 관행에 대한 디자인 전문성은 복제하기 어렵습니다."**
+> *(Oddiy dasturchi promptni nusxa ko'chirishi mumkin. Lekin koreys hujjat
+> qoidalari bo'yicha dizayn ekspertizasini nusxa ko'chirish qiyin.)*
+
+Bu — sizning haqiqiy himoyangiz (moat). Men oldin "himoya zaif" degandim —
+**endi bu fikrimni o'zgartiraman.**
+
+### 10 ta shablon endi boshqacha ko'rinadi
+
+Ilovangizdagi **10 ta joylashuv × 8 ta rang** — men buni oddiy funksiya deb
+yozgandim. Endi u boshqa narsa:
+
+> **개발 부산물이 아니라, 시각디자인 연구자가 설계한 결과물입니다.**
+> *(Dasturlashning yon mahsuli emas, vizual dizayn tadqiqotchisi loyihalagan natija.)*
+
+---
+
+## 13.2. 500+ chet ellik talaba — tayyor sinov maydoni
+
+Faqat **o'zingiz o'qiyotgan Dizayn fakultetida 500 dan ortiq chet ellik talaba** bor.
+
+Bu degani:
+- Foydalanuvchi qidirish kerak emas — **ular yoningizda**
+- Bugun kechqurun havolani tarqatish uchun real kanal bor
+- 2-raund 관찰평가 uchun uzluksiz sinov muhiti mavjud
+
+> **"목표 사용자를 찾아 나설 필요가 없습니다. 제 단과대학에만 외국인 학생이
+> 500명 이상 있고, 저도 그중 한 명입니다."**
+
 ## 14. To'ldirilishi shart bo'lgan joylar
 
 | Nima | Qayerdan |
@@ -340,7 +407,7 @@ Buni arizaga alohida tip qilib qo'shdim (A+ tipi).
 | Hanyang'dagi chet ellik talabalar soni | academyinfo.go.kr → 한양대학교 → 「외국인 학생 수」 |
 | Foydalanuvchi va intervyu soni | O'zingiz to'playsiz |
 | ~~Shaxsiy hikoya~~ | ✅ **olindi va yozildi** |
-| Mutaxassislik va bosqich | **Faqat siz** |
+| ~~Mutaxassislik va bosqich~~ | ✅ **olindi** |
 
 **Taxminiy raqam yozmang.** Davlat arizasida tekshiriladi va bitta yolg'on raqam
 butun arizani yo'q qiladi.
