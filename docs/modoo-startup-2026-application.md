@@ -139,7 +139,25 @@
 - 안드로이드 앱: Capacitor 기반 패키징 완료 (`com.koreer.app`)
 - 개발 방식: 1인 개발 — 기획·디자인·프론트엔드·백엔드·배포 전 과정 직접 수행
 
-### 3-2. 현재 구현 완료된 기능
+### 3-2. 서비스 흐름 — 사용자는 이렇게 씁니다
+
+```
+① 프로필 입력          ② AI 분석·작성          ③ 한국형 문서 생성
+   (모국어로 편하게)        (입력한 사실만 사용)       (이력서 / 자기소개서)
+        │                       │                       │
+        └───────────────────────┴───────────────────────┘
+                                ↓
+        ④ 채용공고 맞춤 첨삭  →  ⑤ PDF · Word 내보내기  →  제출
+```
+
+핵심은 **모국어로 들어가서 한국어로 나온다**는 것입니다. 사용자는 번역기와
+양식 파일과 검색창을 오갈 필요 없이, 하나의 흐름 안에서 제출 가능한 문서를 얻습니다.
+
+> UZ: Bu diagramma — tashqi maslahatdan olingan eng foydali fikr. Koreys
+> arizalarida bunday oqim sxemasi juda yaxshi ishlaydi: hakam 3 soniyada
+> mahsulotni tushunadi. Taqdimot slaydiga ham shuni qo'ying.
+
+### 3-3. 현재 구현 완료된 기능
 
 | 기능 | 설명 |
 |------|------|
@@ -154,7 +172,7 @@
 | **PDF · Word 내보내기** | 완성 문서를 기업 제출용 파일로 즉시 내보내기 |
 | **문서 저장·재편집** | 계정별로 작성한 문서를 저장하고 언제든 다시 열어 수정 |
 
-### 3-3. 개발 예정 기능 (지원금 사용 계획과 직결)
+### 3-4. 개발 예정 기능 (지원금 사용 계획과 직결)
 
 > UZ: **DIQQAT — buni alohida o'qing.** Siz aytgan "kompaniya nomini kiritsa
 > ma'lumotini chiqarib beradi" funksiyasi **hozir kodda yo'q**. Men tekshirdim.
@@ -167,12 +185,13 @@
 | 기능 | 내용 | 시점 |
 |------|------|------|
 | **기업 정보 자동 조회** | 지원하려는 **한국 기업명을 입력하면 기업 개요·사업 분야·인재상·최근 동향을 정리해 보여주고, 그 내용을 지원동기 작성에 바로 연결**합니다. 외국인 지원자가 가장 막히는 지점이 "이 회사에 대해 아는 것이 없어서 지원동기를 못 쓰는 것"이기 때문입니다 | 1R~2R |
+| **프로필 구조화 (TOPIK·비자·전공)** | 현재 자유 입력인 프로필을 구조화된 필드로 전환해, 한국어 수준·비자 유형별로 문서와 추천 직무를 자동 조정 | 1R~2R |
 | 몽골어 추가 | 현재 6개 언어는 중국·베트남·우즈베키스탄·CIS 지역을 포함하지만, 주요 유학생 송출국인 **몽골어가 아직 없습니다**. 다음 우선 추가 대상입니다 | 1R |
 | 한국 취업 문서 특화 모델 학습 | 2R GPU 지원을 활용해 범용 LLM 의존도를 낮추고 도메인 특화 모델 확보 | 2R |
 | iOS 앱 출시 | 현재 웹 + 안드로이드 → iOS 확장 | 2R |
 | 대학·지자체용 관리자 대시보드 | 기관이 소속 유학생의 서류 준비 현황을 관리 | 2R~3R |
 
-### 3-4. 왜 '딱 두 가지'만 하는가 — 선택과 집중
+### 3-5. 왜 '딱 두 가지'만 하는가 — 선택과 집중
 
 Koreer는 종합 취업 플랫폼이 아닙니다. **이력서와 자기소개서, 단 두 가지**에만
 집중합니다. 이것은 기능이 부족한 것이 아니라 **의도된 전략**입니다.
@@ -182,7 +201,7 @@ Koreer는 종합 취업 플랫폼이 아닙니다. **이력서와 자기소개�
 - 범위가 좁기 때문에 한국식 양식을 제품에 **하드코딩 수준으로 내장**할 수 있었습니다.
   범용 도구는 구조적으로 이렇게 못 합니다.
 
-### 3-5. 왜 이 6개 언어인가 — 유학생 인구 구조에 맞춘 선택
+### 3-6. 왜 이 6개 언어인가 — 유학생 인구 구조에 맞춘 선택
 
 지원 언어는 임의로 고른 것이 아니라 **국내 외국인 유학생 상위 송출국 구성**에
 맞춘 것입니다.
@@ -197,7 +216,7 @@ Koreer는 종합 취업 플랫폼이 아닙니다. **이력서와 자기소개�
 
 - 국내 외국인 유학생 국가별 구성: [   ] (출처: 교육부 교육기본통계 [   ]년)
 
-### 3-6. 기술적 차별점 — "지어내지 않는 AI"
+### 3-7. 기술적 차별점 — "지어내지 않는 AI"
 
 일반 AI 챗봇과의 결정적 차이는 **세 가지 제약을 서비스에 강제로 박아 넣었다는 점**입니다.
 
@@ -214,7 +233,31 @@ Koreer는 종합 취업 플랫폼이 아닙니다. **이력서와 자기소개�
    상한을 적용했습니다. **비회원도 가입 전에 체험할 수 있게 하면서** API 비용
    폭증을 막는 구조입니다.
 
-### 3-7. 기술 스택
+### 3-8. 범용 AI와의 차이 — 무엇을 근거로 쓰는가
+
+일반 AI에 "자기소개서 써 줘"라고 하면 **누구에게나 해당되는 문장**이 나옵니다.
+Koreer는 지원자의 프로필을 문서 생성의 근거로 사용합니다.
+
+| 반영하는 정보 | 문서에 미치는 영향 |
+|---------------|-------------------|
+| 학력 · 전공 | 지원 직무와의 연결, 학력 역순 기재 |
+| 한국어 수준 (TOPIK 등 자격) | 자격증란 기재, 문서 난이도 조정 |
+| 한국 내 경험 (학업·아르바이트·인턴) | 성장과정 및 지원동기의 근거 |
+| 보유 기술 · 강점 | 성격의 장단점, 직무 적합성 |
+| 지원하려는 직무 · 채용공고 | 항목별 맞춤 첨삭 |
+
+**현재:** 위 정보를 프로필로 입력받아 문서 생성과 첨삭에 반영합니다.
+**개발 예정:** 현재 자유 입력 형태인 항목들을 **구조화된 필드(TOPIK 등급 선택,
+비자 종류, 전공 분류 등)로 전환**해, 한국어 수준과 비자 유형에 따라 문서 표현
+수위와 지원 가능 직무를 자동으로 조정하는 단계로 확장합니다.
+
+> UZ: Bu yerda halol chegara chizdim. Hozir profil **erkin matn** sifatida
+> yig'iladi va AI shuni ishlatadi — bu rost. Lekin "TOPIK darajasiga qarab
+> avtomatik moslashtiradi" degan **strukturaviy tizim hali yo'q**. Shuning uchun
+> birinchi qismni "hozir", ikkinchisini "rejada" deb ajratdim. Bu zaiflik emas —
+> yana bitta aniq pul sarflash yo'nalishi.
+
+### 3-9. 기술 스택
 
 - **프론트엔드**: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS
 - **국제화**: next-intl 기반 6개 언어, 누락 번역 자동 검사 스크립트 운영
@@ -223,7 +266,7 @@ Koreer는 종합 취업 플랫폼이 아닙니다. **이력서와 자기소개�
 - **모바일**: Capacitor 안드로이드 앱 패키징
 - **배포·보안**: Vercel, 보안 헤더 적용 (클릭재킹 차단, HSTS, MIME 스니핑 차단 등)
 
-### 3-8. 검증 현황
+### 3-10. 검증 현황
 
 > UZ: Rostini yozing. Hozir foydalanuvchi kam bo'lsa — 2 kun ichida 15-20 talabaga
 > yuboring va o'sha raqamni yozing. 2-raund 관찰평가 bo'lgani uchun bu keyin ham
@@ -284,7 +327,24 @@ Koreer는 그 마지막 한 걸음을 담당합니다.
 > kelib chiqadi va juda kuchli. Hududiy hokimiyatlarda chet ellik ishchi jalb
 > qilish byudjeti bor. Bu B2C obunadan ancha katta pul.
 
-### 6-2. 단계별 계획 (모두의 창업 라운드에 맞춤)
+### 6-2. 시장 규모 (TAM / SAM / SOM)
+
+| 구분 | 정의 | 규모 |
+|------|------|------|
+| **TAM** | 국내 체류 외국인 전체 (유학생 + 외국인 근로자 + 구직자) | **[   ]만 명** (출처: 법무부 출입국·외국인정책 통계월보 [   ]) |
+| **SAM** | 국내 고등교육기관 외국인 유학생 중 한국 취업 희망자 | **[   ]만 명** (출처: 교육부 교육기본통계 [   ]) |
+| **SOM** | 1차 진입 시장 — **중앙아시아권(우즈베키스탄·카자흐스탄 등) 유학생 + 한양대를 포함한 수도권 대학 유학생** | **[   ]천 명** |
+
+**진입 전략:** 처음부터 전체 외국인을 겨냥하지 않습니다.
+**본인이 속해 있고 가장 잘 아는 집단(중앙아시아권 유학생 + 한양대 유학생)에서
+시작해** 검증한 뒤, 중국·베트남권으로, 이후 지역 외국인 근로자로 확장합니다.
+
+> UZ: TAM/SAM/SOM — tashqi maslahatdagi ikkinchi foydali fikr, bizda yo'q edi.
+> Koreys hakamlari bu uch harfni ko'rishni **kutadi**. SOM ni ataylab kichik
+> qilib qo'ydim: "butun dunyoni olaman" deganlar ishonchsiz ko'rinadi,
+> "o'zim biladigan 3 ming kishidan boshlayman" deganlar jiddiy ko'rinadi.
+
+### 6-3. 단계별 계획 (모두의 창업 라운드에 맞춤)
 
 - **1R 선정 시 (창업활동자금 200만원 / 1:1 멘토링 / AI 솔루션)**
   → 한양대 및 인근 대학 유학생 대상 베타 운영, 사용자 100명 확보 및 인터뷰,
@@ -299,7 +359,7 @@ Koreer는 그 마지막 한 걸음을 담당합니다.
   → 아시아 확장 (일본은 이력서·직무경력서 구조가 동일),
     채용 기업 매칭 기능으로 확장
 
-### 6-3. 경쟁 분석
+### 6-4. 경쟁 분석
 
 | 대안 | 한계 | Koreer |
 |------|------|--------|
