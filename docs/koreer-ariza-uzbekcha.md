@@ -285,17 +285,50 @@ Hanyang'dagi chet ellik talabalar soni: `[    ]` — 국제처 yoki 대학알리
 
 ---
 
-## 13. Nega aynan siz
+## 13. Nega aynan siz — hikoyangiz
 
-| | |
+**2017 → 2026: to'qqiz yil, TOPIK 4, va baribir bir xil muammo.**
+
+| Yil | Nima bo'ldi |
 |---|---|
-| **Muammoni bilish** | Muammoni tadqiq qilib emas, **o'zingiz boshdan kechirib** bilasiz |
-| **Yakka o'zi qilgan ish** | G'oya, dizayn, frontend, backend, joylashtirish — hammasi bir kishi tomonidan, **haqiqiy joylashtirishgacha yetkazilgan** |
-| **Foydalanuvchi = ishlab chiquvchi** | Mahsulotni ishlatadigan odam bilan yaratadigan odam bir shaxs |
+| **2017** | Koreyaga keldingiz |
+| — | TOPIK 4 oldingiz, gapira olasiz. **Lekin 이력서 va 자기소개서 ni yolg'iz yoza olmadingiz** |
+| — | Birinchi marta ish joyidagi koreys hamkasbingizdan yordam so'radingiz |
+| — | Har safar takrorlandi: yangi o'qish, professor laboratoriyasi, kuchli firmalar |
+| — | Milliy oshxonada tanishlaringiz bilan gaplashdingiz — **"yozsak ham sayoz chiqadi, ishga kira olmaymiz"** |
+| **2023** | Darsda xitoylik talabalarda ham **aynan shu muammo** borligini bildingiz |
+| **2026** | Qayta o'qishni boshladingiz — **va yana o'sha muammoga duch keldingiz** |
+| **Hozir** | Buni doimiy hal qilish kerak degan qarorga keldingiz va qurdingiz |
 
-To'ldirilishi kerak: `[ mutaxassislik / bosqich ]`, `[ shaxsiy hikoya — 4-5 gap ]`
+### Nega bu hikoya kuchli — uchta sabab
 
----
+**1. "Koreyschani yaxshiroq o'rgansin" e'tirozini yopadi.**
+Sizda TOPIK 4 bor, gapira olasiz, 9 yil Koreyadasiz. **Va baribir yoza olmadingiz.**
+Demak muammo til darajasi emas. Bu — arizadagi asosiy argumentning tirik isboti.
+
+**2. Bu shaxsiy zaiflik emasligini ko'rsatadi.**
+O'zbek tanishlaringiz ham, xitoylik talabalar ham — **turli davlat, bir xil to'siq**.
+Ya'ni tizimli muammo, individual emas.
+
+**3. Takrorlanishi — eng kuchli dalil.**
+Bir marta emas. O'qish, laboratoriya, firma, keyin 2023, keyin 2026.
+**To'qqiz yilda hal bo'lmagan muammo** — demak o'z-o'zidan hal bo'lmaydi.
+
+### Eng kuchli jumla (yodlab qo'ying)
+
+> **"한국에 온 지 9년, TOPIK 4급을 가지고도 여전히 같은 자리였습니다."**
+> *(Koreyaga kelganimga 9 yil, TOPIK 4 darajam bor — va men hamon o'sha joyda edim.)*
+
+Va ikkinchisi:
+
+> **"말은 통하는데 글이 되지 않았습니다. 문제는 제 한국어가 아니라 '문서'였습니다."**
+> *(Gapim o'tardi, lekin yozuvim chiqmasdi. Muammo koreyschamda emas, hujjatda edi.)*
+
+### Yangi qo'shilgan dalil
+
+Tanishlaringiz aytgan **"yozsak ham sayoz chiqadi"** gapi — bu yangi va muhim nuqta.
+Muammo faqat grammatika emas: **자기소개서 ga qanday mazmun kerakligini bilmaslik.**
+Buni arizaga alohida tip qilib qo'shdim (A+ tipi).
 
 ## 14. To'ldirilishi shart bo'lgan joylar
 
@@ -306,7 +339,7 @@ To'ldirilishi kerak: `[ mutaxassislik / bosqich ]`, `[ shaxsiy hikoya — 4-5 ga
 | ~~Aholisi kamayayotgan hududlar soni~~ | ✅ **topildi va kiritildi (89 ta)** |
 | Hanyang'dagi chet ellik talabalar soni | academyinfo.go.kr → 한양대학교 → 「외국인 학생 수」 |
 | Foydalanuvchi va intervyu soni | O'zingiz to'playsiz |
-| Shaxsiy hikoya | **Faqat siz** |
+| ~~Shaxsiy hikoya~~ | ✅ **olindi va yozildi** |
 | Mutaxassislik va bosqich | **Faqat siz** |
 
 **Taxminiy raqam yozmang.** Davlat arizasida tekshiriladi va bitta yolg'on raqam
