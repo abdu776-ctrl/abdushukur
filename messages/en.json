@@ -913,5 +913,9 @@
     "aiTooFast": "Too many requests. Please wait a moment and try again.",
     "aiUnavailable": "AI is unavailable right now. Please try again later.",
     "aiTooLong": "That text is too long. Shorten it and try again."
+  },
+  "network": {
+    "offline": "No internet connection",
+    "offlineHint": "You can keep writing — your draft is saved on this device. AI help and saving to your account need a connection."
   }
 }

@@ -33,7 +33,16 @@ const nextConfig: NextConfig = {
     ],
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      {
+        // The worker and its fallback page must never be served from a stale
+        // cache: a pinned copy of sw.js would keep an old version of the app
+        // alive on people's devices long after a deploy.
+        source: '/:file(sw.js|offline.html)',
+        headers: [{ key: 'Cache-Control', value: 'no-cache, must-revalidate' }],
+      },
+    ];
   },
 };
 

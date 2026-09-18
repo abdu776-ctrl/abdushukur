@@ -913,5 +913,9 @@
     "aiTooFast": "Juda ko‘p so‘rov. Biroz kuting va qayta urinib ko‘ring.",
     "aiUnavailable": "AI hozircha mavjud emas. Keyinroq urinib ko‘ring.",
     "aiTooLong": "Bu matn juda uzun. Qisqartirib, qayta urinib ko‘ring."
+  },
+  "network": {
+    "offline": "Internet aloqasi yo‘q",
+    "offlineHint": "Yozishda davom etavering — qoralamangiz shu qurilmada saqlanadi. AI yordami va hisobingizga saqlash uchun internet kerak."
   }
 }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#4f46e5" />
+    <title>Koreer</title>
+    <!--
+      The offline fallback, served by the service worker when a page cannot be
+      reached. It is a standalone file: no framework, no network, no fonts —
+      everything it needs has to already be in the cache, because by definition
+      there is nothing to fetch.
+
+      That also means it cannot use next-intl. The six translations are inline
+      instead, picked from the locale still in the URL (the worker answers the
+      original request, so /uz/resume stays /uz/resume) and falling back to the
+      browser's own language.
+    -->
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #ffffff;
+        --fg: #111827;
+        --muted: #6b7280;
+        --border: #e5e7eb;
+        --accent: #4f46e5;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0f0f11;
+          --fg: #f9fafb;
+          --muted: #9ca3af;
+          --border: #27272a;
+          --accent: #6366f1;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      }
+      .card {
+        width: 100%;
+        max-width: 380px;
+        text-align: center;
+      }
+      .mark {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 20px;
+        border-radius: 16px;
+        background: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .mark svg {
+        width: 28px;
+        height: 28px;
+        stroke: #fff;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      p {
+        margin: 0 0 24px;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      button {
+        width: 100%;
+        padding: 12px 20px;
+        border: 0;
+        border-radius: 12px;
+        background: var(--accent);
+        color: #fff;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        filter: brightness(1.08);
+      }
+      .brand {
+        margin-top: 28px;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24">
+          <path d="M1 1l22 22" />
+          <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55" />
+          <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39" />
+          <path d="M10.71 5.05A16 16 0 0 1 22.58 9" />
+          <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88" />
+          <path d="M8.53 16.11a6 6 0 0 1 6.95 0" />
+          <path d="M12 20h.01" />
+        </svg>
+      </div>
+      <h1 id="title">You’re offline</h1>
+      <p id="body">
+        Koreer needs a connection to open this page. Everything you have saved
+        stays on this device and will be here when you are back online.
+      </p>
+      <button id="retry" type="button" onclick="location.reload()">Try again</button>
+      <div class="brand">Koreer</div>
+    </div>
+
+    <script>
+      (function () {
+        var T = {
+          en: {
+            title: 'You’re offline',
+            body: 'Koreer needs a connection to open this page. Everything you have saved stays on this device and will be here when you are back online.',
+            retry: 'Try again',
+          },
+          ko: {
+            title: '오프라인 상태입니다',
+            body: '이 페이지를 열려면 인터넷 연결이 필요합니다. 저장한 내용은 이 기기에 그대로 남아 있으며, 다시 연결되면 그대로 이어서 작업할 수 있습니다.',
+            retry: '다시 시도',
+          },
+          uz: {
+            title: 'Internet aloqasi yo‘q',
+            body: 'Bu sahifani ochish uchun internet kerak. Saqlagan ishlaringiz shu qurilmada turibdi va aloqa tiklanganda joyida bo‘ladi.',
+            retry: 'Qayta urinish',
+          },
+          ru: {
+            title: 'Нет подключения',
+            body: 'Чтобы открыть эту страницу, нужен интернет. Всё сохранённое остаётся на этом устройстве и будет на месте, когда связь появится.',
+            retry: 'Повторить',
+          },
+          zh: {
+            title: '当前处于离线状态',
+            body: '打开此页面需要网络连接。您保存的内容仍保留在本设备上，恢复联网后即可继续。',
+            retry: '重试',
+          },
+          vi: {
+            title: 'Bạn đang ngoại tuyến',
+            body: 'Cần kết nối mạng để mở trang này. Mọi nội dung bạn đã lưu vẫn nằm trên thiết bị này và sẽ còn nguyên khi có mạng trở lại.',
+            retry: 'Thử lại',
+          },
+        };
+
+        var supported = ['en', 'ko', 'uz', 'ru', 'zh', 'vi'];
+        var fromPath = (location.pathname.split('/')[1] || '').toLowerCase();
+        var locale =
+          supported.indexOf(fromPath) !== -1
+            ? fromPath
+            : (function () {
+                var langs = navigator.languages || [navigator.language || 'en'];
+                for (var i = 0; i < langs.length; i++) {
+                  var base = String(langs[i]).toLowerCase().split('-')[0];
+                  if (supported.indexOf(base) !== -1) return base;
+                }
+                return 'en';
+              })();
+
+        var t = T[locale];
+        document.documentElement.lang = locale;
+        document.getElementById('title').textContent = t.title;
+        document.getElementById('body').textContent = t.body;
+        document.getElementById('retry').textContent = t.retry;
+
+        // Reload by itself the moment the connection comes back, so nobody is
+        // left staring at this page after the signal returns.
+        window.addEventListener('online', function () {
+          location.reload();
+        });
+      })();
+    </script>
+  </body>
+</html>

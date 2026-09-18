@@ -913,5 +913,9 @@
     "aiTooFast": "请求过于频繁，请稍候再试。",
     "aiUnavailable": "AI 暂时不可用，请稍后再试。",
     "aiTooLong": "文本太长了，请缩短后重试。"
+  },
+  "network": {
+    "offline": "没有网络连接",
+    "offlineHint": "您可以继续撰写 — 草稿会保存在本设备上。AI 协助和保存到账户需要联网。"
   }
 }

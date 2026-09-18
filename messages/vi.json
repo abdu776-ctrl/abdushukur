@@ -913,5 +913,9 @@
     "aiTooFast": "Quá nhiều yêu cầu. Vui lòng đợi một lát rồi thử lại.",
     "aiUnavailable": "AI hiện không khả dụng. Vui lòng thử lại sau.",
     "aiTooLong": "Văn bản quá dài. Hãy rút ngắn rồi thử lại."
+  },
+  "network": {
+    "offline": "Không có kết nối mạng",
+    "offlineHint": "Bạn vẫn có thể tiếp tục viết — bản nháp được lưu trên thiết bị này. Trợ giúp AI và lưu vào tài khoản cần có mạng."
   }
 }
