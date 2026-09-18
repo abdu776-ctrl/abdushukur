@@ -393,16 +393,14 @@ export function CoverLetterBuilder() {
               >
                 {t('jobPosting.label')}
               </label>
-              {jobPosting.trim() && (
-                <TextTranslator
-                  label={t('jobPosting.translate')}
-                  title={t('jobPosting.label')}
-                  initialText={jobPosting}
-                  defaultFrom="ko"
-                  defaultTo={locale}
-                  onApply={(v) => setJobPosting(v)}
-                />
-              )}
+              <TextTranslator
+                label={t('jobPosting.translate')}
+                title={t('jobPosting.label')}
+                initialText={jobPosting}
+                defaultFrom="ko"
+                defaultTo={locale}
+                onApply={(v) => setJobPosting(v)}
+              />
             </div>
             <Textarea
               id="job-posting"
