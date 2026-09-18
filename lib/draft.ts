@@ -24,13 +24,21 @@ export function draftKey(kind: DocumentKind, documentId: string | null): string 
   return `${PREFIX}:${kind}:${documentId ?? 'new'}`;
 }
 
-export function saveDraft(key: string, data: Record<string, unknown>): void {
+/**
+ * Write the draft. Returns false when the browser refused to store it.
+ *
+ * The caller has to know: this is the net that catches a refresh or a crash,
+ * and someone who believes it is there types on for an hour without saving.
+ * Out of quota, private mode, or storage switched off — whatever the reason,
+ * silence would be the one unacceptable answer.
+ */
+export function saveDraft(key: string, data: Record<string, unknown>): boolean {
   try {
     const draft: Draft = { data, updatedAt: new Date().toISOString() };
     window.localStorage.setItem(key, JSON.stringify(draft));
+    return true;
   } catch {
-    // Out of quota or storage disabled — the in-memory state still works, and
-    // the user can still save to their account.
+    return false;
   }
 }
 

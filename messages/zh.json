@@ -40,7 +40,9 @@
     "year": "年",
     "month": "月",
     "switchToLight": "切换到浅色模式",
-    "switchToDark": "切换到深色模式"
+    "switchToDark": "切换到深色模式",
+    "draftBlocked": "此浏览器无法保存草稿 — 存储空间已满或已关闭。请保存到账户，以免丢失。",
+    "removeItem": "删除{item}"
   },
   "nav": {
     "home": "首页",
@@ -469,7 +471,6 @@
       "template": "模板",
       "preview": "预览",
       "hide": "隐藏",
-      "aiFill": "AI 填写",
       "photoHint": "JPG、PNG，最大 5MB",
       "livePreview": "实时预览",
       "yourName": "你的姓名",
@@ -481,7 +482,10 @@
       "introStep1": "填写信息 — 右侧预览会实时更新。",
       "introStep2": "挑选适合目标公司的版式和颜色。",
       "introStep3": "完成后导出为 PDF 或 Word。",
-      "introGotIt": "知道了"
+      "introGotIt": "知道了",
+      "fillFromProfile": "从我的资料填充",
+      "filledFields": "已从您的资料填充。",
+      "filledSkills": "已从您的资料添加技能。"
     },
     "sectionOrder": {
       "title": "栏目顺序",

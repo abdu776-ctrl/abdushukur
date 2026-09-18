@@ -40,7 +40,9 @@
     "year": "Year",
     "month": "Month",
     "switchToLight": "Switch to light mode",
-    "switchToDark": "Switch to dark mode"
+    "switchToDark": "Switch to dark mode",
+    "draftBlocked": "This browser can't keep a local copy of your work — storage is full or switched off. Save to your account so nothing is lost.",
+    "removeItem": "Remove {item}"
   },
   "nav": {
     "home": "Home",
@@ -469,7 +471,6 @@
       "template": "Template",
       "preview": "Preview",
       "hide": "Hide",
-      "aiFill": "AI fill",
       "photoHint": "JPG, PNG up to 5MB",
       "livePreview": "Live Preview",
       "yourName": "Your Name",
@@ -481,7 +482,10 @@
       "introStep1": "Fill in your details — the preview on the right updates as you type.",
       "introStep2": "Pick a layout and colour that fits the company.",
       "introStep3": "Export as PDF or Word when you are done.",
-      "introGotIt": "Got it"
+      "introGotIt": "Got it",
+      "fillFromProfile": "Fill from my profile",
+      "filledFields": "Filled from your profile.",
+      "filledSkills": "Skills added from your profile."
     },
     "sectionOrder": {
       "title": "Section order",

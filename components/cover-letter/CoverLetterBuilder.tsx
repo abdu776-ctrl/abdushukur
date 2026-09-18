@@ -17,6 +17,7 @@ import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
 import { aiFetch, aiErrorKey } from '@/lib/aiClient';
 import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
+import { DraftWarning } from '@/components/DraftWarning';
 import { Toast, type ToastData } from '@/components/ui/Toast';
 import {
   Sparkles,
@@ -81,6 +82,7 @@ export function CoverLetterBuilder() {
   const [documentId, setDocumentId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [loadingDoc, setLoadingDoc] = useState(false);
+  const [draftBlocked, setDraftBlocked] = useState(false);
   const { status: authStatus } = useAuth();
   const docParam = useSearchParams().get('doc');
 
@@ -181,7 +183,11 @@ export function CoverLetterBuilder() {
     }
     if (serialized === cleanRef.current) return;
 
-    const id = setTimeout(() => saveDraft(draftKey('cover_letter', documentId), documentData), 800);
+    const id = setTimeout(() => {
+      // A refused write means the safety net is off; only the person can
+      // compensate for that, by saving to their account.
+      if (!saveDraft(draftKey('cover_letter', documentId), documentData)) setDraftBlocked(true);
+    }, 800);
     return () => clearTimeout(id);
   }, [documentData, documentId, loadingDoc]);
 
@@ -355,6 +361,8 @@ export function CoverLetterBuilder() {
             </span>
           </div>
         )}
+        {draftBlocked && <DraftWarning />}
+
         {/* Actions bar */}
         <div className="flex items-center gap-3 p-4 bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800">
           <div className="flex-1 text-sm text-gray-500 dark:text-gray-400">

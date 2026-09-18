@@ -16,6 +16,8 @@ import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
 import { readResumePhoto, PhotoTooLargeError } from '@/lib/photo';
 import { draftKey, saveDraft, loadDraft, clearDraft, draftIsNewer } from '@/lib/draft';
+import { loadProfile, splitSkills, type CareerProfile } from '@/lib/profile';
+import { DraftWarning } from '@/components/DraftWarning';
 import { resumeProgress, type SectionId } from '@/lib/resumeProgress';
 import {
   User,
@@ -117,10 +119,16 @@ export function ResumeBuilder() {
   const [documentId, setDocumentId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [loadingDoc, setLoadingDoc] = useState(false);
+  const [draftBlocked, setDraftBlocked] = useState(false);
+
+  // The career profile is entered once in Settings. Without this, everything in
+  // it had to be typed a second time here.
+  const [careerProfile, setCareerProfile] = useState<CareerProfile | null>(null);
+  useEffect(() => setCareerProfile(loadProfile()), []);
 
   // Reopening a saved resume: /resume?doc=<id>. Waiting for the auth status
   // matters — Row Level Security returns nothing until the session is restored.
-  const { status: authStatus } = useAuth();
+  const { user, status: authStatus } = useAuth();
   const docParam = useSearchParams().get('doc');
 
   // Single place that turns a stored document — from the database or from a
@@ -216,7 +224,11 @@ export function ResumeBuilder() {
     }
     if (serialized === cleanRef.current) return;
 
-    const id = setTimeout(() => saveDraft(draftKey('resume', documentId), documentData), 800);
+    const id = setTimeout(() => {
+      // A refused write is the one case worth interrupting for: the safety net
+      // is off and only the person can compensate, by saving to their account.
+      if (!saveDraft(draftKey('resume', documentId), documentData)) setDraftBlocked(true);
+    }, 800);
     return () => clearTimeout(id);
   }, [documentData, documentId, loadingDoc]);
 
@@ -365,6 +377,41 @@ export function ResumeBuilder() {
   }
   function removePublication(id: string) { setPublications(publications.filter((p) => p.id !== id)); }
 
+  // What the account and the career profile could still contribute. Only empty
+  // fields count, so the buttons disappear once there is nothing left to add
+  // and never offer to overwrite something already typed.
+  const profileSkillNames = useMemo(
+    () => splitSkills(careerProfile?.skills ?? ''),
+    [careerProfile]
+  );
+  const canFillPersonal =
+    (!personal.fullName.trim() && Boolean(user?.name)) ||
+    (!personal.email.trim() && Boolean(user?.email));
+  const canFillSkills = skills.length === 0 && profileSkillNames.length > 0;
+
+  function fillPersonalFromProfile() {
+    const next = { ...personal };
+    if (!next.fullName.trim() && user?.name) next.fullName = user.name;
+    if (!next.email.trim() && user?.email) next.email = user.email;
+    setPersonal(next);
+    setToast({ type: 'success', message: t('builder.filledFields') });
+  }
+
+  function fillSkillsFromProfile() {
+    setSkills(
+      profileSkillNames.map((name) => ({
+        id: crypto.randomUUID(),
+        name,
+        // The profile is one free-text box, so it says nothing about level.
+        // Everything lands on the middle rung for the person to adjust; the
+        // alternative is claiming a proficiency they never stated.
+        level: 'intermediate' as const,
+        category: '',
+      }))
+    );
+    setToast({ type: 'success', message: t('builder.filledSkills') });
+  }
+
   async function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -437,6 +484,8 @@ export function ResumeBuilder() {
             </ol>
           </div>
         )}
+
+        {draftBlocked && <DraftWarning />}
 
         {/* Progress. Nothing told the user how far along they were, or what was
             still missing — the commonest question in a form this long. */}
@@ -628,10 +677,16 @@ export function ResumeBuilder() {
                   <User className="w-4 h-4 text-indigo-500" />
                   {t('sections.personal')}
                 </h2>
-                <button className="text-xs text-indigo-600 dark:text-indigo-400 flex items-center gap-1 hover:underline">
-                  <Sparkles className="w-3 h-3" />
-                  {t('builder.aiFill')}
-                </button>
+                {canFillPersonal && (
+                  <button
+                    type="button"
+                    onClick={fillPersonalFromProfile}
+                    className="text-xs text-indigo-600 dark:text-indigo-400 flex items-center gap-1 hover:underline"
+                  >
+                    <Sparkles className="w-3 h-3" />
+                    {t('builder.fillFromProfile')}
+                  </button>
+                )}
               </div>
 
               {/* Photo upload area */}
@@ -763,6 +818,7 @@ export function ResumeBuilder() {
                     {education.length > 1 && (
                       <button
                         onClick={() => removeEducation(edu.id)}
+                      aria-label={tc('removeItem', { item: edu.institution.trim() || t('sections.education') })}
                         className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors"
                       >
                         <Trash2 className="w-3.5 h-3.5" />
@@ -866,6 +922,7 @@ export function ResumeBuilder() {
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
                     <button
                       onClick={() => removeExperience(exp.id)}
+                      aria-label={tc('removeItem', { item: exp.company.trim() || t('sections.experience') })}
                       className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -960,6 +1017,16 @@ export function ResumeBuilder() {
                   <Code2 className="w-4 h-4 text-indigo-500" />
                   {t('sections.skills')}
                 </h2>
+                {canFillSkills && (
+                  <button
+                    type="button"
+                    onClick={fillSkillsFromProfile}
+                    className="text-xs text-indigo-600 dark:text-indigo-400 flex items-center gap-1 hover:underline"
+                  >
+                    <Sparkles className="w-3 h-3" />
+                    {t('builder.fillFromProfile')}
+                  </button>
+                )}
               </div>
               <div className="space-y-3">
                 {skills.map((skill, i) => (
@@ -999,6 +1066,7 @@ export function ResumeBuilder() {
                     )} />
                     <button
                       onClick={() => removeSkill(skill.id)}
+                      aria-label={tc('removeItem', { item: skill.name.trim() || t('sections.skills') })}
                       className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors flex-shrink-0"
                     >
                       <Trash2 className="w-3.5 h-3.5" />
@@ -1034,7 +1102,8 @@ export function ResumeBuilder() {
                 <div key={award.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
-                    <button onClick={() => removeAward(award.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                    <button onClick={() => removeAward(award.id)}
+                      aria-label={tc('removeItem', { item: t('sections.awards') })} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -1083,7 +1152,8 @@ export function ResumeBuilder() {
                 <div key={cert.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
-                    <button onClick={() => removeCertificate(cert.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                    <button onClick={() => removeCertificate(cert.id)}
+                      aria-label={tc('removeItem', { item: t('sections.certificates') })} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -1126,7 +1196,8 @@ export function ResumeBuilder() {
                 <div key={proj.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
-                    <button onClick={() => removeProject(proj.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                    <button onClick={() => removeProject(proj.id)}
+                      aria-label={tc('removeItem', { item: t('sections.projects') })} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -1179,7 +1250,8 @@ export function ResumeBuilder() {
                 <div key={vol.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
-                    <button onClick={() => removeVolunteer(vol.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                    <button onClick={() => removeVolunteer(vol.id)}
+                      aria-label={tc('removeItem', { item: t('sections.volunteer') })} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -1228,7 +1300,8 @@ export function ResumeBuilder() {
                 <div key={pub.id} className="p-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-medium text-gray-500 dark:text-gray-400">#{i + 1}</span>
-                    <button onClick={() => removePublication(pub.id)} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
+                    <button onClick={() => removePublication(pub.id)}
+                      aria-label={tc('removeItem', { item: t('sections.publications') })} className="p-1 rounded-lg hover:bg-red-50 dark:hover:bg-red-500/10 text-gray-400 hover:text-red-500 transition-colors">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </div>

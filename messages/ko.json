@@ -40,7 +40,9 @@
     "year": "연도",
     "month": "월",
     "switchToLight": "라이트 모드로 전환",
-    "switchToDark": "다크 모드로 전환"
+    "switchToDark": "다크 모드로 전환",
+    "draftBlocked": "이 브라우저에 임시 저장을 할 수 없습니다 — 저장 공간이 가득 찼거나 꺼져 있습니다. 작업이 사라지지 않도록 계정에 저장해 주세요.",
+    "removeItem": "{item} 삭제"
   },
   "nav": {
     "home": "홈",
@@ -469,7 +471,6 @@
       "template": "템플릿",
       "preview": "미리보기",
       "hide": "숨기기",
-      "aiFill": "AI 자동 입력",
       "photoHint": "JPG, PNG 최대 5MB",
       "livePreview": "실시간 미리보기",
       "yourName": "이름",
@@ -481,7 +482,10 @@
       "introStep1": "정보를 입력하면 오른쪽 미리보기가 바로 반영됩니다.",
       "introStep2": "지원할 회사에 어울리는 레이아웃과 색상을 고르세요.",
       "introStep3": "완성되면 PDF 또는 Word로 내보내세요.",
-      "introGotIt": "확인"
+      "introGotIt": "확인",
+      "fillFromProfile": "내 프로필에서 가져오기",
+      "filledFields": "프로필에서 채웠습니다.",
+      "filledSkills": "프로필에서 기술을 추가했습니다."
     },
     "sectionOrder": {
       "title": "섹션 순서",

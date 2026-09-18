@@ -40,7 +40,9 @@
     "year": "Yil",
     "month": "Oy",
     "switchToLight": "Yorug‘ rejimga o‘tish",
-    "switchToDark": "Qorong‘i rejimga o‘tish"
+    "switchToDark": "Qorong‘i rejimga o‘tish",
+    "draftBlocked": "Bu brauzer qoralamani saqlay olmayapti — xotira to'lgan yoki o'chirilgan. Ishingiz yo'qolmasligi uchun hisobingizga saqlang.",
+    "removeItem": "{item} ni o'chirish"
   },
   "nav": {
     "home": "Bosh sahifa",
@@ -469,7 +471,6 @@
       "template": "Shablon",
       "preview": "Ko'rish",
       "hide": "Yashirish",
-      "aiFill": "AI to'ldirish",
       "photoHint": "JPG, PNG, 5MB gacha",
       "livePreview": "Jonli koʻrinish",
       "yourName": "Ismingiz",
@@ -481,7 +482,10 @@
       "introStep1": "Ma’lumotlaringizni to‘ldiring — o‘ngdagi ko‘rinish darhol yangilanadi.",
       "introStep2": "Kompaniyaga mos shablon va rangni tanlang.",
       "introStep3": "Tayyor bo‘lgach PDF yoki Word qilib yuklab oling.",
-      "introGotIt": "Tushunarli"
+      "introGotIt": "Tushunarli",
+      "fillFromProfile": "Profilimdan olish",
+      "filledFields": "Profilingizdan to'ldirildi.",
+      "filledSkills": "Ko'nikmalar profilingizdan qo'shildi."
     },
     "sectionOrder": {
       "title": "Boʻlimlar tartibi",

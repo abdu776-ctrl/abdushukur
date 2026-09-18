@@ -40,7 +40,9 @@
     "year": "Năm",
     "month": "Tháng",
     "switchToLight": "Chuyển sang chế độ sáng",
-    "switchToDark": "Chuyển sang chế độ tối"
+    "switchToDark": "Chuyển sang chế độ tối",
+    "draftBlocked": "Trình duyệt này không lưu được bản nháp — bộ nhớ đã đầy hoặc bị tắt. Hãy lưu vào tài khoản để không mất dữ liệu.",
+    "removeItem": "Xoá {item}"
   },
   "nav": {
     "home": "Trang chủ",
@@ -469,7 +471,6 @@
       "template": "Mẫu",
       "preview": "Xem trước",
       "hide": "Ẩn",
-      "aiFill": "AI điền giúp",
       "photoHint": "JPG, PNG tối đa 5MB",
       "livePreview": "Xem trước trực tiếp",
       "yourName": "Tên của bạn",
@@ -481,7 +482,10 @@
       "introStep1": "Điền thông tin — bản xem trước bên phải cập nhật ngay.",
       "introStep2": "Chọn bố cục và màu phù hợp với công ty.",
       "introStep3": "Xong thì xuất ra PDF hoặc Word.",
-      "introGotIt": "Đã hiểu"
+      "introGotIt": "Đã hiểu",
+      "fillFromProfile": "Lấy từ hồ sơ của tôi",
+      "filledFields": "Đã điền từ hồ sơ của bạn.",
+      "filledSkills": "Đã thêm kỹ năng từ hồ sơ của bạn."
     },
     "sectionOrder": {
       "title": "Thứ tự các mục",
