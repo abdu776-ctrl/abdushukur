@@ -72,11 +72,11 @@
         "desc": "Nhận gợi ý và chỉnh sửa cá nhân hoá cho sơ yếu lý lịch và thư giới thiệu, dựa trên AI tiên tiến."
       },
       "resume": {
-        "title": "Công cụ tạo 이력서",
-        "desc": "Tạo 이력서 chuyên nghiệp đúng chuẩn Hàn Quốc với quy trình hướng dẫn và mẫu đẹp."
+        "title": "Công cụ tạo sơ yếu lý lịch (이력서)",
+        "desc": "Tạo sơ yếu lý lịch (이력서) chuyên nghiệp đúng chuẩn Hàn Quốc với quy trình hướng dẫn và mẫu đẹp."
       },
       "coverLetter": {
-        "title": "Công cụ tạo 자기소개서",
+        "title": "Công cụ tạo thư giới thiệu bản thân (자기소개서)",
         "desc": "Viết thư giới thiệu bản thân thuyết phục, phù hợp với nhà tuyển dụng và văn hoá Hàn Quốc."
       },
       "multilingual": {
@@ -100,7 +100,7 @@
       },
       "step2": {
         "title": "Soạn tài liệu",
-        "desc": "Dùng công cụ có AI hỗ trợ để tạo 이력서 và 자기소개서 của bạn."
+        "desc": "Dùng công cụ có AI hỗ trợ để tạo sơ yếu lý lịch (이력서) và thư giới thiệu bản thân (자기소개서) của bạn."
       },
       "step3": {
         "title": "Xuất file và ứng tuyển",
@@ -119,7 +119,7 @@
       "advantages": {
         "formatting": {
           "title": "Tiết kiệm hàng giờ định dạng",
-          "desc": "Không phải mò mẫm. Điền thông tin và nhận 이력서 chuẩn Hàn trong vài phút, thay vì vài ngày."
+          "desc": "Không phải mò mẫm. Điền thông tin và nhận sơ yếu lý lịch (이력서) chuẩn Hàn trong vài phút, thay vì vài ngày."
         },
         "standard": {
           "title": "Chuẩn Hàn Quốc ngay từ đầu",
@@ -131,7 +131,7 @@
         },
         "ai": {
           "title": "AI hỗ trợ viết",
-          "desc": "Bí ý khi viết 자기소개서? Nhận ngay gợi ý AI bằng tiếng Hàn tự nhiên, chuyên nghiệp."
+          "desc": "Bí ý khi viết thư giới thiệu bản thân (자기소개서)? Nhận ngay gợi ý AI bằng tiếng Hàn tự nhiên, chuyên nghiệp."
         },
         "templates": {
           "title": "Mẫu chuyên nghiệp",
@@ -154,7 +154,7 @@
         },
         "jobSeekers": {
           "title": "Người tìm việc",
-          "desc": "Nộp hồ sơ vào công ty Hàn Quốc và cần 이력서 cùng 자기소개서 đúng chuẩn địa phương."
+          "desc": "Nộp hồ sơ vào công ty Hàn Quốc và cần sơ yếu lý lịch (이력서) cùng thư giới thiệu bản thân (자기소개서) đúng chuẩn địa phương."
         },
         "researchers": {
           "title": "Nhà nghiên cứu và học viên cao học",
@@ -169,13 +169,13 @@
     "demo": {
       "badge": "Xem cách hoạt động",
       "title": "Koreer trong thực tế",
-      "subtitle": "Xem nhanh quá trình tạo một 이력서 — từ thông tin của bạn đến file PDF sẵn sàng gửi đi.",
+      "subtitle": "Xem nhanh quá trình tạo một sơ yếu lý lịch (이력서) — từ thông tin của bạn đến file PDF sẵn sàng gửi đi.",
       "comingSoon": "Video demo sắp có",
       "walkthrough": "Giới thiệu sản phẩm"
     },
     "templates": {
-      "badge": "Mẫu 이력서 Hàn Quốc",
-      "title": "Mẫu 이력서 chuyên nghiệp chuẩn Hàn",
+      "badge": "Mẫu sơ yếu lý lịch (이력서) Hàn Quốc",
+      "title": "Mẫu sơ yếu lý lịch (이력서) chuyên nghiệp chuẩn Hàn",
       "desc": "Các mẫu của chúng tôi tuân theo tiêu chuẩn doanh nghiệp Hàn Quốc, có mục ảnh thẻ, quá trình học tập và mục tiêu nghề nghiệp — trình bày đúng như nhà tuyển dụng Hàn mong đợi.",
       "cta": "Bắt đầu tạo",
       "points": {
@@ -286,7 +286,7 @@
     "signIn": "Đăng nhập",
     "newDocument": "Tài liệu mới",
     "ctaBanner": {
-      "title": "Tạo 이력서 chuẩn Hàn của bạn",
+      "title": "Tạo sơ yếu lý lịch (이력서) chuẩn Hàn của bạn",
       "subtitle": "Chọn mẫu, điền thông tin và xuất PDF chuyên nghiệp — chỉ trong vài phút.",
       "createResume": "Tạo sơ yếu lý lịch"
     },
@@ -304,11 +304,11 @@
       "selectedLabel": "Đã chọn",
       "layout": {
         "korean": {
-          "name": "이력서 (biểu mẫu Hàn)",
+          "name": "Biểu mẫu Hàn (이력서)",
           "desc": "Bảng lý lịch chuẩn Hàn kèm ô ảnh thẻ"
         },
         "korean-nophoto": {
-          "name": "이력서 (không ảnh)",
+          "name": "Biểu mẫu Hàn, không ảnh (이력서)",
           "desc": "Bảng lý lịch chuẩn Hàn không có ô ảnh"
         },
         "modern": {
@@ -495,7 +495,7 @@
     }
   },
   "coverLetter": {
-    "title": "Công cụ tạo 자기소개서",
+    "title": "Công cụ tạo thư giới thiệu bản thân (자기소개서)",
     "subtitle": "Viết thư giới thiệu bản thân chuẩn Hàn thật thuyết phục",
     "targetCompany": "Công ty ứng tuyển",
     "targetPosition": "Vị trí ứng tuyển",
@@ -593,8 +593,8 @@
     "placeholder": "Hỏi tôi bất cứ điều gì về ứng tuyển ở Hàn Quốc...",
     "suggestions": {
       "title": "Câu hỏi gợi ý",
-      "q1": "Yêu cầu về ảnh thẻ trong 이력서 là gì?",
-      "q2": "Tôi nên viết gì trong 자기소개서?",
+      "q1": "Yêu cầu về ảnh thẻ trong sơ yếu lý lịch (이력서) là gì?",
+      "q2": "Tôi nên viết gì trong thư giới thiệu bản thân (자기소개서)?",
       "q3": "Hãy xem giúp sơ yếu lý lịch của tôi cho công ty Hàn Quốc",
       "q4": "Ở Hàn Quốc nên trả lời câu hỏi về mức lương mong muốn thế nào?",
       "q5": "Những câu hỏi phỏng vấn phổ biến ở Hàn Quốc là gì?"
@@ -603,16 +603,16 @@
     "send": "Gửi",
     "newChat": "Cuộc trò chuyện mới",
     "history": "Lịch sử trò chuyện",
-    "greeting": "Tôi là trợ lý AI giúp bạn ứng tuyển tại Hàn Quốc! Tôi có thể hỗ trợ:\n\n• **Sơ yếu lý lịch Hàn (이력서)** — định dạng, nội dung, yêu cầu ảnh thẻ\n• **자기소개서** — cấu trúc, mẹo viết, khác biệt văn hoá\n• **Chuẩn bị phỏng vấn** — các câu hỏi phỏng vấn thường gặp ở Hàn Quốc\n• **Thương lượng lương** — thông lệ nơi làm việc Hàn Quốc\n• **Mẹo văn hoá** — phép tắc công sở Hàn Quốc\n\nHôm nay bạn muốn bắt đầu từ đâu?",
+    "greeting": "Tôi là trợ lý AI giúp bạn ứng tuyển tại Hàn Quốc! Tôi có thể hỗ trợ:\n\n• **Sơ yếu lý lịch Hàn (이력서)** — định dạng, nội dung, yêu cầu ảnh thẻ\n• **Thư giới thiệu bản thân (자기소개서)** — cấu trúc, mẹo viết, khác biệt văn hoá\n• **Chuẩn bị phỏng vấn** — các câu hỏi phỏng vấn thường gặp ở Hàn Quốc\n• **Thương lượng lương** — thông lệ nơi làm việc Hàn Quốc\n• **Mẹo văn hoá** — phép tắc công sở Hàn Quốc\n\nHôm nay bạn muốn bắt đầu từ đâu?",
     "chats": {
-      "resumeTips": "Mẹo viết 이력서",
+      "resumeTips": "Mẹo viết sơ yếu lý lịch (이력서)",
       "interview": "Câu hỏi phỏng vấn",
-      "coverLetter": "Hướng dẫn 자기소개서"
+      "coverLetter": "Hướng dẫn thư giới thiệu bản thân (자기소개서)"
     },
     "starters": {
       "resumeTips": "Hãy cho tôi vài mẹo để viết sơ yếu lý lịch Hàn Quốc (이력서).",
       "interview": "Những câu hỏi phỏng vấn xin việc phổ biến ở Hàn Quốc là gì và nên trả lời ra sao?",
-      "coverLetter": "Viết 자기소개서 của Hàn Quốc như thế nào? Hãy giải thích cấu trúc."
+      "coverLetter": "Viết thư giới thiệu bản thân (자기소개서) của Hàn Quốc như thế nào? Hãy giải thích cấu trúc."
     },
     "error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
     "noReply": "Xin lỗi, chưa nhận được phản hồi. Vui lòng thử lại.",

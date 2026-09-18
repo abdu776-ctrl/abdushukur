@@ -73,10 +73,10 @@
       },
       "resume": {
         "title": "Korean Resume Builder",
-        "desc": "Create professional 이력서 following Korean standards with our guided builder and beautiful templates."
+        "desc": "Create a professional Korean resume (이력서) that follows local standards, with a guided builder and beautiful templates."
       },
       "coverLetter": {
-        "title": "자기소개서 Builder",
+        "title": "Cover Letter Builder (자기소개서)",
         "desc": "Craft compelling self-introduction letters that resonate with Korean employers and their culture."
       },
       "multilingual": {
@@ -119,7 +119,7 @@
       "advantages": {
         "formatting": {
           "title": "Save hours of formatting",
-          "desc": "Skip the guesswork. Fill in your details and get a Korean-standard 이력서 in minutes, not days."
+          "desc": "Skip the guesswork. Fill in your details and get a Korean-standard resume (이력서) in minutes, not days."
         },
         "standard": {
           "title": "Korean-standard by default",
@@ -131,7 +131,7 @@
         },
         "ai": {
           "title": "AI writing help",
-          "desc": "Stuck on your 자기소개서? Get instant AI suggestions written in natural, professional Korean."
+          "desc": "Stuck on your cover letter (자기소개서)? Get instant AI suggestions written in natural, professional Korean."
         },
         "templates": {
           "title": "Professional templates",
@@ -154,7 +154,7 @@
         },
         "jobSeekers": {
           "title": "Job seekers",
-          "desc": "Applying to Korean companies and need a resume and 자기소개서 that meet local standards."
+          "desc": "Applying to Korean companies and need a resume (이력서) and a cover letter (자기소개서) that meet local standards."
         },
         "researchers": {
           "title": "Researchers & grad students",
@@ -175,7 +175,7 @@
     },
     "templates": {
       "badge": "Korean Resume Templates",
-      "title": "Professional Korean 이력서 Templates",
+      "title": "Professional Korean Resume (이력서) Templates",
       "desc": "Our templates follow Korean corporate standards with sections for personal photo, education history, and career objectives — all formatted exactly how Korean employers expect.",
       "cta": "Start Building",
       "points": {
@@ -286,7 +286,7 @@
     "signIn": "Sign in",
     "newDocument": "New Document",
     "ctaBanner": {
-      "title": "Build your Korean resume 이력서",
+      "title": "Build your Korean resume (이력서)",
       "subtitle": "Start with a template, fill in your details, and export a professional PDF — in minutes.",
       "createResume": "Create Resume"
     },
@@ -304,11 +304,11 @@
       "selectedLabel": "Selected",
       "layout": {
         "korean": {
-          "name": "이력서 (Korean form)",
+          "name": "Korean form (이력서)",
           "desc": "Standard Korean résumé table with a photo box"
         },
         "korean-nophoto": {
-          "name": "이력서 (no photo)",
+          "name": "Korean form, no photo (이력서)",
           "desc": "Korean résumé table without a photo box"
         },
         "modern": {
@@ -495,7 +495,7 @@
     }
   },
   "coverLetter": {
-    "title": "자기소개서 Builder",
+    "title": "Cover Letter Builder (자기소개서)",
     "subtitle": "Create a compelling Korean self-introduction letter",
     "targetCompany": "Target Company",
     "targetPosition": "Target Position",
@@ -594,7 +594,7 @@
     "suggestions": {
       "title": "Suggested Questions",
       "q1": "How do I write a Korean resume photo requirement?",
-      "q2": "What should I write in my 자기소개서?",
+      "q2": "What should I write in my cover letter (자기소개서)?",
       "q3": "Review my resume for a Korean company",
       "q4": "How do I address salary expectations in Korea?",
       "q5": "What are common Korean interview questions?"
@@ -603,16 +603,16 @@
     "send": "Send",
     "newChat": "New Chat",
     "history": "Chat History",
-    "greeting": "I'm your AI Career Assistant for Korean job applications! I can help you with:\n\n• **Korean Resume (이력서)** — formatting, content, photo requirements\n• **자기소개서** — structure, writing tips, cultural nuances\n• **Interview Preparation** — common Korean interview questions\n• **Salary Negotiation** — Korean workplace norms\n• **Cultural Tips** — Korean workplace etiquette\n\nWhat would you like help with today?",
+    "greeting": "I'm your AI Career Assistant for Korean job applications! I can help you with:\n\n• **Korean Resume (이력서)** — formatting, content, photo requirements\n• **Cover Letter (자기소개서)** — structure, writing tips, cultural nuances\n• **Interview Preparation** — common Korean interview questions\n• **Salary Negotiation** — Korean workplace norms\n• **Cultural Tips** — Korean workplace etiquette\n\nWhat would you like help with today?",
     "chats": {
       "resumeTips": "Korean Resume Tips",
       "interview": "Interview Questions",
-      "coverLetter": "자기소개서 Guide"
+      "coverLetter": "Cover Letter Guide (자기소개서)"
     },
     "starters": {
       "resumeTips": "Give me tips for writing a Korean resume (이력서).",
       "interview": "What are common Korean job interview questions and how should I answer them?",
-      "coverLetter": "How do I write a Korean 자기소개서? Explain the structure."
+      "coverLetter": "How do I write a Korean cover letter (자기소개서)? Explain the structure."
     },
     "error": "Something went wrong. Please try again.",
     "noReply": "Sorry, no answer came back. Please try again.",

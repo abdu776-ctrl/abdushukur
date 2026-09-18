@@ -76,7 +76,7 @@
         "desc": "Yoʻnaltirilgan yaratuvchi va chiroyli shablonlar bilan Koreya standartlariga mos professional rezyume yarating."
       },
       "coverLetter": {
-        "title": "자기소개서 Yaratuvchi",
+        "title": "Motivatsion xat yaratuvchi (자기소개서)",
         "desc": "Koreya ish beruvchilari va ularning madaniyatiga mos qiziqarli oʻz-oʻzini taqdimot xatlarini yozing."
       },
       "multilingual": {
@@ -119,7 +119,7 @@
       "advantages": {
         "formatting": {
           "title": "Formatlashda soatlab vaqt tejang",
-          "desc": "Taxminlar yoʻq. Maʼlumotni kiriting — bir necha kunda emas, daqiqada koreys standartidagi 이력서 oling."
+          "desc": "Taxminlar yoʻq. Maʼlumotni kiriting — bir necha kunda emas, daqiqada koreys standartidagi rezyume (이력서) oling."
         },
         "standard": {
           "title": "Standart boʻyicha koreys uslubi",
@@ -131,7 +131,7 @@
         },
         "ai": {
           "title": "AI yozuv yordami",
-          "desc": "자기소개서 da qotib qoldingizmi? Tabiiy, professional koreys tilida darhol AI takliflarini oling."
+          "desc": "Motivatsion xat (자기소개서) da qotib qoldingizmi? Tabiiy, professional koreys tilida darhol AI takliflarini oling."
         },
         "templates": {
           "title": "Professional shablonlar",
@@ -154,7 +154,7 @@
         },
         "jobSeekers": {
           "title": "Ish qidiruvchilar",
-          "desc": "Koreys kompaniyalariga topshirayotgan va mahalliy standartlarga mos rezyume va 자기소개서 kerak boʻlganlar."
+          "desc": "Koreys kompaniyalariga topshirayotgan va mahalliy standartlarga mos rezyume (이력서) hamda motivatsion xat (자기소개서) kerak boʻlganlar."
         },
         "researchers": {
           "title": "Tadqiqotchilar va magistrlar",
@@ -175,7 +175,7 @@
     },
     "templates": {
       "badge": "Koreys rezyume shablonlari",
-      "title": "Professional koreys 이력서 shablonlari",
+      "title": "Professional koreys rezyume (이력서) shablonlari",
       "desc": "Shablonlarimiz koreys korporativ standartlariga mos — rasm, taʼlim tarixi va maqsad boʻlimlari bilan, aynan koreys ish beruvchilar kutgandek.",
       "cta": "Yaratishni boshlash",
       "points": {
@@ -282,7 +282,7 @@
       "tip3": "Barcha rasmiy hujjatlarda rasmiy koreys tilidan foydalaning"
     },
     "welcomeGuest": "Koreerʼga xush kelibsiz",
-    "signInPrompt": "Rezyume va 자기소개서ʼlaringizni saqlash hamda ariza holatini kuzatish uchun tizimga kiring.",
+    "signInPrompt": "Rezyume va motivatsion xatlaringizni (자기소개서) saqlash hamda ariza holatini kuzatish uchun tizimga kiring.",
     "signIn": "Kirish",
     "newDocument": "Yangi hujjat",
     "ctaBanner": {
@@ -290,7 +290,7 @@
       "subtitle": "Shablon tanlang, maʼlumotlaringizni kiriting va bir necha daqiqada professional PDF yuklab oling.",
       "createResume": "Rezyume yaratish"
     },
-    "docsAppearHere": "Rezyume va 자기소개서 hujjatlaringiz shu yerda koʻrinadi."
+    "docsAppearHere": "Rezyume va motivatsion xat (자기소개서) hujjatlaringiz shu yerda koʻrinadi."
   },
   "resume": {
     "title": "Rezyume Yaratuvchi",
@@ -304,11 +304,11 @@
       "selectedLabel": "Tanlangan",
       "layout": {
         "korean": {
-          "name": "이력서 (Koreys shakli)",
+          "name": "Koreys shakli (이력서)",
           "desc": "Rasm katagi bor standart koreys rezyume jadvali"
         },
         "korean-nophoto": {
-          "name": "이력서 (rasmsiz)",
+          "name": "Koreys shakli, rasmsiz (이력서)",
           "desc": "Rasm katagi yoʻq koreys rezyume jadvali"
         },
         "modern": {
@@ -495,7 +495,7 @@
     }
   },
   "coverLetter": {
-    "title": "자기소개서 Yaratuvchi",
+    "title": "Motivatsion xat yaratuvchi (자기소개서)",
     "subtitle": "Ishonchli koreys oʻz-oʻzini taqdimot xatini yarating",
     "targetCompany": "Maqsadli Kompaniya",
     "targetPosition": "Maqsadli Lavozim",
@@ -594,7 +594,7 @@
     "suggestions": {
       "title": "Tavsiya Etilgan Savollar",
       "q1": "Koreyscha rezyumeda fotosurat talabi qanday?",
-      "q2": "자기소개서 da nima yozishim kerak?",
+      "q2": "Motivatsion xatda (자기소개서) nima yozishim kerak?",
       "q3": "Koreya kompaniyasi uchun rezyumemni koʻrib chiqing",
       "q4": "Koreyada ish haqi muzokaralarini qanday olib borishim kerak?",
       "q5": "Koreya intervyu savollarining odatiy namunalari qanday?"
@@ -603,16 +603,16 @@
     "send": "Yuborish",
     "newChat": "Yangi Suhbat",
     "history": "Suhbat Tarixi",
-    "greeting": "Men Koreyada ish topish uchun AI martaba yordamchisiman! Sizga quyidagilarda yordam bera olaman:\n\n• **Koreys rezyumesi (이력서)** — format, mazmun, foto talablari\n• **자기소개서** — tuzilishi, yozish maslahatlari, madaniy nuanslar\n• **Suhbatga tayyorgarlik** — koreys suhbatlaridagi keng tarqalgan savollar\n• **Maosh muzokarasi** — koreys ish joyi meʼyorlari\n• **Madaniy maslahatlar** — koreys ish joyi odob-axloqi\n\nBugun sizga qanday yordam bera olaman?",
+    "greeting": "Men Koreyada ish topish uchun AI martaba yordamchisiman! Sizga quyidagilarda yordam bera olaman:\n\n• **Koreys rezyumesi (이력서)** — format, mazmun, foto talablari\n• **Motivatsion xat (자기소개서)** — tuzilishi, yozish maslahatlari, madaniy nuanslar\n• **Suhbatga tayyorgarlik** — koreys suhbatlaridagi keng tarqalgan savollar\n• **Maosh muzokarasi** — koreys ish joyi meʼyorlari\n• **Madaniy maslahatlar** — koreys ish joyi odob-axloqi\n\nBugun sizga qanday yordam bera olaman?",
     "chats": {
       "resumeTips": "Koreys rezyume maslahatlari",
       "interview": "Suhbat savollari",
-      "coverLetter": "자기소개서 qoʻllanmasi"
+      "coverLetter": "Motivatsion xat qoʻllanmasi (자기소개서)"
     },
     "starters": {
       "resumeTips": "Koreys rezyumesi (이력서) yozish boʻyicha maslahat bering.",
       "interview": "Koreys ish suhbatida keng tarqalgan savollar qanaqa va ularga qanday javob berish kerak?",
-      "coverLetter": "Koreys 자기소개서 qanday yoziladi? Tuzilishini tushuntiring."
+      "coverLetter": "Koreys motivatsion xati (자기소개서) qanday yoziladi? Tuzilishini tushuntiring."
     },
     "error": "Xatolik yuz berdi. Qayta urinib koʻring.",
     "noReply": "Kechirasiz, javob olinmadi. Qayta urinib koʻring.",

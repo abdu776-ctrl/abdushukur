@@ -98,6 +98,47 @@ if (uzProblems.length) {
   console.error(`  Uzbek uses ${TURNED} in o${TURNED}/g${TURNED} and ${TUTUQ} for the tutuq belgisi.`);
 }
 
+// ── Korean terms outside the Korean locale ─────────────────────────────────
+// 이력서 and 자기소개서 are the names of the two documents this app builds, and
+// they belong in the interface — a person applying in Korea will meet those
+// words on the employer's page. But a reader who cannot read Hangul sees only
+// a shape. The rule is therefore: their own word first, the Korean one in
+// parentheses right after it. Never the Korean term standing alone.
+const KOREAN_TERMS = ['\uc790\uae30\uc18c\uac1c\uc11c', '\uc774\ub825\uc11c'];
+
+function checkKoreanTerms(locale) {
+  const problems = [];
+  const walk = (node, path) => {
+    if (typeof node === 'string') {
+      for (const term of KOREAN_TERMS) {
+        let i = node.indexOf(term);
+        while (i !== -1) {
+          // Preceded by an opening bracket means it is glossing a word that
+          // came before it, which is what we want.
+          if (!/[(\uff08]\s*$/.test(node.slice(Math.max(0, i - 2), i))) {
+            problems.push({ path, term, context: node.slice(Math.max(0, i - 30), i + term.length + 5) });
+          }
+          i = node.indexOf(term, i + 1);
+        }
+      }
+    } else if (node && typeof node === 'object') {
+      for (const [k, v] of Object.entries(node)) walk(v, path ? `${path}.${k}` : k);
+    }
+  };
+  walk(load(locale), '');
+  return problems;
+}
+
+for (const locale of LOCALES) {
+  if (locale === 'ko') continue;
+  const bare = checkKoreanTerms(locale);
+  if (!bare.length) continue;
+  failed = true;
+  console.error(`\n[${locale}] ${bare.length} Korean term(s) stand alone with no ${locale} word beside them:`);
+  for (const b of bare) console.error(`  - ${b.path}: ...${b.context}...`);
+  console.error('  Write the reader\'s own word first, then the Korean one in parentheses.');
+}
+
 if (failed) {
   console.error('\ni18n:check FAILED.\n');
   process.exit(1);
