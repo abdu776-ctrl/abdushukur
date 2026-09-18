@@ -873,7 +873,9 @@
         "t": "Contact",
         "b": "For questions about these terms:"
       }
-    }
+    },
+    "privacyShort": "Privacy",
+    "termsShort": "Terms"
   },
   "footer": {
     "tagline": "AI-powered career tools for international applicants building a career in Korea.",

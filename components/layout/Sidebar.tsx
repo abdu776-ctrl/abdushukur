@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { SUPPORT_EMAIL } from '@/lib/legal';
 import {
   LayoutDashboard,
   FileText,
@@ -362,6 +363,41 @@ export function Sidebar() {
             </>
           )}
         </div>
+
+        {/* The only bridge between the person and whoever runs this.
+            These three links lived in the landing page's footer, which no
+            signed-in page renders — so someone halfway through a resume had no
+            way to report that it broke, and no way to check what happens to the
+            passport number and photograph they were being asked for. Small and
+            quiet, but present on every screen, which is the whole point.
+            Hidden when the rail is collapsed to icons: three words do not fit,
+            and the rail expands in one click. */}
+        {!collapsed && (
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 px-3 pt-2 text-[11px] text-gray-400 dark:text-gray-500">
+            <Link
+              href={`/${locale}/privacy`}
+              className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            >
+              {t('legal.privacyShort')}
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link
+              href={`/${locale}/terms`}
+              className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            >
+              {t('legal.termsShort')}
+            </Link>
+            <span aria-hidden="true">·</span>
+            {/* The subject line is prefilled so a report arrives already
+                identifiable, rather than as an empty mail from a stranger. */}
+            <a
+              href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Koreer')}`}
+              className="hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
+            >
+              {t('footer.contact')}
+            </a>
+          </div>
+        )}
       </div>
     </aside>
   );

@@ -873,7 +873,9 @@
         "t": "Aloqa",
         "b": "Shartlar boʻyicha savollar uchun:"
       }
-    }
+    },
+    "privacyShort": "Maxfiylik",
+    "termsShort": "Shartlar"
   },
   "footer": {
     "tagline": "Koreyada karyera qurayotgan chet ellik nomzodlar uchun AI vositalari.",

@@ -873,7 +873,9 @@
         "t": "Liên hệ",
         "b": "Nếu có câu hỏi về các điều khoản này:"
       }
-    }
+    },
+    "privacyShort": "Quyền riêng tư",
+    "termsShort": "Điều khoản"
   },
   "footer": {
     "tagline": "Công cụ AI cho ứng viên nước ngoài đang xây dựng sự nghiệp tại Hàn Quốc.",

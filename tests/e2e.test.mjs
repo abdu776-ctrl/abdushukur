@@ -219,6 +219,27 @@ describe('fill from the career profile', () => {
   });
 });
 
+describe('reachable from anywhere', () => {
+  // These three used to live only in the landing page's footer, which no
+  // signed-in page renders. Someone mid-resume had no way to report a problem
+  // and no way to check what happens to the data they were entering.
+  for (const path of ['/en/resume', '/en/cover-letter', '/en/settings']) {
+    test(`privacy, terms and contact are on ${path}`, { timeout: 60_000 }, async () => {
+      await withPage(async (page) => {
+        await page.goto(`${BASE}${path}`, { waitUntil: 'load' });
+
+        const hrefs = await page.evaluate(() =>
+          Array.from(document.querySelectorAll('a')).map((a) => a.getAttribute('href') || '')
+        );
+
+        assert.ok(hrefs.some((h) => h.endsWith('/privacy')), 'privacy policy should be linked');
+        assert.ok(hrefs.some((h) => h.endsWith('/terms')), 'terms should be linked');
+        assert.ok(hrefs.some((h) => h.startsWith('mailto:')), 'a way to write in should exist');
+      });
+    });
+  }
+});
+
 describe('accessibility', () => {
   test('row delete buttons say what they delete', { timeout: 90_000 }, async () => {
     await withPage(async (page) => {
