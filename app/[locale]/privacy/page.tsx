@@ -22,7 +22,13 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     {
       title: p('collect.t'),
       paragraphs: [],
-      bullets: [p('collect.account'), p('collect.documents'), p('collect.profile'), p('collect.technical')],
+      bullets: [
+        p('collect.account'),
+        p('collect.documents'),
+        p('collect.profile'),
+        p('collect.technical'),
+        p('collect.stats'),
+      ],
     },
     { title: p('use.t'), paragraphs: [p('use.b')] },
     { title: p('ai.t'), paragraphs: [p('ai.b')] },

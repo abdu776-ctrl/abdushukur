@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { SITE_URL } from '@/lib/siteUrl';
 import { Inter } from 'next/font/google';
+import { Analytics } from '@vercel/analytics/next';
 import './globals.css';
 
 const inter = Inter({
@@ -75,6 +76,13 @@ export default function RootLayout({
       <head />
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
+        {/* Counts page views so there is some evidence of what people actually
+            do here — which languages, which pages, how far they get. It sets no
+            cookies and cannot follow a visitor between days or between sites,
+            which matters more than usual on a site people type a passport
+            number into. It stays inert until it is switched on in the Vercel
+            project, and the privacy policy describes it either way. */}
+        <Analytics />
       </body>
     </html>
   );

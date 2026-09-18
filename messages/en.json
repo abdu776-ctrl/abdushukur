@@ -787,7 +787,8 @@
         "account": "Account: your email address and password (stored only as a hash we cannot read). If you sign up with a form, the name and country you enter; if you sign in with Google, the name, email and profile picture Google gives us.",
         "documents": "Documents: everything you type into a resume or cover letter — including your name, phone number, address, date of birth, nationality, education, work history and, if you upload one, your photo. Photos are stored inside the document itself.",
         "profile": "Career profile: the background, skills and \"Why Korea\" answers you save in Settings, so they can be reused across documents.",
-        "technical": "Technical: a sign-in token and your language choice, kept in your browser. To stop the AI features being abused we also count requests per day, keyed by your account or — for signed-out visitors — by a one-way hash of your IP address; the address itself is never stored. We do not use advertising or analytics trackers."
+        "technical": "Technical: a sign-in token and your language choice, kept in your browser. To stop the AI features being abused we also count requests per day, keyed by your account or — for signed-out visitors — by a one-way hash of your IP address; the address itself is never stored. We use no advertising trackers.",
+        "stats": "Visit statistics: we count page views to see which pages and languages are used. This is measured by Vercel without cookies, and a visitor cannot be followed between days or between websites. We see totals, never an individual person."
       },
       "use": {
         "t": "How we use it",
@@ -801,7 +802,7 @@
         "t": "Who else processes your data",
         "b": "We use three providers, each only for the purpose listed. We do not share your data with anyone else.",
         "supabase": "Supabase — accounts and database (your documents and profile are stored here).",
-        "vercel": "Vercel — hosting the website.",
+        "vercel": "Vercel — hosting the website, and counting page views without cookies.",
         "groq": "Groq — generating AI suggestions when you request them."
       },
       "retention": {

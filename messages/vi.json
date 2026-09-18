@@ -787,7 +787,8 @@
         "account": "Tài khoản: địa chỉ email và mật khẩu của bạn (mật khẩu chỉ được lưu dưới dạng mã băm mà chúng tôi không đọc được). Nếu đăng ký bằng biểu mẫu, thêm tên và quốc gia bạn nhập; nếu đăng nhập bằng Google, là tên, email và ảnh đại diện do Google cung cấp.",
         "documents": "Tài liệu: mọi thứ bạn nhập vào sơ yếu lý lịch hoặc thư giới thiệu — gồm họ tên, số điện thoại, địa chỉ, ngày sinh, quốc tịch, học vấn, quá trình làm việc và ảnh thẻ nếu bạn tải lên. Ảnh được lưu ngay bên trong tài liệu.",
         "profile": "Hồ sơ nghề nghiệp: thông tin nền tảng, kỹ năng và câu trả lời “Vì sao Hàn Quốc” bạn lưu trong Cài đặt, để dùng lại cho nhiều tài liệu.",
-        "technical": "Kỹ thuật: mã đăng nhập và lựa chọn ngôn ngữ, lưu trong trình duyệt của bạn. Để tránh lạm dụng các tính năng AI, chúng tôi cũng đếm số yêu cầu mỗi ngày — theo tài khoản của bạn, hoặc với khách chưa đăng nhập thì theo một mã băm một chiều của địa chỉ IP; bản thân địa chỉ không được lưu. Chúng tôi không dùng công cụ quảng cáo hay phân tích theo dõi."
+        "technical": "Kỹ thuật: mã đăng nhập và ngôn ngữ bạn chọn được lưu trong trình duyệt. Để ngăn việc lạm dụng các tính năng AI, chúng tôi cũng đếm số yêu cầu mỗi ngày, theo tài khoản của bạn hoặc — với khách chưa đăng nhập — theo một mã băm một chiều của địa chỉ IP; bản thân địa chỉ không bao giờ được lưu. Chúng tôi không dùng trình theo dõi quảng cáo.",
+        "stats": "Thống kê truy cập: chúng tôi đếm lượt xem trang để biết trang và ngôn ngữ nào được dùng. Việc này do Vercel đo mà không dùng cookie, và không thể theo dõi một khách truy cập giữa các ngày hay giữa các trang web. Chúng tôi chỉ thấy tổng số, không thấy từng cá nhân."
       },
       "use": {
         "t": "Chúng tôi dùng dữ liệu để làm gì",
@@ -801,7 +802,7 @@
         "t": "Còn ai xử lý dữ liệu của bạn",
         "b": "Chúng tôi dùng ba nhà cung cấp, mỗi bên chỉ cho mục đích nêu dưới đây. Chúng tôi không chia sẻ dữ liệu của bạn với bất kỳ ai khác.",
         "supabase": "Supabase — tài khoản và cơ sở dữ liệu (tài liệu và hồ sơ của bạn được lưu ở đây).",
-        "vercel": "Vercel — lưu trữ trang web.",
+        "vercel": "Vercel — lưu trữ trang web và đếm lượt xem trang mà không dùng cookie.",
         "groq": "Groq — tạo gợi ý AI khi bạn yêu cầu."
       },
       "retention": {

@@ -787,7 +787,8 @@
         "account": "Akkaunt: elektron pochtangiz va parolingiz (parol faqat biz o‘qiy olmaydigan hash ko‘rinishida saqlanadi). Forma orqali ro‘yxatdan o‘tsangiz — kiritgan ism va mamlakatingiz; Google orqali kirsangiz — Google bergan ism, pochta va profil rasmi.",
         "documents": "Hujjatlar: rezyume yoki motivatsion xatga yozgan hamma narsangiz — ism, telefon, manzil, tug‘ilgan sana, millat, ta’lim, ish tajribasi va yuklagan bo‘lsangiz fotosuratingiz. Fotosurat hujjatning ichida saqlanadi.",
         "profile": "Karyera profili: Sozlamalarda saqlagan ma’lumot, ko‘nikmalar va “Nega Koreya” javoblaringiz — ular hujjatlarda qayta ishlatiladi.",
-        "technical": "Texnik: brauzeringizda saqlanadigan kirish tokeni va til tanlovingiz. AI imkoniyatlari suiiste'mol qilinmasligi uchun kunlik so‘rovlar sonini ham hisoblaymiz — akkauntingiz bo‘yicha yoki tizimga kirmagan mehmon uchun IP manzilingizning qaytarilmas xeshi bo‘yicha; manzilning o‘zi hech qachon saqlanmaydi. Reklama yoki analitika kuzatuvchilaridan foydalanmaymiz."
+        "technical": "Texnik: kirish tokeni va tanlagan tilingiz brauzeringizda saqlanadi. AI imkoniyatlari suiiste’mol qilinmasligi uchun kunlik so‘rovlar soni ham hisoblanadi — hisobingiz bo‘yicha yoki, kirmagan tashrifchilar uchun, IP manzilingizning bir tomonlama xeshi bo‘yicha; manzilning o‘zi hech qachon saqlanmaydi. Reklama kuzatuvchilaridan foydalanmaymiz.",
+        "stats": "Tashrif statistikasi: qaysi sahifalar va tillar ishlatilayotganini bilish uchun sahifa ko‘rishlari sanaladi. Buni Vercel cookie’siz o‘lchaydi va tashrifchini kunlar orasida ham, saytlar orasida ham kuzatib bo‘lmaydi. Biz faqat umumiy sonlarni ko‘ramiz, alohida odamni emas."
       },
       "use": {
         "t": "Nima uchun ishlatamiz",
@@ -801,7 +802,7 @@
         "t": "Yana kim ma’lumotni qayta ishlaydi",
         "b": "Uchta provayderdan foydalanamiz, har biri faqat quyida ko‘rsatilgan maqsadda. Ma’lumotingizni boshqa hech kimga bermaymiz.",
         "supabase": "Supabase — akkauntlar va ma’lumotlar bazasi (hujjatlar va profil shu yerda saqlanadi).",
-        "vercel": "Vercel — saytni joylashtirish.",
+        "vercel": "Vercel — saytni joylashtirish va cookie’siz sahifa ko‘rishlarini sanash.",
         "groq": "Groq — siz so‘raganda AI takliflarini yaratish."
       },
       "retention": {
