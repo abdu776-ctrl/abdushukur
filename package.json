@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "i18n:check": "node scripts/i18n-check.mjs"
+    "i18n:check": "node scripts/i18n-check.mjs",
+    "test": "next build && node --test --test-concurrency=1 tests/*.test.mjs",
+    "test:only": "node --test --test-concurrency=1 tests/*.test.mjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",
