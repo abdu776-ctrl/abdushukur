@@ -11,6 +11,7 @@ import { Badge } from '@/components/ui/Badge';
 import { ResumePreview, DEFAULT_SECTION_ORDER } from './ResumePreview';
 import { TemplateSelector } from './TemplateSelector';
 import { NameTranslator } from './NameTranslator';
+import { KoreanAddressFinder } from './KoreanAddressFinder';
 import { printDocument, exportToWord } from '@/lib/utils';
 import { saveDocument, loadDocument, NotSignedInError } from '@/lib/documents';
 import { useAuth } from '@/lib/useAuth';
@@ -793,12 +794,32 @@ export function ResumeBuilder() {
                   onChange={(e) => setPersonal({ ...personal, nationality: e.target.value })}
                 />
               </div>
-              <Input
-                label={t('personal.address')}
-                placeholder="서울특별시 성동구"
-                value={personal.address || ''}
-                onChange={(e) => setPersonal({ ...personal, address: e.target.value })}
-              />
+              {/* Typing and looking up, side by side. Someone already in Korea
+                  cannot spell their own address; someone applying from abroad
+                  has no Korean address to look up. Neither path may be the
+                  only one. */}
+              <div>
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+                  <label
+                    htmlFor="personal-address"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                  >
+                    {t('personal.address')}
+                  </label>
+                  <KoreanAddressFinder
+                    onSelect={(address) => setPersonal((prev) => ({ ...prev, address }))}
+                  />
+                </div>
+                <Input
+                  id="personal-address"
+                  placeholder="서울특별시 성동구"
+                  value={personal.address || ''}
+                  onChange={(e) => setPersonal({ ...personal, address: e.target.value })}
+                />
+                <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                  {t('personal.addressManualHint')}
+                </p>
+              </div>
             </div>
           )}
 

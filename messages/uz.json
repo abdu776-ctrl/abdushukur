@@ -383,7 +383,11 @@
       "toLatin": "Lotinchaga",
       "changePhoto": "Rasmni almashtirish",
       "photoUploaded": "Rasm yuklandi",
-      "photoTooLarge": "Bu rasm juda katta. 5MB dan kichigini tanlang."
+      "photoTooLarge": "Bu rasm juda katta. 5MB dan kichigini tanlang.",
+      "addressManualHint": "Qoʻlda yozing yoki pochta indeksi orqali toping.",
+      "findAddress": "Indeks orqali topish",
+      "findAddressHint": "Koʻcha yoki bino nomi boʻyicha qidiring — masalan 왕십리로 222. Indeks va toʻliq manzil oʻzi toʻladi; xonadon raqamini keyin qoʻshasiz.",
+      "findAddressFailed": "Manzil qidiruvini ochib boʻlmadi. Internetni tekshiring yoki manzilni qoʻlda yozing."
     },
     "education": {
       "add": "Taʼlim Qoʻshish",
@@ -800,10 +804,11 @@
       },
       "share": {
         "t": "Yana kim maʼlumotni qayta ishlaydi",
-        "b": "Uchta provayderdan foydalanamiz, har biri faqat quyida koʻrsatilgan maqsadda. Maʼlumotingizni boshqa hech kimga bermaymiz.",
+        "b": "Quyidagi provayderlardan foydalanamiz, har biri faqat quyida koʻrsatilgan maqsadda. Maʼlumotingizni boshqa hech kimga bermaymiz.",
         "supabase": "Supabase — akkauntlar va maʼlumotlar bazasi (hujjatlar va profil shu yerda saqlanadi).",
         "vercel": "Vercel — saytni joylashtirish va cookieʼsiz sahifa koʻrishlarini sanash.",
-        "groq": "Groq — siz soʻraganda AI takliflarini yaratish."
+        "groq": "Groq — siz soʻraganda AI takliflarini yaratish.",
+        "kakao": "Kakao — faqat rezyumedagi manzil qidiruvidan foydalansangiz. Oʻsha tugmani bosganingizda koʻcha yoki bino nomi boʻyicha qidiruvingiz Kakao ga yuboriladi va indeks qaytariladi. Hujjatingizdan boshqa hech narsa yuborilmaydi; manzilni qoʻlda yozsangiz esa umuman hech narsa yuborilmaydi."
       },
       "retention": {
         "t": "Qancha vaqt saqlaymiz",

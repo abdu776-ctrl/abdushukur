@@ -280,6 +280,53 @@ describe('the AI greeting follows the interface, not the history', () => {
   });
 });
 
+describe('the Korean address field', () => {
+  test('offers both routes, and typing still works when the lookup cannot load', {
+    timeout: 90_000,
+  }, async () => {
+    await withPage(async (page) => {
+      // Kakao's script is not reachable from the test environment, which is
+      // the case that matters: the lookup is a helper, and the field has to
+      // stay usable without it — offline, blocked, or Kakao down.
+      await page.route('**/postcode.v2.js', (route) => route.abort());
+
+      await openBuilder(page, '/uz/resume');
+
+      const button = page.getByRole('button', { name: /Indeks orqali topish/i });
+      assert.equal(await button.count(), 1, 'the lookup should be offered');
+
+      const field = page.locator('#personal-address');
+      await field.fill('Seul, Seongdong-gu 123');
+      assert.equal(await field.inputValue(), 'Seul, Seongdong-gu 123', 'typing must work');
+
+      await button.first().click();
+      await page.waitForTimeout(1500);
+
+      const body = await page.textContent('body');
+      assert.match(body, /Manzil qidiruvini ochib boʻlmadi/, 'a failed load should be explained');
+      assert.equal(
+        await field.inputValue(),
+        'Seul, Seongdong-gu 123',
+        'a failed lookup must not disturb what was typed'
+      );
+    });
+  });
+
+  test('nothing is sent to Kakao unless the button is pressed', { timeout: 90_000 }, async () => {
+    await withPage(async (page) => {
+      const kakao = [];
+      page.on('request', (r) => {
+        if (/daumcdn|kakao/i.test(r.url())) kakao.push(r.url());
+      });
+
+      await openBuilder(page, '/en/resume');
+      await page.waitForTimeout(1500);
+
+      assert.deepEqual(kakao, [], 'merely opening the builder must contact nobody');
+    });
+  });
+});
+
 describe('accessibility', () => {
   test('row delete buttons say what they delete', { timeout: 90_000 }, async () => {
     await withPage(async (page) => {

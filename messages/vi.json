@@ -383,7 +383,11 @@
       "toLatin": "Sang chữ Latinh",
       "changePhoto": "Đổi ảnh",
       "photoUploaded": "Đã tải ảnh lên",
-      "photoTooLarge": "Ảnh quá lớn. Hãy chọn tệp dưới 5MB."
+      "photoTooLarge": "Ảnh quá lớn. Hãy chọn tệp dưới 5MB.",
+      "addressManualHint": "Bạn có thể tự nhập, hoặc tìm theo mã bưu chính.",
+      "findAddress": "Tìm theo mã bưu chính",
+      "findAddressHint": "Tìm theo tên đường hoặc tên toà nhà — ví dụ 왕십리로 222. Mã bưu chính và địa chỉ đầy đủ sẽ được điền sẵn; số phòng bạn nhập thêm sau.",
+      "findAddressFailed": "Không mở được phần tìm địa chỉ. Hãy kiểm tra kết nối, hoặc tự nhập địa chỉ."
     },
     "education": {
       "add": "Thêm học vấn",
@@ -800,10 +804,11 @@
       },
       "share": {
         "t": "Còn ai xử lý dữ liệu của bạn",
-        "b": "Chúng tôi dùng ba nhà cung cấp, mỗi bên chỉ cho mục đích nêu dưới đây. Chúng tôi không chia sẻ dữ liệu của bạn với bất kỳ ai khác.",
+        "b": "Chúng tôi dùng các nhà cung cấp sau, mỗi bên chỉ cho mục đích nêu dưới đây. Chúng tôi không chia sẻ dữ liệu của bạn với bất kỳ ai khác.",
         "supabase": "Supabase — tài khoản và cơ sở dữ liệu (tài liệu và hồ sơ của bạn được lưu ở đây).",
         "vercel": "Vercel — lưu trữ trang web và đếm lượt xem trang mà không dùng cookie.",
-        "groq": "Groq — tạo gợi ý AI khi bạn yêu cầu."
+        "groq": "Groq — tạo gợi ý AI khi bạn yêu cầu.",
+        "kakao": "Kakao — chỉ khi bạn dùng tính năng tìm địa chỉ trong hồ sơ. Khi bạn nhấn nút đó, từ khoá tìm đường hoặc toà nhà sẽ được gửi tới Kakao để lấy mã bưu chính. Không có nội dung nào khác trong tài liệu được gửi đi, và nếu bạn tự nhập địa chỉ thì không gửi gì cả."
       },
       "retention": {
         "t": "Chúng tôi lưu trong bao lâu",

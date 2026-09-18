@@ -35,7 +35,7 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
     {
       title: p('share.t'),
       paragraphs: [p('share.b')],
-      bullets: [p('share.supabase'), p('share.vercel'), p('share.groq')],
+      bullets: [p('share.supabase'), p('share.vercel'), p('share.groq'), p('share.kakao')],
     },
     { title: p('retention.t'), paragraphs: [p('retention.b')] },
     { title: p('rights.t'), paragraphs: [p('rights.b')] },

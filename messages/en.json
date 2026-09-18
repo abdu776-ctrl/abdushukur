@@ -383,7 +383,11 @@
       "toLatin": "To Latin",
       "changePhoto": "Change photo",
       "photoUploaded": "Photo uploaded",
-      "photoTooLarge": "That image is too large. Choose one under 5MB."
+      "photoTooLarge": "That image is too large. Choose one under 5MB.",
+      "addressManualHint": "Type it yourself, or look it up by postcode.",
+      "findAddress": "Find by postcode",
+      "findAddressHint": "Search by road name or building — for example 왕십리로 222. The postcode and full address are filled in for you; add your unit number afterwards.",
+      "findAddressFailed": "Could not open the address search. Check your connection, or type the address yourself."
     },
     "education": {
       "add": "Add Education",
@@ -800,10 +804,11 @@
       },
       "share": {
         "t": "Who else processes your data",
-        "b": "We use three providers, each only for the purpose listed. We do not share your data with anyone else.",
+        "b": "We use these providers, each only for the purpose listed. We do not share your data with anyone else.",
         "supabase": "Supabase — accounts and database (your documents and profile are stored here).",
         "vercel": "Vercel — hosting the website, and counting page views without cookies.",
-        "groq": "Groq — generating AI suggestions when you request them."
+        "groq": "Groq — generating AI suggestions when you request them.",
+        "kakao": "Kakao — only if you use the address lookup on the resume. Pressing that button sends your search for a street or building to Kakao so it can return the postcode. Nothing else from your document is sent, and nothing is sent at all if you type the address yourself."
       },
       "retention": {
         "t": "How long we keep it",
