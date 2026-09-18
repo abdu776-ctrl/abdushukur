@@ -381,14 +381,38 @@ export function CoverLetterBuilder() {
             <Input label={t('targetCompany')} placeholder="Samsung, Kakao, Naver..." value={company} onChange={(e) => setCompany(e.target.value)} leftIcon={<Building2 className="w-4 h-4" />} />
             <Input label={t('targetPosition')} placeholder="소프트웨어 엔지니어..." value={position} onChange={(e) => setPosition(e.target.value)} />
           </div>
-          <Textarea
-            label={t('jobPosting.label')}
-            placeholder={t('jobPosting.placeholder')}
-            value={jobPosting}
-            rows={4}
-            onChange={(e) => setJobPosting(e.target.value)}
-            className="resize-none"
-          />
+          <div>
+            {/* The posting is pasted in Korean, and the applicant often cannot
+                read it — which is the whole reason they are here. This
+                translator runs the other way round from the one on a section:
+                Korean into their language, not theirs into Korean. */}
+            <div className="flex items-center justify-between gap-3 mb-1.5">
+              <label
+                htmlFor="job-posting"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
+                {t('jobPosting.label')}
+              </label>
+              {jobPosting.trim() && (
+                <TextTranslator
+                  label={t('jobPosting.translate')}
+                  title={t('jobPosting.label')}
+                  initialText={jobPosting}
+                  defaultFrom="ko"
+                  defaultTo={locale}
+                  onApply={(v) => setJobPosting(v)}
+                />
+              )}
+            </div>
+            <Textarea
+              id="job-posting"
+              placeholder={t('jobPosting.placeholder')}
+              value={jobPosting}
+              rows={4}
+              onChange={(e) => setJobPosting(e.target.value)}
+              className="resize-none"
+            />
+          </div>
         </div>
 
         {/* Sections */}

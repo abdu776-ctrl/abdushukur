@@ -575,7 +575,8 @@
     },
     "jobPosting": {
       "label": "目标招聘公告（选填）",
-      "placeholder": "把招聘公告粘贴到这里 — AI 会据此调整你的内容。"
+      "placeholder": "把招聘公告粘贴到这里 — AI 会据此调整你的内容。",
+      "translate": "用我的语言阅读"
     },
     "ai": {
       "error": "AI 未能回应，请重试。",

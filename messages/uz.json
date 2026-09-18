@@ -575,7 +575,8 @@
     },
     "jobPosting": {
       "label": "Maqsadli ish e’loni (ixtiyoriy)",
-      "placeholder": "Ish e’lonini shu yerga qo‘ying — AI shunga moslab yozadi."
+      "placeholder": "Ish e’lonini shu yerga qo‘ying — AI shunga moslab yozadi.",
+      "translate": "O‘z tilimda o‘qish"
     },
     "ai": {
       "error": "AI javob bera olmadi. Qayta urinib ko‘ring.",

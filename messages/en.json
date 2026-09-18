@@ -575,7 +575,8 @@
     },
     "jobPosting": {
       "label": "Target job posting (optional)",
-      "placeholder": "Paste the job posting here — the AI will tailor your writing to it."
+      "placeholder": "Paste the job posting here — the AI will tailor your writing to it.",
+      "translate": "Read this in my language"
     },
     "ai": {
       "error": "AI could not respond. Please try again.",

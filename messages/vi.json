@@ -575,7 +575,8 @@
     },
     "jobPosting": {
       "label": "Tin tuyển dụng mục tiêu (tuỳ chọn)",
-      "placeholder": "Dán tin tuyển dụng vào đây — AI sẽ điều chỉnh bài viết cho phù hợp."
+      "placeholder": "Dán tin tuyển dụng vào đây — AI sẽ điều chỉnh bài viết cho phù hợp.",
+      "translate": "Đọc bằng ngôn ngữ của tôi"
     },
     "ai": {
       "error": "AI chưa phản hồi được. Vui lòng thử lại.",
