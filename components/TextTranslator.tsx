@@ -11,7 +11,7 @@ type Lang = { code: string; label: string; flag: string };
 
 const LANGS: Lang[] = [
   { code: 'auto', label: '', flag: '🌐' },
-  { code: 'uz', label: "O'zbek", flag: '🇺🇿' },
+  { code: 'uz', label: "Oʻzbek", flag: '🇺🇿' },
   { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   { code: 'en', label: 'English', flag: '🇬🇧' },
   { code: 'ko', label: '한국어', flag: '🇰🇷' },

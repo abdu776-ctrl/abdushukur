@@ -11,7 +11,7 @@ export type Locale = (typeof routing.locales)[number];
 export const localeNames: Record<Locale, string> = {
   en: 'English',
   ko: '한국어',
-  uz: "O'zbek",
+  uz: "Oʻzbek",
   ru: 'Русский',
   zh: '中文',
   vi: 'Tiếng Việt',

@@ -5,32 +5,32 @@
     "loading": "Yuklanmoqda...",
     "save": "Saqlash",
     "cancel": "Bekor qilish",
-    "delete": "O'chirish",
+    "delete": "Oʻchirish",
     "edit": "Tahrirlash",
     "create": "Yaratish",
     "download": "Yuklab olish",
     "export": "PDF eksport",
-    "preview": "Ko'rish",
+    "preview": "Koʻrish",
     "back": "Orqaga",
     "next": "Keyingi",
     "finish": "Tugatish",
     "or": "yoki",
     "and": "va",
     "yes": "Ha",
-    "no": "Yo'q",
+    "no": "Yoʻq",
     "close": "Yopish",
     "search": "Qidirish",
     "filter": "Filtr",
     "settings": "Sozlamalar",
     "profile": "Profil",
     "logout": "Chiqish",
-    "darkMode": "Qorong'i rejim",
+    "darkMode": "Qorongʻi rejim",
     "language": "Til",
     "new": "Yangi",
     "untitled": "Nomsiz",
     "toast": {
-      "pdfError": "PDF yuklab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
-      "wordError": "Word faylni saqlab bo‘lmadi. Avval \"Ko‘rish\"ni oching, keyin qayta urinib ko‘ring.",
+      "pdfError": "PDF yuklab boʻlmadi. Avval \"Koʻrish\"ni oching, keyin qayta urinib koʻring.",
+      "wordError": "Word faylni saqlab boʻlmadi. Avval \"Koʻrish\"ni oching, keyin qayta urinib koʻring.",
       "pdfReady": "PDF yuklab olindi.",
       "wordReady": "Word fayl yuklab olindi.",
       "printHint": "Chop etish oynasi ochildi — matnli fayl olish uchun “PDF sifatida saqlash”ni tanlang."
@@ -39,10 +39,10 @@
     "notSignedIn": "Tizimga kirilmagan",
     "year": "Yil",
     "month": "Oy",
-    "switchToLight": "Yorug‘ rejimga o‘tish",
-    "switchToDark": "Qorong‘i rejimga o‘tish",
-    "draftBlocked": "Bu brauzer qoralamani saqlay olmayapti — xotira to'lgan yoki o'chirilgan. Ishingiz yo'qolmasligi uchun hisobingizga saqlang.",
-    "removeItem": "{item} ni o'chirish"
+    "switchToLight": "Yorugʻ rejimga oʻtish",
+    "switchToDark": "Qorongʻi rejimga oʻtish",
+    "draftBlocked": "Bu brauzer qoralamani saqlay olmayapti — xotira toʻlgan yoki oʻchirilgan. Ishingiz yoʻqolmasligi uchun hisobingizga saqlang.",
+    "removeItem": "{item} ni oʻchirish"
   },
   "nav": {
     "home": "Bosh sahifa",
@@ -58,30 +58,30 @@
     "hero": {
       "badge": "AI-asosli Martaba Vositalari",
       "title": "Koreyada Orzuingizdagi Ishni Toping",
-      "subtitle": "AI yordami bilan professional koreyscha rezyume va o'z-o'zini taqdimot xatlarini yarating. O'zbekiston, Qozog'iston, Qirg'iziston, Mo'g'uliston, Xitoy va Vyetnamdan kelgan talabalar uchun mo'ljallangan.",
+      "subtitle": "AI yordami bilan professional koreyscha rezyume va oʻz-oʻzini taqdimot xatlarini yarating. Oʻzbekiston, Qozogʻiston, Qirgʻiziston, Moʻgʻuliston, Xitoy va Vyetnamdan kelgan talabalar uchun moʻljallangan.",
       "cta": "Bepul Boshlash",
-      "ctaSecondary": "Shablonlarni Ko'rish",
+      "ctaSecondary": "Shablonlarni Koʻrish",
       "trustedBy": "Quyidagi mamlakatlar talabalariga ishoniladi",
-      "ctaNoAccount": "Boshlash uchun ro‘yxatdan o‘tish shart emas"
+      "ctaNoAccount": "Boshlash uchun roʻyxatdan oʻtish shart emas"
     },
     "features": {
       "title": "Muvaffaqiyat uchun Kerakli Hamma Narsa",
-      "subtitle": "AI-asosli platformamiz Koreya ishga qabul qilish jarayonining har bir bosqichida yo'l ko'rsatadi.",
+      "subtitle": "AI-asosli platformamiz Koreya ishga qabul qilish jarayonining har bir bosqichida yoʻl koʻrsatadi.",
       "ai": {
         "title": "AI Yozish Yordamchisi",
-        "desc": "Ilg'or AI bilan rezyume va motivatsion xatlaringiz uchun shaxsiy tavsiyalar va yaxshilanishlar oling."
+        "desc": "Ilgʻor AI bilan rezyume va motivatsion xatlaringiz uchun shaxsiy tavsiyalar va yaxshilanishlar oling."
       },
       "resume": {
         "title": "Koreyscha Rezyume Yaratuvchi",
-        "desc": "Yo'naltirilgan yaratuvchi va chiroyli shablonlar bilan Koreya standartlariga mos professional rezyume yarating."
+        "desc": "Yoʻnaltirilgan yaratuvchi va chiroyli shablonlar bilan Koreya standartlariga mos professional rezyume yarating."
       },
       "coverLetter": {
         "title": "자기소개서 Yaratuvchi",
-        "desc": "Koreya ish beruvchilari va ularning madaniyatiga mos qiziqarli o'z-o'zini taqdimot xatlarini yozing."
+        "desc": "Koreya ish beruvchilari va ularning madaniyatiga mos qiziqarli oʻz-oʻzini taqdimot xatlarini yozing."
       },
       "multilingual": {
-        "title": "Ko'p Tilli Qo'llab-quvvatlash",
-        "desc": "Ilovadan o‘zingizga qulay tilda foydalaning — o‘zbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida."
+        "title": "Koʻp Tilli Qoʻllab-quvvatlash",
+        "desc": "Ilovadan oʻzingizga qulay tilda foydalaning — oʻzbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida."
       },
       "pdf": {
         "title": "PDF Eksport",
@@ -96,11 +96,11 @@
       "title": "3 Oddiy Qadamda Boshlang",
       "step1": {
         "title": "Hisobingizni Yarating",
-        "desc": "Bepul ro'yxatdan o'ting va Koreyadagi maqsad ish haqida bizga ayting."
+        "desc": "Bepul roʻyxatdan oʻting va Koreyadagi maqsad ish haqida bizga ayting."
       },
       "step2": {
         "title": "Hujjatlaringizni Yarating",
-        "desc": "AI yordamchi yaratuvchilarimizdan foydalanib koreys rezyume va o'z-o'zini taqdimot xatingizni yarating."
+        "desc": "AI yordamchi yaratuvchilarimizdan foydalanib koreys rezyume va oʻz-oʻzini taqdimot xatingizni yarating."
       },
       "step3": {
         "title": "Eksport Qiling va Ariza Bering",
@@ -109,25 +109,25 @@
     },
     "cta": {
       "title": "Koreya Martabangizni Boshlashga Tayyormisiz?",
-      "subtitle": "Koreer yordamida Koreyada ish topgan minglab xorijiy talabalar bilan qo'shiling.",
+      "subtitle": "Koreer yordamida Koreyada ish topgan minglab xorijiy talabalar bilan qoʻshiling.",
       "button": "Bepul Hisob Yaratish"
     },
     "why": {
       "badge": "Nega Koreer",
       "title": "Koreyada ish topish uchun yaratilgan",
-      "subtitle": "Chet ellik nomzodga koreys ish o‘rinlari uchun kerak bo‘lgan hamma narsa — bir joyda.",
+      "subtitle": "Chet ellik nomzodga koreys ish oʻrinlari uchun kerak boʻlgan hamma narsa — bir joyda.",
       "advantages": {
         "formatting": {
           "title": "Formatlashda soatlab vaqt tejang",
-          "desc": "Taxminlar yo‘q. Ma’lumotni kiriting — bir necha kunda emas, daqiqada koreys standartidagi 이력서 oling."
+          "desc": "Taxminlar yoʻq. Maʼlumotni kiriting — bir necha kunda emas, daqiqada koreys standartidagi 이력서 oling."
         },
         "standard": {
-          "title": "Standart bo‘yicha koreys uslubi",
-          "desc": "Har bir shablon haqiqiy koreys korporativ talablariga mos — rasm joylashuvi, bo‘limlar va rasmiy ohang."
+          "title": "Standart boʻyicha koreys uslubi",
+          "desc": "Har bir shablon haqiqiy koreys korporativ talablariga mos — rasm joylashuvi, boʻlimlar va rasmiy ohang."
         },
         "language": {
           "title": "Sizning tilingiz, koreyscha natija",
-          "desc": "O‘zbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida ishlang. Yakuniy hujjat koreys ish beruvchilar uchun jilolangan."
+          "desc": "Oʻzbek, rus, ingliz, koreys, xitoy yoki vyetnam tilida ishlang. Yakuniy hujjat koreys ish beruvchilar uchun jilolangan."
         },
         "ai": {
           "title": "AI yozuv yordami",
@@ -139,49 +139,49 @@
         },
         "free": {
           "title": "Bepul boshlash",
-          "desc": "Hech narsa to‘lamasdan rezyume yarating, ko‘ring va PDF qilib yuklab oling."
+          "desc": "Hech narsa toʻlamasdan rezyume yarating, koʻring va PDF qilib yuklab oling."
         }
       }
     },
     "who": {
       "badge": "Kimlar uchun",
       "title": "Koreer kimlarga yordam beradi",
-      "subtitle": "Agar Koreyada karyera qurayotgan bo‘lsangiz, Koreer siz uchun.",
+      "subtitle": "Agar Koreyada karyera qurayotgan boʻlsangiz, Koreer siz uchun.",
       "audience": {
         "students": {
           "title": "Xalqaro talabalar",
-          "desc": "Koreyada o‘qib, part-time ish, amaliyot yoki birinchi to‘liq stavka ishga topshirayotganlar."
+          "desc": "Koreyada oʻqib, part-time ish, amaliyot yoki birinchi toʻliq stavka ishga topshirayotganlar."
         },
         "jobSeekers": {
           "title": "Ish qidiruvchilar",
-          "desc": "Koreys kompaniyalariga topshirayotgan va mahalliy standartlarga mos rezyume va 자기소개서 kerak bo‘lganlar."
+          "desc": "Koreys kompaniyalariga topshirayotgan va mahalliy standartlarga mos rezyume va 자기소개서 kerak boʻlganlar."
         },
         "researchers": {
           "title": "Tadqiqotchilar va magistrlar",
-          "desc": "Nashrlar, dissertatsiyalar va konferentsiya maqolalarini (학위논문, 학술논문, 프로시딩) akademik CV’ga qo‘shing."
+          "desc": "Nashrlar, dissertatsiyalar va konferentsiya maqolalarini (학위논문, 학술논문, 프로시딩) akademik CVʼga qoʻshing."
         },
         "newcomers": {
           "title": "Koreyaga yangi kelganlar",
-          "desc": "O‘zbekiston, Qozog‘iston va boshqa joylardan — o‘z tilingizda professional profil yarating."
+          "desc": "Oʻzbekiston, Qozogʻiston va boshqa joylardan — oʻz tilingizda professional profil yarating."
         }
       }
     },
     "demo": {
-      "badge": "Qanday ishlashini ko‘ring",
+      "badge": "Qanday ishlashini koʻring",
       "title": "Koreer amalda",
-      "subtitle": "Koreys rezyume yasash jarayoni bilan qisqacha tanishing — ma’lumot kiritishdan tayyor PDF’gacha.",
+      "subtitle": "Koreys rezyume yasash jarayoni bilan qisqacha tanishing — maʼlumot kiritishdan tayyor PDFʼgacha.",
       "comingSoon": "Demo video tez orada",
       "walkthrough": "Mahsulot bilan tanishuv"
     },
     "templates": {
       "badge": "Koreys rezyume shablonlari",
       "title": "Professional koreys 이력서 shablonlari",
-      "desc": "Shablonlarimiz koreys korporativ standartlariga mos — rasm, ta’lim tarixi va maqsad bo‘limlari bilan, aynan koreys ish beruvchilar kutgandek.",
+      "desc": "Shablonlarimiz koreys korporativ standartlariga mos — rasm, taʼlim tarixi va maqsad boʻlimlari bilan, aynan koreys ish beruvchilar kutgandek.",
       "cta": "Yaratishni boshlash",
       "points": {
         "p1": "Koreys standart shakli (한국 표준 양식)",
         "p2": "Avtomatik 존댓말 takliflari",
-        "p3": "Rasm joylashuvi bo‘yicha yo‘riqnoma",
+        "p3": "Rasm joylashuvi boʻyicha yoʻriqnoma",
         "p4": "TOPIK darajasini hisobga olish"
       },
       "standardBadge": "Koreys standarti"
@@ -195,14 +195,14 @@
       "password": "Parol",
       "forgotPassword": "Parolni unutdingizmi?",
       "submit": "Kirish",
-      "noAccount": "Hisobingiz yo'qmi?",
-      "signUp": "Ro'yxatdan o'tish",
+      "noAccount": "Hisobingiz yoʻqmi?",
+      "signUp": "Roʻyxatdan oʻtish",
       "continueWith": "Yoki bilan davom eting"
     },
     "register": {
       "title": "Hisobingizni yarating",
-      "subtitle": "Koreerga qo'shiling va Koreya martaba sayohatingizni boshlang",
-      "fullName": "To'liq ism",
+      "subtitle": "Koreerga qoʻshiling va Koreya martaba sayohatingizni boshlang",
+      "fullName": "Toʻliq ism",
       "email": "Elektron pochta manzili",
       "password": "Parol",
       "confirmPassword": "Parolni tasdiqlang",
@@ -215,29 +215,29 @@
       "passwordHint": "Kamida 8 ta belgi",
       "selectCountry": "Mamlakatingizni tanlang...",
       "countries": {
-        "uzbekistan": "O‘zbekiston",
-        "kazakhstan": "Qozog‘iston",
-        "kyrgyzstan": "Qirg‘iziston",
-        "mongolia": "Mo‘g‘uliston",
+        "uzbekistan": "Oʻzbekiston",
+        "kazakhstan": "Qozogʻiston",
+        "kyrgyzstan": "Qirgʻiziston",
+        "mongolia": "Moʻgʻuliston",
         "china": "Xitoy",
         "vietnam": "Vyetnam",
         "other": "Boshqa"
       },
       "passwordMismatch": "Parollar mos kelmadi.",
-      "checkEmail": "Akkauntni tasdiqlash uchun emailingizni tekshiring, so‘ng kiring."
+      "checkEmail": "Akkauntni tasdiqlash uchun emailingizni tekshiring, soʻng kiring."
     },
-    "notConfigured": "Kirish hali sozlanmagan. Keyinroq urinib ko‘ring.",
-    "genericError": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
+    "notConfigured": "Kirish hali sozlanmagan. Keyinroq urinib koʻring.",
+    "genericError": "Xatolik yuz berdi. Qayta urinib koʻring.",
     "resend": "Tasdiq xatini qayta yuborish",
     "resendSent": "Tasdiq xati yuborildi — pochtangizni tekshiring.",
-    "linkExpired": "Tasdiq havolasi yaroqsiz yoki eskirgan. Quyida email va parolingizni kiriting, so‘ng qayta yuboring.",
+    "linkExpired": "Tasdiq havolasi yaroqsiz yoki eskirgan. Quyida email va parolingizni kiriting, soʻng qayta yuboring.",
     "notConfirmed": "Emailingiz hali tasdiqlanmagan.",
     "continueWithGoogle": "Google bilan davom etish",
     "forgot": {
       "title": "Parolni tiklash",
       "subtitle": "Elektron pochtangizni kiriting — tiklash havolasini yuboramiz.",
       "submit": "Havolani yuborish",
-      "sent": "Agar bu pochta ro‘yxatdan o‘tgan bo‘lsa, tiklash havolasi yuborildi.",
+      "sent": "Agar bu pochta roʻyxatdan oʻtgan boʻlsa, tiklash havolasi yuborildi.",
       "back": "Kirish sahifasiga qaytish"
     },
     "reset": {
@@ -247,10 +247,10 @@
       "confirmPassword": "Yangi parolni tasdiqlang",
       "submit": "Yangi parolni saqlash",
       "success": "Parol yangilandi.",
-      "invalidLink": "Bu tiklash havolasi yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang."
+      "invalidLink": "Bu tiklash havolasi yaroqsiz yoki muddati oʻtgan. Yangisini soʻrang."
     },
-    "webviewBlocked": "Google orqali kirishni bu yerda ochib bo‘lmaydi. Koreer'ni brauzerda oching yoki quyida elektron pochta va parol bilan kiring.",
-    "continueInBrowser": "Google orqali kirishni ochilgan brauzerda davom ettiring, so‘ng shu yerga qayting."
+    "webviewBlocked": "Google orqali kirishni bu yerda ochib boʻlmaydi. Koreerʼni brauzerda oching yoki quyida elektron pochta va parol bilan kiring.",
+    "continueInBrowser": "Google orqali kirishni ochilgan brauzerda davom ettiring, soʻng shu yerga qayting."
   },
   "dashboard": {
     "greeting": "Xayrli {time}, {name}!",
@@ -262,32 +262,32 @@
       "resumes": "Rezyumeler",
       "coverLetters": "Motivatsion xatlar",
       "aiChats": "AI Suhbatlari",
-      "lastActivity": "So'nggi faoliyat"
+      "lastActivity": "Soʻnggi faoliyat"
     },
     "quickActions": {
       "title": "Tezkor Harakatlar",
       "createResume": "Yangi rezyume yaratish",
       "createCoverLetter": "Motivatsion xat yaratish",
-      "askAI": "AI yordamchisidan so'rang"
+      "askAI": "AI yordamchisidan soʻrang"
     },
     "recentDocuments": {
-      "title": "So'nggi Hujjatlar",
-      "empty": "Hali hujjat yo'q. Birinchisini yarating!",
-      "viewAll": "Hammasini ko'rish"
+      "title": "Soʻnggi Hujjatlar",
+      "empty": "Hali hujjat yoʻq. Birinchisini yarating!",
+      "viewAll": "Hammasini koʻrish"
     },
     "tips": {
       "title": "Martaba Maslahatlari",
-      "tip1": "Fotosurat qo'shish talabi kompaniyaga qarab farq qiladi. Ko'r tanlov (블라인드 채용) jarayonida foto, yosh va tug'ilgan joy ko'rsatilmaydi — e'londagi talabni tekshiring.",
-      "tip2": "O'z-o'zini taqdimot xatlari odatda 성장과정, 성격, 지원동기, 포부 tuzilishini kuzatadi",
+      "tip1": "Fotosurat qoʻshish talabi kompaniyaga qarab farq qiladi. Koʻr tanlov (블라인드 채용) jarayonida foto, yosh va tugʻilgan joy koʻrsatilmaydi — eʼlondagi talabni tekshiring.",
+      "tip2": "Oʻz-oʻzini taqdimot xatlari odatda 성장과정, 성격, 지원동기, 포부 tuzilishini kuzatadi",
       "tip3": "Barcha rasmiy hujjatlarda rasmiy koreys tilidan foydalaning"
     },
-    "welcomeGuest": "Koreer'ga xush kelibsiz",
-    "signInPrompt": "Rezyume va 자기소개서'laringizni saqlash hamda ariza holatini kuzatish uchun tizimga kiring.",
+    "welcomeGuest": "Koreerʼga xush kelibsiz",
+    "signInPrompt": "Rezyume va 자기소개서ʼlaringizni saqlash hamda ariza holatini kuzatish uchun tizimga kiring.",
     "signIn": "Kirish",
     "newDocument": "Yangi hujjat",
     "ctaBanner": {
       "title": "Koreyscha rezyume (이력서) yarating",
-      "subtitle": "Shablon tanlang, ma'lumotlaringizni kiriting va bir necha daqiqada professional PDF yuklab oling.",
+      "subtitle": "Shablon tanlang, maʼlumotlaringizni kiriting va bir necha daqiqada professional PDF yuklab oling.",
       "createResume": "Rezyume yaratish"
     },
     "docsAppearHere": "Rezyume va 자기소개서 hujjatlaringiz shu yerda koʻrinadi."
@@ -297,10 +297,10 @@
     "subtitle": "Professional koreyscha rezyume yarating",
     "templates": {
       "title": "Dizayn tanlang",
-      "layoutHeading": "Ko‘rinish",
+      "layoutHeading": "Koʻrinish",
       "colorHeading": "Rang",
-      "apply": "Qo‘llash",
-      "layoutCount": "{count} ta ko‘rinish",
+      "apply": "Qoʻllash",
+      "layoutCount": "{count} ta koʻrinish",
       "selectedLabel": "Tanlangan",
       "layout": {
         "korean": {
@@ -309,7 +309,7 @@
         },
         "korean-nophoto": {
           "name": "이력서 (rasmsiz)",
-          "desc": "Rasm katagi yo‘q koreys rezyume jadvali"
+          "desc": "Rasm katagi yoʻq koreys rezyume jadvali"
         },
         "modern": {
           "name": "Zamonaviy",
@@ -321,7 +321,7 @@
         },
         "minimal": {
           "name": "Minimal",
-          "desc": "Ko‘p bo‘sh joyli bir ustun"
+          "desc": "Koʻp boʻsh joyli bir ustun"
         },
         "sidebar": {
           "name": "Yon panel",
@@ -329,51 +329,51 @@
         },
         "compact": {
           "name": "Ixcham",
-          "desc": "Ma’lumot ko‘p, zich ikki ustun"
+          "desc": "Maʼlumot koʻp, zich ikki ustun"
         },
         "academic": {
           "name": "Akademik",
-          "desc": "Nashrlarga urg‘u bergan serif uslub"
+          "desc": "Nashrlarga urgʻu bergan serif uslub"
         },
         "tech": {
           "name": "Dasturchi",
           "desc": "Monospace, terminal uslubi"
         },
         "dark": {
-          "name": "Qorong‘i",
-          "desc": "Rangli sarlavhali qorong‘i fon"
+          "name": "Qorongʻi",
+          "desc": "Rangli sarlavhali qorongʻi fon"
         }
       },
       "color": {
         "indigo": "Indigo",
-        "navy": "To‘q ko‘k",
-        "forest": "O‘rmon",
+        "navy": "Toʻq koʻk",
+        "forest": "Oʻrmon",
         "teal": "Moviy",
         "crimson": "Qizil",
-        "amber": "Sarg‘ish",
+        "amber": "Sargʻish",
         "rose": "Pushti",
         "slate": "Kulrang"
       }
     },
     "sections": {
-      "personal": "Shaxsiy Ma'lumot",
-      "education": "Ta'lim",
+      "personal": "Shaxsiy Maʼlumot",
+      "education": "Taʼlim",
       "experience": "Ish Tajribasi",
-      "skills": "Ko'nikmalar",
+      "skills": "Koʻnikmalar",
       "awards": "Mukofotlar / Stipendiyalar",
       "certificates": "Sertifikatlar",
       "projects": "Loyihalar",
-      "volunteer": "Ko'ngillilik",
+      "volunteer": "Koʻngillilik",
       "publications": "Nashrlar",
       "languages": "Tillar",
       "certifications": "Sertifikatlar"
     },
     "personal": {
-      "fullName": "To'liq Ism",
+      "fullName": "Toʻliq Ism",
       "fullNameKorean": "Koreyacha Ism",
       "email": "Elektron Pochta",
       "phone": "Telefon",
-      "dateOfBirth": "Tug'ilgan Sana",
+      "dateOfBirth": "Tugʻilgan Sana",
       "nationality": "Millat",
       "address": "Manzil",
       "photo": "Profil Fotosurati",
@@ -386,17 +386,17 @@
       "photoTooLarge": "Bu rasm juda katta. 5MB dan kichigini tanlang."
     },
     "education": {
-      "add": "Ta'lim Qo'shish",
+      "add": "Taʼlim Qoʻshish",
       "institution": "Universitet / Muassasa",
       "degree": "Daraja",
-      "field": "O'qish Yo'nalishi",
+      "field": "Oʻqish Yoʻnalishi",
       "startDate": "Boshlanish Sanasi",
       "endDate": "Tugash Sanasi",
       "gpa": "GPA / Baho",
-      "current": "Hozirda o'qiyapman"
+      "current": "Hozirda oʻqiyapman"
     },
     "experience": {
-      "add": "Tajriba Qo'shish",
+      "add": "Tajriba Qoʻshish",
       "company": "Kompaniya",
       "position": "Lavozim",
       "startDate": "Boshlanish Sanasi",
@@ -406,17 +406,17 @@
       "achievements": "Asosiy Yutuqlar"
     },
     "skills": {
-      "add": "Ko'nikma Qo'shish",
-      "name": "Ko'nikma Nomi",
+      "add": "Koʻnikma Qoʻshish",
+      "name": "Koʻnikma Nomi",
       "level": "Mahorat Darajasi",
       "category": "Kategoriya",
-      "beginner": "Boshlang'ich",
-      "intermediate": "O'rta",
-      "advanced": "Ilg'or",
+      "beginner": "Boshlangʻich",
+      "intermediate": "Oʻrta",
+      "advanced": "Ilgʻor",
       "expert": "Mutaxassis"
     },
     "awards": {
-      "add": "Mukofot / Stipendiya Qo'shish",
+      "add": "Mukofot / Stipendiya Qoʻshish",
       "title": "Nomi",
       "organization": "Tashkilot / Universitet",
       "date": "Sana",
@@ -427,7 +427,7 @@
       "description": "Tavsif"
     },
     "certificates": {
-      "add": "Sertifikat Qo'shish",
+      "add": "Sertifikat Qoʻshish",
       "name": "Sertifikat Nomi",
       "issuer": "Beruvchi Tashkilot",
       "date": "Berilgan Sana",
@@ -435,7 +435,7 @@
       "credentialId": "Sertifikat ID / Raqami"
     },
     "projects": {
-      "add": "Loyiha Qo'shish",
+      "add": "Loyiha Qoʻshish",
       "title": "Loyiha Nomi",
       "role": "Sizning Rolingiz",
       "startDate": "Boshlanish Sanasi",
@@ -446,7 +446,7 @@
       "url": "Loyiha URL (ixtiyoriy)"
     },
     "volunteer": {
-      "add": "Ko'ngillilik Faoliyatini Qo'shish",
+      "add": "Koʻngillilik Faoliyatini Qoʻshish",
       "organization": "Tashkilot",
       "role": "Rol / Faoliyat",
       "startDate": "Boshlanish Sanasi",
@@ -455,7 +455,7 @@
       "description": "Tavsif"
     },
     "publications": {
-      "add": "Nashr Qo'shish",
+      "add": "Nashr Qoʻshish",
       "title": "Sarlavha",
       "type": "Turi",
       "typeThesis": "Dissertatsiya / Bitirma ishi (학위논문)",
@@ -469,7 +469,7 @@
     },
     "builder": {
       "template": "Shablon",
-      "preview": "Ko'rish",
+      "preview": "Koʻrish",
       "hide": "Yashirish",
       "photoHint": "JPG, PNG, 5MB gacha",
       "livePreview": "Jonli koʻrinish",
@@ -479,13 +479,13 @@
       "progressDone": "Rezyumengiz tayyor 🎉",
       "nextStep": "Keyingi qadam: {section}",
       "introTitle": "Qanday ishlaydi",
-      "introStep1": "Ma’lumotlaringizni to‘ldiring — o‘ngdagi ko‘rinish darhol yangilanadi.",
+      "introStep1": "Maʼlumotlaringizni toʻldiring — oʻngdagi koʻrinish darhol yangilanadi.",
       "introStep2": "Kompaniyaga mos shablon va rangni tanlang.",
-      "introStep3": "Tayyor bo‘lgach PDF yoki Word qilib yuklab oling.",
+      "introStep3": "Tayyor boʻlgach PDF yoki Word qilib yuklab oling.",
       "introGotIt": "Tushunarli",
       "fillFromProfile": "Profilimdan olish",
-      "filledFields": "Profilingizdan to'ldirildi.",
-      "filledSkills": "Ko'nikmalar profilingizdan qo'shildi."
+      "filledFields": "Profilingizdan toʻldirildi.",
+      "filledSkills": "Koʻnikmalar profilingizdan qoʻshildi."
     },
     "sectionOrder": {
       "title": "Boʻlimlar tartibi",
@@ -496,76 +496,76 @@
   },
   "coverLetter": {
     "title": "자기소개서 Yaratuvchi",
-    "subtitle": "Ishonchli koreys o'z-o'zini taqdimot xatini yarating",
+    "subtitle": "Ishonchli koreys oʻz-oʻzini taqdimot xatini yarating",
     "targetCompany": "Maqsadli Kompaniya",
     "targetPosition": "Maqsadli Lavozim",
     "sections": {
-      "growth": "성장과정 (O'sish Tarixi)",
+      "growth": "성장과정 (Oʻsish Tarixi)",
       "personality": "성격의 장단점 (Kuchli va Zaif Tomonlar)",
       "motivation": "지원동기 (Ariza Berish Sababi)",
       "aspiration": "입사 후 포부 (Kelajak Maqsadlar)"
     },
     "aiHelp": "AI tavsiyalarini oling",
     "translate": "Tarjima",
-    "wordCount": "{count} so'z",
+    "wordCount": "{count} soʻz",
     "characterCount": "{count} belgi",
     "guidance": {
-      "growth": "Sizni shakllantirgan tajribalarni sabr va o'sishning aniq misollari bilan yozing.",
-      "personality": "Kuchli va zaif tomonlaringizni rostgo'ylik bilan yozing va zaiflikni qanday bartaraf etayotganingizni tushuntiring.",
-      "motivation": "Kompaniyani o'rganing va sizga yaqin bo'lgan mahsulot, qadriyat yoki tashabbuslarni aniq keltiring.",
-      "aspiration": "Maqsadlaringizni aniq yozing — mavhum orzudan ko'ra real reja yaxshiroq.",
+      "growth": "Sizni shakllantirgan tajribalarni sabr va oʻsishning aniq misollari bilan yozing.",
+      "personality": "Kuchli va zaif tomonlaringizni rostgoʻylik bilan yozing va zaiflikni qanday bartaraf etayotganingizni tushuntiring.",
+      "motivation": "Kompaniyani oʻrganing va sizga yaqin boʻlgan mahsulot, qadriyat yoki tashabbuslarni aniq keltiring.",
+      "aspiration": "Maqsadlaringizni aniq yozing — mavhum orzudan koʻra real reja yaxshiroq.",
       "custom": "Kompaniya savoliga aniq misollar, raqamlar, sanalar va voqealar bilan bevosita javob bering."
     },
-    "addSection": "Bo'lim qo'shish",
-    "newSectionTitle": "Yangi bo'lim",
-    "sectionTitleLabel": "Bo'lim sarlavhasi",
+    "addSection": "Boʻlim qoʻshish",
+    "newSectionTitle": "Yangi boʻlim",
+    "sectionTitleLabel": "Boʻlim sarlavhasi",
     "charLimitLabel": "Belgi cheklovi",
-    "removeSection": "Bo'limni o'chirish",
+    "removeSection": "Boʻlimni oʻchirish",
     "total": "Jami",
     "characters": "belgi",
     "preview": "Koʻrish",
     "applicationDetails": "Ariza maʼlumotlari",
     "guidancePanel": {
-      "title": "Bu bo‘limni yozish bo‘yicha"
+      "title": "Bu boʻlimni yozish boʻyicha"
     },
     "kind": {
       "formula": "Formula",
-      "mistake": "Ko‘p uchraydigan xato",
+      "mistake": "Koʻp uchraydigan xato",
       "tip": "Maslahat",
-      "checklist": "Tekshiruv ro‘yxati",
+      "checklist": "Tekshiruv roʻyxati",
       "example": "Namuna"
     },
     "intro": {
       "title": "Yozishdan oldin bilishingiz kerak",
-      "subtitle": "Butun o‘z-tavsifnomaga tegishli bir necha tamoyil.",
-      "dontShowAgain": "Boshqa ko‘rsatilmasin",
+      "subtitle": "Butun oʻz-tavsifnomaga tegishli bir necha tamoyil.",
+      "dontShowAgain": "Boshqa koʻrsatilmasin",
       "gotIt": "Boshlash",
-      "reopen": "Yozish qo‘llanmasi"
+      "reopen": "Yozish qoʻllanmasi"
     },
     "rules": {
       "core-depth": {
         "title": "Chuqurlik kenglikdan ustun",
-        "body": "Ko‘p tajribani yuzaki sanamang — bitta tajribani chuqur tahlil qiling. Kuchli 자소서 voqealar bilan emas, ularning talqini bilan yutadi."
+        "body": "Koʻp tajribani yuzaki sanamang — bitta tajribani chuqur tahlil qiling. Kuchli 자소서 voqealar bilan emas, ularning talqini bilan yutadi."
       },
       "core-competency": {
-        "title": "Shaxsdan ko‘ra malaka",
-        "body": "‘Chet ellik’ ekaningizni birinchi o‘ringa qo‘ymang. Bu shunchaki vosita — matn markazida sizning malakangiz turishi kerak."
+        "title": "Shaxsdan koʻra malaka",
+        "body": "‘Chet ellik’ ekaningizni birinchi oʻringa qoʻymang. Bu shunchaki vosita — matn markazida sizning malakangiz turishi kerak."
       },
       "growth-formula": {
         "title": "Bitta sahna · 4 bosqichli formula (500 belgi)",
-        "body": "1-bosqich (10%): Bitta hal qiluvchi sahnani tanlang — butun hayot emas, bitta muhim daqiqa.\n2-bosqich (30%): Qachon, qayerda, nima qilganingizni ko‘z oldida gavdalanadigan qilib tasvirlang.\n3-bosqich (40%, eng muhim): O‘sha tajriba shakllantirgan qadriyatni bitta gap bilan — “Men ___ insonman”.\n4-bosqich (20%): Bu qadriyat tanlagan lavozimingizda qanday namoyon bo‘lishi va kompaniyaga foydasini bog‘lang."
+        "body": "1-bosqich (10%): Bitta hal qiluvchi sahnani tanlang — butun hayot emas, bitta muhim daqiqa.\n2-bosqich (30%): Qachon, qayerda, nima qilganingizni koʻz oldida gavdalanadigan qilib tasvirlang.\n3-bosqich (40%, eng muhim): Oʻsha tajriba shakllantirgan qadriyatni bitta gap bilan — “Men ___ insonman”.\n4-bosqich (20%): Bu qadriyat tanlagan lavozimingizda qanday namoyon boʻlishi va kompaniyaga foydasini bogʻlang."
       },
       "growth-example": {
         "title": "3-bosqich namunasi",
-        "body": "Masalan: “Men muvaffaqiyatsizlikdan keyin ham yechim izlab, oxirigacha boradigan insonman.” Shunday 3-bosqich gapini yozib, oxirida lavozimga bog‘lang."
+        "body": "Masalan: “Men muvaffaqiyatsizlikdan keyin ham yechim izlab, oxirigacha boradigan insonman.” Shunday 3-bosqich gapini yozib, oxirida lavozimga bogʻlang."
       },
       "growth-mistakes": {
-        "title": "Qochish kerak bo‘lgan 4 xato",
-        "body": "1. Xronologik sanash: “1998-yilda tug‘ilganman…” tarzida boshlash ko‘p kadrlar xodimiga zerikarli tuyulishi mumkin — undan qochgan ma’qul.\n2. Oilaviy klishe: “Ahil oilada o‘sganman” kabi iboralar, ota-ona bilan maqtanish, din·siyosat mavzularidan qochish odatda xavfsizroq.\n3. Voqealarni sanash: 5 tasini yuzaki yozgandan ko‘ra (almashinuv·amaliyot·ko‘ngillilik), 1 tasini chuqur tahlil qilish odatda samaraliroq.\n4. “Chet ellik bo‘lganim uchun”ni takrorlashdan ko‘ra, shaxsni vosita sifatida qoldirib, malakani markazga qo‘yish tavsiya etiladi.\n※ Talablar kompaniyaga qarab farq qilishi mumkin — e’lonni tekshiring."
+        "title": "Qochish kerak boʻlgan 4 xato",
+        "body": "1. Xronologik sanash: “1998-yilda tugʻilganman…” tarzida boshlash koʻp kadrlar xodimiga zerikarli tuyulishi mumkin — undan qochgan maʼqul.\n2. Oilaviy klishe: “Ahil oilada oʻsganman” kabi iboralar, ota-ona bilan maqtanish, din·siyosat mavzularidan qochish odatda xavfsizroq.\n3. Voqealarni sanash: 5 tasini yuzaki yozgandan koʻra (almashinuv·amaliyot·koʻngillilik), 1 tasini chuqur tahlil qilish odatda samaraliroq.\n4. “Chet ellik boʻlganim uchun”ni takrorlashdan koʻra, shaxsni vosita sifatida qoldirib, malakani markazga qoʻyish tavsiya etiladi.\n※ Talablar kompaniyaga qarab farq qilishi mumkin — eʼlonni tekshiring."
       },
       "motivation-formula": {
         "title": "Nega biz · nega bu lavozim",
-        "body": "A o‘qi (kompaniya): kompaniyaning so‘nggi yangiliklari·yangi mahsuloti·kengayish rejasini eslang. Masalan: “Kompaniyangiz 2025-yilda Janubi-Sharqiy Osiyoga chiqishini eshitib…”.\nB o‘qi (lavozim): o‘tmish tajribangiz bu ishning qaysi qismiga mos kelishini ko‘rsating.\nChet ellik uchun maslahat: oxirida ‘nega Koreya·nega bu kompaniya’ni 2–3 gap qo‘shing."
+        "body": "A oʻqi (kompaniya): kompaniyaning soʻnggi yangiliklari·yangi mahsuloti·kengayish rejasini eslang. Masalan: “Kompaniyangiz 2025-yilda Janubi-Sharqiy Osiyoga chiqishini eshitib…”.\nB oʻqi (lavozim): oʻtmish tajribangiz bu ishning qaysi qismiga mos kelishini koʻrsating.\nChet ellik uchun maslahat: oxirida ‘nega Koreya·nega bu kompaniyaʼni 2–3 gap qoʻshing."
       },
       "motivation-length": {
         "title": "500 belgi taqsimoti",
@@ -573,77 +573,77 @@
       }
     },
     "whyKorea": {
-      "insert": "'Nega Koreya' paragrafini qo‘shish",
-      "create": "'Nega Koreya' hikoyasini yaratish",
-      "warning": "Chet ellik nomzod uchun 'nega Koreya' ko‘pincha kerak. Bo‘lmasa, ketib qolish xavfi deb o‘qilishi mumkin."
+      "insert": "‘Nega Koreya’ paragrafini qoʻshish",
+      "create": "‘Nega Koreya’ hikoyasini yaratish",
+      "warning": "Chet ellik nomzod uchun ‘nega Koreya’ koʻpincha kerak. Boʻlmasa, ketib qolish xavfi deb oʻqilishi mumkin."
     },
     "jobPosting": {
-      "label": "Maqsadli ish e’loni (ixtiyoriy)",
-      "placeholder": "Ish e’lonini shu yerga qo‘ying — AI shunga moslab yozadi.",
-      "translate": "O‘z tilimda o‘qish"
+      "label": "Maqsadli ish eʼloni (ixtiyoriy)",
+      "placeholder": "Ish eʼlonini shu yerga qoʻying — AI shunga moslab yozadi.",
+      "translate": "Oʻz tilimda oʻqish"
     },
     "ai": {
-      "error": "AI javob bera olmadi. Qayta urinib ko‘ring.",
-      "outlineApplied": "Shaxsiy ma’lumot yo‘q — AI moslashtirilgan reja va savollar qo‘ydi."
+      "error": "AI javob bera olmadi. Qayta urinib koʻring.",
+      "outlineApplied": "Shaxsiy maʼlumot yoʻq — AI moslashtirilgan reja va savollar qoʻydi."
     }
   },
   "aiAssistant": {
     "title": "AI Martaba Yordamchisi",
-    "subtitle": "Koreya ish ariza topshirish bo'yicha shaxsiy yordam oling",
-    "placeholder": "Koreya ish arizasi haqida istalgan narsani so'rang...",
+    "subtitle": "Koreya ish ariza topshirish boʻyicha shaxsiy yordam oling",
+    "placeholder": "Koreya ish arizasi haqida istalgan narsani soʻrang...",
     "suggestions": {
       "title": "Tavsiya Etilgan Savollar",
       "q1": "Koreyscha rezyumeda fotosurat talabi qanday?",
       "q2": "자기소개서 da nima yozishim kerak?",
-      "q3": "Koreya kompaniyasi uchun rezyumemni ko'rib chiqing",
+      "q3": "Koreya kompaniyasi uchun rezyumemni koʻrib chiqing",
       "q4": "Koreyada ish haqi muzokaralarini qanday olib borishim kerak?",
       "q5": "Koreya intervyu savollarining odatiy namunalari qanday?"
     },
-    "thinking": "O'ylayapman...",
+    "thinking": "Oʻylayapman...",
     "send": "Yuborish",
     "newChat": "Yangi Suhbat",
     "history": "Suhbat Tarixi",
-    "greeting": "Men Koreyada ish topish uchun AI martaba yordamchisiman! Sizga quyidagilarda yordam bera olaman:\n\n• **Koreys rezyumesi (이력서)** — format, mazmun, foto talablari\n• **자기소개서** — tuzilishi, yozish maslahatlari, madaniy nuanslar\n• **Suhbatga tayyorgarlik** — koreys suhbatlaridagi keng tarqalgan savollar\n• **Maosh muzokarasi** — koreys ish joyi me'yorlari\n• **Madaniy maslahatlar** — koreys ish joyi odob-axloqi\n\nBugun sizga qanday yordam bera olaman?",
+    "greeting": "Men Koreyada ish topish uchun AI martaba yordamchisiman! Sizga quyidagilarda yordam bera olaman:\n\n• **Koreys rezyumesi (이력서)** — format, mazmun, foto talablari\n• **자기소개서** — tuzilishi, yozish maslahatlari, madaniy nuanslar\n• **Suhbatga tayyorgarlik** — koreys suhbatlaridagi keng tarqalgan savollar\n• **Maosh muzokarasi** — koreys ish joyi meʼyorlari\n• **Madaniy maslahatlar** — koreys ish joyi odob-axloqi\n\nBugun sizga qanday yordam bera olaman?",
     "chats": {
       "resumeTips": "Koreys rezyume maslahatlari",
       "interview": "Suhbat savollari",
-      "coverLetter": "자기소개서 qo'llanmasi"
+      "coverLetter": "자기소개서 qoʻllanmasi"
     },
     "starters": {
-      "resumeTips": "Koreys rezyumesi (이력서) yozish bo'yicha maslahat bering.",
+      "resumeTips": "Koreys rezyumesi (이력서) yozish boʻyicha maslahat bering.",
       "interview": "Koreys ish suhbatida keng tarqalgan savollar qanaqa va ularga qanday javob berish kerak?",
       "coverLetter": "Koreys 자기소개서 qanday yoziladi? Tuzilishini tushuntiring."
     },
-    "error": "Xatolik yuz berdi. Qayta urinib ko‘ring.",
-    "noReply": "Kechirasiz, javob olinmadi. Qayta urinib ko‘ring.",
-    "disclaimer": "AI javoblari faqat yo‘l-yo‘riq uchun. Har doim rasmiy manbalardan tekshiring.",
-    "noChats": "Suhbatlaringiz shu yerda ko‘rinadi.",
-    "deleteChat": "Suhbatni o‘chirish",
+    "error": "Xatolik yuz berdi. Qayta urinib koʻring.",
+    "noReply": "Kechirasiz, javob olinmadi. Qayta urinib koʻring.",
+    "disclaimer": "AI javoblari faqat yoʻl-yoʻriq uchun. Har doim rasmiy manbalardan tekshiring.",
+    "noChats": "Suhbatlaringiz shu yerda koʻrinadi.",
+    "deleteChat": "Suhbatni oʻchirish",
     "copy": "Javobni nusxalash",
     "copied": "Nusxalandi",
     "startersTitle": "Shundan boshlang",
-    "guestLimit": "Hisobsiz kuniga {guest} ta AI so‘rovi. Hisobga kirsangiz — {user} ta."
+    "guestLimit": "Hisobsiz kuniga {guest} ta AI soʻrovi. Hisobga kirsangiz — {user} ta."
   },
   "settings": {
     "title": "Sozlamalar",
     "profile": {
       "title": "Profil",
-      "name": "Ko'rsatish Nomi",
+      "name": "Koʻrsatish Nomi",
       "email": "Elektron Pochta Manzili",
       "nationality": "Millat",
       "bio": "Bio",
-      "saveChanges": "O'zgarishlarni Saqlash",
-      "bioPlaceholder": "O‘zingiz va Koreyadagi martaba maqsadlaringiz haqida yozing...",
-      "emailFixed": "Elektron pochtani bu yerdan o‘zgartirib bo‘lmaydi.",
+      "saveChanges": "Oʻzgarishlarni Saqlash",
+      "bioPlaceholder": "Oʻzingiz va Koreyadagi martaba maqsadlaringiz haqida yozing...",
+      "emailFixed": "Elektron pochtani bu yerdan oʻzgartirib boʻlmaydi.",
       "saved": "Profil saqlandi.",
-      "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
+      "saveError": "Saqlab boʻlmadi. Qayta urinib koʻring.",
       "signInRequired": "Profilni tahrirlash uchun tizimga kiring."
     },
     "appearance": {
-      "title": "Ko'rinish",
+      "title": "Koʻrinish",
       "theme": "Mavzu",
-      "light": "Yorug'",
-      "dark": "Qorong'i",
+      "light": "Yorugʻ",
+      "dark": "Qorongʻi",
       "system": "Tizim"
     },
     "language": {
@@ -652,24 +652,24 @@
     },
     "account": {
       "title": "Hisob",
-      "deleteAccount": "Akkauntni o‘chirish",
-      "deleteWarning": "Bu amalni bekor qilib bo‘lmaydi.",
-      "deleteDetail": "Akkauntingiz, barcha saqlangan rezyume va motivatsion xatlar hamda karyera profilingiz butunlay o‘chiriladi.",
+      "deleteAccount": "Akkauntni oʻchirish",
+      "deleteWarning": "Bu amalni bekor qilib boʻlmaydi.",
+      "deleteDetail": "Akkauntingiz, barcha saqlangan rezyume va motivatsion xatlar hamda karyera profilingiz butunlay oʻchiriladi.",
       "deleteConfirmHint": "Tasdiqlash uchun elektron pochtangizni yozing:",
-      "deleting": "O‘chirilmoqda…",
-      "deleted": "Akkauntingiz o‘chirildi.",
-      "deleteError": "Akkauntni o‘chirib bo‘lmadi. Qayta urinib ko‘ring.",
+      "deleting": "Oʻchirilmoqda…",
+      "deleted": "Akkauntingiz oʻchirildi.",
+      "deleteError": "Akkauntni oʻchirib boʻlmadi. Qayta urinib koʻring.",
       "signedInAs": "Kirgan hisob",
       "signInRequired": "Akkauntni boshqarish uchun tizimga kiring.",
-      "changePassword": "Parolni o‘zgartirish",
-      "changePasswordDesc": "Akkauntingiz uchun yangi parol o‘rnating.",
+      "changePassword": "Parolni oʻzgartirish",
+      "changePasswordDesc": "Akkauntingiz uchun yangi parol oʻrnating.",
       "newPassword": "Yangi parol",
       "confirmPassword": "Yangi parolni tasdiqlang",
       "passwordUpdated": "Parol yangilandi.",
-      "exportData": "Ma’lumotlarimni yuklab olish",
+      "exportData": "Maʼlumotlarimni yuklab olish",
       "exportDataDesc": "Hujjatlaringiz va profilingiz JSON fayl sifatida.",
-      "exportEmpty": "Hozircha yuklab oladigan narsa yo‘q.",
-      "exportError": "Faylni tayyorlab bo‘lmadi. Qayta urinib ko‘ring."
+      "exportEmpty": "Hozircha yuklab oladigan narsa yoʻq.",
+      "exportError": "Faylni tayyorlab boʻlmadi. Qayta urinib koʻring."
     },
     "whyKorea": {
       "title": "Nega Koreya"
@@ -679,34 +679,34 @@
     }
   },
   "nationalities": {
-    "uzbekistan": "O'zbekiston",
-    "kazakhstan": "Qozog'iston",
-    "kyrgyzstan": "Qirg'iziston",
-    "mongolia": "Mo'g'uliston",
+    "uzbekistan": "Oʻzbekiston",
+    "kazakhstan": "Qozogʻiston",
+    "kyrgyzstan": "Qirgʻiziston",
+    "mongolia": "Moʻgʻuliston",
     "china": "Xitoy",
     "vietnam": "Vyetnam",
     "other": "Boshqa"
   },
   "whyKorea": {
     "title": "Nega Koreya",
-    "subtitle": "Har bir arizada qayta ishlatiladigan 'nega Koreya' hikoyasini bir marta tayyorlang.",
+    "subtitle": "Har bir arizada qayta ishlatiladigan ‘nega Koreya’ hikoyasini bir marta tayyorlang.",
     "fields": {
       "arrivalContext": {
         "label": "Koreyaga kelish sababi",
         "placeholder": "Koreyaga birinchi qachon va nega kelgansiz? (masalan: almashinuv semestri, magistratura, oila) — 1–2 gap."
       },
       "alternativesWeighed": {
-        "label": "O‘ylab ko‘rilgan boshqa yo‘llar",
-        "placeholder": "Yana qaysi davlat yoki yo‘lni jiddiy o‘ylagandingiz, va nega Koreyani afzal ko‘rdingiz?"
+        "label": "Oʻylab koʻrilgan boshqa yoʻllar",
+        "placeholder": "Yana qaysi davlat yoki yoʻlni jiddiy oʻylagandingiz, va nega Koreyani afzal koʻrdingiz?"
       },
       "reasonToStay": {
         "label": "Shu yerda karyera qurish sababi",
-        "placeholder": "Faqat o‘qish emas, nega aynan shu yerda karyera qurishga qaror qildingiz?"
+        "placeholder": "Faqat oʻqish emas, nega aynan shu yerda karyera qurishga qaror qildingiz?"
       }
     },
     "draft": {
       "label": "Yakuniy hikoya (2–3 gap)",
-      "placeholder": "Yuqoridagi javoblar asosida 2–3 gapga jamlang. 'Javoblarimni birlashtirish' bilan qoralama tuzasiz."
+      "placeholder": "Yuqoridagi javoblar asosida 2–3 gapga jamlang. ‘Javoblarimni birlashtirish’ bilan qoralama tuzasiz."
     },
     "combine": "Javoblarimni birlashtirish",
     "combineHint": "Avval yuqoridagi uch savolga javob bering.",
@@ -715,21 +715,21 @@
   },
   "careerProfile": {
     "title": "Karyera profili",
-    "subtitle": "Buni bir marta to‘ldiring. Har bir hujjat va har bir AI taklifi shundan foydalanadi — shunda AI savol berish o‘rniga haqiqiy matn yozadi.",
+    "subtitle": "Buni bir marta toʻldiring. Har bir hujjat va har bir AI taklifi shundan foydalanadi — shunda AI savol berish oʻrniga haqiqiy matn yozadi.",
     "save": "Profilni saqlash",
     "saved": "Saqlandi",
     "fields": {
       "headline": {
         "label": "Bir qatorli tavsif",
-        "placeholder": "masalan: Hanyang universitetida dizayn magistranti, UX yo‘nalishida."
+        "placeholder": "masalan: Hanyang universitetida dizayn magistranti, UX yoʻnalishida."
       },
       "skills": {
-        "label": "Ko‘nikma va vositalar",
+        "label": "Koʻnikma va vositalar",
         "placeholder": "Figma, React, TypeScript, foydalanuvchi tadqiqoti…"
       },
       "education": {
-        "label": "Ta’lim",
-        "placeholder": "Universitet, yo‘nalish, yillar — masalan: Hanyang universiteti, Dizayn, 2023–2025."
+        "label": "Taʼlim",
+        "placeholder": "Universitet, yoʻnalish, yillar — masalan: Hanyang universiteti, Dizayn, 2023–2025."
       },
       "experience": {
         "label": "Tajriba va loyihalar",
@@ -737,11 +737,11 @@
       },
       "languages": {
         "label": "Tillar",
-        "placeholder": "Koreys (TOPIK 4), ingliz (yuqori), o‘zbek (ona tili)…"
+        "placeholder": "Koreys (TOPIK 4), ingliz (yuqori), oʻzbek (ona tili)…"
       },
       "strengths": {
         "label": "Kuchli tomonlar va yutuqlar",
-        "placeholder": "Mukofotlar, stipendiyalar, o‘zingiz ishonchli bo‘lgan narsalar."
+        "placeholder": "Mukofotlar, stipendiyalar, oʻzingiz ishonchli boʻlgan narsalar."
       }
     }
   },
@@ -749,129 +749,129 @@
     "save": "Saqlash",
     "saving": "Saqlanmoqda…",
     "saved": "Akkauntingizga saqlandi.",
-    "saveError": "Saqlab bo‘lmadi. Qayta urinib ko‘ring.",
+    "saveError": "Saqlab boʻlmadi. Qayta urinib koʻring.",
     "signInToSave": "Bu hujjatni akkauntingizga saqlash uchun tizimga kiring.",
     "untitled": "Nomsiz",
     "title": "Saqlangan hujjatlarim",
     "subtitle": "Akkauntingizga saqlagan barcha hujjatlar. Davom ettirish uchun ustiga bosing.",
     "loading": "Hujjatlar yuklanmoqda…",
     "empty": "Hozircha hech narsa saqlamagansiz.",
-    "emptyHint": "Rezyume yoki motivatsion xat yarating, so‘ng “Saqlash” tugmasini bosing.",
-    "signInToView": "Saqlangan hujjatlarni ko‘rish uchun tizimga kiring.",
+    "emptyHint": "Rezyume yoki motivatsion xat yarating, soʻng “Saqlash” tugmasini bosing.",
+    "signInToView": "Saqlangan hujjatlarni koʻrish uchun tizimga kiring.",
     "signIn": "Kirish",
     "open": "Ochish",
     "opened": "Hujjat ochildi. Qayta saqlasangiz, shu nusxa yangilanadi.",
-    "loadError": "Bu hujjatni ochib bo‘lmadi.",
+    "loadError": "Bu hujjatni ochib boʻlmadi.",
     "notFound": "Bu hujjat endi mavjud emas.",
     "signInToOpen": "Saqlangan hujjatni ochish uchun tizimga kiring.",
-    "delete": "O‘chirish",
-    "confirmDelete": "Bu hujjat o‘chirilsinmi?",
-    "deleted": "Hujjat o‘chirildi.",
-    "deleteError": "O‘chirib bo‘lmadi. Qayta urinib ko‘ring.",
+    "delete": "Oʻchirish",
+    "confirmDelete": "Bu hujjat oʻchirilsinmi?",
+    "deleted": "Hujjat oʻchirildi.",
+    "deleteError": "Oʻchirib boʻlmadi. Qayta urinib koʻring.",
     "kindResume": "Rezyume",
     "kindCoverLetter": "Motivatsion xat",
     "newResume": "Yangi rezyume",
     "newCoverLetter": "Yangi motivatsion xat",
     "editing": "Saqlangan hujjat tahrirlanmoqda",
-    "confirmShort": "O‘chirilsinmi?",
-    "draftRestored": "Saqlanmagan o‘zgarishlar tiklandi."
+    "confirmShort": "Oʻchirilsinmi?",
+    "draftRestored": "Saqlanmagan oʻzgarishlar tiklandi."
   },
   "legal": {
     "lastUpdated": "Oxirgi yangilanish",
-    "back": "Koreer'ga qaytish",
+    "back": "Koreerʼga qaytish",
     "privacy": {
       "title": "Maxfiylik siyosati",
-      "intro": "Koreer chet ellik nomzodlarga koreyscha rezyume (이력서) va motivatsion xat (자기소개서) yozishda yordam beradi. Bu siyosat qanday ma’lumot saqlanishini, nima uchun saqlanishini va uni qanday o‘chirishingizni tushuntiradi.",
+      "intro": "Koreer chet ellik nomzodlarga koreyscha rezyume (이력서) va motivatsion xat (자기소개서) yozishda yordam beradi. Bu siyosat qanday maʼlumot saqlanishini, nima uchun saqlanishini va uni qanday oʻchirishingizni tushuntiradi.",
       "collect": {
-        "t": "Qanday ma’lumot yig‘amiz",
-        "account": "Akkaunt: elektron pochtangiz va parolingiz (parol faqat biz o‘qiy olmaydigan hash ko‘rinishida saqlanadi). Forma orqali ro‘yxatdan o‘tsangiz — kiritgan ism va mamlakatingiz; Google orqali kirsangiz — Google bergan ism, pochta va profil rasmi.",
-        "documents": "Hujjatlar: rezyume yoki motivatsion xatga yozgan hamma narsangiz — ism, telefon, manzil, tug‘ilgan sana, millat, ta’lim, ish tajribasi va yuklagan bo‘lsangiz fotosuratingiz. Fotosurat hujjatning ichida saqlanadi.",
-        "profile": "Karyera profili: Sozlamalarda saqlagan ma’lumot, ko‘nikmalar va “Nega Koreya” javoblaringiz — ular hujjatlarda qayta ishlatiladi.",
-        "technical": "Texnik: kirish tokeni va tanlagan tilingiz brauzeringizda saqlanadi. AI imkoniyatlari suiiste’mol qilinmasligi uchun kunlik so‘rovlar soni ham hisoblanadi — hisobingiz bo‘yicha yoki, kirmagan tashrifchilar uchun, IP manzilingizning bir tomonlama xeshi bo‘yicha; manzilning o‘zi hech qachon saqlanmaydi. Reklama kuzatuvchilaridan foydalanmaymiz.",
-        "stats": "Tashrif statistikasi: qaysi sahifalar va tillar ishlatilayotganini bilish uchun sahifa ko‘rishlari sanaladi. Buni Vercel cookie’siz o‘lchaydi va tashrifchini kunlar orasida ham, saytlar orasida ham kuzatib bo‘lmaydi. Biz faqat umumiy sonlarni ko‘ramiz, alohida odamni emas."
+        "t": "Qanday maʼlumot yigʻamiz",
+        "account": "Akkaunt: elektron pochtangiz va parolingiz (parol faqat biz oʻqiy olmaydigan hash koʻrinishida saqlanadi). Forma orqali roʻyxatdan oʻtsangiz — kiritgan ism va mamlakatingiz; Google orqali kirsangiz — Google bergan ism, pochta va profil rasmi.",
+        "documents": "Hujjatlar: rezyume yoki motivatsion xatga yozgan hamma narsangiz — ism, telefon, manzil, tugʻilgan sana, millat, taʼlim, ish tajribasi va yuklagan boʻlsangiz fotosuratingiz. Fotosurat hujjatning ichida saqlanadi.",
+        "profile": "Karyera profili: Sozlamalarda saqlagan maʼlumot, koʻnikmalar va “Nega Koreya” javoblaringiz — ular hujjatlarda qayta ishlatiladi.",
+        "technical": "Texnik: kirish tokeni va tanlagan tilingiz brauzeringizda saqlanadi. AI imkoniyatlari suiisteʼmol qilinmasligi uchun kunlik soʻrovlar soni ham hisoblanadi — hisobingiz boʻyicha yoki, kirmagan tashrifchilar uchun, IP manzilingizning bir tomonlama xeshi boʻyicha; manzilning oʻzi hech qachon saqlanmaydi. Reklama kuzatuvchilaridan foydalanmaymiz.",
+        "stats": "Tashrif statistikasi: qaysi sahifalar va tillar ishlatilayotganini bilish uchun sahifa koʻrishlari sanaladi. Buni Vercel cookieʼsiz oʻlchaydi va tashrifchini kunlar orasida ham, saytlar orasida ham kuzatib boʻlmaydi. Biz faqat umumiy sonlarni koʻramiz, alohida odamni emas."
       },
       "use": {
         "t": "Nima uchun ishlatamiz",
-        "b": "Faqat xizmatni ishlatish uchun: tizimga kiritish, hujjatlaringizni saqlash va ko‘rsatish, PDF va Word fayl tayyorlash hamda siz so‘ragan AI takliflarini yaratish. Ma’lumotingizni sotmaymiz va AI modellarini o‘qitish uchun ishlatmaymiz."
+        "b": "Faqat xizmatni ishlatish uchun: tizimga kiritish, hujjatlaringizni saqlash va koʻrsatish, PDF va Word fayl tayyorlash hamda siz soʻragan AI takliflarini yaratish. Maʼlumotingizni sotmaymiz va AI modellarini oʻqitish uchun ishlatmaymiz."
       },
       "ai": {
         "t": "AI qayta ishlash",
-        "b": "AI tugmasini bosganingizda o‘sha bo‘lim matni va siz saqlagan karyera profili taklif yaratish uchun AI provayderimiz Groq'ga yuboriladi. Siz so‘ramaguningizcha hech narsa yuborilmaydi. AI natijasi xato bo‘lishi mumkin — hujjatni ish beruvchiga yuborishdan oldin doim tekshiring."
+        "b": "AI tugmasini bosganingizda oʻsha boʻlim matni va siz saqlagan karyera profili taklif yaratish uchun AI provayderimiz Groqʼga yuboriladi. Siz soʻramaguningizcha hech narsa yuborilmaydi. AI natijasi xato boʻlishi mumkin — hujjatni ish beruvchiga yuborishdan oldin doim tekshiring."
       },
       "share": {
-        "t": "Yana kim ma’lumotni qayta ishlaydi",
-        "b": "Uchta provayderdan foydalanamiz, har biri faqat quyida ko‘rsatilgan maqsadda. Ma’lumotingizni boshqa hech kimga bermaymiz.",
-        "supabase": "Supabase — akkauntlar va ma’lumotlar bazasi (hujjatlar va profil shu yerda saqlanadi).",
-        "vercel": "Vercel — saytni joylashtirish va cookie’siz sahifa ko‘rishlarini sanash.",
-        "groq": "Groq — siz so‘raganda AI takliflarini yaratish."
+        "t": "Yana kim maʼlumotni qayta ishlaydi",
+        "b": "Uchta provayderdan foydalanamiz, har biri faqat quyida koʻrsatilgan maqsadda. Maʼlumotingizni boshqa hech kimga bermaymiz.",
+        "supabase": "Supabase — akkauntlar va maʼlumotlar bazasi (hujjatlar va profil shu yerda saqlanadi).",
+        "vercel": "Vercel — saytni joylashtirish va cookieʼsiz sahifa koʻrishlarini sanash.",
+        "groq": "Groq — siz soʻraganda AI takliflarini yaratish."
       },
       "retention": {
         "t": "Qancha vaqt saqlaymiz",
-        "b": "Hujjatlaringiz siz o‘chirmaguningizcha turadi. Akkauntingiz va undagi hamma narsa akkauntni o‘chirmaguningizcha turadi. Akkauntni o‘chirish hujjatlar va profilni butunlay o‘chiradi — tiklab bo‘lmaydi."
+        "b": "Hujjatlaringiz siz oʻchirmaguningizcha turadi. Akkauntingiz va undagi hamma narsa akkauntni oʻchirmaguningizcha turadi. Akkauntni oʻchirish hujjatlar va profilni butunlay oʻchiradi — tiklab boʻlmaydi."
       },
       "rights": {
         "t": "Sizning huquqingiz",
-        "b": "Sozlamalar → Hisob bo‘limida parolni o‘zgartirishingiz, sizga tegishli barcha ma’lumotni JSON fayl sifatida yuklab olishingiz va akkauntni o‘chirishingiz mumkin. Alohida hujjatlarni ham istalgan vaqtda o‘chirasiz."
+        "b": "Sozlamalar → Hisob boʻlimida parolni oʻzgartirishingiz, sizga tegishli barcha maʼlumotni JSON fayl sifatida yuklab olishingiz va akkauntni oʻchirishingiz mumkin. Alohida hujjatlarni ham istalgan vaqtda oʻchirasiz."
       },
       "security": {
         "t": "Xavfsizlik",
-        "b": "Ma’lumotlar bazasidagi har bir qator qator darajasidagi xavfsizlik (RLS) bilan himoyalangan: tizimga kirgan foydalanuvchi faqat o‘z ma’lumotini o‘qiy va o‘zgartira oladi. Trafik shifrlanadi. Hech bir tizim mutlaq xavfsiz emas — saqlanishini istamaydigan ma’lumotni hujjatga yozmang."
+        "b": "Maʼlumotlar bazasidagi har bir qator qator darajasidagi xavfsizlik (RLS) bilan himoyalangan: tizimga kirgan foydalanuvchi faqat oʻz maʼlumotini oʻqiy va oʻzgartira oladi. Trafik shifrlanadi. Hech bir tizim mutlaq xavfsiz emas — saqlanishini istamaydigan maʼlumotni hujjatga yozmang."
       },
       "children": {
         "t": "Bolalar",
-        "b": "Koreer mehnatga layoqatli yoshdagi ish qidiruvchilar va talabalar uchun mo‘ljallangan. 14 yoshgacha bo‘lgan bolalardan bila turib ma’lumot yig‘maymiz."
+        "b": "Koreer mehnatga layoqatli yoshdagi ish qidiruvchilar va talabalar uchun moʻljallangan. 14 yoshgacha boʻlgan bolalardan bila turib maʼlumot yigʻmaymiz."
       },
       "changes": {
-        "t": "Siyosatdagi o‘zgarishlar",
-        "b": "Ma’lumot bilan ishlash tartibi o‘zgarsa, bu sahifa va yuqoridagi sana yangilanadi."
+        "t": "Siyosatdagi oʻzgarishlar",
+        "b": "Maʼlumot bilan ishlash tartibi oʻzgarsa, bu sahifa va yuqoridagi sana yangilanadi."
       },
       "contact": {
         "t": "Aloqa",
-        "b": "Ma’lumotingiz haqidagi savollar yoki o‘chirish so‘rovini quyidagi manzilga yuboring:"
+        "b": "Maʼlumotingiz haqidagi savollar yoki oʻchirish soʻrovini quyidagi manzilga yuboring:"
       }
     },
     "terms": {
       "title": "Foydalanish shartlari",
-      "intro": "Koreer'dan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz. Rozi bo‘lmasangiz, xizmatdan foydalanmang.",
+      "intro": "Koreerʼdan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz. Rozi boʻlmasangiz, xizmatdan foydalanmang.",
       "service": {
         "t": "Koreer nima",
         "b": "Koreer — koreyscha rezyume va motivatsion xat yozish uchun vosita, ixtiyoriy AI yordami bilan. Bu yozuv vositasi: ish topish agentligi, ish beruvchi, migratsiya maslahatchisi yoki yuridik xizmat emas."
       },
       "account": {
         "t": "Akkauntingiz",
-        "b": "Parolingiz xavfsizligi va akkauntingiz ostida sodir bo‘ladigan ishlar uchun siz javobgarsiz. O‘zingiz nazorat qiladigan pochta manzilini kiriting — parolni tiklashning yagona yo‘li shu."
+        "b": "Parolingiz xavfsizligi va akkauntingiz ostida sodir boʻladigan ishlar uchun siz javobgarsiz. Oʻzingiz nazorat qiladigan pochta manzilini kiriting — parolni tiklashning yagona yoʻli shu."
       },
       "acceptable": {
         "t": "Ruxsat etilgan foydalanish",
-        "b": "Koreer'dan boshqa odam uchun uning xabarisiz hujjat yozishda, o‘zgalarning ma’lumotini kiritishda, ish beruvchiga soxta ma’lumot topshirishda yoki xizmatga hujum qilish/ortiqcha yuklashda foydalanmang."
+        "b": "Koreerʼdan boshqa odam uchun uning xabarisiz hujjat yozishda, oʻzgalarning maʼlumotini kiritishda, ish beruvchiga soxta maʼlumot topshirishda yoki xizmatga hujum qilish/ortiqcha yuklashda foydalanmang."
       },
       "content": {
         "t": "Kontent sizniki",
-        "b": "Yozgan hamma narsangiz to‘liq sizniki bo‘lib qoladi. Biz uni faqat xizmat ko‘rsatish uchun saqlaymiz va hech qachon e’lon qilmaymiz. Hujjatlaringizga da’vo qilmaymiz."
+        "b": "Yozgan hamma narsangiz toʻliq sizniki boʻlib qoladi. Biz uni faqat xizmat koʻrsatish uchun saqlaymiz va hech qachon eʼlon qilmaymiz. Hujjatlaringizga daʼvo qilmaymiz."
       },
       "ai": {
         "t": "AI takliflari haqida",
-        "b": "AI natijasi — bu qoralama, dalil emas. U noaniq yoki muayyan kompaniyaga nomuvofiq bo‘lishi mumkin. Har bir hujjatni yuborishdan oldin tekshirish sizning zimmangizda. Koreer ishga qabul qilish tartibi, viza yoki Koreya qonunlari haqida aytgan narsalar umumiy ma’lumot — rasmiy manbadan tasdiqlang. Koreer'dan foydalanish suhbat yoki ish kafolatlamaydi."
+        "b": "AI natijasi — bu qoralama, dalil emas. U noaniq yoki muayyan kompaniyaga nomuvofiq boʻlishi mumkin. Har bir hujjatni yuborishdan oldin tekshirish sizning zimmangizda. Koreer ishga qabul qilish tartibi, viza yoki Koreya qonunlari haqida aytgan narsalar umumiy maʼlumot — rasmiy manbadan tasdiqlang. Koreerʼdan foydalanish suhbat yoki ish kafolatlamaydi."
       },
       "availability": {
         "t": "Mavjudlik",
-        "b": "Xizmat “bor holicha” taqdim etiladi. Imkoniyatlarni o‘zgartirishimiz yoki to‘xtatishimiz mumkin; doimiy ishlashini yoki xatosizligini va’da qila olmaymiz. Muhim hujjatlarni eksport qilib, o‘zingizda nusxasini saqlang."
+        "b": "Xizmat “bor holicha” taqdim etiladi. Imkoniyatlarni oʻzgartirishimiz yoki toʻxtatishimiz mumkin; doimiy ishlashini yoki xatosizligini vaʼda qila olmaymiz. Muhim hujjatlarni eksport qilib, oʻzingizda nusxasini saqlang."
       },
       "termination": {
         "t": "Foydalanishni tugatish",
-        "b": "Akkauntingizni istalgan vaqtda Sozlamalar → Hisob bo‘limidan o‘chirasiz. Ushbu shartlarni buzgan akkauntni to‘xtatib qo‘yishimiz mumkin."
+        "b": "Akkauntingizni istalgan vaqtda Sozlamalar → Hisob boʻlimidan oʻchirasiz. Ushbu shartlarni buzgan akkauntni toʻxtatib qoʻyishimiz mumkin."
       },
       "liability": {
         "t": "Cheklovlar",
         "b": "Qonun ruxsat bergan darajada, Koreer ishga qabul natijalari, boy berilgan imkoniyatlar yoki xizmatdan foydalanish natijasida yuzaga kelgan zarar uchun javobgar emas."
       },
       "changes": {
-        "t": "Shartlardagi o‘zgarishlar",
-        "b": "Shartlar o‘zgarsa, bu sahifa va yuqoridagi sana yangilanadi. Foydalanishni davom ettirish yangilangan shartlarga rozilik bildirish demakdir."
+        "t": "Shartlardagi oʻzgarishlar",
+        "b": "Shartlar oʻzgarsa, bu sahifa va yuqoridagi sana yangilanadi. Foydalanishni davom ettirish yangilangan shartlarga rozilik bildirish demakdir."
       },
       "contact": {
         "t": "Aloqa",
-        "b": "Shartlar bo‘yicha savollar uchun:"
+        "b": "Shartlar boʻyicha savollar uchun:"
       }
     }
   },
@@ -889,39 +889,39 @@
     "textPlaceholder": "Matn kiriting…",
     "namePlaceholder": "Ism familiya…",
     "translate": "Tarjima qilish",
-    "apply": "Qo‘llash",
+    "apply": "Qoʻllash",
     "swap": "Tillarni almashtirish",
     "autoDetect": "Avtomatik aniqlash",
-    "error": "Tarjima xizmatida xatolik. Qayta urinib ko‘ring."
+    "error": "Tarjima xizmatida xatolik. Qayta urinib koʻring."
   },
   "authErrors": {
-    "invalidCredentials": "Elektron pochta yoki parol noto‘g‘ri.",
+    "invalidCredentials": "Elektron pochta yoki parol notoʻgʻri.",
     "emailNotConfirmed": "Avval pochtangizni tasdiqlang — kelgan xatni tekshiring.",
-    "userExists": "Bu pochta bilan akkaunt allaqachon mavjud. Tizimga kirib ko‘ring.",
+    "userExists": "Bu pochta bilan akkaunt allaqachon mavjud. Tizimga kirib koʻring.",
     "weakPassword": "Bu parol juda zaif. Kamida 8 ta belgi ishlating.",
-    "rateLimit": "Juda ko‘p urinish. Biroz kuting va qayta urinib ko‘ring.",
+    "rateLimit": "Juda koʻp urinish. Biroz kuting va qayta urinib koʻring.",
     "samePassword": "Yangi parol joriy paroldan farq qilishi kerak.",
-    "invalidEmail": "Bu pochta manzili to‘g‘ri ko‘rinmayapti.",
-    "expiredLink": "Bu havola yaroqsiz yoki muddati o‘tgan. Yangisini so‘rang.",
-    "network": "Serverga ulanib bo‘lmadi. Internetni tekshirib, qayta urining.",
-    "generic": "Xatolik yuz berdi. Qayta urinib ko‘ring."
+    "invalidEmail": "Bu pochta manzili toʻgʻri koʻrinmayapti.",
+    "expiredLink": "Bu havola yaroqsiz yoki muddati oʻtgan. Yangisini soʻrang.",
+    "network": "Serverga ulanib boʻlmadi. Internetni tekshirib, qayta urining.",
+    "generic": "Xatolik yuz berdi. Qayta urinib koʻring."
   },
   "errors": {
     "notFoundTitle": "Sahifa topilmadi",
-    "notFoundBody": "Bunday sahifa yo‘q yoki boshqa manzilga ko‘chirilgan.",
+    "notFoundBody": "Bunday sahifa yoʻq yoki boshqa manzilga koʻchirilgan.",
     "errorTitle": "Xatolik yuz berdi",
-    "errorBody": "Kutilmagan xatolik. Qayta urinib ko‘ring yoki bosh sahifaga qayting.",
+    "errorBody": "Kutilmagan xatolik. Qayta urinib koʻring yoki bosh sahifaga qayting.",
     "retry": "Qayta urinish",
-    "goHome": "Koreer’ga o‘tish",
+    "goHome": "Koreerʼga oʻtish",
     "aiSignIn": "Bu yerda AI yordamidan foydalanish uchun tizimga kiring.",
-    "aiQuotaGuest": "Bugungi bepul AI so‘rovlaringiz tugadi. Ko‘proq olish uchun tizimga kiring.",
-    "aiQuotaUser": "Bugungi AI chegarasiga yetdingiz. Ertaga qayta urinib ko‘ring.",
-    "aiTooFast": "Juda ko‘p so‘rov. Biroz kuting va qayta urinib ko‘ring.",
-    "aiUnavailable": "AI hozircha mavjud emas. Keyinroq urinib ko‘ring.",
-    "aiTooLong": "Bu matn juda uzun. Qisqartirib, qayta urinib ko‘ring."
+    "aiQuotaGuest": "Bugungi bepul AI soʻrovlaringiz tugadi. Koʻproq olish uchun tizimga kiring.",
+    "aiQuotaUser": "Bugungi AI chegarasiga yetdingiz. Ertaga qayta urinib koʻring.",
+    "aiTooFast": "Juda koʻp soʻrov. Biroz kuting va qayta urinib koʻring.",
+    "aiUnavailable": "AI hozircha mavjud emas. Keyinroq urinib koʻring.",
+    "aiTooLong": "Bu matn juda uzun. Qisqartirib, qayta urinib koʻring."
   },
   "network": {
-    "offline": "Internet aloqasi yo‘q",
+    "offline": "Internet aloqasi yoʻq",
     "offlineHint": "Yozishda davom etavering — qoralamangiz shu qurilmada saqlanadi. AI yordami va hisobingizga saqlash uchun internet kerak.",
     "exitConfirm": "Chiqish uchun yana bir marta bosing"
   }
