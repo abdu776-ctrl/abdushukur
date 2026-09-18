@@ -54,14 +54,17 @@ Open it once and let it finish downloading the SDK before going further.
 
 ### 4. Create the native project
 
-The `android/` folder is not in this repository; it is generated. Capacitor
-packages have to be installed first (see the note at the bottom if they are not
-in `package.json` yet):
+The `android/` folder is not in this repository; it is generated. The Capacitor
+packages are in `package.json`, so `npm install` has already fetched them:
 
 ```bash
 npx cap add android
 npx cap sync
 ```
+
+If an `android/` folder from an earlier attempt is already there, skip
+`cap add` and run `cap sync` on its own — it rewrites the config and the plugin
+list into the existing project.
 
 This reads `capacitor.config.ts` — app id `com.koreer.app`, name `Koreer` — and
 writes the `android/` folder.
@@ -194,8 +197,10 @@ against, so the app has to earn its place as an app:
 - [x] **Offline** — a service worker serves visited pages and a translated
       offline screen instead of a blank error page. Done on the web side; it
       applies to the Android shell too, because the shell loads this origin.
-- [ ] **Back button** — must walk back through history and only exit at the
-      root. Needs `@capacitor/app`.
-- [ ] **Splash screen** — needs `@capacitor/splash-screen`.
+- [x] **Back button** — walks back through history, and at the first screen
+      asks for a second press before leaving.
+- [x] **Splash screen** — configured in `capacitor.config.ts`.
 
-The Capacitor packages are not in `package.json` yet.
+All three are written and build clean, but only the offline screen can be
+tested from a browser. The back button and the splash screen need a phone or an
+emulator, so **check both on the first build** before uploading anything.

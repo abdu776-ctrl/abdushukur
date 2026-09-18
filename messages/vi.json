@@ -916,6 +916,7 @@
   },
   "network": {
     "offline": "Không có kết nối mạng",
-    "offlineHint": "Bạn vẫn có thể tiếp tục viết — bản nháp được lưu trên thiết bị này. Trợ giúp AI và lưu vào tài khoản cần có mạng."
+    "offlineHint": "Bạn vẫn có thể tiếp tục viết — bản nháp được lưu trên thiết bị này. Trợ giúp AI và lưu vào tài khoản cần có mạng.",
+    "exitConfirm": "Nhấn quay lại lần nữa để thoát"
   }
 }

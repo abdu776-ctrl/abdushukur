@@ -916,6 +916,7 @@
   },
   "network": {
     "offline": "Internet aloqasi yo‘q",
-    "offlineHint": "Yozishda davom etavering — qoralamangiz shu qurilmada saqlanadi. AI yordami va hisobingizga saqlash uchun internet kerak."
+    "offlineHint": "Yozishda davom etavering — qoralamangiz shu qurilmada saqlanadi. AI yordami va hisobingizga saqlash uchun internet kerak.",
+    "exitConfirm": "Chiqish uchun yana bir marta bosing"
   }
 }

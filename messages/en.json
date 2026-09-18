@@ -916,6 +916,7 @@
   },
   "network": {
     "offline": "No internet connection",
-    "offlineHint": "You can keep writing — your draft is saved on this device. AI help and saving to your account need a connection."
+    "offlineHint": "You can keep writing — your draft is saved on this device. AI help and saving to your account need a connection.",
+    "exitConfirm": "Press back again to exit"
   }
 }

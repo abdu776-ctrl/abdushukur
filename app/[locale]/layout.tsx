@@ -4,6 +4,7 @@ import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import { ServiceWorkerRegistrar } from '@/components/providers/ServiceWorkerRegistrar';
+import { NativeBackButton } from '@/components/providers/NativeBackButton';
 import { OfflineBanner } from '@/components/OfflineBanner';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/lib/i18n';
@@ -79,6 +80,7 @@ export default async function LocaleLayout({
           <NextIntlClientProvider messages={messages}>
             <AuthProvider>{children}</AuthProvider>
             <OfflineBanner />
+            <NativeBackButton />
           </NextIntlClientProvider>
           <ServiceWorkerRegistrar />
         </ThemeProvider>

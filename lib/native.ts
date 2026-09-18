@@ -24,12 +24,23 @@ interface CapacitorBridge {
       close?: () => Promise<void>;
     };
     App?: {
-      addListener: (
-        event: 'appUrlOpen',
-        handler: (data: { url: string }) => void,
-      ) => Promise<{ remove: () => Promise<void> }>;
+      addListener: {
+        (
+          event: 'appUrlOpen',
+          handler: (data: { url: string }) => void,
+        ): Promise<PluginListener>;
+        (
+          event: 'backButton',
+          handler: (data: { canGoBack: boolean }) => void,
+        ): Promise<PluginListener>;
+      };
+      exitApp?: () => Promise<void>;
     };
   };
+}
+
+interface PluginListener {
+  remove: () => Promise<void>;
 }
 
 function bridge(): CapacitorBridge | null {
@@ -125,4 +136,43 @@ export function onAppUrlOpen(handler: (url: string) => void): () => void {
     cancelled = true;
     void remove?.();
   };
+}
+
+/**
+ * Subscribe to the hardware back button. Returns an unsubscribe function; a
+ * no-op outside the native shell.
+ *
+ * Taking this over is not optional: left alone, Android's back button closes
+ * the whole app from any screen, so one stray tap in the middle of a resume
+ * throws the person out of it. Google's Minimum Functionality policy names
+ * that behaviour too.
+ */
+export function onBackButton(handler: (canGoBack: boolean) => void): () => void {
+  const app = bridge()?.Plugins?.App;
+  if (!app) return () => {};
+
+  let remove: (() => Promise<void>) | null = null;
+  let cancelled = false;
+
+  app
+    .addListener('backButton', (data) => handler(Boolean(data?.canGoBack)))
+    .then((sub) => {
+      if (cancelled) void sub.remove();
+      else remove = sub.remove;
+    })
+    .catch((err) => console.error('backButton listener failed:', err));
+
+  return () => {
+    cancelled = true;
+    void remove?.();
+  };
+}
+
+/** Close the app. Only the native shell can do this; a no-op elsewhere. */
+export async function exitApp(): Promise<void> {
+  try {
+    await bridge()?.Plugins?.App?.exitApp?.();
+  } catch (err) {
+    console.error('exitApp failed:', err);
+  }
 }
