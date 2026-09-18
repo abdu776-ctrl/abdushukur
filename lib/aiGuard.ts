@@ -1,6 +1,7 @@
 import { createHash } from 'crypto';
 import { createClient } from '@supabase/supabase-js';
 import type { NextRequest } from 'next/server';
+import { GUEST_DAILY_LIMIT, USER_DAILY_LIMIT } from './aiLimits';
 
 // Server-side guard for the AI routes.
 //
@@ -16,8 +17,9 @@ import type { NextRequest } from 'next/server';
 // Guests are allowed a small daily budget on purpose — someone should be able
 // to try the assistant before creating an account.
 
-export const GUEST_DAILY_LIMIT = 5;
-export const USER_DAILY_LIMIT = 60;
+// Re-exported so the routes keep importing limits from the guard, while the
+// numbers themselves live somewhere the browser can read too.
+export { GUEST_DAILY_LIMIT, USER_DAILY_LIMIT } from './aiLimits';
 
 /** Requests per minute per caller, regardless of the daily budget. */
 const BURST_PER_MINUTE = 10;

@@ -621,7 +621,8 @@
     "deleteChat": "删除对话",
     "copy": "复制回答",
     "copied": "已复制",
-    "startersTitle": "从这里开始"
+    "startersTitle": "从这里开始",
+    "guestLimit": "未登录每天可使用 {guest} 次 AI。登录后为 {user} 次。"
   },
   "settings": {
     "title": "设置",

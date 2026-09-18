@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/Button';
 import { aiFetch, aiErrorKey } from '@/lib/aiClient';
 import { useAuth } from '@/lib/useAuth';
+import { GUEST_DAILY_LIMIT, USER_DAILY_LIMIT } from '@/lib/aiLimits';
 import { cn } from '@/lib/utils';
 import {
   Sparkles,
@@ -399,6 +400,15 @@ export function AIChat() {
               </button>
             ))}
           </div>
+        )}
+
+        {/* What a guest is allowed, said before they run out rather than after.
+            The refusal message was clear but arrived at the wall; someone
+            planning their questions deserves to know the budget up front. */}
+        {authStatus === 'unauthenticated' && (
+          <p className="px-4 pb-1 text-xs text-gray-500 dark:text-gray-400">
+            {t('guestLimit', { guest: GUEST_DAILY_LIMIT, user: USER_DAILY_LIMIT })}
+          </p>
         )}
 
         {/* Input area */}

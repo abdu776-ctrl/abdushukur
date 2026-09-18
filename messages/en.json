@@ -621,7 +621,8 @@
     "deleteChat": "Delete conversation",
     "copy": "Copy answer",
     "copied": "Copied",
-    "startersTitle": "Start with"
+    "startersTitle": "Start with",
+    "guestLimit": "Without an account you get {guest} AI requests a day. Sign in for {user}."
   },
   "settings": {
     "title": "Settings",

@@ -621,7 +621,8 @@
     "deleteChat": "대화 삭제",
     "copy": "답변 복사",
     "copied": "복사했습니다",
-    "startersTitle": "이렇게 시작해 보세요"
+    "startersTitle": "이렇게 시작해 보세요",
+    "guestLimit": "계정 없이는 하루 {guest}회까지 AI를 사용할 수 있습니다. 로그인하면 {user}회입니다."
   },
   "settings": {
     "title": "설정",

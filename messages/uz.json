@@ -621,7 +621,8 @@
     "deleteChat": "Suhbatni o‘chirish",
     "copy": "Javobni nusxalash",
     "copied": "Nusxalandi",
-    "startersTitle": "Shundan boshlang"
+    "startersTitle": "Shundan boshlang",
+    "guestLimit": "Hisobsiz kuniga {guest} ta AI so‘rovi. Hisobga kirsangiz — {user} ta."
   },
   "settings": {
     "title": "Sozlamalar",

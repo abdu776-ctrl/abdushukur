@@ -621,7 +621,8 @@
     "deleteChat": "Xoá cuộc trò chuyện",
     "copy": "Sao chép câu trả lời",
     "copied": "Đã sao chép",
-    "startersTitle": "Bắt đầu với"
+    "startersTitle": "Bắt đầu với",
+    "guestLimit": "Khi chưa đăng nhập, bạn có {guest} lượt AI mỗi ngày. Đăng nhập để có {user} lượt."
   },
   "settings": {
     "title": "Cài đặt",
