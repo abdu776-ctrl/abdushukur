@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { guardAiRequest } from '@/lib/aiGuard';
+import { GROQ_MODEL } from '@/lib/aiModel';
 
-const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 const LANG_NAMES: Record<string, string> = {
   uz: 'Uzbek',

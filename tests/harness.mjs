@@ -34,7 +34,29 @@ async function waitForServer(timeoutMs = 60_000) {
   throw new Error(`server did not come up on ${BASE} within ${timeoutMs}ms`);
 }
 
+/**
+ * Refuse to run against a server this suite did not start.
+ *
+ * A leftover server from an earlier run keeps serving the build it was started
+ * with, so the tests quietly measure old code — passing when they should fail,
+ * or failing on a fix that is already correct. That cost me an hour twice
+ * before this check existed, so it fails loudly instead.
+ */
+async function refuseIfPortBusy() {
+  try {
+    await fetch(`${BASE}/en`, { redirect: 'manual', signal: AbortSignal.timeout(2000) });
+  } catch {
+    return; // nothing listening, which is what we want
+  }
+  throw new Error(
+    `Something is already listening on port ${PORT}. It is probably a server ` +
+      `left over from an earlier run, and it is serving a different build. ` +
+      `Stop it first, or set TEST_PORT to a free port.`
+  );
+}
+
 export async function startAll() {
+  await refuseIfPortBusy();
   server = spawn('npx', ['next', 'start', '--port', String(PORT)], {
     cwd: process.cwd(),
     stdio: 'ignore',

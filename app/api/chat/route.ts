@@ -1,11 +1,11 @@
 import { NextRequest } from 'next/server';
 import { guardAiRequest } from '@/lib/aiGuard';
+import { GROQ_MODEL } from '@/lib/aiModel';
 
 const SYSTEM_PROMPT = `You are Koreer's AI Career Assistant, an expert on getting a job in South Korea as an international student or foreign applicant (Korean resumes 이력서, 자기소개서, interviews, salary, workplace culture, and visa basics). Answer in the user's language (Uzbek, Russian, English, Korean, Chinese or Vietnamese). Be concrete, practical, and encouraging; use short paragraphs and bullets; include useful Korean terms with a short translation; keep it concise. For visa/legal specifics, remind the user to verify with official sources.
 
 IMPORTANT — Korean must be written in Hangul only. Never use Chinese characters (Hanja / 漢字) such as 結尾, 誠實性, 校正, 添削. Always write the pure Hangul form instead (예: 결미, 정직성, 교정, 첨삭). Do not add parenthetical Hanja after Korean words. This applies even when you are answering in Chinese: the surrounding explanation is Chinese, but any Korean term inside it stays in Hangul.`;
 
-const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 export async function POST(req: NextRequest) {
   try {
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: MODEL,
+        model: GROQ_MODEL,
         messages: chatMessages,
         temperature: 0.7,
         max_tokens: 1024,
@@ -58,7 +58,13 @@ export async function POST(req: NextRequest) {
     if (!groqRes.ok || !groqRes.body) {
       const errText = await groqRes.text().catch(() => '');
       console.error('groq error:', groqRes.status, errText);
-      return new Response(`AI error ${groqRes.status}: ${errText.slice(0, 400)}`, { status: 200 });
+      // This used to answer 200 with the provider's raw JSON, which the chat
+      // then displayed as if the assistant had said it — a person asking about
+      // their cover letter got back a stack of English about model IDs, in the
+      // middle of a Korean interface. A real failure status instead, so the
+      // client can say, in the reader's own language, that the assistant is
+      // unavailable. The detail stays in the server log, where it is useful.
+      return new Response('upstream-error', { status: 503 });
     }
 
     const encoder = new TextEncoder();

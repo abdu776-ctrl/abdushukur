@@ -240,6 +240,46 @@ describe('reachable from anywhere', () => {
   }
 });
 
+describe('the AI greeting follows the interface, not the history', () => {
+  test('a chat started in Uzbek is greeted in Korean on the Korean site', {
+    timeout: 90_000,
+  }, async () => {
+    await withPage(async (page) => {
+      await page.goto(`${BASE}/ko/ai-assistant`, { waitUntil: 'load' });
+
+      // A conversation as it was stored before: the greeting frozen into the
+      // history in the language the chat happened to start in.
+      await page.evaluate((uzGreeting) => {
+        localStorage.setItem(
+          'koreer:chats',
+          JSON.stringify([
+            {
+              id: 'seeded',
+              title: 'seeded',
+              updatedAt: new Date().toISOString(),
+              messages: [
+                { id: '0', role: 'assistant', content: uzGreeting, at: new Date().toISOString() },
+                { id: '1', role: 'user', content: 'salom', at: new Date().toISOString() },
+              ],
+            },
+          ])
+        );
+      }, messages.uz.aiAssistant.greeting);
+
+      await page.reload({ waitUntil: 'load' });
+      await page.waitForTimeout(2500);
+      const body = await page.textContent('body');
+
+      const koOpening = messages.ko.aiAssistant.greeting.slice(0, 24);
+      const uzOpening = messages.uz.aiAssistant.greeting.slice(0, 24);
+
+      assert.ok(body.includes(koOpening), 'the Korean page should greet in Korean');
+      assert.ok(!body.includes(uzOpening), 'the stored Uzbek greeting should not survive');
+      assert.ok(body.includes('salom'), 'what the person actually typed must be kept');
+    });
+  });
+});
+
 describe('accessibility', () => {
   test('row delete buttons say what they delete', { timeout: 90_000 }, async () => {
     await withPage(async (page) => {

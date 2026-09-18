@@ -1,12 +1,12 @@
 import { NextRequest } from 'next/server';
 import { guardAiRequest } from '@/lib/aiGuard';
+import { GROQ_MODEL } from '@/lib/aiModel';
 
 // Tailors a 자기소개서 section to a specific job posting using the applicant's
 // OWN material. It must never invent a personal history — if the applicant has
 // given nothing to work from, it returns a tailored outline plus the concrete
 // questions they need to answer instead of a fabricated story.
 
-const MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 const SECTION_BRIEF: Record<string, string> = {
   growth: 'the 성장과정 section: one decisive formative experience, what value it shaped, and how that value shows up in this role.',
@@ -88,7 +88,7 @@ export async function POST(req: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
       body: JSON.stringify({
-        model: MODEL,
+        model: GROQ_MODEL,
         messages: [
           { role: 'system', content: system },
           { role: 'user', content: parts.join('\n\n') },

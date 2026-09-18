@@ -31,8 +31,19 @@ import {
 // anything but ordering, which the stored `at` already does.
 type Message = ChatMessage;
 
+// The opening message is interface text wearing a message's clothes. Storing it
+// froze it in whatever language the conversation was started in, so someone who
+// began in Uzbek and switched the site to Korean was greeted in Uzbek by a
+// Korean interface. It is therefore rebuilt from the current locale on every
+// load and stripped before anything is written to storage.
+const GREETING_ID = '0';
+
 function greetingMessage(text: string): Message {
-  return { id: '0', role: 'assistant', content: text, at: new Date().toISOString() };
+  return { id: GREETING_ID, role: 'assistant', content: text, at: new Date().toISOString() };
+}
+
+function withoutGreeting(messages: Message[]): Message[] {
+  return messages.filter((m) => m.id !== GREETING_ID);
 }
 
 export function AIChat() {
@@ -58,7 +69,7 @@ export function AIChat() {
     setChats(stored);
     if (stored.length > 0) {
       setChatId(stored[0].id);
-      setMessages(stored[0].messages);
+      setMessages([greetingMessage(t('greeting')), ...withoutGreeting(stored[0].messages)]);
     } else {
       setChatId(newChatId());
       setMessages([greetingMessage(t('greeting'))]);
@@ -70,10 +81,11 @@ export function AIChat() {
   useEffect(() => {
     if (loading || !chatId) return;
     if (!messages.some((m) => m.role === 'user')) return;
+    const stored = withoutGreeting(messages);
     const session: ChatSession = {
       id: chatId,
-      title: chatTitle(messages, t('newChat')),
-      messages,
+      title: chatTitle(stored, t('newChat')),
+      messages: stored,
       updatedAt: new Date().toISOString(),
     };
     saveChat(session);
@@ -85,7 +97,7 @@ export function AIChat() {
     const found = chats.find((c) => c.id === id);
     if (!found) return;
     setChatId(id);
-    setMessages(found.messages);
+    setMessages([greetingMessage(t('greeting')), ...withoutGreeting(found.messages)]);
     setInput('');
   }
 
@@ -96,7 +108,7 @@ export function AIChat() {
     if (id !== chatId) return;
     if (remaining.length > 0) {
       setChatId(remaining[0].id);
-      setMessages(remaining[0].messages);
+      setMessages([greetingMessage(t('greeting')), ...withoutGreeting(remaining[0].messages)]);
     } else {
       setChatId(newChatId());
       setMessages([greetingMessage(t('greeting'))]);
