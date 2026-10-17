@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { guardAiRequest } from '@/lib/aiGuard';
 import { ELEVEN_BASE, elevenKey } from '@/lib/elevenlabs';
+import { ACCENT_LEVELS, accentDescription, type AccentLevel } from '@/lib/voiceLab';
 
 // Cloning makes a lasting copy of someone's voice on the provider's side, so
 // it needs an account (the voice is labelled with its owner, and only that
@@ -32,9 +33,16 @@ export async function POST(req: NextRequest) {
     const consent = form.get('consent');
     const files = form.getAll('files').filter((f): f is File => f instanceof File);
 
-    if (speaker !== 'teacher' && speaker !== 'child') {
+    if (speaker !== 'teacher' && speaker !== 'child' && speaker !== 'child2') {
       return NextResponse.json({ error: 'bad-speaker' }, { status: 400 });
     }
+    // A child's voice is saved with its accent level; a fluent child is a
+    // voice of its own, not a beginner's voice with the accent turned down.
+    const rawAccent = String(form.get('accentLevel') ?? 'slight');
+    const accentLevel: AccentLevel = (ACCENT_LEVELS as string[]).includes(rawAccent)
+      ? (rawAccent as AccentLevel)
+      : 'slight';
+    const age = Math.max(6, Math.min(14, Number(form.get('age')) || 10));
     if (consent !== 'yes') {
       return NextResponse.json({ error: 'no-consent' }, { status: 400 });
     }
@@ -55,9 +63,17 @@ export async function POST(req: NextRequest) {
       'description',
       speaker === 'teacher'
         ? 'Korean teacher (female), voice lab'
-        : 'Uzbek child learning Korean, voice lab — cloned with guardian consent'
+        : `${accentDescription(accentLevel, age)} Cloned with guardian consent.`
     );
-    upstream.append('labels', JSON.stringify({ owner: guard.userId, app: 'koreer', speaker }));
+    upstream.append(
+      'labels',
+      JSON.stringify({
+        owner: guard.userId,
+        app: 'koreer',
+        speaker,
+        ...(speaker === 'teacher' ? {} : { accent: accentLevel }),
+      })
+    );
     upstream.append('remove_background_noise', 'true');
     files.forEach((f, i) => upstream.append('files', f, f.name || `sample-${i}.webm`));
 
@@ -71,7 +87,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'upstream-error' }, { status: 502 });
     }
     const data = await res.json();
-    return NextResponse.json({ voiceId: data.voice_id });
+    return NextResponse.json({ voiceId: data.voice_id, accentLevel: speaker === 'teacher' ? undefined : accentLevel });
   } catch (err) {
     console.error('voice clone route error:', err);
     return NextResponse.json({ error: 'failed' }, { status: 500 });

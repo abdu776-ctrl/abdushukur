@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { guardAiRequest } from '@/lib/aiGuard';
 import { VOICE_GUEST_DAILY_LIMIT, VOICE_USER_DAILY_LIMIT } from '@/lib/aiLimits';
 import { ELEVEN_BASE, ELEVEN_MODEL, defaultVoice, elevenKey } from '@/lib/elevenlabs';
+import { ACCENT, type AccentLevel } from '@/lib/voiceLab';
 
 /** One line of dialogue, not a speech. */
 const MAX_TEXT = 400;
@@ -17,8 +18,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: guard.reason }, { status: guard.status ?? 429 });
     }
 
-    const { text, speaker, voiceId } = await req.json();
-    if (speaker !== 'teacher' && speaker !== 'child') {
+    const { text, speaker, voiceId, accent } = await req.json();
+    if (speaker !== 'teacher' && speaker !== 'child' && speaker !== 'child2') {
       return NextResponse.json({ error: 'bad-speaker' }, { status: 400 });
     }
     if (typeof text !== 'string' || !text.trim()) {
@@ -30,7 +31,12 @@ export async function POST(req: NextRequest) {
 
     const apiKey = elevenKey();
     const voice =
-      typeof voiceId === 'string' && /^[A-Za-z0-9]{8,64}$/.test(voiceId) ? voiceId : defaultVoice(speaker);
+      typeof voiceId === 'string' && /^[A-Za-z0-9]{8,64}$/.test(voiceId)
+        ? voiceId
+        : defaultVoice(speaker === 'teacher' ? 'teacher' : 'child');
+    // A noticeable accent is slower; a fluent child speaks at a normal pace.
+    const level: AccentLevel = typeof accent === 'string' && accent in ACCENT ? (accent as AccentLevel) : 'slight';
+    const pace = ACCENT[level].rate;
     // No provider or no voice to speak with: the page uses the browser voice.
     if (!apiKey || !voice) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
 
@@ -42,11 +48,18 @@ export async function POST(req: NextRequest) {
         model_id: ELEVEN_MODEL,
         language_code: 'ko',
         // A teacher is steady and clear; a child is livelier and less even,
-        // which also lets more of the child's own accent through.
+        // which also lets more of the child's own accent through. A fluent
+        // child is steadier again: no hesitation to leave room for.
         voice_settings:
           speaker === 'teacher'
             ? { stability: 0.6, similarity_boost: 0.85, style: 0.2, use_speaker_boost: true, speed: 0.95 }
-            : { stability: 0.35, similarity_boost: 0.9, style: 0.45, use_speaker_boost: true, speed: 0.9 },
+            : {
+                stability: level === 'none' ? 0.55 : 0.35,
+                similarity_boost: 0.9,
+                style: level === 'none' ? 0.3 : 0.45,
+                use_speaker_boost: true,
+                speed: Math.round(pace * 0.95 * 100) / 100,
+              },
       }),
     });
 

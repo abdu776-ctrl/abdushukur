@@ -14,9 +14,39 @@ Two things together:
 2. **Respelling.** The child's line is respelled before it is spoken, the way
    Uzbek beginners tend to say it (`lib/voiceLab.ts → accentify`): tense
    consonants become plain (떡볶이 → 덕복이), ㅓ drifts to ㅗ, ㅐ and ㅔ merge,
-   ㅡ becomes ㅜ (는 → 눈), plus a hesitation filler. The strength follows the
-   age (a six-year-old is strongest) and can be moved by hand. Tick "show what
-   the child actually says" to see the respelled text.
+   ㅡ becomes ㅜ (는 → 눈). The strength follows the accent level (none, slight,
+   noticeable). Tick "show what the child actually says" to see the respelled
+   text.
+
+## Fluent children are a full case
+
+Not every child is a beginner. A child who has lived in Korea for years, or
+goes to a Korean school, answers in natural, accent-free Korean with correct
+존댓말 — and the page treats that as an equal case, not an exception.
+
+- **Accent level** (`Aksentsiz` / `Yengil aksent` / `Sezilarli aksent`) is
+  chosen when a child voice is cloned, saved with the voice, and shown as a
+  badge on it.
+- **Level presets** set accent, answer style and learner errors together:
+
+  | Daraja | Accent | Answer style | Learner errors |
+  | --- | --- | --- | --- |
+  | Yangi kelgan | noticeable | beginner, frequent 반말 slips | on |
+  | Oʻrta | slight | occasional 반말 → self-correction | 반말 + hesitation |
+  | Ravon | none | fluent 존댓말 | off |
+
+- **Answer styles** (`Javob turi`): 1. beginner (accent + 반말), 2. 반말 →
+  self-correction, 3. correct 존댓말 with an accent, 4. fluent 존댓말 with no
+  accent. Choosing 4 turns the learner-error toggles off and warns when the
+  child's cloned voice has an accent. "Variantlar yaratish" shows all four
+  under every answer.
+- **Ikki bola**: each teacher question is answered by a beginner (accent +
+  반말) and then by a fluent child (no accent + 존댓말), followed by a one-line
+  Uzbek comparison.
+- Every built-in child line has a fluent version (`fluent` in
+  `lib/voiceLab.ts`), slightly longer and more complete — 저는, -는데, -이랑 —
+  which is how advanced learners actually sound. The AI dialogue asks for one
+  too.
 
 Without a cloned voice the page still works, using the device's Korean voice
 with a raised pitch for the child.

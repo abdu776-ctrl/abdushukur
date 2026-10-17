@@ -14,11 +14,12 @@ Rules:
 - 6 to 8 lines, alternating, the teacher speaks first and asks questions; the child answers.
 - The teacher uses simple, warm 해요체, suited to a ${age}-year-old.
 - The child answers in correct but simple Korean, at the level of a ${age}-year-old who has studied Korean for under a year. Short sentences for younger children. The child may mention life in Uzbekistan (Tashkent, plov, family) where natural.
+- For every child line also give "fluent": the same answer as a child who has grown up in Korea gives it — natural, accent-free Korean with fully correct 존댓말, a little longer and more complete (저는, connectors like -는데, -이랑), with "fluentUz" as its Uzbek translation.
 - Hangul only — no Hanja, no romanisation.
 - Give an Uzbek (Latin script) translation of every line.
 
 Reply with ONLY JSON, no prose, in this exact shape:
-{"lines":[{"speaker":"teacher","ko":"...","uz":"..."},{"speaker":"child","ko":"...","uz":"..."}]}`;
+{"lines":[{"speaker":"teacher","ko":"...","uz":"..."},{"speaker":"child","ko":"...","uz":"...","fluent":"...","fluentUz":"..."}]}`;
 }
 
 export async function POST(req: NextRequest) {
@@ -61,10 +62,16 @@ export async function POST(req: NextRequest) {
               (l.speaker === 'teacher' || l.speaker === 'child') && typeof l.ko === 'string' && l.ko.trim()
           )
           .slice(0, 12)
-          .map((l: { speaker: string; ko: string; uz?: unknown }) => ({
+          .map((l: { speaker: string; ko: string; uz?: unknown; fluent?: unknown; fluentUz?: unknown }) => ({
             speaker: l.speaker,
             ko: l.ko.trim().slice(0, 300),
             uz: typeof l.uz === 'string' ? l.uz.trim().slice(0, 300) : '',
+            ...(l.speaker === 'child' && typeof l.fluent === 'string' && l.fluent.trim()
+              ? {
+                  fluent: l.fluent.trim().slice(0, 300),
+                  fluentUz: typeof l.fluentUz === 'string' ? l.fluentUz.trim().slice(0, 300) : '',
+                }
+              : {}),
           }))
       : [];
     if (lines.length === 0) return NextResponse.json({ error: 'upstream-error' }, { status: 503 });
