@@ -46,6 +46,12 @@ Under the dialogue, "Dialogni saqlash" has two halves side by side:
   a mistake, the Uzbek gloss and the two-children comparison; copy it or save
   it as `.txt`.
 
+A third part, **texts typed by hand**, collects what was typed in the voice
+cards and kept with "Roʻyxatga saqlash" — the teacher's own questions, the
+children's own answers — in order, on this device (`loadTyped` / `saveTyped`
+in `lib/voiceLab.ts`). Each can be played or deleted, and the list saved as
+text or joined into its own recording.
+
 A line can only go into the recording if it exists as audio. The browser's own
 voice can be heard but never captured, so when there is no ElevenLabs key the
 speak route falls back to a free voice that does come back as a file

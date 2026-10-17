@@ -1042,6 +1042,14 @@
     "copied": "Copied",
     "downloadText": "Download text (.txt)",
     "textParticipants": "Speakers",
-    "saveAiTitle": "Dialogue created with AI"
+    "saveAiTitle": "Dialogue created with AI",
+    "keepTyped": "Save to the list",
+    "keptTyped": "Saved",
+    "typedTitle": "Texts typed by hand",
+    "typedHint": "The teacher's questions and the children's answers you typed in the voice cards, in order. Saved on this device until you clear them.",
+    "typedEmpty": "Nothing yet. Type a text in a voice card above and press “Save to the list”.",
+    "playTyped": "Play text {n}",
+    "removeTyped": "Delete text {n}",
+    "clearTyped": "Clear all"
   }
 }

@@ -1042,6 +1042,14 @@
     "copied": "已复制",
     "downloadText": "下载文字（.txt）",
     "textParticipants": "参与者",
-    "saveAiTitle": "AI 生成的对话"
+    "saveAiTitle": "AI 生成的对话",
+    "keepTyped": "保存到列表",
+    "keptTyped": "已保存",
+    "typedTitle": "手动输入的文字",
+    "typedHint": "你在声音卡片里输入的老师提问和孩子回答，按顺序保存。在你清除之前一直保存在本设备上。",
+    "typedEmpty": "还没有。在上面的声音卡片里输入文字，然后点“保存到列表”。",
+    "playTyped": "播放第 {n} 条",
+    "removeTyped": "删除第 {n} 条",
+    "clearTyped": "全部清除"
   }
 }

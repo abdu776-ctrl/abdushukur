@@ -1042,6 +1042,14 @@
     "copied": "복사됨",
     "downloadText": "내용 다운로드 (.txt)",
     "textParticipants": "참여자",
-    "saveAiTitle": "AI로 만든 대화"
+    "saveAiTitle": "AI로 만든 대화",
+    "keepTyped": "목록에 저장",
+    "keptTyped": "저장됨",
+    "typedTitle": "직접 입력한 문장",
+    "typedHint": "음성 카드에 직접 입력한 선생님의 질문과 아이들의 대답이 순서대로 모여요. 지울 때까지 이 기기에 저장돼요.",
+    "typedEmpty": "아직 없어요. 위의 음성 카드에 문장을 입력하고 ‘목록에 저장’을 누르세요.",
+    "playTyped": "{n}번 문장 재생",
+    "removeTyped": "{n}번 문장 삭제",
+    "clearTyped": "모두 지우기"
   }
 }

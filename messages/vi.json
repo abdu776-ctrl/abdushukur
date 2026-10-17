@@ -1042,6 +1042,14 @@
     "copied": "Đã sao chép",
     "downloadText": "Tải văn bản (.txt)",
     "textParticipants": "Người nói",
-    "saveAiTitle": "Hội thoại tạo bằng AI"
+    "saveAiTitle": "Hội thoại tạo bằng AI",
+    "keepTyped": "Lưu vào danh sách",
+    "keptTyped": "Đã lưu",
+    "typedTitle": "Câu tự gõ",
+    "typedHint": "Câu hỏi của cô và câu trả lời của các em mà bạn gõ trong thẻ giọng, theo thứ tự. Lưu trên thiết bị này cho đến khi bạn xóa.",
+    "typedEmpty": "Chưa có gì. Gõ một câu trong thẻ giọng ở trên rồi bấm “Lưu vào danh sách”.",
+    "playTyped": "Phát câu {n}",
+    "removeTyped": "Xóa câu {n}",
+    "clearTyped": "Xóa tất cả"
   }
 }

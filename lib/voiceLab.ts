@@ -579,3 +579,43 @@ export function saveVoices(voices: Partial<Record<VoiceSlot, ClonedVoice>>): voi
     // Storage disabled — the voice still works for this visit.
   }
 }
+
+// ── Lines typed by hand ───────────────────────────────────────────────────
+//
+// What the teacher and the children were made to say from the voice cards —
+// the teacher's own questions, a child's own answers — kept in order so they
+// can be saved at the end, as text and as one recording. Kept on this device,
+// like the voices.
+
+export interface TypedLine {
+  id: string;
+  slot: VoiceSlot;
+  text: string;
+}
+
+const TYPED_KEY = 'koreer:voice-lab-typed';
+/** Enough for a lesson; older lines fall off rather than fill storage. */
+const MAX_TYPED = 100;
+
+export function loadTyped(): TypedLine[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(TYPED_KEY) ?? '[]');
+    return Array.isArray(parsed)
+      ? parsed.filter(
+          (x): x is TypedLine =>
+            x && typeof x.id === 'string' && typeof x.text === 'string' && ['teacher', 'child', 'child2'].includes(x.slot)
+        )
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveTyped(lines: TypedLine[]): void {
+  try {
+    window.localStorage.setItem(TYPED_KEY, JSON.stringify(lines.slice(-MAX_TYPED)));
+  } catch {
+    // Storage disabled — the list still works for this visit.
+  }
+}

@@ -31,6 +31,9 @@ import {
   type Speaker,
   type VoiceSlot,
   type VoiceTarget,
+  type TypedLine,
+  loadTyped,
+  saveTyped,
 } from '@/lib/voiceLab';
 import { PITCH_PRESETS, shiftFile, toWav } from '@/lib/pitchShift';
 import {
@@ -50,6 +53,7 @@ import {
   Layers,
   AlertTriangle,
   Wand2,
+  Copy,
 } from 'lucide-react';
 
 /** What each speaker reads aloud for the sample: varied sounds, ~40 seconds. */
@@ -135,6 +139,7 @@ function VoiceCard({
   onCloned,
   onRemoved,
   onSpeak,
+  onKeep,
   findVoice,
   signedIn,
   childName,
@@ -149,6 +154,8 @@ function VoiceCard({
   onRemoved: () => void;
   /** Speak typed text in this card's voice (cloned, stock or the device's). */
   onSpeak: (text: string) => Promise<void>;
+  /** Keep typed text for the end: it joins the saved list under the dialogue. */
+  onKeep: (text: string) => void;
   /** A cloned voice for a change target, if the page has one. */
   findVoice: (target: VoiceTarget) => ClonedVoice | undefined;
   signedIn: boolean;
@@ -174,6 +181,7 @@ function VoiceCard({
   const [error, setError] = useState<string | null>(null);
   const [text, setText] = useState('');
   const [speaking, setSpeaking] = useState(false);
+  const [kept, setKept] = useState(false);
   const [target, setTarget] = useState<VoiceTarget>(isChild ? (gender === 'boy' ? 'girl' : 'boy') : 'girl');
   const [pitch, setPitch] = useState<number>(PITCH_PRESETS[isChild ? (gender === 'boy' ? 'girl' : 'boy') : 'girl']);
   const [converting, setConverting] = useState(false);
@@ -593,6 +601,20 @@ function VoiceCard({
         >
           {t('speakText')}
         </Button>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => {
+            onKeep(text.trim());
+            setKept(true);
+            setTimeout(() => setKept(false), 2000);
+          }}
+          disabled={!text.trim()}
+          icon={kept ? <Check className="w-3.5 h-3.5" /> : <Download className="w-3.5 h-3.5" />}
+          className="ml-2"
+        >
+          {kept ? t('keptTyped') : t('keepTyped')}
+        </Button>
       </section>
 
       {/* 3. Cloning */}
@@ -713,10 +735,18 @@ export function VoiceLab() {
   const [combined, setCombined] = useState<{ url: string; seconds: number } | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [typed, setTyped] = useState<TypedLine[]>([]);
+  const [typedCombining, setTypedCombining] = useState<{ done: number; total: number } | null>(null);
+  const [typedCombined, setTypedCombined] = useState<{ url: string; seconds: number } | null>(null);
+  const [typedError, setTypedError] = useState<string | null>(null);
+  const [typedCopied, setTypedCopied] = useState(false);
   const stopRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => setVoices(loadVoices()), []);
+  useEffect(() => {
+    setVoices(loadVoices());
+    setTyped(loadTyped());
+  }, []);
   // Warm the device voice list; some browsers fill it asynchronously.
   useEffect(() => {
     window.speechSynthesis?.getVoices();
@@ -859,34 +889,32 @@ export function VoiceLab() {
     return Promise.resolve(null);
   }
 
-  /** The whole dialogue as one recording, a short pause between turns. */
-  async function combine() {
-    stop();
-    setSaveError(null);
-    if (combined) URL.revokeObjectURL(combined.url);
-    setCombined(null);
-    const spoken = turns.map((turn, i) => ({ turn, n: i + 1 })).filter((x) => x.turn.kind !== 'compare');
-    setCombining({ done: 0, total: spoken.length });
+  /**
+   * Join clips into one recording, a short pause between them. Returns the
+   * 1-based numbers of the clips that exist only as the device voice instead,
+   * which cannot be captured.
+   */
+  async function joinClips(
+    clips: Array<() => Promise<Blob | null>>,
+    progress: (done: number) => void
+  ): Promise<{ url: string; seconds: number } | { missing: number[] }> {
     const Ctx =
       window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
     const ctx = new Ctx();
     try {
       const buffers: AudioBuffer[] = [];
       const missing: number[] = [];
-      for (const [k, x] of spoken.entries()) {
-        const blob = await clipOf(x.turn);
-        if (!blob) missing.push(x.n);
+      for (const [k, clip] of clips.entries()) {
+        const blob = await clip();
+        if (!blob) missing.push(k + 1);
         else buffers.push(await ctx.decodeAudioData(await blob.arrayBuffer()));
-        setCombining({ done: k + 1, total: spoken.length });
+        progress(k + 1);
       }
-      if (missing.length) {
-        setSaveError(t('missingAudio', { lines: missing.join(', ') }));
-        return;
-      }
+      if (missing.length) return { missing };
       const rate = ctx.sampleRate;
       const gap = Math.round(rate * 0.6);
       const length = buffers.reduce((n, b) => n + b.length + gap, 0);
-      const out = ctx.createBuffer(1, length, rate);
+      const out = ctx.createBuffer(1, Math.max(1, length), rate);
       const data = out.getChannelData(0);
       let at = 0;
       for (const b of buffers) {
@@ -896,14 +924,99 @@ export function VoiceLab() {
         }
         at += b.length + gap;
       }
-      setCombined({ url: URL.createObjectURL(toWav(out)), seconds: Math.round(length / rate) });
+      return { url: URL.createObjectURL(toWav(out)), seconds: Math.round(length / rate) };
+    } finally {
+      ctx.close().catch(() => {});
+    }
+  }
+
+  /** The whole dialogue as one recording. Turn numbers match the text. */
+  async function combine() {
+    stop();
+    setSaveError(null);
+    if (combined) URL.revokeObjectURL(combined.url);
+    setCombined(null);
+    const spoken = turns.filter((turn) => turn.kind !== 'compare');
+    setCombining({ done: 0, total: spoken.length });
+    try {
+      const result = await joinClips(
+        spoken.map((turn) => () => clipOf(turn)),
+        (done) => setCombining({ done, total: spoken.length })
+      );
+      if ('missing' in result) setSaveError(t('missingAudio', { lines: result.missing.join(', ') }));
+      else setCombined(result);
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : t('combineFailed'));
     } finally {
-      ctx.close().catch(() => {});
       setCombining(null);
     }
   }
+
+  // ── Typed lines kept for the end ──────────────────────────────────────
+
+  function keepTyped(slot: VoiceSlot, text: string) {
+    if (!text) return;
+    const next = [...typed, { id: `${Date.now()}-${Math.floor(Math.random() * 1e6)}`, slot, text }];
+    setTyped(next);
+    saveTyped(next);
+  }
+  function removeTyped(id: string) {
+    const next = typed.filter((x) => x.id !== id);
+    setTyped(next);
+    saveTyped(next);
+  }
+  function clearTyped() {
+    setTyped([]);
+    saveTyped([]);
+  }
+  const slotName = (slot: VoiceSlot) =>
+    slot === 'teacher'
+      ? t('teacher')
+      : `${slot === 'child' ? childName : child2Name} (${genderOf(slot) === 'girl' ? t('genderGirl') : t('genderBoy')})`;
+
+  const typedText = useMemo(
+    () =>
+      typed.length
+        ? [t('typedTitle'), '', ...typed.map((x, i) => `${i + 1}. ${slotName(x.slot)}: ${x.text}`)].join('\n') + '\n'
+        : '',
+    // slotName reads names and genders, listed here.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [typed, childName, child2Name, childGender, child2Gender]
+  );
+  const typedUrl = useMemo(
+    () => URL.createObjectURL(new Blob([typedText], { type: 'text/plain;charset=utf-8' })),
+    [typedText]
+  );
+  useEffect(() => () => URL.revokeObjectURL(typedUrl), [typedUrl]);
+
+  async function combineTyped() {
+    stop();
+    setTypedError(null);
+    if (typedCombined) URL.revokeObjectURL(typedCombined.url);
+    setTypedCombined(null);
+    setTypedCombining({ done: 0, total: typed.length });
+    try {
+      const result = await joinClips(
+        typed.map((x) => () => getClip(x.slot, x.text, 'none')),
+        (done) => setTypedCombining({ done, total: typed.length })
+      );
+      if ('missing' in result) setTypedError(t('missingAudio', { lines: result.missing.join(', ') }));
+      else setTypedCombined(result);
+    } catch (err) {
+      setTypedError(err instanceof Error ? err.message : t('combineFailed'));
+    } finally {
+      setTypedCombining(null);
+    }
+  }
+
+  // A recording of an earlier list is not this list.
+  useEffect(() => {
+    setTypedCombined((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url);
+      return null;
+    });
+    setTypedError(null);
+  }, [typed]);
 
   /** The dialogue as plain text: who said what, the correct form, the Uzbek. */
   const transcript = useMemo(() => {
@@ -1052,6 +1165,7 @@ export function VoiceLab() {
           age={age}
           defaultAccent="none"
           onSpeak={(text) => speak('teacher', text, 'none', 1)}
+          onKeep={(text) => keepTyped('teacher', text)}
           findVoice={findVoice}
           onCloned={(v) => updateVoices({ ...voices, teacher: v })}
           onRemoved={() => updateVoices({ ...voices, teacher: undefined })}
@@ -1066,6 +1180,7 @@ export function VoiceLab() {
           gender={childGender}
           onGender={(g) => changeGender('child', g)}
           onSpeak={(text) => speak('child', text, 'none', 1)}
+          onKeep={(text) => keepTyped('child', text)}
           findVoice={findVoice}
           onCloned={(v) => updateVoices({ ...voices, child: v })}
           onRemoved={() => updateVoices({ ...voices, child: undefined })}
@@ -1081,6 +1196,7 @@ export function VoiceLab() {
             gender={child2Gender}
             onGender={(g) => changeGender('child2', g)}
             onSpeak={(text) => speak('child2', text, 'none', 1)}
+            onKeep={(text) => keepTyped('child2', text)}
             findVoice={findVoice}
             onCloned={(v) => updateVoices({ ...voices, child2: v })}
             onRemoved={() => updateVoices({ ...voices, child2: undefined })}
@@ -1484,6 +1600,109 @@ export function VoiceLab() {
             </div>
           </section>
         </div>
+
+        {/* Typed by hand in the voice cards: the teacher's questions, the children's answers */}
+        <section className="space-y-3 rounded-xl border border-gray-100 dark:border-gray-800 p-4 min-w-0">
+          <div>
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">{t('typedTitle')}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('typedHint')}</p>
+          </div>
+          {typed.length === 0 ? (
+            <p className="text-sm text-gray-500 dark:text-gray-400">{t('typedEmpty')}</p>
+          ) : (
+            <>
+              <ol className="space-y-1.5">
+                {typed.map((x, i) => (
+                  <li key={x.id} className="flex items-start gap-2 text-sm">
+                    <span className="w-6 shrink-0 text-right text-gray-400 tabular-nums">{i + 1}.</span>
+                    <span className="min-w-0 flex-1">
+                      <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{slotName(x.slot)}</span>
+                      <span lang="ko" className="block text-gray-900 dark:text-white break-words">
+                        {x.text}
+                      </span>
+                    </span>
+                    <button
+                      onClick={() => {
+                        stop();
+                        speak(x.slot, x.text, 'none', 1).catch((err) =>
+                          setTypedError(err instanceof Error ? err.message : t('playFailed'))
+                        );
+                      }}
+                      className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      aria-label={t('playTyped', { n: i + 1 })}
+                    >
+                      <Volume2 className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => removeTyped(x.id)}
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      aria-label={t('removeTyped', { n: i + 1 })}
+                    >
+                      <Trash2 className="w-3.5 h-3.5" />
+                    </button>
+                  </li>
+                ))}
+              </ol>
+              <div className="flex flex-wrap items-center gap-2">
+                <Button
+                  size="sm"
+                  onClick={combineTyped}
+                  loading={!!typedCombining}
+                  icon={<Layers className="w-3.5 h-3.5" />}
+                >
+                  {typedCombining
+                    ? t('combining', { done: typedCombining.done, total: typedCombining.total })
+                    : t('combine')}
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={async () => {
+                    try {
+                      await navigator.clipboard.writeText(typedText);
+                      setTypedCopied(true);
+                      setTimeout(() => setTypedCopied(false), 2000);
+                    } catch {
+                      setTypedCopied(false);
+                    }
+                  }}
+                  icon={<Copy className="w-3.5 h-3.5" />}
+                >
+                  {typedCopied ? t('copied') : t('copyText')}
+                </Button>
+                <a
+                  href={typedUrl}
+                  download="qolda-yozilgan-matnlar.txt"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  {t('downloadText')}
+                </a>
+                <Button size="sm" variant="ghost" onClick={clearTyped} icon={<Trash2 className="w-3.5 h-3.5" />}>
+                  {t('clearTyped')}
+                </Button>
+              </div>
+              {typedCombined && (
+                <div className="space-y-2">
+                  <audio controls src={typedCombined.url} className="w-full" />
+                  <a
+                    href={typedCombined.url}
+                    download="qolda-yozilgan-matnlar.wav"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    <Download className="w-4 h-4" />
+                    {t('downloadAudio', { seconds: typedCombined.seconds })}
+                  </a>
+                </div>
+              )}
+            </>
+          )}
+          {typedError && (
+            <p role="alert" className="text-sm text-red-600 dark:text-red-400">
+              {typedError}
+            </p>
+          )}
+        </section>
       </Card>
 
       <p className="text-xs text-gray-500 dark:text-gray-400">{t('privacyNote')}</p>

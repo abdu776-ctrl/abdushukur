@@ -1042,6 +1042,14 @@
     "copied": "Nusxalandi",
     "downloadText": "Matnni yuklab olish (.txt)",
     "textParticipants": "Ishtirokchilar",
-    "saveAiTitle": "AI bilan yaratilgan dialog"
+    "saveAiTitle": "AI bilan yaratilgan dialog",
+    "keepTyped": "Roʻyxatga saqlash",
+    "keptTyped": "Saqlandi",
+    "typedTitle": "Qoʻlda yozilgan matnlar",
+    "typedHint": "Ovoz kartalarida yozgan matnlaringiz — ustozning savollari va bolalarning javoblari — ketma-ket. Oʻzingiz tozalamaguningizcha shu qurilmada saqlanib turadi.",
+    "typedEmpty": "Hozircha boʻsh. Yuqoridagi ovoz kartasida matn yozib, “Roʻyxatga saqlash” ni bosing.",
+    "playTyped": "{n}-matnni eshittirish",
+    "removeTyped": "{n}-matnni oʻchirish",
+    "clearTyped": "Hammasini tozalash"
   }
 }
