@@ -11,3 +11,8 @@ export const GUEST_DAILY_LIMIT = 5;
 
 /** Requests a day for a signed-in account. */
 export const USER_DAILY_LIMIT = 60;
+
+/** Spoken lines a day in the voice lab. A dialogue is eight or so lines, and a
+ *  line costs far less than an AI answer, so this budget is its own. */
+export const VOICE_GUEST_DAILY_LIMIT = 30;
+export const VOICE_USER_DAILY_LIMIT = 300;

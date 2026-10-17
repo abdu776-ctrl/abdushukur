@@ -52,7 +52,8 @@
     "aiAssistant": "Trợ lý AI",
     "documents": "Tài liệu đã lưu của tôi",
     "settings": "Cài đặt",
-    "templates": "Mẫu"
+    "templates": "Mẫu",
+    "voiceLab": "Phòng thu giọng nói"
   },
   "home": {
     "hero": {
@@ -931,5 +932,45 @@
     "offline": "Không có kết nối mạng",
     "offlineHint": "Bạn vẫn có thể tiếp tục viết — bản nháp được lưu trên thiết bị này. Trợ giúp AI và lưu vào tài khoản cần có mạng.",
     "exitConfirm": "Nhấn quay lại lần nữa để thoát"
+  },
+  "voiceLab": {
+    "title": "Phòng thu giọng nói: cô giáo tiếng Hàn và em nhỏ",
+    "subtitle": "Nhân bản giọng của cô giáo và giọng của một em 6–14 tuổi đến từ Uzbekistan. Cô hỏi bằng tiếng Hàn, em trả lời bằng tiếng Hàn với giọng Uzbek.",
+    "teacher": "Cô giáo (선생님)",
+    "teacherHint": "Cô giáo dạy tiếng Hàn — đặt câu hỏi",
+    "child": "Em nhỏ",
+    "childHint": "6–14 tuổi, đến từ Uzbekistan, đang học tiếng Hàn — trả lời",
+    "cloned": "Giọng đã nhân bản: {name}",
+    "remove": "Xóa",
+    "removeVoice": "Xóa giọng của {name}",
+    "browserVoice": "Chưa nhân bản — giọng tiếng Hàn của thiết bị được dùng cho đến khi bạn nhân bản.",
+    "readAloud": "Hãy đọc to đoạn này trong phòng yên tĩnh (ít nhất 20 giây):",
+    "record": "Ghi âm",
+    "stop": "Dừng",
+    "upload": "Tải âm thanh lên",
+    "deleteSample": "Xóa mẫu {n}",
+    "samplesTotal": "Đã ghi {seconds} giây (cần ít nhất {min} giây; 60 giây cho kết quả tốt nhất)",
+    "consentTeacher": "Đây là giọng của chính tôi, hoặc tôi đã được chủ giọng cho phép nhân bản.",
+    "consentChild": "Tôi là cha mẹ hoặc người giám hộ của em và đồng ý nhân bản giọng của em để học tiếng Hàn.",
+    "clone": "Nhân bản giọng",
+    "signInToClone": "Đăng nhập để nhân bản giọng",
+    "micDenied": "Không mở được micro. Hãy cho phép quyền micro, hoặc tải bản ghi âm lên.",
+    "tooLarge": "Tổng dung lượng mẫu quá lớn (tối đa 4 MB). Hãy xóa bớt hoặc ghi ngắn hơn.",
+    "cloneFailed": "Không nhân bản được giọng. Vui lòng thử lại.",
+    "childName": "Tên của em (bằng Hangul)",
+    "childNameHint": "ví dụ: 아지즈, 자밀, 마디나",
+    "age": "Tuổi: {age}",
+    "accent": "Giọng Uzbek: {percent}%",
+    "accentHint": "Đặt theo tuổi; có thể chỉnh tùy ý",
+    "topicPlaceholder": "Hoặc nhờ AI tạo đoạn hội thoại mới: ví dụ trên xe buýt đến trường",
+    "generate": "Tạo bằng AI",
+    "stopPlay": "Dừng",
+    "playAll": "Phát hội thoại",
+    "showAccented": "Hiện cách em thực sự phát âm",
+    "playLine": "Phát câu {n}",
+    "downloadLine": "Tải câu {n}",
+    "playFailed": "Không phát được câu này.",
+    "generateFailed": "Không tạo được hội thoại. Hãy thử lại hoặc chọn bài có sẵn.",
+    "privacyNote": "Mẫu giọng chỉ được gửi tới nhà cung cấp giọng nói khi bạn bấm “Nhân bản giọng” và đã đồng ý. Có thể xóa giọng đã nhân bản bất cứ lúc nào. Chỉ dùng giọng nhân bản để học — không bao giờ để giả giọng người khác khi họ không biết."
   }
 }

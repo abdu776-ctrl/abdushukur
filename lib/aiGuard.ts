@@ -42,7 +42,7 @@ export interface GuardResult {
 
 const hits = new Map<string, number[]>();
 
-function burstAllowed(key: string): boolean {
+function burstAllowed(key: string, perMinute = BURST_PER_MINUTE): boolean {
   const now = Date.now();
   const windowStart = now - 60_000;
   const recent = (hits.get(key) ?? []).filter((t) => t > windowStart);
@@ -55,7 +55,7 @@ function burstAllowed(key: string): boolean {
       if (times.every((t) => t <= windowStart)) hits.delete(k);
     }
   }
-  return recent.length <= BURST_PER_MINUTE;
+  return recent.length <= perMinute;
 }
 
 // ── Caller identity ─────────────────────────────────────────────────────────
@@ -120,10 +120,19 @@ async function consumeQuota(key: string, limit: number): Promise<boolean> {
  */
 export async function guardAiRequest(
   req: NextRequest,
-  options: { requireAccount?: boolean } = {}
+  options: {
+    requireAccount?: boolean;
+    /** Larger cap for a route that takes audio rather than text. */
+    maxBytes?: number;
+    /** A separate daily budget, so one feature cannot spend another's. */
+    bucket?: string;
+    limits?: { guest: number; user: number };
+    /** A dialogue is spoken a line at a time, faster than anyone types. */
+    burstPerMinute?: number;
+  } = {}
 ): Promise<GuardResult> {
   const length = Number(req.headers.get('content-length') ?? 0);
-  if (length > MAX_BODY_BYTES) {
+  if (length > (options.maxBytes ?? MAX_BODY_BYTES)) {
     return { ok: false, status: 413, reason: 'too-large' };
   }
 
@@ -133,13 +142,16 @@ export async function guardAiRequest(
     return { ok: false, status: 401, reason: 'unauthenticated', userId: null };
   }
 
-  const key = userId ? `user:${userId}` : guestKey(req);
+  const caller = userId ? `user:${userId}` : guestKey(req);
+  const key = options.bucket ? `${options.bucket}:${caller}` : caller;
 
-  if (!burstAllowed(key)) {
+  if (!burstAllowed(key, options.burstPerMinute)) {
     return { ok: false, status: 429, reason: 'too-many-requests', userId };
   }
 
-  const limit = userId ? USER_DAILY_LIMIT : GUEST_DAILY_LIMIT;
+  const limit = userId
+    ? options.limits?.user ?? USER_DAILY_LIMIT
+    : options.limits?.guest ?? GUEST_DAILY_LIMIT;
   if (!(await consumeQuota(key, limit))) {
     return { ok: false, status: 429, reason: 'quota-exceeded', userId };
   }

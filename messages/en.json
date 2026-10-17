@@ -52,7 +52,8 @@
     "aiAssistant": "AI Assistant",
     "documents": "My saved documents",
     "settings": "Settings",
-    "templates": "Templates"
+    "templates": "Templates",
+    "voiceLab": "Voice lab"
   },
   "home": {
     "hero": {
@@ -931,5 +932,45 @@
     "offline": "No internet connection",
     "offlineHint": "You can keep writing — your draft is saved on this device. AI help and saving to your account need a connection.",
     "exitConfirm": "Press back again to exit"
+  },
+  "voiceLab": {
+    "title": "Voice lab: Korean teacher & child",
+    "subtitle": "Clone a female teacher's voice and the voice of a child aged 6–14 from Uzbekistan. The teacher asks in Korean, the child answers in Korean with an Uzbek accent.",
+    "teacher": "Teacher (선생님)",
+    "teacherHint": "Female Korean teacher — asks the questions",
+    "child": "Child",
+    "childHint": "Ages 6–14, from Uzbekistan, learning Korean — answers",
+    "cloned": "Cloned voice: {name}",
+    "remove": "Remove",
+    "removeVoice": "Remove the voice of {name}",
+    "browserVoice": "Not cloned yet — the device's Korean voice is used until you clone one.",
+    "readAloud": "Read this aloud in a quiet room (at least 20 seconds):",
+    "record": "Record",
+    "stop": "Stop",
+    "upload": "Upload audio",
+    "deleteSample": "Delete sample {n}",
+    "samplesTotal": "{seconds}s recorded (at least {min}s needed; 60s gives the best result)",
+    "consentTeacher": "This is my own voice, or I have the speaker's permission to clone it.",
+    "consentChild": "I am this child's parent or guardian and I agree to cloning their voice for Korean study.",
+    "clone": "Clone voice",
+    "signInToClone": "Sign in to clone a voice",
+    "micDenied": "The microphone could not be opened. Allow microphone access, or upload a recording instead.",
+    "tooLarge": "The samples are too large together (4 MB max). Remove one or record a shorter one.",
+    "cloneFailed": "The voice could not be cloned. Please try again.",
+    "childName": "Child's name (in Hangul)",
+    "childNameHint": "e.g. 아지즈, 자밀, 마디나",
+    "age": "Age: {age}",
+    "accent": "Uzbek accent: {percent}%",
+    "accentHint": "Set from the age; adjust freely",
+    "topicPlaceholder": "Or ask AI for a new dialogue: e.g. on the bus to school",
+    "generate": "Create with AI",
+    "stopPlay": "Stop",
+    "playAll": "Play the dialogue",
+    "showAccented": "Show what the child actually says",
+    "playLine": "Play line {n}",
+    "downloadLine": "Download line {n}",
+    "playFailed": "This line could not be played.",
+    "generateFailed": "The dialogue could not be created. Try again, or pick a ready lesson.",
+    "privacyNote": "Voice samples go to the voice provider only when you press “Clone voice”, and only with consent. A cloned voice can be removed at any time. Use cloned voices for study only — never to imitate someone without their knowledge."
   }
 }

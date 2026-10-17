@@ -18,7 +18,7 @@ export type AiErrorKey =
   | 'aiUnavailable'
   | 'aiTooLong';
 
-async function accessToken(): Promise<string | null> {
+export async function accessToken(): Promise<string | null> {
   const supabase = getSupabase();
   if (!supabase) return null;
   try {

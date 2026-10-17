@@ -62,6 +62,15 @@ npx cap add android
 npx cap sync
 ```
 
+Then add the microphone permission the voice lab needs, right under the
+`INTERNET` line in `android/app/src/main/AndroidManifest.xml` (see
+[voice-lab.md](voice-lab.md)):
+
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+```
+
 If an `android/` folder from an earlier attempt is already there, skip
 `cap add` and run `cap sync` on its own — it rewrites the config and the plugin
 list into the existing project.

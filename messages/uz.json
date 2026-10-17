@@ -52,7 +52,8 @@
     "aiAssistant": "AI Yordamchi",
     "documents": "Saqlangan hujjatlarim",
     "settings": "Sozlamalar",
-    "templates": "Shablonlar"
+    "templates": "Shablonlar",
+    "voiceLab": "Ovoz laboratoriyasi"
   },
   "home": {
     "hero": {
@@ -931,5 +932,45 @@
     "offline": "Internet aloqasi yoʻq",
     "offlineHint": "Yozishda davom etavering — qoralamangiz shu qurilmada saqlanadi. AI yordami va hisobingizga saqlash uchun internet kerak.",
     "exitConfirm": "Chiqish uchun yana bir marta bosing"
+  },
+  "voiceLab": {
+    "title": "Ovoz laboratoriyasi: koreys ustoz va bola",
+    "subtitle": "Ayol ustoz va Oʻzbekistondan kelgan 6–14 yoshli bola ovozini klonlang. Ustoz koreyscha soʻraydi, bola esa oʻzbekcha aksent bilan koreyscha javob beradi.",
+    "teacher": "Ustoz (선생님)",
+    "teacherHint": "Ayol koreys tili ustozi — savol beradi",
+    "child": "Bola",
+    "childHint": "6–14 yosh, Oʻzbekistondan, koreys tilini oʻrganyapti — javob beradi",
+    "cloned": "Klonlangan ovoz: {name}",
+    "remove": "Oʻchirish",
+    "removeVoice": "{name} ovozini oʻchirish",
+    "browserVoice": "Hali klonlanmagan — klonlaguningizcha qurilmaning koreyscha ovozi ishlatiladi.",
+    "readAloud": "Buni tinch xonada ovoz chiqarib oʻqing (kamida 20 soniya):",
+    "record": "Yozib olish",
+    "stop": "Toʻxtatish",
+    "upload": "Audio yuklash",
+    "deleteSample": "{n}-namunani oʻchirish",
+    "samplesTotal": "{seconds} soniya yozildi (kamida {min} soniya kerak; 60 soniya eng yaxshi natija beradi)",
+    "consentTeacher": "Bu mening oʻz ovozim yoki ovoz egasidan klonlashga ruxsat olganman.",
+    "consentChild": "Men bu bolaning ota-onasi yoki vasiysiman va koreys tilini oʻrganish uchun uning ovozini klonlashga roziman.",
+    "clone": "Ovozni klonlash",
+    "signInToClone": "Ovozni klonlash uchun tizimga kiring",
+    "micDenied": "Mikrofonni ochib boʻlmadi. Mikrofonga ruxsat bering yoki yozuvni yuklang.",
+    "tooLarge": "Namunalar birgalikda juda katta (maksimal 4 MB). Bittasini oʻchiring yoki qisqaroq yozing.",
+    "cloneFailed": "Ovozni klonlab boʻlmadi. Qaytadan urinib koʻring.",
+    "childName": "Bolaning ismi (hangulda)",
+    "childNameHint": "masalan: 아지즈, 자밀, 마디나",
+    "age": "Yoshi: {age}",
+    "accent": "Oʻzbekcha aksent: {percent}%",
+    "accentHint": "Yoshga qarab qoʻyiladi; xohlagancha oʻzgartiring",
+    "topicPlaceholder": "Yoki AI dan yangi dialog soʻrang: masalan, maktabga avtobusda",
+    "generate": "AI bilan yaratish",
+    "stopPlay": "Toʻxtatish",
+    "playAll": "Dialogni eshittirish",
+    "showAccented": "Bola aslida qanday aytishini koʻrsatish",
+    "playLine": "{n}-qatorni eshittirish",
+    "downloadLine": "{n}-qatorni yuklab olish",
+    "playFailed": "Bu qatorni eshittirib boʻlmadi.",
+    "generateFailed": "Dialog yaratilmadi. Qaytadan urinib koʻring yoki tayyor darsni tanlang.",
+    "privacyNote": "Ovoz namunalari faqat “Ovozni klonlash” tugmasini bosganingizda va rozilik bilan ovoz provayderiga yuboriladi. Klonlangan ovozni istalgan vaqtda oʻchirish mumkin. Klonlangan ovozlardan faqat oʻqish uchun foydalaning — hech qachon birovni uning xabarisiz taqlid qilish uchun emas."
   }
 }

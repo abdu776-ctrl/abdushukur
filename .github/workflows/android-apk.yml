@@ -1,0 +1,55 @@
+# Builds an installable debug APK of the Android shell.
+#
+# The shell loads the live site (see capacitor.config.ts), so this APK picks up
+# every web change — the voice lab included — without a rebuild. A release
+# bundle for Play still needs the signing key, which stays on the owner's
+# machine; see docs/play-store-release.md.
+#
+# Run it from GitHub → Actions → "Android APK" → Run workflow, then download
+# the `koreer-debug-apk` artifact from the finished run.
+name: Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - capacitor.config.ts
+      - .github/workflows/android-apk.yml
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Capacitor 8 builds with Java 21.
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - run: npm ci
+
+      - name: Generate the native project
+        run: |
+          npx cap add android
+          # The voice lab records a voice sample. A WebView can only open the
+          # microphone if the app itself holds the permission.
+          sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#&\n    <uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />#' \
+            android/app/src/main/AndroidManifest.xml
+          grep -q RECORD_AUDIO android/app/src/main/AndroidManifest.xml
+          npx cap sync android
+
+      - name: Build
+        working-directory: android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: koreer-debug-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk

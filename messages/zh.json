@@ -52,7 +52,8 @@
     "aiAssistant": "AI 助手",
     "documents": "我保存的文档",
     "settings": "设置",
-    "templates": "模板"
+    "templates": "模板",
+    "voiceLab": "语音实验室"
   },
   "home": {
     "hero": {
@@ -931,5 +932,45 @@
     "offline": "没有网络连接",
     "offlineHint": "您可以继续撰写 — 草稿会保存在本设备上。AI 协助和保存到账户需要联网。",
     "exitConfirm": "再按一次返回键退出"
+  },
+  "voiceLab": {
+    "title": "语音实验室：韩语老师与孩子",
+    "subtitle": "克隆女老师的声音，以及来自乌兹别克斯坦的 6–14 岁孩子的声音。老师用韩语提问，孩子用带乌兹别克口音的韩语回答。",
+    "teacher": "老师 (선생님)",
+    "teacherHint": "韩语女老师 — 负责提问",
+    "child": "孩子",
+    "childHint": "6–14 岁，来自乌兹别克斯坦，正在学韩语 — 负责回答",
+    "cloned": "已克隆的声音：{name}",
+    "remove": "删除",
+    "removeVoice": "删除 {name} 的声音",
+    "browserVoice": "尚未克隆 — 克隆之前使用设备自带的韩语语音。",
+    "readAloud": "请在安静的房间里朗读以下内容（至少 20 秒）：",
+    "record": "录音",
+    "stop": "停止",
+    "upload": "上传音频",
+    "deleteSample": "删除样本 {n}",
+    "samplesTotal": "已录制 {seconds} 秒（至少需要 {min} 秒；60 秒效果最好）",
+    "consentTeacher": "这是我本人的声音，或我已获得声音主人的克隆许可。",
+    "consentChild": "我是这个孩子的父母或监护人，同意为学习韩语克隆孩子的声音。",
+    "clone": "克隆声音",
+    "signInToClone": "登录后即可克隆声音",
+    "micDenied": "无法打开麦克风。请允许麦克风权限，或改为上传录音。",
+    "tooLarge": "样本总大小过大（最多 4 MB）。请删除一个或录得短一些。",
+    "cloneFailed": "声音克隆失败，请重试。",
+    "childName": "孩子的名字（韩文）",
+    "childNameHint": "例如：아지즈、자밀、마디나",
+    "age": "年龄：{age}",
+    "accent": "乌兹别克口音：{percent}%",
+    "accentHint": "按年龄设定，可自由调整",
+    "topicPlaceholder": "或让 AI 生成新对话：例如在上学的公交车上",
+    "generate": "用 AI 生成",
+    "stopPlay": "停止",
+    "playAll": "播放对话",
+    "showAccented": "显示孩子的实际发音",
+    "playLine": "播放第 {n} 句",
+    "downloadLine": "下载第 {n} 句",
+    "playFailed": "这一句无法播放。",
+    "generateFailed": "无法生成对话。请重试，或选择现成的课程。",
+    "privacyNote": "只有在你点击“克隆声音”并表示同意后，声音样本才会发送给语音服务商。克隆的声音可随时删除。克隆的声音仅用于学习 — 切勿在他人不知情的情况下模仿他人。"
   }
 }
