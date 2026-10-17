@@ -268,14 +268,27 @@ describe('the AI greeting follows the interface, not the history', () => {
 
       await page.reload({ waitUntil: 'load' });
       await page.waitForTimeout(2500);
-      const body = await page.textContent('body');
 
+      // Locators, not page text: the RSC payload embedded in the HTML carries
+      // every string in the locale, so searching the body finds translations
+      // that were never rendered. That cost me a wrong "verified" once.
       const koOpening = messages.ko.aiAssistant.greeting.slice(0, 24);
       const uzOpening = messages.uz.aiAssistant.greeting.slice(0, 24);
 
-      assert.ok(body.includes(koOpening), 'the Korean page should greet in Korean');
-      assert.ok(!body.includes(uzOpening), 'the stored Uzbek greeting should not survive');
-      assert.ok(body.includes('salom'), 'what the person actually typed must be kept');
+      assert.equal(
+        await page.getByText(koOpening, { exact: false }).count(),
+        1,
+        'the Korean page should greet in Korean'
+      );
+      assert.equal(
+        await page.getByText(uzOpening, { exact: false }).count(),
+        0,
+        'the stored Uzbek greeting should not survive'
+      );
+      assert.ok(
+        (await page.getByText('salom', { exact: true }).count()) > 0,
+        'what the person actually typed must be kept'
+      );
     });
   });
 });

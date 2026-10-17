@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import type { User as SupabaseUser } from '@supabase/supabase-js';
-import { getSupabase } from './supabase';
+import { getSupabase, supabaseReachable } from './supabase';
 import {
   isNativeApp,
   isEmbeddedWebView,
@@ -75,6 +75,7 @@ export function useAuth(): { user: AuthUser | null; status: AuthStatus } {
 export type GoogleSignInResult =
   | { ok: true; note?: 'continue-in-browser' }
   | { ok: false; reason: 'not-configured' }
+  | { ok: false; reason: 'unavailable' }
   | { ok: false; reason: 'blocked' }
   | { ok: false; reason: 'error'; message: string };
 
@@ -93,6 +94,13 @@ export type GoogleSignInResult =
 export async function signInWithGoogle(redirectTo: string): Promise<GoogleSignInResult> {
   const supabase = getSupabase();
   if (!supabase) return { ok: false, reason: 'not-configured' };
+
+  // Checked before anything navigates. signInWithOAuth builds a URL and sends
+  // the browser to it without ever contacting the project, so when the project
+  // is paused or gone the person lands on a browser error page naming a
+  // hostname they have never heard of. Better to say so here, in their
+  // language, on the page they are already looking at.
+  if (!(await supabaseReachable())) return { ok: false, reason: 'unavailable' };
 
   const native = isNativeApp();
   const embedded = native || isEmbeddedWebView();

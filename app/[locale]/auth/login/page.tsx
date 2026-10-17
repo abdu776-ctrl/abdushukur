@@ -67,6 +67,9 @@ export default function LoginPage() {
       return;
     }
     if (result.reason === 'not-configured') setError(t('auth.notConfigured'));
+    // The project is configured but not answering — paused, removed, or the
+    // visitor is offline. The same sentence covers all three honestly.
+    else if (result.reason === 'unavailable') setError(te('network'));
     else if (result.reason === 'blocked') setError(t('auth.webviewBlocked'));
     else setError(authErrorMessage(result, te));
   }

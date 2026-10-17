@@ -36,3 +36,31 @@ export function getSupabase(): SupabaseClient | null {
 export function isSupabaseConfigured(): boolean {
   return Boolean(url && anonKey);
 }
+
+/**
+ * Can the Supabase project actually be reached right now?
+ *
+ * Configured is not the same as alive. A free project pauses itself after a
+ * week of low activity, and a paused or removed one stops answering — its
+ * hostname may not even resolve. Most calls surface that as a failed request we
+ * can translate, but the Google button is different: signInWithOAuth only
+ * builds a URL and navigates, so a dead project hands the person to the
+ * browser's own error page, in English, with a hostname and no explanation.
+ *
+ * Short timeout on purpose: this sits in front of a button press, and a slow
+ * answer here is worse than an optimistic one.
+ */
+export async function supabaseReachable(): Promise<boolean> {
+  if (!url || !anonKey) return false;
+  try {
+    const res = await fetch(`${url}/auth/v1/health`, {
+      headers: { apikey: anonKey },
+      signal: AbortSignal.timeout(6000),
+    });
+    return res.ok;
+  } catch {
+    // DNS failure, timeout, offline, CORS — all mean the same thing to the
+    // person standing in front of the button.
+    return false;
+  }
+}
