@@ -4,8 +4,6 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./lib/i18n.ts');
 
 const nextConfig: NextConfig = {
-  // This site lives in a folder of the Koreer repository; build it on its own.
-  outputFileTracingRoot: __dirname,
   async headers() {
     return [
       {

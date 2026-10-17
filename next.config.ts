@@ -36,14 +36,6 @@ const nextConfig: NextConfig = {
     return [
       { source: '/:path*', headers: securityHeaders },
       {
-        // The voice lab records a voice sample, so this one page may use the
-        // microphone. Later entries win, so this overrides the deny above.
-        source: '/:locale/voice-lab',
-        headers: [
-          { key: 'Permissions-Policy', value: 'camera=(), microphone=(self), geolocation=(), interest-cohort=()' },
-        ],
-      },
-      {
         // The worker and its fallback page must never be served from a stale
         // cache: a pinned copy of sw.js would keep an old version of the app
         // alive on people's devices long after a deploy.

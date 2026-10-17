@@ -16,7 +16,6 @@ import {
   ChevronRight,
   User,
   Trash2,
-  AudioLines,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useAuth, signOutEverywhere } from '@/lib/useAuth';
@@ -130,12 +129,6 @@ export function Sidebar() {
       href: `/${locale}/ai-assistant`,
       icon: <Sparkles className="w-4 h-4" />,
       label: t('nav.aiAssistant'),
-      badge: 'AI',
-    },
-    {
-      href: `/${locale}/voice-lab`,
-      icon: <AudioLines className="w-4 h-4" />,
-      label: t('nav.voiceLab'),
       badge: 'AI',
     },
     {

@@ -1,24 +1,24 @@
-# Builds an installable debug APK of the Android shell.
+# Builds an installable debug APK of the Ovoz Lab Android shell.
 #
-# The shell loads the live site (see capacitor.config.ts), so this APK picks up
-# every web change — the voice lab included — without a rebuild. A release
-# bundle for Play still needs the signing key, which stays on the owner's
-# machine; see docs/play-store-release.md.
-#
-# Run it from GitHub → Actions → "Android APK" → Run workflow, then download
-# the `koreer-debug-apk` artifact from the finished run.
+# The shell loads the live site (capacitor.config.ts), so the APK picks up
+# every web change without a rebuild. Run it from GitHub → Actions →
+# "Android APK" → Run workflow; give the site address if it is not
+# https://ovoz-lab.vercel.app, then download the `ovoz-lab-debug-apk` artifact.
 name: Android APK
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - capacitor.config.ts
-      - .github/workflows/android-apk.yml
+    inputs:
+      site_url:
+        description: Site address the app opens
+        required: false
+        default: https://ovoz-lab.vercel.app
 
 jobs:
   apk:
     runs-on: ubuntu-latest
+    env:
+      OVOZ_LAB_URL: ${{ inputs.site_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -38,8 +38,8 @@ jobs:
       - name: Generate the native project
         run: |
           npx cap add android
-          # The voice lab records a voice sample. A WebView can only open the
-          # microphone if the app itself holds the permission.
+          # Recording a voice sample: the WebView can open the microphone only
+          # if the app itself holds the permission.
           sed -i 's#<uses-permission android:name="android.permission.INTERNET" />#&\n    <uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />#' \
             android/app/src/main/AndroidManifest.xml
           grep -q RECORD_AUDIO android/app/src/main/AndroidManifest.xml
@@ -51,5 +51,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: koreer-debug-apk
+          name: ovoz-lab-debug-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk

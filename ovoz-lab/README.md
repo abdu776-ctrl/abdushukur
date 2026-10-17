@@ -4,7 +4,7 @@ Koreys tili ustozi va bola uchun alohida sayt: ayol ustoz koreyscha soʻraydi,
 Oʻzbekistondan kelgan 6–14 yoshli oʻgʻil va qiz bolalar javob beradi — yangi
 kelgan bola aksent bilan, Koreyada oʻsgan bola esa ravon, toʻgʻri 존댓말 bilan.
 
-Koreer'dan ajratilgan: login yoʻq, Supabase yoʻq, faqat shu sahifa.
+Koreer'dan ajratilgan alohida loyiha: login yoʻq, Supabase yoʻq, faqat shu sahifa.
 
 ## Nimalar bor
 
@@ -21,13 +21,11 @@ Koreer'dan ajratilgan: login yoʻq, Supabase yoʻq, faqat shu sahifa.
 
 ## 1. Vercel'ga joylash (bepul)
 
-1. <https://vercel.com> → **Add New… → Project** → `abdu776-ctrl/abdushukur`
-   repozitoriysini tanlang.
-2. **Root Directory** → `ovoz-lab` ni tanlang. Bu eng muhim qadam: shunda
-   Koreer emas, aynan shu sayt joylanadi.
-3. **Branch**: hozircha `claude/dreamy-lamport-66eaag` (main'ga qoʻshilgandan
-   keyin — `main`).
-4. **Deploy**. Kalitsiz ham ishlaydi — bepul ovoz bilan.
+1. <https://vercel.com> → **Add New… → Project** → `abdu776-ctrl/ovoz-lab`
+   repozitoriysini tanlang (Import).
+2. Sozlamalarni oʻzgartirmang (Framework: Next.js) → **Deploy**.
+3. Tayyor boʻlgach manzil chiqadi, masalan `https://ovoz-lab.vercel.app`.
+   Kalitsiz ham ishlaydi — bepul ovoz bilan.
 
 ## 2. ElevenLabs bepul akkaunt (pullik bilan bir xil sifat, oyiga ~10 daqiqa)
 
@@ -67,6 +65,22 @@ Kreditni tejash: bir marta eshittirilgan qator saqlanib qoladi — qayta
 eshittirish va birlashtirish kredit sarflamaydi. Kod oʻzgarmaydi: pullik
 tarifga oʻtsangiz, klonlash oʻzi ochiladi.
 
+## Android ilova (APK)
+
+Ilova jonli saytni ochadi, shuning uchun saytdagi har bir oʻzgarish ilovada
+ham darhol koʻrinadi.
+
+1. GitHub → **Actions** → **Android APK** → **Run workflow**.
+2. "Site address" ga Vercel manzilingizni yozing (masalan
+   `https://ovoz-lab.vercel.app`) → **Run**.
+3. 10–15 daqiqadan keyin tugagan ishga kiring va **ovoz-lab-debug-apk** ni
+   yuklab oling. Ichidagi `app-debug.apk` ni telefonga oʻrnating (telefon
+   "nomaʼlum manbalardan oʻrnatish" ruxsatini soʻraydi).
+
+Ilovada mikrofondan yozish ishlaydi (ruxsat soʻraladi). Yozuvni yuklab olish
+tugmalari Android ilovasi ichida ishlamasligi mumkin — saqlash uchun saytni
+telefon brauzerida oching.
+
 ## Mahalliy ishga tushirish
 
 ```bash
@@ -75,4 +89,4 @@ npm install
 npm run dev     # http://localhost:3000
 ```
 
-Kalitlarni `ovoz-lab/.env.local` ga yozing (u git'ga tushmaydi).
+Kalitlarni `.env.local` ga yozing (u git'ga tushmaydi).
