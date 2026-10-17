@@ -133,6 +133,12 @@ export function accentify(text: string, strength: number): string {
 // 존댓말. That is a full case here, not an exception: every answer can be
 // rendered at any level, and the fluent one has its own, fuller text.
 
+/** Girls as well as boys: a child voice, and a child in a dialogue, has one. */
+export type Gender = 'boy' | 'girl';
+
+/** Who a recording or a typed text is spoken as. */
+export type VoiceTarget = 'teacher' | Gender;
+
 /** How much accent a child's voice carries. */
 export type AccentLevel = 'none' | 'slight' | 'noticeable';
 
@@ -146,14 +152,15 @@ export const ACCENT: Record<AccentLevel, { strength: number; rate: number }> = {
 };
 
 /** Stored with a cloned voice on the provider side, in English for the provider. */
-export function accentDescription(level: AccentLevel, age: number): string {
+export function accentDescription(level: AccentLevel, age: number, gender: Gender = 'boy'): string {
+  const who = `A ${age}-year-old ${gender}`;
   switch (level) {
     case 'none':
-      return `A ${age}-year-old child who has grown up in Korea, speaks fluent, natural Korean with no foreign accent, clear and polite.`;
+      return `${who} who has grown up in Korea, speaks fluent, natural Korean with no foreign accent, clear and polite.`;
     case 'slight':
-      return `A ${age}-year-old child from Uzbekistan learning Korean, speaks Korean with a slight Uzbek / Central Asian accent.`;
+      return `${who} from Uzbekistan learning Korean, speaks Korean with a slight Uzbek / Central Asian accent.`;
     case 'noticeable':
-      return `A ${age}-year-old child from Uzbekistan who is new to Korean, speaks with a noticeable Uzbek accent, slowly and with hesitation.`;
+      return `${who} from Uzbekistan who is new to Korean, speaks with a noticeable Uzbek accent, slowly and with hesitation.`;
   }
 }
 
@@ -549,6 +556,8 @@ export interface ClonedVoice {
   createdAt: string;
   /** Children only. Missing on voices saved before levels existed. */
   accentLevel?: AccentLevel;
+  /** Children only. Missing on voices saved before girls were asked about. */
+  gender?: Gender;
 }
 
 const VOICES_KEY = 'koreer:voice-lab';

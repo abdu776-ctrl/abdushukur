@@ -950,8 +950,8 @@
     "upload": "Audio yuklash",
     "deleteSample": "{n}-namunani oʻchirish",
     "samplesTotal": "{seconds} soniya yozildi (kamida {min} soniya kerak; 60 soniya eng yaxshi natija beradi)",
-    "consentTeacher": "Bu mening oʻz ovozim yoki ovoz egasidan klonlashga ruxsat olganman.",
-    "consentChild": "Men bu bolaning ota-onasi yoki vasiysiman va koreys tilini oʻrganish uchun uning ovozini klonlashga roziman.",
+    "consentTeacher": "Bu mening oʻz ovozim yoki ovoz egasidan klonlash va almashtirishga ruxsat olganman.",
+    "consentChild": "Men bu bolaning ota-onasi yoki vasiysiman va koreys tilini oʻrganish uchun uning ovozini klonlash yoki almashtirishga roziman.",
     "clone": "Ovozni klonlash",
     "signInToClone": "Ovozni klonlash uchun tizimga kiring",
     "micDenied": "Mikrofonni ochib boʻlmadi. Mikrofonga ruxsat bering yoki yozuvni yuklang.",
@@ -1012,6 +1012,21 @@
       "grammar": "qoʻshimchada adashdi",
       "fillers": "ikkilandi",
       "accent": "aksent bilan gapirdi"
-    }
+    },
+    "gender": "Oʻgʻil yoki qiz",
+    "genderBoy": "Oʻgʻil bola",
+    "genderGirl": "Qiz bola",
+    "studioAudio": "Ovoz: yozib oling yoki yuklang",
+    "studioText": "Gapiriladigan matn (koreyscha)",
+    "speakText": "Shu ovozda gapirtirish",
+    "convertTo": "Yozuvni kimning ovoziga almashtirish",
+    "convert": "Ovozni almashtirish",
+    "convertFailed": "Ovozni almashtirib boʻlmadi. Qaytadan urinib koʻring.",
+    "convertLocal": "Bepul rejim: ohang shu qurilmada oʻzgartirildi. Haqiqiy ovoz almashtirish uchun tizimga kirish, rozilik va ovoz xizmati kerak.",
+    "pitch": "Ohang: {n} semiton",
+    "downloadConverted": "Almashtirilgan yozuvni yuklab olish",
+    "targetTeacher": "Ustoz (ayol)",
+    "targetBoy": "Oʻgʻil bola",
+    "targetGirl": "Qiz bola"
   }
 }

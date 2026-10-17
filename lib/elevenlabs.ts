@@ -18,12 +18,16 @@ export function elevenKey(): string | null {
 
 /**
  * Stock voices used before anyone has cloned one, so the page can be heard
- * straight away. Optional: without them the browser voice is the fallback.
+ * straight away, and as the target when a recording is changed into a boy's or
+ * a girl's voice. Optional: without them the browser does the work.
+ * ELEVENLABS_CHILD_VOICE_ID stands in for whichever child voice is missing.
  */
-export function defaultVoice(speaker: 'teacher' | 'child'): string | null {
-  return (
-    (speaker === 'teacher'
-      ? process.env.ELEVENLABS_TEACHER_VOICE_ID
-      : process.env.ELEVENLABS_CHILD_VOICE_ID) || null
-  );
+export function defaultVoice(speaker: 'teacher' | 'child', gender?: 'boy' | 'girl'): string | null {
+  if (speaker === 'teacher') return process.env.ELEVENLABS_TEACHER_VOICE_ID || null;
+  const specific =
+    gender === 'girl' ? process.env.ELEVENLABS_GIRL_VOICE_ID : gender === 'boy' ? process.env.ELEVENLABS_BOY_VOICE_ID : '';
+  return specific || process.env.ELEVENLABS_CHILD_VOICE_ID || null;
 }
+
+/** The model that changes one voice into another (speech-to-speech). */
+export const ELEVEN_STS_MODEL = process.env.ELEVENLABS_STS_MODEL || 'eleven_multilingual_sts_v2';

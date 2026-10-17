@@ -950,8 +950,8 @@
     "upload": "上传音频",
     "deleteSample": "删除样本 {n}",
     "samplesTotal": "已录制 {seconds} 秒（至少需要 {min} 秒；60 秒效果最好）",
-    "consentTeacher": "这是我本人的声音，或我已获得声音主人的克隆许可。",
-    "consentChild": "我是这个孩子的父母或监护人，同意为学习韩语克隆孩子的声音。",
+    "consentTeacher": "这是我本人的声音，或我已获得声音主人克隆或变声的许可。",
+    "consentChild": "我是这个孩子的父母或监护人，同意为学习韩语克隆或改变孩子的声音。",
     "clone": "克隆声音",
     "signInToClone": "登录后即可克隆声音",
     "micDenied": "无法打开麦克风。请允许麦克风权限，或改为上传录音。",
@@ -1012,6 +1012,21 @@
       "grammar": "用错了助词",
       "fillers": "有些犹豫",
       "accent": "带着口音"
-    }
+    },
+    "gender": "男孩或女孩",
+    "genderBoy": "男孩",
+    "genderGirl": "女孩",
+    "studioAudio": "声音：录音或上传",
+    "studioText": "要说的文字（韩语）",
+    "speakText": "用这个声音说",
+    "convertTo": "把录音变成",
+    "convert": "变声",
+    "convertFailed": "变声失败，请重试。",
+    "convertLocal": "免费模式：仅在本设备上调整了音高。真正的变声需要登录、同意和语音服务。",
+    "pitch": "音高：{n} 个半音",
+    "downloadConverted": "下载变声后的录音",
+    "targetTeacher": "老师（女）",
+    "targetBoy": "男孩",
+    "targetGirl": "女孩"
   }
 }

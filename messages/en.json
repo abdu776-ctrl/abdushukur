@@ -950,8 +950,8 @@
     "upload": "Upload audio",
     "deleteSample": "Delete sample {n}",
     "samplesTotal": "{seconds}s recorded (at least {min}s needed; 60s gives the best result)",
-    "consentTeacher": "This is my own voice, or I have the speaker's permission to clone it.",
-    "consentChild": "I am this child's parent or guardian and I agree to cloning their voice for Korean study.",
+    "consentTeacher": "This is my own voice, or I have the speaker's permission to clone or change it.",
+    "consentChild": "I am this child's parent or guardian and I agree to cloning or changing their voice for Korean study.",
     "clone": "Clone voice",
     "signInToClone": "Sign in to clone a voice",
     "micDenied": "The microphone could not be opened. Allow microphone access, or upload a recording instead.",
@@ -1012,6 +1012,21 @@
       "grammar": "mixed up a particle",
       "fillers": "hesitated",
       "accent": "spoke with an accent"
-    }
+    },
+    "gender": "Boy or girl",
+    "genderBoy": "Boy",
+    "genderGirl": "Girl",
+    "studioAudio": "Voice: record or upload",
+    "studioText": "Text to say (Korean)",
+    "speakText": "Say it in this voice",
+    "convertTo": "Change the recording into",
+    "convert": "Change voice",
+    "convertFailed": "The voice could not be changed. Please try again.",
+    "convertLocal": "Free mode: the pitch was changed on this device. A real voice change needs an account, consent and the voice service.",
+    "pitch": "Pitch: {n} semitones",
+    "downloadConverted": "Download the changed recording",
+    "targetTeacher": "Teacher (woman)",
+    "targetBoy": "Boy",
+    "targetGirl": "Girl"
   }
 }

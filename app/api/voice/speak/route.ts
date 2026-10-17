@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: guard.reason }, { status: guard.status ?? 429 });
     }
 
-    const { text, speaker, voiceId, accent } = await req.json();
+    const { text, speaker, voiceId, accent, gender } = await req.json();
     if (speaker !== 'teacher' && speaker !== 'child' && speaker !== 'child2') {
       return NextResponse.json({ error: 'bad-speaker' }, { status: 400 });
     }
@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
     const voice =
       typeof voiceId === 'string' && /^[A-Za-z0-9]{8,64}$/.test(voiceId)
         ? voiceId
-        : defaultVoice(speaker === 'teacher' ? 'teacher' : 'child');
+        : defaultVoice(
+            speaker === 'teacher' ? 'teacher' : 'child',
+            gender === 'girl' || gender === 'boy' ? gender : undefined
+          );
     // A noticeable accent is slower; a fluent child speaks at a normal pace.
     const level: AccentLevel = typeof accent === 'string' && accent in ACCENT ? (accent as AccentLevel) : 'slight';
     const pace = ACCENT[level].rate;

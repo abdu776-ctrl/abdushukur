@@ -18,6 +18,24 @@ Two things together:
    noticeable). Tick "show what the child actually says" to see the respelled
    text.
 
+## Each voice card: record, type, change
+
+The teacher's card and each child's card hold the same three things:
+
+1. **A recording** — record it or upload a file. It is the sample for cloning,
+   and it can be **changed into another voice**: the teacher, a boy or a girl.
+   With an account, consent and the voice service this is a real voice change
+   (`/api/voice/convert`, ElevenLabs speech-to-speech into a cloned voice of
+   that kind, else the stock boy/girl/teacher voice). Otherwise it is free: the
+   pitch is shifted in the browser (`lib/pitchShift.ts`), keeping the timing.
+2. **Text to say** — typed Korean, spoken in that card's voice: the cloned one,
+   the stock one, or the device's.
+3. **Cloning**, as before.
+
+Each child is a **boy or a girl** (`Oʻgʻil bola` / `Qiz bola`). The choice is
+saved with a cloned voice, used in the voice's provider description, picks the
+stock voice, and colours the child's turns in the dialogue.
+
 ## Fluent children are a full case
 
 Not every child is a beginner. A child who has lived in Korea for years, or
@@ -58,6 +76,8 @@ with a raised pitch for the child.
 | `ELEVENLABS_API_KEY` | cloning and the cloned voices speaking | required for cloning |
 | `ELEVENLABS_TEACHER_VOICE_ID` | a stock teacher voice before anyone clones one | optional |
 | `ELEVENLABS_CHILD_VOICE_ID` | a stock child voice before anyone clones one | optional |
+| `ELEVENLABS_BOY_VOICE_ID` / `ELEVENLABS_GIRL_VOICE_ID` | stock boy and girl voices; also the targets when a recording is changed into a boy's or a girl's voice | optional |
+| `ELEVENLABS_STS_MODEL` | override the voice-change model (default `eleven_multilingual_sts_v2`) | optional |
 | `ELEVENLABS_MODEL` | override the speech model (default `eleven_multilingual_v2`) | optional |
 | `GROQ_API_KEY` | "Create with AI" dialogues (already used by the assistant) | optional |
 

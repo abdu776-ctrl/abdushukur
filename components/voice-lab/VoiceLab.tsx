@@ -25,11 +25,14 @@ import {
   type ChildProfile,
   type ClonedVoice,
   type DialogueLine,
+  type Gender,
   type LearnerErrors,
   type Level,
   type Speaker,
   type VoiceSlot,
+  type VoiceTarget,
 } from '@/lib/voiceLab';
+import { PITCH_PRESETS, shiftFile, toWav } from '@/lib/pitchShift';
 import {
   Mic,
   Square,
@@ -46,6 +49,7 @@ import {
   Users,
   Layers,
   AlertTriangle,
+  Wand2,
 } from 'lucide-react';
 
 /** What each speaker reads aloud for the sample: varied sounds, ~40 seconds. */
@@ -72,25 +76,29 @@ interface Sample {
   seconds: number;
 }
 
-/** Pick a Korean voice from the device, preferring a female one for the teacher. */
-function deviceVoice(): SpeechSynthesisVoice | null {
+/** Pick a Korean voice from the device: a female one for the teacher and a
+ *  girl, another one, where the device has it, for a boy. */
+function deviceVoice(who: VoiceTarget): SpeechSynthesisVoice | null {
   if (typeof window === 'undefined' || !window.speechSynthesis) return null;
   const ko = window.speechSynthesis.getVoices().filter((v) => v.lang.toLowerCase().startsWith('ko'));
-  return (
-    ko.find((v) => /female|yuna|sunhi|heami|seoyeon|jimin/i.test(v.name)) ?? ko[0] ?? null
-  );
+  const female = ko.filter((v) => /female|yuna|sunhi|heami|seoyeon|jimin/i.test(v.name));
+  if (who === 'boy') return ko.find((v) => !female.includes(v)) ?? ko[0] ?? null;
+  return female[0] ?? ko[0] ?? null;
 }
 
-function speakWithDevice(text: string, speaker: Speaker, age: number, rate = 1): Promise<void> {
+/** The device's voice, pitched for a teacher, a girl or a boy of this age. */
+function speakWithDevice(text: string, who: VoiceTarget, age: number, rate = 1): Promise<void> {
   return new Promise((resolve) => {
     if (!window.speechSynthesis) return resolve();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'ko-KR';
-    const v = deviceVoice();
+    const v = deviceVoice(who);
     if (v) u.voice = v;
-    // No cloned voice: approximate a child by pitch, higher the younger.
-    u.pitch = speaker === 'teacher' ? 1.1 : Math.min(2, 1.9 - (age - 6) * 0.07);
-    u.rate = speaker === 'teacher' ? 0.95 : 0.9 * rate;
+    // No cloned voice: approximate a child by pitch, higher the younger, and a
+    // girl a little higher than a boy.
+    const child = Math.min(2, 1.9 - (age - 6) * 0.07);
+    u.pitch = who === 'teacher' ? 1.1 : who === 'girl' ? Math.min(2, child + 0.1) : child - 0.15;
+    u.rate = who === 'teacher' ? 0.95 : 0.9 * rate;
     u.onend = () => resolve();
     u.onerror = () => resolve();
     window.speechSynthesis.speak(u);
@@ -126,20 +134,31 @@ function VoiceCard({
   voice,
   onCloned,
   onRemoved,
+  onSpeak,
+  findVoice,
   signedIn,
   childName,
   age,
   defaultAccent,
+  gender,
+  onGender,
 }: {
   speaker: VoiceSlot;
   voice?: ClonedVoice;
   onCloned: (v: ClonedVoice) => void;
   onRemoved: () => void;
+  /** Speak typed text in this card's voice (cloned, stock or the device's). */
+  onSpeak: (text: string) => Promise<void>;
+  /** A cloned voice for a change target, if the page has one. */
+  findVoice: (target: VoiceTarget) => ClonedVoice | undefined;
   signedIn: boolean;
   childName: string;
   age: number;
   /** What a new child voice is set to before anyone changes it. */
   defaultAccent: AccentLevel;
+  /** Children only: a boy or a girl. Held by the page, so the dialogue agrees. */
+  gender?: Gender;
+  onGender?: (g: Gender) => void;
 }) {
   const accentLabel = useAccentLabel();
   const isChild = speaker !== 'teacher';
@@ -153,6 +172,12 @@ function VoiceCard({
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [text, setText] = useState('');
+  const [speaking, setSpeaking] = useState(false);
+  const [target, setTarget] = useState<VoiceTarget>(isChild ? (gender === 'boy' ? 'girl' : 'boy') : 'girl');
+  const [pitch, setPitch] = useState<number>(PITCH_PRESETS[isChild ? (gender === 'boy' ? 'girl' : 'boy') : 'girl']);
+  const [converting, setConverting] = useState(false);
+  const [converted, setConverted] = useState<{ url: string; local: boolean; ext: string } | null>(null);
   const recorderRef = useRef<MediaRecorder | null>(null);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
@@ -232,6 +257,7 @@ function VoiceCard({
       if (isChild) {
         form.append('accentLevel', accentLevel);
         form.append('age', String(age));
+        form.append('gender', gender ?? 'boy');
       }
       samples.forEach((s) => form.append('files', s.blob, s.name));
       const token = await accessToken();
@@ -251,9 +277,8 @@ function VoiceCard({
         voiceId,
         label: isChild ? childName : t('teacher'),
         createdAt: new Date().toISOString(),
-        ...(isChild ? { accentLevel } : {}),
+        ...(isChild ? { accentLevel, gender: gender ?? 'boy' } : {}),
       });
-      setSamples([]);
     } catch {
       setError(t('cloneFailed'));
     } finally {
@@ -278,8 +303,76 @@ function VoiceCard({
     }
   }
 
+  async function speakText() {
+    if (!text.trim()) return;
+    setError(null);
+    setSpeaking(true);
+    try {
+      await onSpeak(text.trim());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t('playFailed'));
+    } finally {
+      setSpeaking(false);
+    }
+  }
+
+  function chooseTarget(next: VoiceTarget) {
+    setTarget(next);
+    setPitch(PITCH_PRESETS[next]);
+  }
+
+  /**
+   * Change the latest recording into the target voice. With an account, the
+   * uploader's consent and a provider, it is a real voice change; otherwise
+   * the pitch is shifted here in the browser, for free.
+   */
+  async function convert() {
+    const sample = samples[samples.length - 1];
+    if (!sample) return;
+    setError(null);
+    setConverting(true);
+    if (converted) URL.revokeObjectURL(converted.url);
+    setConverted(null);
+    try {
+      if (signedIn && consent) {
+        const form = new FormData();
+        form.append('audio', sample.blob, sample.name);
+        form.append('target', target);
+        form.append('consent', 'yes');
+        const v = findVoice(target);
+        if (v) form.append('voiceId', v.voiceId);
+        const token = await accessToken();
+        const res = await fetch('/api/voice/convert', {
+          method: 'POST',
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          body: form,
+        });
+        if (res.ok) {
+          setConverted({ url: URL.createObjectURL(await res.blob()), local: false, ext: 'mp3' });
+          return;
+        }
+        if (res.status !== 503) {
+          const body = await res.json().catch(() => ({}));
+          const key = aiErrorKey(res.status, signedIn, body.error);
+          setError(key ? terr(key) : t('convertFailed'));
+          return;
+        }
+      }
+      const buffer = await shiftFile(sample.blob, pitch);
+      setConverted({ url: URL.createObjectURL(toWav(buffer)), local: true, ext: 'wav' });
+    } catch {
+      setError(t('convertFailed'));
+    } finally {
+      setConverting(false);
+    }
+  }
+
   const Icon = isChild ? Baby : GraduationCap;
   const enough = totalSeconds >= MIN_SAMPLE_SECONDS || samples.some((s) => s.seconds === 0);
+  const targets: VoiceTarget[] = ['teacher', 'boy', 'girl'];
+  const targetLabel = (v: VoiceTarget) => t(v === 'teacher' ? 'targetTeacher' : v === 'boy' ? 'targetBoy' : 'targetGirl');
+  const field =
+    'mt-1 w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-white';
 
   return (
     <Card className="flex flex-col gap-4">
@@ -289,9 +382,9 @@ function VoiceCard({
             'w-10 h-10 rounded-xl flex items-center justify-center shrink-0',
             speaker === 'teacher'
               ? 'bg-rose-100 text-rose-600 dark:bg-rose-900/40 dark:text-rose-300'
-              : speaker === 'child'
-                ? 'bg-sky-100 text-sky-600 dark:bg-sky-900/40 dark:text-sky-300'
-                : 'bg-emerald-100 text-emerald-600 dark:bg-emerald-900/40 dark:text-emerald-300'
+              : gender === 'girl'
+                ? 'bg-fuchsia-100 text-fuchsia-600 dark:bg-fuchsia-900/40 dark:text-fuchsia-300'
+                : 'bg-sky-100 text-sky-600 dark:bg-sky-900/40 dark:text-sky-300'
           )}
         >
           <Icon className="w-5 h-5" />
@@ -306,11 +399,36 @@ function VoiceCard({
         </div>
       </div>
 
+      {isChild && onGender && (
+        <div className="flex flex-wrap gap-2" role="group" aria-label={t('gender')}>
+          {(['boy', 'girl'] as const).map((g) => (
+            <button
+              key={g}
+              onClick={() => onGender(g)}
+              aria-pressed={gender === g}
+              className={cn(
+                'px-3 py-1.5 rounded-full text-sm border transition-colors',
+                gender === g
+                  ? 'bg-indigo-600 border-indigo-600 text-white'
+                  : 'border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
+              )}
+            >
+              {g === 'boy' ? t('genderBoy') : t('genderGirl')}
+            </button>
+          ))}
+        </div>
+      )}
+
       {voice ? (
         <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl bg-emerald-50 dark:bg-emerald-900/20 px-3 py-2">
           <span className="flex flex-wrap items-center gap-2 text-sm text-emerald-700 dark:text-emerald-300">
             <Check className="w-4 h-4" />
             {t('cloned', { name: voice.label })}
+            {voice.gender && (
+              <span className="rounded-full bg-white/70 dark:bg-gray-900/60 px-2 py-0.5 text-xs font-medium">
+                {voice.gender === 'girl' ? t('genderGirl') : t('genderBoy')}
+              </span>
+            )}
             {voice.accentLevel && (
               <span className="rounded-full bg-white/70 dark:bg-gray-900/60 px-2 py-0.5 text-xs font-medium">
                 {accentLabel(voice.accentLevel)}
@@ -329,23 +447,164 @@ function VoiceCard({
           </Button>
         </div>
       ) : (
-        <>
-          <p className="text-xs text-gray-500 dark:text-gray-400">{t('browserVoice')}</p>
+        <p className="text-xs text-gray-500 dark:text-gray-400">{t('browserVoice')}</p>
+      )}
 
+      {/* 1. The recording */}
+      <section className="space-y-3 rounded-xl border border-gray-100 dark:border-gray-800 p-3">
+        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200">{t('studioAudio')}</h3>
+        {!voice && (
           <div>
             <p className="text-xs font-medium text-gray-600 dark:text-gray-300 mb-1">{t('readAloud')}</p>
-            <p lang={isChild ? undefined : 'ko'} className="text-sm leading-relaxed rounded-xl bg-gray-50 dark:bg-gray-800/60 p-3 text-gray-800 dark:text-gray-200">
+            <p
+              lang={isChild ? undefined : 'ko'}
+              className="text-sm leading-relaxed rounded-xl bg-gray-50 dark:bg-gray-800/60 p-3 text-gray-800 dark:text-gray-200"
+            >
               {READ_ALOUD[isChild ? 'child' : 'teacher']}
             </p>
           </div>
+        )}
 
+        <div className="flex flex-wrap gap-2">
+          {recording ? (
+            <Button variant="danger" size="sm" onClick={stopRecording} icon={<Square className="w-3.5 h-3.5" />}>
+              {t('stop')} · {elapsed}s
+            </Button>
+          ) : (
+            <Button size="sm" onClick={startRecording} icon={<Mic className="w-3.5 h-3.5" />}>
+              {t('record')}
+            </Button>
+          )}
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => fileRef.current?.click()}
+            icon={<Upload className="w-3.5 h-3.5" />}
+          >
+            {t('upload')}
+          </Button>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="audio/*"
+            multiple
+            className="hidden"
+            onChange={(e) => {
+              addFiles(e.target.files);
+              e.target.value = '';
+            }}
+          />
+        </div>
+
+        {samples.length > 0 && (
+          <ul className="space-y-1.5">
+            {samples.map((s, i) => (
+              <li key={i} className="flex items-center gap-2 text-sm">
+                <audio controls src={s.url} className="h-8 flex-1 min-w-0" />
+                <button
+                  onClick={() => setSamples((prev) => prev.filter((_, j) => j !== i))}
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label={t('deleteSample', { n: i + 1 })}
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                </button>
+              </li>
+            ))}
+            {!voice && (
+              <li className="text-xs text-gray-500 dark:text-gray-400">
+                {t('samplesTotal', { seconds: totalSeconds, min: MIN_SAMPLE_SECONDS })}
+              </li>
+            )}
+          </ul>
+        )}
+
+        {/* Change the recording into a boy's, a girl's or the teacher's voice */}
+        {samples.length > 0 && (
+          <div className="space-y-2 border-t border-gray-100 dark:border-gray-800 pt-3">
+            <div className="flex flex-wrap items-end gap-2">
+              <label className="block text-sm flex-1 min-w-[10rem]">
+                <span className="font-medium text-gray-700 dark:text-gray-300">{t('convertTo')}</span>
+                <select value={target} onChange={(e) => chooseTarget(e.target.value as VoiceTarget)} className={field}>
+                  {targets.map((v) => (
+                    <option key={v} value={v}>
+                      {targetLabel(v)}
+                    </option>
+                  ))}
+                </select>
+              </label>
+              <Button
+                variant="outline"
+                onClick={convert}
+                loading={converting}
+                disabled={recording}
+                icon={<Wand2 className="w-4 h-4" />}
+              >
+                {t('convert')}
+              </Button>
+            </div>
+            <label className="block text-xs text-gray-500 dark:text-gray-400">
+              {t('pitch', { n: pitch > 0 ? `+${pitch}` : String(pitch) })}
+              <input
+                type="range"
+                min={-6}
+                max={12}
+                value={pitch}
+                onChange={(e) => setPitch(Number(e.target.value))}
+                className="w-full accent-indigo-600"
+              />
+            </label>
+            {converted && (
+              <div className="flex items-center gap-2">
+                <audio controls src={converted.url} className="h-8 flex-1 min-w-0" />
+                <a
+                  href={converted.url}
+                  download={`${speaker}-${target}.${converted.ext}`}
+                  className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label={t('downloadConverted')}
+                >
+                  <Download className="w-4 h-4" />
+                </a>
+              </div>
+            )}
+            {converted?.local && <p className="text-xs text-gray-500 dark:text-gray-400">{t('convertLocal')}</p>}
+          </div>
+        )}
+      </section>
+
+      {/* 2. Typed text, spoken in this voice */}
+      <section className="space-y-2 rounded-xl border border-gray-100 dark:border-gray-800 p-3">
+        <label className="block text-sm">
+          <span className="font-semibold text-gray-800 dark:text-gray-200">{t('studioText')}</span>
+          <textarea
+            value={text}
+            onChange={(e) => setText(e.target.value.slice(0, 400))}
+            lang="ko"
+            rows={3}
+            placeholder={isChild ? '저는 우즈베키스탄에서 왔어요.' : '오늘은 무엇을 배울까요?'}
+            className={field}
+          />
+        </label>
+        <Button
+          size="sm"
+          onClick={speakText}
+          loading={speaking}
+          disabled={!text.trim()}
+          icon={<Volume2 className="w-3.5 h-3.5" />}
+        >
+          {t('speakText')}
+        </Button>
+      </section>
+
+      {/* 3. Cloning */}
+      {!voice && (
+        <>
           {isChild && (
             <label className="block text-sm">
               <span className="font-medium text-gray-700 dark:text-gray-300">{t('accentLevel')}</span>
               <select
                 value={accentLevel}
                 onChange={(e) => setAccentLevel(e.target.value as AccentLevel)}
-                className="mt-1 w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 py-2 text-gray-900 dark:text-white"
+                className={field}
               >
                 {ACCENT_LEVELS.map((l) => (
                   <option key={l} value={l}>
@@ -356,86 +615,34 @@ function VoiceCard({
               <span className="text-xs text-gray-500 dark:text-gray-400">{t('accentLevelHint')}</span>
             </label>
           )}
-
-          <div className="flex flex-wrap gap-2">
-            {recording ? (
-              <Button variant="danger" size="sm" onClick={stopRecording} icon={<Square className="w-3.5 h-3.5" />}>
-                {t('stop')} · {elapsed}s
-              </Button>
-            ) : (
-              <Button size="sm" onClick={startRecording} icon={<Mic className="w-3.5 h-3.5" />}>
-                {t('record')}
-              </Button>
-            )}
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => fileRef.current?.click()}
-              icon={<Upload className="w-3.5 h-3.5" />}
-            >
-              {t('upload')}
-            </Button>
-            <input
-              ref={fileRef}
-              type="file"
-              accept="audio/*"
-              multiple
-              className="hidden"
-              onChange={(e) => {
-                addFiles(e.target.files);
-                e.target.value = '';
-              }}
-            />
-          </div>
-
-          {samples.length > 0 && (
-            <ul className="space-y-1.5">
-              {samples.map((s, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm">
-                  <audio controls src={s.url} className="h-8 flex-1 min-w-0" />
-                  <button
-                    onClick={() => setSamples((prev) => prev.filter((_, j) => j !== i))}
-                    className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800"
-                    aria-label={t('deleteSample', { n: i + 1 })}
-                  >
-                    <Trash2 className="w-3.5 h-3.5" />
-                  </button>
-                </li>
-              ))}
-              <li className="text-xs text-gray-500 dark:text-gray-400">
-                {t('samplesTotal', { seconds: totalSeconds, min: MIN_SAMPLE_SECONDS })}
-              </li>
-            </ul>
-          )}
-
-          <label className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
-            <input
-              type="checkbox"
-              className="mt-1"
-              checked={consent}
-              onChange={(e) => setConsent(e.target.checked)}
-            />
-            <span>{isChild ? t('consentChild') : t('consentTeacher')}</span>
-          </label>
-
-          {signedIn ? (
-            <Button
-              onClick={clone}
-              loading={busy}
-              disabled={!consent || samples.length === 0 || !enough || recording}
-              icon={<Sparkles className="w-4 h-4" />}
-            >
-              {t('clone')}
-            </Button>
-          ) : (
-            <p className="text-sm text-gray-600 dark:text-gray-300">
-              <Link href={`/${locale}/auth/login`} className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline">
-                {t('signInToClone')}
-              </Link>
-            </p>
-          )}
         </>
       )}
+
+      <label className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+        <input type="checkbox" className="mt-1" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
+        <span>{isChild ? t('consentChild') : t('consentTeacher')}</span>
+      </label>
+
+      {!voice &&
+        (signedIn ? (
+          <Button
+            onClick={clone}
+            loading={busy}
+            disabled={!consent || samples.length === 0 || !enough || recording}
+            icon={<Sparkles className="w-4 h-4" />}
+          >
+            {t('clone')}
+          </Button>
+        ) : (
+          <p className="text-sm text-gray-600 dark:text-gray-300">
+            <Link
+              href={`/${locale}/auth/login`}
+              className="text-indigo-600 dark:text-indigo-400 font-medium hover:underline"
+            >
+              {t('signInToClone')}
+            </Link>
+          </p>
+        ))}
 
       {error && (
         <p role="alert" className="text-sm text-red-600 dark:text-red-400">
@@ -486,6 +693,8 @@ export function VoiceLab() {
   const [voices, setVoices] = useState<Partial<Record<VoiceSlot, ClonedVoice>>>({});
   const [childName, setChildName] = useState('아지즈');
   const [child2Name, setChild2Name] = useState('마디나');
+  const [childGender, setChildGender] = useState<Gender>('boy');
+  const [child2Gender, setChild2Gender] = useState<Gender>('girl');
   const [age, setAge] = useState(8);
   const [level, setLevel] = useState<Level | null>('intermediate');
   const [profile, setProfile] = useState<ChildProfile>(LEVEL_PRESETS.intermediate);
@@ -557,20 +766,41 @@ export function VoiceLab() {
     profile.style === 'fluent' && mode === 'single' && !!childVoice?.accentLevel && childVoice.accentLevel !== 'none';
   const twoVoiceWarning = mode === 'two' && !!voices.child2?.accentLevel && voices.child2.accentLevel !== 'none';
 
-  const cacheKey = (slot: VoiceSlot, text: string) => `${slot}|${voices[slot]?.voiceId ?? ''}|${text}`;
+  const cacheKey = (slot: VoiceSlot, text: string) =>
+    `${slot}|${voices[slot]?.voiceId ?? ''}|${slot === 'teacher' ? '' : genderOf(slot)}|${text}`;
+
+  const genderOf = (slot: VoiceSlot): Gender => (slot === 'child2' ? child2Gender : childGender);
+  const targetOf = (slot: VoiceSlot): VoiceTarget => (slot === 'teacher' ? 'teacher' : genderOf(slot));
+
+  /** Switching boy ↔ girl also swaps a default name, but never a typed one. */
+  function changeGender(slot: 'child' | 'child2', g: Gender) {
+    const defaults: Record<Gender, string> = { boy: '아지즈', girl: '마디나' };
+    const [name, setName, setG] =
+      slot === 'child' ? [childName, setChildName, setChildGender] : [child2Name, setChild2Name, setChild2Gender];
+    setG(g);
+    if (name === defaults.boy || name === defaults.girl || name === '') setName(defaults[g]);
+  }
+
+  /** A cloned voice that can speak as this target, if the page holds one. */
+  function findVoice(target: VoiceTarget): ClonedVoice | undefined {
+    if (target === 'teacher') return voices.teacher;
+    return (['child', 'child2'] as const)
+      .map((slot) => ({ v: voices[slot], g: voices[slot]?.gender ?? genderOf(slot) }))
+      .find((x) => x.v && x.g === target)?.v;
+  }
 
   async function speak(slot: VoiceSlot, text: string, accent: AccentLevel, rate: number): Promise<void> {
     const key = cacheKey(slot, text);
     let url = audioUrls[key];
-    const speaker: Speaker = slot === 'teacher' ? 'teacher' : 'child';
     if (!url) {
       const res = await aiFetch('/api/voice/speak', {
         text,
         speaker: slot,
         voiceId: voices[slot]?.voiceId,
         accent,
+        ...(slot === 'teacher' ? {} : { gender: genderOf(slot) }),
       });
-      if (res.status === 503) return speakWithDevice(text, speaker, slot === 'child2' ? age + 2 : age, rate);
+      if (res.status === 503) return speakWithDevice(text, targetOf(slot), slot === 'child2' ? age + 2 : age, rate);
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
         const k = aiErrorKey(res.status, signedIn, body.error);
@@ -680,6 +910,8 @@ export function VoiceLab() {
           childName={childName}
           age={age}
           defaultAccent="none"
+          onSpeak={(text) => speak('teacher', text, 'none', 1)}
+          findVoice={findVoice}
           onCloned={(v) => updateVoices({ ...voices, teacher: v })}
           onRemoved={() => updateVoices({ ...voices, teacher: undefined })}
         />
@@ -690,6 +922,10 @@ export function VoiceLab() {
           childName={childName}
           age={age}
           defaultAccent={mode === 'two' ? 'noticeable' : profile.accent}
+          gender={childGender}
+          onGender={(g) => changeGender('child', g)}
+          onSpeak={(text) => speak('child', text, 'none', 1)}
+          findVoice={findVoice}
           onCloned={(v) => updateVoices({ ...voices, child: v })}
           onRemoved={() => updateVoices({ ...voices, child: undefined })}
         />
@@ -701,6 +937,10 @@ export function VoiceLab() {
             childName={child2Name}
             age={age}
             defaultAccent="none"
+            gender={child2Gender}
+            onGender={(g) => changeGender('child2', g)}
+            onSpeak={(text) => speak('child2', text, 'none', 1)}
+            findVoice={findVoice}
             onCloned={(v) => updateVoices({ ...voices, child2: v })}
             onRemoved={() => updateVoices({ ...voices, child2: undefined })}
           />
@@ -959,14 +1199,19 @@ export function VoiceLab() {
                     'max-w-[85%] min-w-0 rounded-2xl px-4 py-3 border transition-shadow',
                     isTeacher
                       ? 'bg-rose-50 border-rose-100 dark:bg-rose-950/30 dark:border-rose-900/50'
-                      : slot === 'child2'
-                        ? 'bg-emerald-50 border-emerald-100 dark:bg-emerald-950/30 dark:border-emerald-900/50'
+                      : genderOf(slot) === 'girl'
+                        ? 'bg-fuchsia-50 border-fuchsia-100 dark:bg-fuchsia-950/30 dark:border-fuchsia-900/50'
                         : 'bg-sky-50 border-sky-100 dark:bg-sky-950/30 dark:border-sky-900/50',
                     playing === `turn-${i}` && 'ring-2 ring-indigo-500'
                   )}
                 >
                   <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
                     {isTeacher ? t('teacher') : turn.name || t('child')}
+                    {!isTeacher && (
+                      <span className="rounded-full bg-white/70 dark:bg-gray-900/60 px-2 py-0.5">
+                        {genderOf(slot) === 'girl' ? t('genderGirl') : t('genderBoy')}
+                      </span>
+                    )}
                     {!isTeacher && (
                       <span className="rounded-full bg-white/70 dark:bg-gray-900/60 px-2 py-0.5">
                         {fluent ? t('styleFluent') : accentLabel(turn.answer.accent)}

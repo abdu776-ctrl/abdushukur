@@ -950,8 +950,8 @@
     "upload": "오디오 업로드",
     "deleteSample": "샘플 {n} 삭제",
     "samplesTotal": "{seconds}초 녹음됨 (최소 {min}초 필요, 60초면 가장 좋아요)",
-    "consentTeacher": "제 목소리이거나, 목소리 주인에게 복제 허락을 받았습니다.",
-    "consentChild": "저는 이 아이의 부모 또는 보호자이며, 한국어 공부를 위해 아이의 목소리를 복제하는 데 동의합니다.",
+    "consentTeacher": "제 목소리이거나, 목소리 주인에게 복제·변환 허락을 받았습니다.",
+    "consentChild": "저는 이 아이의 부모 또는 보호자이며, 한국어 공부를 위해 아이의 목소리를 복제하거나 바꾸는 데 동의합니다.",
     "clone": "목소리 복제",
     "signInToClone": "목소리를 복제하려면 로그인하세요",
     "micDenied": "마이크를 열 수 없어요. 마이크 권한을 허용하거나 녹음 파일을 업로드하세요.",
@@ -1012,6 +1012,21 @@
       "grammar": "조사를 틀렸고",
       "fillers": "머뭇거렸고",
       "accent": "억양이 있었고"
-    }
+    },
+    "gender": "남자아이 또는 여자아이",
+    "genderBoy": "남자아이",
+    "genderGirl": "여자아이",
+    "studioAudio": "목소리: 녹음하거나 업로드하세요",
+    "studioText": "말할 문장 (한국어)",
+    "speakText": "이 목소리로 말하기",
+    "convertTo": "녹음을 바꿀 목소리",
+    "convert": "목소리 바꾸기",
+    "convertFailed": "목소리를 바꾸지 못했어요. 다시 시도해 주세요.",
+    "convertLocal": "무료 모드: 이 기기에서 음높이만 바꿨어요. 실제 목소리 변환에는 로그인, 동의, 음성 서비스가 필요해요.",
+    "pitch": "음높이: {n} 반음",
+    "downloadConverted": "바꾼 녹음 다운로드",
+    "targetTeacher": "선생님 (여성)",
+    "targetBoy": "남자아이",
+    "targetGirl": "여자아이"
   }
 }

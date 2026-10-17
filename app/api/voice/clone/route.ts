@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
       ? (rawAccent as AccentLevel)
       : 'slight';
     const age = Math.max(6, Math.min(14, Number(form.get('age')) || 10));
+    const gender = form.get('gender') === 'girl' ? 'girl' : 'boy';
     if (consent !== 'yes') {
       return NextResponse.json({ error: 'no-consent' }, { status: 400 });
     }
@@ -63,7 +64,7 @@ export async function POST(req: NextRequest) {
       'description',
       speaker === 'teacher'
         ? 'Korean teacher (female), voice lab'
-        : `${accentDescription(accentLevel, age)} Cloned with guardian consent.`
+        : `${accentDescription(accentLevel, age, gender)} Cloned with guardian consent.`
     );
     upstream.append(
       'labels',
@@ -71,7 +72,7 @@ export async function POST(req: NextRequest) {
         owner: guard.userId,
         app: 'koreer',
         speaker,
-        ...(speaker === 'teacher' ? {} : { accent: accentLevel }),
+        ...(speaker === 'teacher' ? {} : { accent: accentLevel, gender }),
       })
     );
     upstream.append('remove_background_noise', 'true');
@@ -87,7 +88,10 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'upstream-error' }, { status: 502 });
     }
     const data = await res.json();
-    return NextResponse.json({ voiceId: data.voice_id, accentLevel: speaker === 'teacher' ? undefined : accentLevel });
+    return NextResponse.json({
+      voiceId: data.voice_id,
+      ...(speaker === 'teacher' ? {} : { accentLevel, gender }),
+    });
   } catch (err) {
     console.error('voice clone route error:', err);
     return NextResponse.json({ error: 'failed' }, { status: 500 });
