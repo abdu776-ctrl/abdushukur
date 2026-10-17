@@ -1,0 +1,10 @@
+{
+  "name": "Ovoz Lab — koreys tili ustozi va bola",
+  "short_name": "Ovoz Lab",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4f46e5",
+  "lang": "uz",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
