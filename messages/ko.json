@@ -1050,6 +1050,18 @@
     "typedEmpty": "아직 없어요. 위의 음성 카드에 문장을 입력하고 ‘목록에 저장’을 누르세요.",
     "playTyped": "{n}번 문장 재생",
     "removeTyped": "{n}번 문장 삭제",
-    "clearTyped": "모두 지우기"
+    "clearTyped": "모두 지우기",
+    "modeInterview": "인터뷰",
+    "interviewTitle": "인터뷰",
+    "interviewHint": "선생님의 질문과 아이의 대답을 하나하나 직접 입력하세요. 질문 1, 대답 1, 질문 2, 대답 2… 순서로 재생되고, 수업처럼 저장돼요. 대답은 바르게 쓰세요. 아이가 어떻게 말할지는 수준이 정해요.",
+    "interviewEmpty": "아직 질문이 없어요. ‘다음 질문’을 누르세요.",
+    "question": "질문 {n} (선생님)",
+    "answer": "대답 {n} ({name})",
+    "questionPlaceholder": "오늘 학교에서 뭐 배웠어요?",
+    "answerPlaceholder": "저는 오늘 한국어랑 수학을 배웠어요.",
+    "addPair": "다음 질문",
+    "removePair": "질문 {n}과 대답 삭제",
+    "movePairUp": "질문 {n} 위로",
+    "movePairDown": "질문 {n} 아래로"
   }
 }

@@ -36,6 +36,15 @@ Each child is a **boy or a girl** (`Oʻgʻil bola` / `Qiz bola`). The choice is
 saved with a cloned voice, used in the voice's provider description, picks the
 stock voice, and colours the child's turns in the dialogue.
 
+## Interview
+
+The third dialogue mode, **Intervyu**, is typed entirely by hand: question 1
+(teacher), answer 1 (child), question 2, answer 2 … with "Keyingi savol" to add
+a pair, and arrows to reorder. It plays turn by turn like a lesson, uses the
+child's level (the typed answer is taken as the correct one), offers the four
+variants, and saves through "Dialogni saqlash" like any other dialogue. The
+pairs are kept on this device (`loadInterview` / `saveInterview`).
+
 ## Saving the dialogue
 
 Under the dialogue, "Dialogni saqlash" has two halves side by side:

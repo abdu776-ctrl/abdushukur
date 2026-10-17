@@ -1050,6 +1050,18 @@
     "typedEmpty": "Chưa có gì. Gõ một câu trong thẻ giọng ở trên rồi bấm “Lưu vào danh sách”.",
     "playTyped": "Phát câu {n}",
     "removeTyped": "Xóa câu {n}",
-    "clearTyped": "Xóa tất cả"
+    "clearTyped": "Xóa tất cả",
+    "modeInterview": "Phỏng vấn",
+    "interviewTitle": "Phỏng vấn",
+    "interviewHint": "Gõ từng câu hỏi của cô và từng câu trả lời của em. Phát lần lượt — câu hỏi 1, trả lời 1, câu hỏi 2, trả lời 2… — và lưu như một bài học. Hãy viết câu trả lời đúng; trình độ quyết định em nói ra sao.",
+    "interviewEmpty": "Chưa có câu hỏi. Bấm “Câu hỏi tiếp theo”.",
+    "question": "Câu hỏi {n} (cô)",
+    "answer": "Trả lời {n} ({name})",
+    "questionPlaceholder": "오늘 학교에서 뭐 배웠어요?",
+    "answerPlaceholder": "저는 오늘 한국어랑 수학을 배웠어요.",
+    "addPair": "Câu hỏi tiếp theo",
+    "removePair": "Xóa câu hỏi {n} và câu trả lời",
+    "movePairUp": "Đưa câu hỏi {n} lên",
+    "movePairDown": "Đưa câu hỏi {n} xuống"
   }
 }

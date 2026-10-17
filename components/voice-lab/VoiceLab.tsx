@@ -32,8 +32,13 @@ import {
   type VoiceSlot,
   type VoiceTarget,
   type TypedLine,
+  type InterviewPair,
   loadTyped,
   saveTyped,
+  loadInterview,
+  saveInterview,
+  interviewLines,
+  newPair,
 } from '@/lib/voiceLab';
 import { PITCH_PRESETS, shiftFile, toWav } from '@/lib/pitchShift';
 import {
@@ -54,6 +59,10 @@ import {
   AlertTriangle,
   Wand2,
   Copy,
+  MessagesSquare,
+  Plus,
+  ArrowUp,
+  ArrowDown,
 } from 'lucide-react';
 
 /** What each speaker reads aloud for the sample: varied sounds, ~40 seconds. */
@@ -677,7 +686,8 @@ function VoiceCard({
 
 // ── The page ──────────────────────────────────────────────────────────────
 
-type Mode = 'single' | 'two';
+/** One child, two children compared, or an interview typed by hand. */
+type Mode = 'single' | 'two' | 'interview';
 
 /** One spoken turn on screen. */
 type Turn =
@@ -721,6 +731,7 @@ export function VoiceLab() {
   const [level, setLevel] = useState<Level | null>('intermediate');
   const [profile, setProfile] = useState<ChildProfile>(LEVEL_PRESETS.intermediate);
   const [mode, setMode] = useState<Mode>('single');
+  const [pairs, setPairs] = useState<InterviewPair[]>([]);
   const [showVariants, setShowVariants] = useState(false);
   const [scenarioId, setScenarioId] = useState(SCENARIOS[0].id);
   const [aiLines, setAiLines] = useState<DialogueLine[] | null>(null);
@@ -746,7 +757,23 @@ export function VoiceLab() {
   useEffect(() => {
     setVoices(loadVoices());
     setTyped(loadTyped());
+    setPairs(loadInterview());
   }, []);
+
+  function updatePairs(next: InterviewPair[]) {
+    setPairs(next);
+    saveInterview(next);
+  }
+  function editPair(id: string, patch: Partial<InterviewPair>) {
+    updatePairs(pairs.map((p) => (p.id === id ? { ...p, ...patch } : p)));
+  }
+  function movePair(i: number, by: -1 | 1) {
+    const j = i + by;
+    if (j < 0 || j >= pairs.length) return;
+    const next = [...pairs];
+    [next[i], next[j]] = [next[j], next[i]];
+    updatePairs(next);
+  }
   // Warm the device voice list; some browsers fill it asynchronously.
   useEffect(() => {
     window.speechSynthesis?.getVoices();
@@ -772,8 +799,11 @@ export function VoiceLab() {
 
   const scenario = SCENARIOS.find((s) => s.id === scenarioId) ?? SCENARIOS[0];
   const lines = useMemo(
-    () => aiLines ?? scenarioLines(scenario, childName.trim() || '아지즈', age),
-    [aiLines, scenario, childName, age]
+    () =>
+      mode === 'interview'
+        ? interviewLines(pairs)
+        : aiLines ?? scenarioLines(scenario, childName.trim() || '아지즈', age),
+    [mode, pairs, aiLines, scenario, childName, age]
   );
 
   const singleOpts = { style: profile.style, accent: profile.accent, errors: profile.errors };
@@ -784,7 +814,7 @@ export function VoiceLab() {
     for (const line of lines) {
       if (line.speaker === 'teacher') {
         out.push({ kind: 'teacher', line });
-      } else if (mode === 'single') {
+      } else if (mode !== 'two') {
         out.push({ kind: 'child', slot: 'child', name: childName, line, answer: renderAnswer(line, opts) });
       } else {
         const first = renderAnswer(line, BEGINNER_TURN);
@@ -798,7 +828,7 @@ export function VoiceLab() {
 
   const childVoice = voices.child;
   const fluentVoiceWarning =
-    profile.style === 'fluent' && mode === 'single' && !!childVoice?.accentLevel && childVoice.accentLevel !== 'none';
+    profile.style === 'fluent' && mode !== 'two' && !!childVoice?.accentLevel && childVoice.accentLevel !== 'none';
   const twoVoiceWarning = mode === 'two' && !!voices.child2?.accentLevel && voices.child2.accentLevel !== 'none';
 
   const cacheKey = (slot: VoiceSlot, text: string) =>
@@ -1020,7 +1050,8 @@ export function VoiceLab() {
 
   /** The dialogue as plain text: who said what, the correct form, the Uzbek. */
   const transcript = useMemo(() => {
-    const title = aiLines ? t('saveAiTitle') : `${scenario.title} · ${scenario.ko}`;
+    const title =
+      mode === 'interview' ? t('interviewTitle') : aiLines ? t('saveAiTitle') : `${scenario.title} · ${scenario.ko}`;
     const people = [
       t('teacher'),
       `${childName} — ${childGender === 'girl' ? t('genderGirl') : t('genderBoy')}`,
@@ -1206,7 +1237,7 @@ export function VoiceLab() {
 
       {/* Mode */}
       <div className="flex flex-wrap gap-2" role="group" aria-label={t('mode')}>
-        {(['single', 'two'] as const).map((m) => (
+        {(['single', 'two', 'interview'] as const).map((m) => (
           <button
             key={m}
             onClick={() => setMode(m)}
@@ -1218,8 +1249,14 @@ export function VoiceLab() {
                 : 'border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800'
             )}
           >
-            {m === 'single' ? <Baby className="w-4 h-4" /> : <Users className="w-4 h-4" />}
-            {m === 'single' ? t('modeSingle') : t('modeTwo')}
+            {m === 'single' ? (
+              <Baby className="w-4 h-4" />
+            ) : m === 'two' ? (
+              <Users className="w-4 h-4" />
+            ) : (
+              <MessagesSquare className="w-4 h-4" />
+            )}
+            {m === 'single' ? t('modeSingle') : m === 'two' ? t('modeTwo') : t('modeInterview')}
           </button>
         ))}
       </div>
@@ -1263,7 +1300,7 @@ export function VoiceLab() {
           </label>
         </div>
 
-        {mode === 'single' ? (
+        {mode !== 'two' ? (
           <>
             <div>
               <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{t('level')}</p>
@@ -1359,6 +1396,79 @@ export function VoiceLab() {
 
       {/* Lesson */}
       <Card className="space-y-4">
+        {mode === 'interview' ? (
+          <div className="space-y-3">
+            <div>
+              <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t('interviewTitle')}</h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t('interviewHint')}</p>
+            </div>
+            {pairs.length === 0 && <p className="text-sm text-gray-500 dark:text-gray-400">{t('interviewEmpty')}</p>}
+            <ol className="space-y-3">
+              {pairs.map((p, i) => (
+                <li
+                  key={p.id}
+                  className="rounded-xl border border-gray-100 dark:border-gray-800 p-3 grid gap-3 md:grid-cols-[1fr_1fr_auto]"
+                >
+                  <label className="block text-sm min-w-0">
+                    <span className="font-medium text-rose-700 dark:text-rose-300">
+                      {t('question', { n: i + 1 })}
+                    </span>
+                    <textarea
+                      value={p.q}
+                      onChange={(e) => editPair(p.id, { q: e.target.value.slice(0, 300) })}
+                      lang="ko"
+                      rows={2}
+                      placeholder={t('questionPlaceholder')}
+                      className={selectClass}
+                    />
+                  </label>
+                  <label className="block text-sm min-w-0">
+                    <span className="font-medium text-sky-700 dark:text-sky-300">
+                      {t('answer', { n: i + 1, name: childName })}
+                    </span>
+                    <textarea
+                      value={p.a}
+                      onChange={(e) => editPair(p.id, { a: e.target.value.slice(0, 300) })}
+                      lang="ko"
+                      rows={2}
+                      placeholder={t('answerPlaceholder')}
+                      className={selectClass}
+                    />
+                  </label>
+                  <div className="flex md:flex-col gap-1 justify-end">
+                    <button
+                      onClick={() => movePair(i, -1)}
+                      disabled={i === 0}
+                      className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30"
+                      aria-label={t('movePairUp', { n: i + 1 })}
+                    >
+                      <ArrowUp className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => movePair(i, 1)}
+                      disabled={i === pairs.length - 1}
+                      className="p-1.5 rounded-lg text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 disabled:opacity-30"
+                      aria-label={t('movePairDown', { n: i + 1 })}
+                    >
+                      <ArrowDown className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={() => updatePairs(pairs.filter((x) => x.id !== p.id))}
+                      className="p-1.5 rounded-lg text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800"
+                      aria-label={t('removePair', { n: i + 1 })}
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ol>
+            <Button variant="outline" onClick={() => updatePairs([...pairs, newPair()])} icon={<Plus className="w-4 h-4" />}>
+              {t('addPair')}
+            </Button>
+          </div>
+        ) : (
+        <>
         <div className="flex flex-wrap gap-2">
           {SCENARIOS.map((s) => (
             <button
@@ -1398,6 +1508,8 @@ export function VoiceLab() {
             {t('generate')}
           </Button>
         </div>
+        </>
+        )}
 
         <div className="flex flex-wrap items-center gap-2">
           {playing !== null ? (
@@ -1409,7 +1521,7 @@ export function VoiceLab() {
               {t('playAll')}
             </Button>
           )}
-          {mode === 'single' && (
+          {mode !== 'two' && (
             <Button
               variant={showVariants ? 'secondary' : 'outline'}
               onClick={() => setShowVariants((v) => !v)}
@@ -1507,7 +1619,7 @@ export function VoiceLab() {
                   )}
                   {gloss && <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{gloss}</p>}
 
-                  {showVariants && mode === 'single' && !isTeacher && (
+                  {showVariants && mode !== 'two' && !isTeacher && (
                     <ul className="mt-3 space-y-1.5 border-t border-sky-100 dark:border-sky-900/50 pt-2">
                       {ANSWER_STYLES.map((st, n) => {
                         const v = renderAnswer(turn.line, { ...singleOpts, style: st, force: true });
@@ -1562,7 +1674,7 @@ export function VoiceLab() {
                 <audio controls src={combined.url} className="w-full" />
                 <a
                   href={combined.url}
-                  download={`koreys-dialog-${scenario.id}.wav`}
+                  download={`koreys-dialog-${mode === 'interview' ? 'intervyu' : scenario.id}.wav`}
                   className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
                 >
                   <Download className="w-4 h-4" />
@@ -1591,7 +1703,7 @@ export function VoiceLab() {
               </Button>
               <a
                 href={transcriptUrl}
-                download={`koreys-dialog-${scenario.id}.txt`}
+                download={`koreys-dialog-${mode === 'interview' ? 'intervyu' : scenario.id}.txt`}
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               >
                 <Download className="w-3.5 h-3.5" />

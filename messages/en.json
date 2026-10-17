@@ -1050,6 +1050,18 @@
     "typedEmpty": "Nothing yet. Type a text in a voice card above and press “Save to the list”.",
     "playTyped": "Play text {n}",
     "removeTyped": "Delete text {n}",
-    "clearTyped": "Clear all"
+    "clearTyped": "Clear all",
+    "modeInterview": "Interview",
+    "interviewTitle": "Interview",
+    "interviewHint": "Type every question of the teacher and every answer of the child. It plays in turn — question 1, answer 1, question 2, answer 2… — and saves like a lesson. Write the answer correctly; the child's level decides how it comes out.",
+    "interviewEmpty": "No questions yet. Press “Next question”.",
+    "question": "Question {n} (teacher)",
+    "answer": "Answer {n} ({name})",
+    "questionPlaceholder": "오늘 학교에서 뭐 배웠어요?",
+    "answerPlaceholder": "저는 오늘 한국어랑 수학을 배웠어요.",
+    "addPair": "Next question",
+    "removePair": "Delete question {n} and its answer",
+    "movePairUp": "Move question {n} up",
+    "movePairDown": "Move question {n} down"
   }
 }

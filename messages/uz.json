@@ -1050,6 +1050,18 @@
     "typedEmpty": "Hozircha boʻsh. Yuqoridagi ovoz kartasida matn yozib, “Roʻyxatga saqlash” ni bosing.",
     "playTyped": "{n}-matnni eshittirish",
     "removeTyped": "{n}-matnni oʻchirish",
-    "clearTyped": "Hammasini tozalash"
+    "clearTyped": "Hammasini tozalash",
+    "modeInterview": "Intervyu",
+    "interviewTitle": "Intervyu",
+    "interviewHint": "Ustozning har bir savolini va bolaning har bir javobini oʻzingiz yozing. Navbatma-navbat eshittiriladi — 1-savol, 1-javob, 2-savol, 2-javob… — va dars kabi saqlanadi. Javobni toʻgʻri yozing: bola uni qanday aytishini daraja belgilaydi.",
+    "interviewEmpty": "Hali savol yoʻq. “Keyingi savol” ni bosing.",
+    "question": "{n}-savol (ustoz)",
+    "answer": "{n}-javob ({name})",
+    "questionPlaceholder": "오늘 학교에서 뭐 배웠어요?",
+    "answerPlaceholder": "저는 오늘 한국어랑 수학을 배웠어요.",
+    "addPair": "Keyingi savol",
+    "removePair": "{n}-savol va javobini oʻchirish",
+    "movePairUp": "{n}-savolni yuqoriga",
+    "movePairDown": "{n}-savolni pastga"
   }
 }

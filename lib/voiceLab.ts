@@ -619,3 +619,57 @@ export function saveTyped(lines: TypedLine[]): void {
     // Storage disabled — the list still works for this visit.
   }
 }
+
+// ── Interview ─────────────────────────────────────────────────────────────
+//
+// The teacher's questions and the child's answers, both typed by hand, in
+// pairs: question 1, answer 1, question 2, answer 2 … It plays and saves like
+// a built-in lesson; the typed answer is the correct one, and the child's
+// level decides how it comes out (accent, 반말, or fluent as written).
+
+export interface InterviewPair {
+  id: string;
+  q: string;
+  a: string;
+}
+
+export function newPair(q = '', a = ''): InterviewPair {
+  return { id: `${Date.now()}-${Math.floor(Math.random() * 1e6)}`, q, a };
+}
+
+export const SAMPLE_INTERVIEW: InterviewPair[] = [
+  { id: 'sample-1', q: '오늘 아침에 뭐 먹었어요?', a: '저는 오늘 아침에 빵이랑 우유를 먹었어요.' },
+  { id: 'sample-2', q: '한국에 온 지 얼마나 됐어요?', a: '한국에 온 지 일 년 됐어요.' },
+];
+
+/** Pairs as dialogue lines; an empty question or answer is simply left out. */
+export function interviewLines(pairs: InterviewPair[]): DialogueLine[] {
+  return pairs.flatMap((p) => [
+    ...(p.q.trim() ? [{ speaker: 'teacher' as const, ko: p.q.trim(), uz: '' }] : []),
+    ...(p.a.trim() ? [{ speaker: 'child' as const, ko: p.a.trim(), uz: '', fluent: p.a.trim() }] : []),
+  ]);
+}
+
+const INTERVIEW_KEY = 'koreer:voice-lab-interview';
+
+export function loadInterview(): InterviewPair[] {
+  if (typeof window === 'undefined') return SAMPLE_INTERVIEW;
+  try {
+    const raw = window.localStorage.getItem(INTERVIEW_KEY);
+    if (!raw) return SAMPLE_INTERVIEW;
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed)
+      ? parsed.filter((p): p is InterviewPair => p && typeof p.id === 'string' && typeof p.q === 'string' && typeof p.a === 'string')
+      : SAMPLE_INTERVIEW;
+  } catch {
+    return SAMPLE_INTERVIEW;
+  }
+}
+
+export function saveInterview(pairs: InterviewPair[]): void {
+  try {
+    window.localStorage.setItem(INTERVIEW_KEY, JSON.stringify(pairs.slice(0, 50)));
+  } catch {
+    // Storage disabled — the interview still works for this visit.
+  }
+}

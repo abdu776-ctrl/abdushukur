@@ -1050,6 +1050,18 @@
     "typedEmpty": "还没有。在上面的声音卡片里输入文字，然后点“保存到列表”。",
     "playTyped": "播放第 {n} 条",
     "removeTyped": "删除第 {n} 条",
-    "clearTyped": "全部清除"
+    "clearTyped": "全部清除",
+    "modeInterview": "访谈",
+    "interviewTitle": "访谈",
+    "interviewHint": "逐条输入老师的每个问题和孩子的每个回答。按顺序播放——问题 1、回答 1、问题 2、回答 2……并像课程一样保存。回答请写正确的句子，孩子怎么说由水平决定。",
+    "interviewEmpty": "还没有问题。点“下一个问题”。",
+    "question": "问题 {n}（老师）",
+    "answer": "回答 {n}（{name}）",
+    "questionPlaceholder": "오늘 학교에서 뭐 배웠어요?",
+    "answerPlaceholder": "저는 오늘 한국어랑 수학을 배웠어요.",
+    "addPair": "下一个问题",
+    "removePair": "删除问题 {n} 及回答",
+    "movePairUp": "问题 {n} 上移",
+    "movePairDown": "问题 {n} 下移"
   }
 }
