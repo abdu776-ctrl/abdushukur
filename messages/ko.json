@@ -1027,6 +1027,21 @@
     "downloadConverted": "바꾼 녹음 다운로드",
     "targetTeacher": "선생님 (여성)",
     "targetBoy": "남자아이",
-    "targetGirl": "여자아이"
+    "targetGirl": "여자아이",
+    "saveTitle": "대화 저장",
+    "saveHint": "대화가 마음에 드나요? 하나의 녹음으로 합치고, 옆에 대화 내용도 저장하세요.",
+    "saveAudio": "전체 대화 녹음 파일",
+    "saveAudioHint": "선생님과 아이들의 모든 말을 순서대로, 사이에 짧은 쉼을 두고 이어 붙여요. WAV 파일로 저장돼요.",
+    "combine": "하나의 녹음으로 합치기",
+    "combining": "합치는 중… {done}/{total}",
+    "combineFailed": "녹음을 만들지 못했어요. 다시 시도해 주세요.",
+    "missingAudio": "{lines}번째 줄은 기기 음성으로만 재생되어 저장할 수 없어요. 잠시 후 다시 시도하거나 목소리를 복제해 주세요.",
+    "downloadAudio": "녹음 다운로드 ({seconds}초)",
+    "saveText": "대화 내용",
+    "copyText": "내용 복사",
+    "copied": "복사됨",
+    "downloadText": "내용 다운로드 (.txt)",
+    "textParticipants": "참여자",
+    "saveAiTitle": "AI로 만든 대화"
   }
 }

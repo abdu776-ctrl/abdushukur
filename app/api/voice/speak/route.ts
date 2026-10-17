@@ -3,6 +3,7 @@ import { guardAiRequest } from '@/lib/aiGuard';
 import { VOICE_GUEST_DAILY_LIMIT, VOICE_USER_DAILY_LIMIT } from '@/lib/aiLimits';
 import { ELEVEN_BASE, ELEVEN_MODEL, defaultVoice, elevenKey } from '@/lib/elevenlabs';
 import { ACCENT, type AccentLevel } from '@/lib/voiceLab';
+import { freeKoreanTts } from '@/lib/freeTts';
 
 /** One line of dialogue, not a speech. */
 const MAX_TEXT = 400;
@@ -40,8 +41,17 @@ export async function POST(req: NextRequest) {
     // A noticeable accent is slower; a fluent child speaks at a normal pace.
     const level: AccentLevel = typeof accent === 'string' && accent in ACCENT ? (accent as AccentLevel) : 'slight';
     const pace = ACCENT[level].rate;
-    // No provider or no voice to speak with: the page uses the browser voice.
-    if (!apiKey || !voice) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+    // No provider or no voice to speak with: a free voice, as a file, so the
+    // dialogue can still be saved. It is one adult voice; the page pitches it
+    // up for a child (X-Voice: free tells it to). Failing that, 503, and the
+    // page uses the browser voice.
+    if (!apiKey || !voice) {
+      const mp3 = await freeKoreanTts(text, speaker === 'teacher' ? 1 : pace);
+      if (!mp3) return NextResponse.json({ error: 'unavailable' }, { status: 503 });
+      return new Response(mp3 as unknown as BodyInit, {
+        headers: { 'Content-Type': 'audio/mpeg', 'Cache-Control': 'no-store', 'X-Voice': 'free' },
+      });
+    }
 
     const res = await fetch(`${ELEVEN_BASE}/text-to-speech/${voice}?output_format=mp3_44100_128`, {
       method: 'POST',

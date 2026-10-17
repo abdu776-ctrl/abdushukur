@@ -1027,6 +1027,21 @@
     "downloadConverted": "Download the changed recording",
     "targetTeacher": "Teacher (woman)",
     "targetBoy": "Boy",
-    "targetGirl": "Girl"
+    "targetGirl": "Girl",
+    "saveTitle": "Save the dialogue",
+    "saveHint": "Happy with the dialogue? Join it into one recording and keep its text beside it.",
+    "saveAudio": "One recording of the whole dialogue",
+    "saveAudioHint": "Every line, teacher and children, in order, with a short pause between turns. Saved as a WAV file.",
+    "combine": "Join into one recording",
+    "combining": "Joining… {done}/{total}",
+    "combineFailed": "The recording could not be made. Please try again.",
+    "missingAudio": "Lines {lines} could only be played by the device voice, which cannot be saved. Try again in a minute, or clone or set a voice for them.",
+    "downloadAudio": "Download the recording ({seconds} s)",
+    "saveText": "Dialogue text",
+    "copyText": "Copy text",
+    "copied": "Copied",
+    "downloadText": "Download text (.txt)",
+    "textParticipants": "Speakers",
+    "saveAiTitle": "Dialogue created with AI"
   }
 }

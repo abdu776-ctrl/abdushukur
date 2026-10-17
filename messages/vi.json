@@ -1027,6 +1027,21 @@
     "downloadConverted": "Tải bản ghi đã đổi giọng",
     "targetTeacher": "Cô giáo",
     "targetBoy": "Bé trai",
-    "targetGirl": "Bé gái"
+    "targetGirl": "Bé gái",
+    "saveTitle": "Lưu hội thoại",
+    "saveHint": "Ưng ý với hội thoại? Ghép thành một bản ghi và lưu cả văn bản bên cạnh.",
+    "saveAudio": "Một bản ghi cho cả hội thoại",
+    "saveAudioHint": "Mọi câu của cô và các em theo thứ tự, có khoảng nghỉ ngắn giữa các lượt. Lưu dạng tệp WAV.",
+    "combine": "Ghép thành một bản ghi",
+    "combining": "Đang ghép… {done}/{total}",
+    "combineFailed": "Không tạo được bản ghi. Vui lòng thử lại.",
+    "missingAudio": "Các câu {lines} chỉ phát được bằng giọng thiết bị nên không lưu được. Thử lại sau một phút hoặc nhân bản giọng.",
+    "downloadAudio": "Tải bản ghi ({seconds} giây)",
+    "saveText": "Văn bản hội thoại",
+    "copyText": "Sao chép văn bản",
+    "copied": "Đã sao chép",
+    "downloadText": "Tải văn bản (.txt)",
+    "textParticipants": "Người nói",
+    "saveAiTitle": "Hội thoại tạo bằng AI"
   }
 }

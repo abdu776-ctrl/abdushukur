@@ -1027,6 +1027,21 @@
     "downloadConverted": "下载变声后的录音",
     "targetTeacher": "老师（女）",
     "targetBoy": "男孩",
-    "targetGirl": "女孩"
+    "targetGirl": "女孩",
+    "saveTitle": "保存对话",
+    "saveHint": "对话满意吗？把它合成一个录音，并在旁边保存文字。",
+    "saveAudio": "整段对话的录音",
+    "saveAudioHint": "老师和孩子的每句话按顺序连起来，中间有短暂停顿。保存为 WAV 文件。",
+    "combine": "合成一个录音",
+    "combining": "合成中… {done}/{total}",
+    "combineFailed": "无法生成录音，请重试。",
+    "missingAudio": "第 {lines} 句只能用设备语音播放，无法保存。请稍后重试，或克隆相应的声音。",
+    "downloadAudio": "下载录音（{seconds} 秒）",
+    "saveText": "对话文字",
+    "copyText": "复制文字",
+    "copied": "已复制",
+    "downloadText": "下载文字（.txt）",
+    "textParticipants": "参与者",
+    "saveAiTitle": "AI 生成的对话"
   }
 }

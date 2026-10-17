@@ -1027,6 +1027,21 @@
     "downloadConverted": "Almashtirilgan yozuvni yuklab olish",
     "targetTeacher": "Ustoz (ayol)",
     "targetBoy": "Oʻgʻil bola",
-    "targetGirl": "Qiz bola"
+    "targetGirl": "Qiz bola",
+    "saveTitle": "Dialogni saqlash",
+    "saveHint": "Dialog maʼqul keldimi? Uni bitta umumiy ovozli yozuvga birlashtiring, yonida matnini ham saqlang.",
+    "saveAudio": "Butun dialogning umumiy ovozli yozuvi",
+    "saveAudioHint": "Ustoz va bolalarning barcha gaplari ketma-ket, oralarida qisqa pauza bilan. WAV fayl boʻlib saqlanadi.",
+    "combine": "Bitta yozuvga birlashtirish",
+    "combining": "Birlashtirilmoqda… {done}/{total}",
+    "combineFailed": "Yozuvni tayyorlab boʻlmadi. Qaytadan urinib koʻring.",
+    "missingAudio": "{lines}-qatorlarni faqat qurilma ovozi oʻqidi, uni esa faylga saqlab boʻlmaydi. Bir daqiqadan keyin qayta urinib koʻring yoki bu ovozlarni klonlang.",
+    "downloadAudio": "Yozuvni yuklab olish ({seconds} soniya)",
+    "saveText": "Dialog matni",
+    "copyText": "Matnni nusxalash",
+    "copied": "Nusxalandi",
+    "downloadText": "Matnni yuklab olish (.txt)",
+    "textParticipants": "Ishtirokchilar",
+    "saveAiTitle": "AI bilan yaratilgan dialog"
   }
 }

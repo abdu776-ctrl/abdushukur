@@ -36,6 +36,24 @@ Each child is a **boy or a girl** (`Oʻgʻil bola` / `Qiz bola`). The choice is
 saved with a cloned voice, used in the voice's provider description, picks the
 stock voice, and colours the child's turns in the dialogue.
 
+## Saving the dialogue
+
+Under the dialogue, "Dialogni saqlash" has two halves side by side:
+
+- **One recording of the whole dialogue** — every line, teacher and children,
+  in order, 0.6 s between turns, joined in the browser into one WAV file.
+- **The dialogue text** — who said what, the correct form where the child made
+  a mistake, the Uzbek gloss and the two-children comparison; copy it or save
+  it as `.txt`.
+
+A line can only go into the recording if it exists as audio. The browser's own
+voice can be heard but never captured, so when there is no ElevenLabs key the
+speak route falls back to a free voice that does come back as a file
+(`lib/freeTts.ts`, Google Translate's public text-to-speech — unofficial, and
+it may refuse or change). The page pitches that adult voice up for a child.
+Lines that still end up on the device voice are named, and the recording is
+not made.
+
 ## Fluent children are a full case
 
 Not every child is a beginner. A child who has lived in Korea for years, or

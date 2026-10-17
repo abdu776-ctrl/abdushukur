@@ -708,6 +708,11 @@ export function VoiceLab() {
   const [playing, setPlaying] = useState<string | null>(null);
   const [showAccented, setShowAccented] = useState(false);
   const [audioUrls, setAudioUrls] = useState<Record<string, string>>({});
+  const clipsRef = useRef(new Map<string, Blob>());
+  const [combining, setCombining] = useState<{ done: number; total: number } | null>(null);
+  const [combined, setCombined] = useState<{ url: string; seconds: number } | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
   const stopRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -789,32 +794,56 @@ export function VoiceLab() {
       .find((x) => x.v && x.g === target)?.v;
   }
 
-  async function speak(slot: VoiceSlot, text: string, accent: AccentLevel, rate: number): Promise<void> {
+  /**
+   * One line as an audio file: a cloned or stock voice, or the free voice
+   * (pitched up here for a child). Null when no file can be had, and the
+   * browser voice has to say it instead — which can be heard, not saved.
+   */
+  async function getClip(slot: VoiceSlot, text: string, accent: AccentLevel): Promise<Blob | null> {
     const key = cacheKey(slot, text);
-    let url = audioUrls[key];
-    if (!url) {
-      const res = await aiFetch('/api/voice/speak', {
-        text,
-        speaker: slot,
-        voiceId: voices[slot]?.voiceId,
-        accent,
-        ...(slot === 'teacher' ? {} : { gender: genderOf(slot) }),
-      });
-      if (res.status === 503) return speakWithDevice(text, targetOf(slot), slot === 'child2' ? age + 2 : age, rate);
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        const k = aiErrorKey(res.status, signedIn, body.error);
-        throw new Error(k ? terr(k) : t('playFailed'));
-      }
-      url = URL.createObjectURL(await res.blob());
-      setAudioUrls((prev) => ({ ...prev, [key]: url }));
+    const cached = clipsRef.current.get(key);
+    if (cached) return cached;
+    const res = await aiFetch('/api/voice/speak', {
+      text,
+      speaker: slot,
+      voiceId: voices[slot]?.voiceId,
+      accent,
+      ...(slot === 'teacher' ? {} : { gender: genderOf(slot) }),
+    });
+    if (res.status === 503) return null;
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      const k = aiErrorKey(res.status, signedIn, body.error);
+      throw new Error(k ? terr(k) : t('playFailed'));
     }
+    let blob = await res.blob();
+    if (res.headers.get('X-Voice') === 'free' && slot !== 'teacher') {
+      // The free voice is one adult woman: raise it to a child's, a girl a
+      // little higher than a boy, and the younger the higher.
+      const childAge = slot === 'child2' ? age + 2 : age;
+      const semis = PITCH_PRESETS[genderOf(slot)] + Math.round((10 - childAge) * 0.3);
+      blob = toWav(await shiftFile(blob, semis));
+    }
+    clipsRef.current.set(key, blob);
+    const url = URL.createObjectURL(blob);
+    setAudioUrls((prev) => ({ ...prev, [key]: url }));
+    return blob;
+  }
+
+  async function speak(slot: VoiceSlot, text: string, accent: AccentLevel, rate: number): Promise<void> {
+    const blob = await getClip(slot, text, accent);
+    if (!blob) return speakWithDevice(text, targetOf(slot), slot === 'child2' ? age + 2 : age, rate);
+    const url = URL.createObjectURL(blob);
     await new Promise<void>((resolve) => {
       const a = new Audio(url);
       audioRef.current = a;
-      a.onended = () => resolve();
-      a.onerror = () => resolve();
-      a.play().catch(() => resolve());
+      const done = () => {
+        URL.revokeObjectURL(url);
+        resolve();
+      };
+      a.onended = done;
+      a.onerror = done;
+      a.play().catch(done);
     });
   }
 
@@ -822,6 +851,118 @@ export function VoiceLab() {
     if (turn.kind === 'teacher') return speak('teacher', turn.line.ko, 'none', 1);
     if (turn.kind === 'child') return speak(turn.slot, turn.answer.spoken, turn.answer.accent, turn.answer.rate);
     return Promise.resolve();
+  }
+
+  function clipOf(turn: Turn): Promise<Blob | null> {
+    if (turn.kind === 'teacher') return getClip('teacher', turn.line.ko, 'none');
+    if (turn.kind === 'child') return getClip(turn.slot, turn.answer.spoken, turn.answer.accent);
+    return Promise.resolve(null);
+  }
+
+  /** The whole dialogue as one recording, a short pause between turns. */
+  async function combine() {
+    stop();
+    setSaveError(null);
+    if (combined) URL.revokeObjectURL(combined.url);
+    setCombined(null);
+    const spoken = turns.map((turn, i) => ({ turn, n: i + 1 })).filter((x) => x.turn.kind !== 'compare');
+    setCombining({ done: 0, total: spoken.length });
+    const Ctx =
+      window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const ctx = new Ctx();
+    try {
+      const buffers: AudioBuffer[] = [];
+      const missing: number[] = [];
+      for (const [k, x] of spoken.entries()) {
+        const blob = await clipOf(x.turn);
+        if (!blob) missing.push(x.n);
+        else buffers.push(await ctx.decodeAudioData(await blob.arrayBuffer()));
+        setCombining({ done: k + 1, total: spoken.length });
+      }
+      if (missing.length) {
+        setSaveError(t('missingAudio', { lines: missing.join(', ') }));
+        return;
+      }
+      const rate = ctx.sampleRate;
+      const gap = Math.round(rate * 0.6);
+      const length = buffers.reduce((n, b) => n + b.length + gap, 0);
+      const out = ctx.createBuffer(1, length, rate);
+      const data = out.getChannelData(0);
+      let at = 0;
+      for (const b of buffers) {
+        for (let c = 0; c < b.numberOfChannels; c++) {
+          const ch = b.getChannelData(c);
+          for (let i = 0; i < ch.length; i++) data[at + i] += ch[i] / b.numberOfChannels;
+        }
+        at += b.length + gap;
+      }
+      setCombined({ url: URL.createObjectURL(toWav(out)), seconds: Math.round(length / rate) });
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : t('combineFailed'));
+    } finally {
+      ctx.close().catch(() => {});
+      setCombining(null);
+    }
+  }
+
+  /** The dialogue as plain text: who said what, the correct form, the Uzbek. */
+  const transcript = useMemo(() => {
+    const title = aiLines ? t('saveAiTitle') : `${scenario.title} · ${scenario.ko}`;
+    const people = [
+      t('teacher'),
+      `${childName} — ${childGender === 'girl' ? t('genderGirl') : t('genderBoy')}`,
+      ...(mode === 'two' ? [`${child2Name} — ${child2Gender === 'girl' ? t('genderGirl') : t('genderBoy')}`] : []),
+    ];
+    const out = [title, `${t('textParticipants')}: ${people.join('; ')}`, ''];
+    let n = 0;
+    for (const turn of turns) {
+      if (turn.kind === 'compare') {
+        out.push(`   💡 ${compareText(turn.first)}`, '');
+        continue;
+      }
+      n += 1;
+      if (turn.kind === 'teacher') {
+        out.push(`${n}. ${t('teacher')}: ${turn.line.ko}`);
+        if (turn.line.uz) out.push(`   (${turn.line.uz})`);
+      } else {
+        const a = turn.answer;
+        out.push(`${n}. ${turn.name}: ${a.said}`);
+        if (a.notes.some((x) => x === 'banmal' || x === 'selfCorrect' || x === 'grammar')) {
+          out.push(`   ✓ ${t('correctForm', { text: a.correct })}`);
+        }
+        const gloss = a.notes.includes('fluent') ? turn.line.fluentUz || turn.line.uz : turn.line.uz;
+        if (gloss) out.push(`   (${gloss})`);
+      }
+      out.push('');
+    }
+    return out.join('\n').trim() + '\n';
+    // compareText reads only the translator, which is stable per locale.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [turns, aiLines, scenario, childName, child2Name, childGender, child2Gender, mode]);
+
+  const transcriptUrl = useMemo(
+    () => URL.createObjectURL(new Blob([transcript], { type: 'text/plain;charset=utf-8' })),
+    [transcript]
+  );
+  useEffect(() => () => URL.revokeObjectURL(transcriptUrl), [transcriptUrl]);
+
+  // A recording of an earlier version of the dialogue is not this dialogue.
+  useEffect(() => {
+    setCombined((prev) => {
+      if (prev) URL.revokeObjectURL(prev.url);
+      return null;
+    });
+    setSaveError(null);
+  }, [turns]);
+
+  async function copyTranscript() {
+    try {
+      await navigator.clipboard.writeText(transcript);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+    }
   }
 
   /** Play from a turn on, or just one clip. `id` marks what is highlighted. */
@@ -1285,6 +1426,64 @@ export function VoiceLab() {
             );
           })}
         </ol>
+      </Card>
+
+      {/* Save: one recording of the whole dialogue, and its text beside it */}
+      <Card className="space-y-4">
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white">{t('saveTitle')}</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">{t('saveHint')}</p>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2">
+          <section className="space-y-3 rounded-xl border border-gray-100 dark:border-gray-800 p-4 min-w-0">
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">{t('saveAudio')}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('saveAudioHint')}</p>
+            <Button onClick={combine} loading={!!combining} icon={<Layers className="w-4 h-4" />}>
+              {combining ? t('combining', { done: combining.done, total: combining.total }) : t('combine')}
+            </Button>
+            {combined && (
+              <div className="space-y-2">
+                <audio controls src={combined.url} className="w-full" />
+                <a
+                  href={combined.url}
+                  download={`koreys-dialog-${scenario.id}.wav`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+                >
+                  <Download className="w-4 h-4" />
+                  {t('downloadAudio', { seconds: combined.seconds })}
+                </a>
+              </div>
+            )}
+            {saveError && (
+              <p role="alert" className="text-sm text-red-600 dark:text-red-400">
+                {saveError}
+              </p>
+            )}
+          </section>
+          <section className="space-y-3 rounded-xl border border-gray-100 dark:border-gray-800 p-4 min-w-0">
+            <h3 className="font-semibold text-gray-800 dark:text-gray-200">{t('saveText')}</h3>
+            <textarea
+              readOnly
+              value={transcript}
+              rows={10}
+              className="w-full rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/60 px-3 py-2 text-sm text-gray-900 dark:text-white"
+              aria-label={t('saveText')}
+            />
+            <div className="flex flex-wrap gap-2">
+              <Button size="sm" variant="outline" onClick={copyTranscript} icon={<Check className="w-3.5 h-3.5" />}>
+                {copied ? t('copied') : t('copyText')}
+              </Button>
+              <a
+                href={transcriptUrl}
+                download={`koreys-dialog-${scenario.id}.txt`}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs rounded-lg font-medium border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <Download className="w-3.5 h-3.5" />
+                {t('downloadText')}
+              </a>
+            </div>
+          </section>
+        </div>
       </Card>
 
       <p className="text-xs text-gray-500 dark:text-gray-400">{t('privacyNote')}</p>
